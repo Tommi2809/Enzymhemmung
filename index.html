@@ -3160,6 +3160,1975 @@
     grid-template-columns: 1fr;
   }
 }
+/* =========================================================
+ABSCHNITT 11: MODUL 8 – FREIE SICHERUNG
+========================================================= */
+
+.free-response-task {
+width: min(100%, 74rem);
+display: grid;
+gap: 1.1rem;
+margin-inline: auto;
+}
+
+.free-response-note {
+padding: 0.9rem 1rem;
+border-left: 0.35rem solid var(--color-info);
+border-radius: var(--radius-small);
+background: var(--color-info-light);
+font-size: 0.9rem;
+}
+
+.free-response-note strong {
+display: block;
+margin-bottom: 0.2rem;
+}
+
+.free-response-planning,
+.free-response-editor,
+.free-response-model,
+.free-response-rubric,
+.free-response-summary {
+padding: 1rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface);
+box-shadow: var(--shadow-small);
+}
+
+.free-response-planning h2,
+.free-response-editor h2,
+.free-response-model h2,
+.free-response-rubric h2,
+.free-response-summary h2 {
+margin-bottom: 0.3rem;
+font-size: 1.05rem;
+}
+
+.free-response-description {
+margin-bottom: 0.9rem;
+color: var(--color-text-muted);
+font-size: 0.9rem;
+}
+
+.free-response-planning-list {
+display: grid;
+gap: 0.55rem;
+margin: 0;
+padding-left: 1.35rem;
+}
+
+.free-response-planning-list li {
+padding-left: 0.15rem;
+}
+
+.free-response-textarea {
+width: 100%;
+min-height: 14rem;
+resize: vertical;
+padding: 0.9rem 1rem;
+border: 2px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface);
+color: var(--color-text);
+font: inherit;
+line-height: 1.55;
+transition:
+border-color var(--transition-fast),
+box-shadow var(--transition-fast),
+background var(--transition-fast);
+}
+
+.free-response-textarea:hover {
+border-color: var(--color-border-strong);
+}
+
+.free-response-textarea:focus {
+border-color: var(--color-primary);
+outline: none;
+box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.free-response-textarea.is-too-short {
+border-color: var(--color-warning);
+background: var(--color-warning-light);
+}
+
+.free-response-textarea.is-ready {
+border-color: var(--color-success);
+}
+
+.free-response-toolbar {
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+justify-content: space-between;
+gap: 0.8rem;
+margin-top: 0.8rem;
+}
+
+.free-response-metrics {
+display: flex;
+flex-wrap: wrap;
+gap: 0.55rem;
+color: var(--color-text-muted);
+font-size: 0.84rem;
+}
+
+.free-response-metric {
+padding: 0.3rem 0.55rem;
+border: 1px solid var(--color-border);
+border-radius: 999px;
+background: var(--color-surface-muted);
+}
+
+.free-response-metric strong {
+color: var(--color-text);
+}
+
+.free-response-progress {
+height: 0.65rem;
+overflow: hidden;
+margin-top: 0.7rem;
+border: 1px solid var(--color-border);
+border-radius: 999px;
+background: var(--color-surface-muted);
+}
+
+.free-response-progress-fill {
+height: 100%;
+width: 0;
+border-radius: inherit;
+background: var(--color-primary);
+transition: width var(--transition-normal);
+}
+
+.free-response-progress-fill.is-complete {
+background: var(--color-success);
+}
+
+.free-response-requirement {
+margin-top: 0.45rem;
+color: var(--color-text-muted);
+font-size: 0.8rem;
+}
+
+.free-response-requirement.is-met {
+color: var(--color-success);
+font-weight: 700;
+}
+
+.free-response-actions {
+display: flex;
+flex-wrap: wrap;
+gap: 0.65rem;
+}
+
+.free-response-model {
+border-left: 0.4rem solid var(--color-primary);
+background:
+linear-gradient(
+135deg,
+var(--color-primary-light),
+var(--color-surface)
+);
+}
+
+.free-response-model[hidden] {
+display: none;
+}
+
+.free-response-model-copy {
+display: grid;
+gap: 0.7rem;
+margin-top: 0.8rem;
+}
+
+.free-response-model-copy p {
+margin: 0;
+line-height: 1.6;
+}
+
+.free-response-model-label {
+display: inline-flex;
+align-items: center;
+gap: 0.4rem;
+width: fit-content;
+padding: 0.3rem 0.6rem;
+border-radius: 999px;
+background: var(--color-primary);
+color: #ffffff;
+font-size: 0.78rem;
+font-weight: 800;
+}
+
+.free-response-revision-status {
+margin-top: 0.85rem;
+padding: 0.65rem 0.75rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-small);
+background: var(--color-surface-muted);
+color: var(--color-text-muted);
+font-size: 0.84rem;
+}
+
+.free-response-revision-status.is-revised {
+border-color: var(--color-success);
+background: var(--color-success-light);
+color: var(--color-success);
+}
+
+.self-check-rubric {
+display: grid;
+gap: 0.75rem;
+margin-top: 0.9rem;
+}
+
+.self-check-item {
+display: grid;
+grid-template-columns: minmax(0, 1fr) minmax(12rem, 15rem);
+align-items: center;
+gap: 1rem;
+padding: 0.85rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface-muted);
+transition:
+border-color var(--transition-fast),
+background var(--transition-fast);
+}
+
+.self-check-item.is-present {
+border-color: var(--color-success);
+background: var(--color-success-light);
+}
+
+.self-check-item.is-partial {
+border-color: var(--color-warning);
+background: var(--color-warning-light);
+}
+
+.self-check-item.is-missing {
+border-color: var(--color-error);
+background: var(--color-error-light);
+}
+
+.self-check-copy {
+min-width: 0;
+}
+
+.self-check-copy strong {
+display: block;
+margin-bottom: 0.2rem;
+}
+
+.self-check-copy small {
+display: block;
+color: var(--color-text-muted);
+line-height: 1.4;
+}
+
+.self-check-select {
+width: 100%;
+}
+
+.self-check-summary-grid {
+display: grid;
+grid-template-columns:
+repeat(4, minmax(0, 1fr));
+gap: 0.65rem;
+margin-top: 0.8rem;
+}
+
+.self-check-summary-value {
+padding: 0.7rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-small);
+background: var(--color-surface-muted);
+text-align: center;
+}
+
+.self-check-summary-value strong {
+display: block;
+margin-bottom: 0.15rem;
+font-size: 1.25rem;
+}
+
+.self-check-summary-value span {
+color: var(--color-text-muted);
+font-size: 0.78rem;
+}
+
+.self-check-summary-value.is-present strong {
+color: var(--color-success);
+}
+
+.self-check-summary-value.is-partial strong {
+color: var(--color-warning);
+}
+
+.self-check-summary-value.is-missing strong {
+color: var(--color-error);
+}
+
+.self-check-summary-value.is-open strong {
+color: var(--color-info);
+}
+
+.free-response-integrity-note {
+padding: 0.8rem 0.9rem;
+border: 1px dashed var(--color-border-strong);
+border-radius: var(--radius-small);
+background: var(--color-surface-muted);
+color: var(--color-text-muted);
+font-size: 0.84rem;
+}
+
+.free-response-integrity-note strong {
+color: var(--color-text);
+}
+
+.free-response-locked {
+padding: 1rem;
+border: 2px dashed var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface-muted);
+color: var(--color-text-muted);
+text-align: center;
+}
+
+.free-response-locked strong {
+display: block;
+margin-bottom: 0.25rem;
+color: var(--color-text);
+}
+
+@media (max-width: 760px) {
+.self-check-item {
+grid-template-columns: 1fr;
+}
+
+.self-check-summary-grid {
+grid-template-columns:
+repeat(2, minmax(0, 1fr));
+}
+
+.free-response-toolbar {
+align-items: stretch;
+flex-direction: column;
+}
+
+.free-response-actions {
+display: grid;
+}
+
+.free-response-actions .button {
+width: 100%;
+}
+}
+
+@media (max-width: 480px) {
+.free-response-planning,
+.free-response-editor,
+.free-response-model,
+.free-response-rubric,
+.free-response-summary {
+padding: 0.75rem;
+}
+
+.self-check-summary-grid {
+grid-template-columns: 1fr;
+}
+
+.free-response-textarea {
+min-height: 12rem;
+}
+}
+/* =========================================================
+ABSCHNITT 12: ERGEBNISÜBERSICHT UND ABSCHLUSSFUNKTIONEN
+========================================================= */
+
+/* ---------------------------------------------------------
+Schaltfläche im Kopfbereich
+--------------------------------------------------------- */
+
+.results-header-button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 0.55rem;
+}
+
+.results-header-count {
+min-width: 2.9rem;
+padding: 0.2rem 0.45rem;
+border-radius: 999px;
+background: rgba(255, 255, 255, 0.2);
+font-size: 0.76rem;
+font-weight: 850;
+line-height: 1.2;
+text-align: center;
+}
+
+/* ---------------------------------------------------------
+Dialog
+--------------------------------------------------------- */
+
+.results-dialog {
+width: min(94vw, 78rem);
+max-width: 78rem;
+max-height: 92vh;
+padding: 0;
+overflow: hidden;
+border: 1px solid var(--color-border-strong);
+border-radius: var(--radius-medium);
+background: var(--color-surface);
+color: var(--color-text);
+box-shadow: 0 1.4rem 4rem rgba(12, 30, 38, 0.28);
+}
+
+.results-dialog::backdrop {
+background: rgba(10, 25, 32, 0.66);
+backdrop-filter: blur(2px);
+}
+
+.results-dialog.is-fallback-open {
+position: fixed;
+inset: 4vh 3vw;
+z-index: 1000;
+display: block;
+margin: auto;
+}
+
+.results-dialog-shell {
+max-height: 92vh;
+display: grid;
+grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.results-dialog-header {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 1rem;
+padding: 1rem 1.2rem;
+border-bottom: 1px solid var(--color-border);
+background: var(--color-surface);
+}
+
+.results-dialog-header h1 {
+margin: 0.1rem 0 0;
+font-size: clamp(1.25rem, 2vw, 1.7rem);
+}
+
+.results-dialog-eyebrow {
+color: var(--color-text-muted);
+font-size: 0.76rem;
+font-weight: 800;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+}
+
+.results-icon-button {
+flex: 0 0 auto;
+width: 2.5rem;
+height: 2.5rem;
+display: grid;
+place-items: center;
+padding: 0;
+border: 1px solid var(--color-border);
+border-radius: 50%;
+background: var(--color-surface-muted);
+color: var(--color-text);
+font-size: 1.4rem;
+font-weight: 800;
+cursor: pointer;
+}
+
+.results-icon-button:hover,
+.results-icon-button:focus-visible {
+border-color: var(--color-primary);
+background: var(--color-primary-light);
+}
+
+.results-dialog-content {
+overflow-y: auto;
+overscroll-behavior: contain;
+padding: 1.15rem;
+}
+
+.results-dialog-footer {
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-end;
+gap: 0.65rem;
+padding: 0.9rem 1.2rem;
+border-top: 1px solid var(--color-border);
+background: var(--color-surface-muted);
+}
+
+.results-dialog-open {
+overflow: hidden;
+}
+
+/* ---------------------------------------------------------
+Berichtskopf
+--------------------------------------------------------- */
+
+.results-report {
+display: grid;
+gap: 1.15rem;
+}
+
+.results-hero {
+display: grid;
+grid-template-columns: minmax(0, 1fr) auto;
+align-items: center;
+gap: 1.25rem;
+padding: 1.2rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background:
+linear-gradient(
+135deg,
+var(--color-primary-light),
+var(--color-surface)
+);
+}
+
+.results-kicker {
+display: inline-block;
+margin-bottom: 0.25rem;
+color: var(--color-primary-dark);
+font-size: 0.78rem;
+font-weight: 850;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+}
+
+.results-hero h2 {
+margin-bottom: 0.35rem;
+font-size: clamp(1.3rem, 2.3vw, 1.9rem);
+}
+
+.results-hero p {
+max-width: 52rem;
+margin: 0;
+color: var(--color-text-muted);
+line-height: 1.55;
+}
+
+.results-progress-ring {
+--result-progress: 0;
+width: 8.5rem;
+aspect-ratio: 1;
+display: grid;
+place-items: center;
+border-radius: 50%;
+background:
+conic-gradient(
+var(--color-primary)
+calc(var(--result-progress) * 1%),
+var(--color-border)
+0
+);
+}
+
+.results-progress-ring::before {
+content: "";
+grid-area: 1 / 1;
+width: 6.6rem;
+aspect-ratio: 1;
+border-radius: 50%;
+background: var(--color-surface);
+box-shadow: inset 0 0 0 1px var(--color-border);
+}
+
+.results-progress-ring > span {
+position: relative;
+z-index: 1;
+grid-area: 1 / 1;
+display: grid;
+gap: 0.1rem;
+text-align: center;
+}
+
+.results-progress-ring strong {
+color: var(--color-primary-dark);
+font-size: 1.45rem;
+}
+
+.results-progress-ring small {
+color: var(--color-text-muted);
+font-size: 0.72rem;
+}
+
+/* ---------------------------------------------------------
+Kennzahlen
+--------------------------------------------------------- */
+
+.results-stat-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 0.75rem;
+}
+
+.results-stat-card {
+display: grid;
+gap: 0.25rem;
+padding: 0.9rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface);
+}
+
+.results-stat-card span {
+color: var(--color-text-muted);
+font-size: 0.8rem;
+}
+
+.results-stat-card strong {
+font-size: 1.3rem;
+}
+
+.results-stat-card.is-success {
+border-color: var(--color-success);
+background: var(--color-success-light);
+}
+
+.results-stat-card.is-warning {
+border-color: var(--color-warning);
+background: var(--color-warning-light);
+}
+
+.results-stat-card.is-points {
+border-color: var(--color-primary);
+background: var(--color-primary-light);
+}
+
+.results-score-section,
+.results-section,
+.results-notes {
+padding: 1rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface);
+}
+
+.results-score-header {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 1rem;
+margin-bottom: 0.75rem;
+}
+
+.results-score-header h3,
+.results-section-heading h3,
+.results-notes h3 {
+margin-bottom: 0.25rem;
+font-size: 1.05rem;
+}
+
+.results-score-header p,
+.results-section-heading p {
+margin: 0;
+color: var(--color-text-muted);
+font-size: 0.86rem;
+}
+
+.results-score-header > strong {
+color: var(--color-primary-dark);
+font-size: 1.35rem;
+}
+
+.results-score-track,
+.result-module-progress {
+overflow: hidden;
+border: 1px solid var(--color-border);
+border-radius: 999px;
+background: var(--color-surface-muted);
+}
+
+.results-score-track {
+height: 0.85rem;
+}
+
+.results-score-fill,
+.result-module-progress-fill {
+height: 100%;
+border-radius: inherit;
+background: var(--color-primary);
+}
+
+.results-section-heading {
+margin-bottom: 0.85rem;
+}
+
+/* ---------------------------------------------------------
+Module
+--------------------------------------------------------- */
+
+.result-module-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 0.8rem;
+}
+
+.result-module-card {
+padding: 0.9rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface-muted);
+}
+
+.result-module-card-header {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 0.8rem;
+}
+
+.result-module-number {
+color: var(--color-text-muted);
+font-size: 0.72rem;
+font-weight: 800;
+letter-spacing: 0.04em;
+text-transform: uppercase;
+}
+
+.result-module-card h3 {
+margin: 0.1rem 0 0;
+font-size: 0.98rem;
+}
+
+.result-module-score {
+flex: 0 0 auto;
+color: var(--color-primary-dark);
+font-size: 0.88rem;
+}
+
+.result-module-progress-copy {
+display: flex;
+justify-content: space-between;
+gap: 0.75rem;
+margin-top: 0.8rem;
+color: var(--color-text-muted);
+font-size: 0.78rem;
+}
+
+.result-module-progress {
+height: 0.65rem;
+margin-top: 0.35rem;
+}
+
+.result-module-detail {
+margin: 0.55rem 0 0;
+color: var(--color-text-muted);
+font-size: 0.78rem;
+}
+
+/* ---------------------------------------------------------
+Aufgabentabelle
+--------------------------------------------------------- */
+
+.result-task-details-list {
+display: grid;
+gap: 0.6rem;
+}
+
+.result-task-details {
+overflow: hidden;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface-muted);
+}
+
+.result-task-details summary {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1rem;
+padding: 0.8rem 0.9rem;
+font-weight: 750;
+cursor: pointer;
+}
+
+.result-task-details[open] summary {
+border-bottom: 1px solid var(--color-border);
+background: var(--color-primary-light);
+}
+
+.result-task-table-wrapper {
+overflow-x: auto;
+}
+
+.result-task-table {
+width: 100%;
+min-width: 42rem;
+border-collapse: collapse;
+font-variant-numeric: tabular-nums;
+}
+
+.result-task-table th,
+.result-task-table td {
+padding: 0.65rem 0.75rem;
+border-bottom: 1px solid var(--color-border);
+text-align: left;
+vertical-align: middle;
+}
+
+.result-task-table thead th {
+background: var(--color-surface);
+color: var(--color-text-muted);
+font-size: 0.76rem;
+}
+
+.result-task-table tbody tr:last-child th,
+.result-task-table tbody tr:last-child td {
+border-bottom: 0;
+}
+
+.result-task-table tbody th {
+display: flex;
+align-items: flex-start;
+gap: 0.55rem;
+font-weight: 650;
+}
+
+.result-task-number {
+flex: 0 0 auto;
+min-width: 2rem;
+padding: 0.2rem 0.35rem;
+border-radius: 999px;
+background: var(--color-surface);
+color: var(--color-primary-dark);
+font-size: 0.72rem;
+font-weight: 850;
+text-align: center;
+}
+
+.result-status-badge {
+display: inline-flex;
+align-items: center;
+width: fit-content;
+padding: 0.28rem 0.55rem;
+border: 1px solid var(--color-border);
+border-radius: 999px;
+font-size: 0.72rem;
+font-weight: 800;
+white-space: nowrap;
+}
+
+.result-status-badge.is-correct {
+border-color: var(--color-success);
+background: var(--color-success-light);
+color: var(--color-success);
+}
+
+.result-status-badge.is-partial {
+border-color: var(--color-warning);
+background: var(--color-warning-light);
+color: var(--color-warning);
+}
+
+.result-status-badge.is-incorrect {
+border-color: var(--color-error);
+background: var(--color-error-light);
+color: var(--color-error);
+}
+
+.result-status-badge.is-started,
+.result-status-badge.is-unseen {
+background: var(--color-surface-muted);
+color: var(--color-text-muted);
+}
+
+.results-notes ul {
+display: grid;
+gap: 0.45rem;
+margin: 0.65rem 0 0;
+padding-left: 1.25rem;
+color: var(--color-text-muted);
+font-size: 0.86rem;
+}
+
+/* ---------------------------------------------------------
+Abschlussfeld nach Aufgabe 44
+--------------------------------------------------------- */
+
+.final-results-panel {
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 1.2rem;
+padding: 1rem 1.1rem;
+margin-top: 1rem;
+border: 1px solid var(--color-primary);
+border-radius: var(--radius-medium);
+background:
+linear-gradient(
+135deg,
+var(--color-primary-light),
+var(--color-surface)
+);
+}
+
+.final-results-kicker {
+color: var(--color-primary-dark);
+font-size: 0.76rem;
+font-weight: 850;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+}
+
+.final-results-panel h2 {
+margin: 0.15rem 0 0.25rem;
+font-size: 1.1rem;
+}
+
+.final-results-panel p {
+margin: 0;
+color: var(--color-text-muted);
+font-size: 0.88rem;
+}
+
+/* ---------------------------------------------------------
+Druckansicht
+--------------------------------------------------------- */
+
+@media print {
+body.printing-results > *:not(#results-overview-dialog) {
+display: none !important;
+}
+
+body.printing-results {
+overflow: visible !important;
+background: #ffffff !important;
+}
+
+body.printing-results .results-dialog {
+position: static !important;
+inset: auto !important;
+display: block !important;
+width: 100% !important;
+max-width: none !important;
+max-height: none !important;
+margin: 0 !important;
+overflow: visible !important;
+border: 0 !important;
+box-shadow: none !important;
+}
+
+body.printing-results .results-dialog-shell {
+max-height: none !important;
+display: block !important;
+}
+
+body.printing-results .results-dialog-header,
+body.printing-results .results-dialog-footer,
+body.printing-results .results-icon-button {
+display: none !important;
+}
+
+body.printing-results .results-dialog-content {
+overflow: visible !important;
+padding: 0 !important;
+}
+
+body.printing-results .results-hero,
+body.printing-results .results-stat-card,
+body.printing-results .results-score-section,
+body.printing-results .results-section,
+body.printing-results .results-notes,
+body.printing-results .result-module-card,
+body.printing-results .result-task-details {
+break-inside: avoid;
+box-shadow: none !important;
+}
+
+body.printing-results .result-task-details {
+display: block !important;
+}
+
+body.printing-results .result-task-details > summary {
+list-style: none;
+}
+
+body.printing-results .result-task-details > summary::-webkit-details-marker {
+display: none;
+}
+
+body.printing-results .result-task-details:not([open]) > *:not(summary) {
+display: block !important;
+}
+}
+
+@media (max-width: 860px) {
+.results-stat-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.result-module-grid {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 620px) {
+.results-dialog {
+width: 100vw;
+max-width: none;
+max-height: 100vh;
+border-radius: 0;
+}
+
+.results-dialog-shell {
+max-height: 100vh;
+}
+
+.results-dialog-content {
+padding: 0.8rem;
+}
+
+.results-hero {
+grid-template-columns: 1fr;
+}
+
+.results-progress-ring {
+width: 7.5rem;
+justify-self: center;
+}
+
+.results-progress-ring::before {
+width: 5.8rem;
+}
+
+.results-stat-grid {
+grid-template-columns: 1fr;
+}
+
+.results-score-header,
+.result-module-card-header,
+.final-results-panel {
+align-items: stretch;
+flex-direction: column;
+}
+
+.results-dialog-footer {
+display: grid;
+}
+
+.results-dialog-footer .button,
+.final-results-panel .button {
+width: 100%;
+}
+}
+/* =========================================================
+ABSCHNITT 13: IMPORT, RESET UND SYSTEMDIAGNOSE
+========================================================= */
+
+/* ---------------------------------------------------------
+Zusätzliche Ergebnisaktionen
+--------------------------------------------------------- */
+
+.maintenance-danger-button {
+border-color: var(--color-error);
+background: var(--color-surface);
+color: var(--color-error);
+}
+
+.maintenance-danger-button:hover,
+.maintenance-danger-button:focus-visible {
+border-color: var(--color-error);
+background: var(--color-error-light);
+color: var(--color-error);
+}
+
+.maintenance-file-input {
+position: fixed;
+width: 1px;
+height: 1px;
+overflow: hidden;
+clip-path: inset(50%);
+white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+Diagnosedialog
+--------------------------------------------------------- */
+
+.maintenance-dialog {
+width: min(94vw, 72rem);
+max-width: 72rem;
+max-height: 92vh;
+padding: 0;
+overflow: hidden;
+border: 1px solid var(--color-border-strong);
+border-radius: var(--radius-medium);
+background: var(--color-surface);
+color: var(--color-text);
+box-shadow: 0 1.4rem 4rem rgba(12, 30, 38, 0.28);
+}
+
+.maintenance-dialog::backdrop {
+background: rgba(10, 25, 32, 0.66);
+backdrop-filter: blur(2px);
+}
+
+.maintenance-dialog.is-fallback-open {
+position: fixed;
+inset: 4vh 3vw;
+z-index: 1100;
+display: block;
+margin: auto;
+}
+
+.maintenance-dialog-shell {
+max-height: 92vh;
+display: grid;
+grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.maintenance-dialog-header {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 1rem;
+padding: 1rem 1.2rem;
+border-bottom: 1px solid var(--color-border);
+background: var(--color-surface);
+}
+
+.maintenance-dialog-header h1 {
+margin: 0.15rem 0 0;
+font-size: clamp(1.25rem, 2vw, 1.7rem);
+}
+
+.maintenance-dialog-eyebrow {
+color: var(--color-text-muted);
+font-size: 0.76rem;
+font-weight: 850;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+}
+
+.maintenance-dialog-content {
+overflow-y: auto;
+overscroll-behavior: contain;
+padding: 1.15rem;
+}
+
+.maintenance-dialog-footer {
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-end;
+gap: 0.65rem;
+padding: 0.9rem 1.2rem;
+border-top: 1px solid var(--color-border);
+background: var(--color-surface-muted);
+}
+
+/* ---------------------------------------------------------
+Diagnoseübersicht
+--------------------------------------------------------- */
+
+.maintenance-report {
+display: grid;
+gap: 1rem;
+}
+
+.maintenance-summary {
+display: grid;
+grid-template-columns: auto minmax(0, 1fr);
+align-items: center;
+gap: 1rem;
+padding: 1rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background:
+linear-gradient(
+135deg,
+var(--color-primary-light),
+var(--color-surface)
+);
+}
+
+.maintenance-summary-icon {
+width: 4.5rem;
+height: 4.5rem;
+display: grid;
+place-items: center;
+border: 3px solid var(--color-primary);
+border-radius: 50%;
+background: var(--color-surface);
+color: var(--color-primary-dark);
+font-size: 1.4rem;
+font-weight: 900;
+}
+
+.maintenance-summary.is-pass .maintenance-summary-icon {
+border-color: var(--color-success);
+color: var(--color-success);
+}
+
+.maintenance-summary.is-warning .maintenance-summary-icon {
+border-color: var(--color-warning);
+color: var(--color-warning);
+}
+
+.maintenance-summary.is-fail .maintenance-summary-icon {
+border-color: var(--color-error);
+color: var(--color-error);
+}
+
+.maintenance-summary h2 {
+margin-bottom: 0.25rem;
+font-size: 1.15rem;
+}
+
+.maintenance-summary p {
+margin: 0;
+color: var(--color-text-muted);
+font-size: 0.88rem;
+line-height: 1.5;
+}
+
+.maintenance-count-grid {
+display: grid;
+grid-template-columns:
+repeat(3, minmax(0, 1fr));
+gap: 0.7rem;
+}
+
+.maintenance-count-card {
+padding: 0.8rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-small);
+background: var(--color-surface-muted);
+text-align: center;
+}
+
+.maintenance-count-card strong {
+display: block;
+margin-bottom: 0.15rem;
+font-size: 1.35rem;
+}
+
+.maintenance-count-card span {
+color: var(--color-text-muted);
+font-size: 0.78rem;
+}
+
+.maintenance-count-card.is-pass strong {
+color: var(--color-success);
+}
+
+.maintenance-count-card.is-warning strong {
+color: var(--color-warning);
+}
+
+.maintenance-count-card.is-fail strong {
+color: var(--color-error);
+}
+
+/* ---------------------------------------------------------
+Einzelprüfungen
+--------------------------------------------------------- */
+
+.maintenance-check-list {
+display: grid;
+gap: 0.65rem;
+}
+
+.maintenance-check {
+display: grid;
+grid-template-columns: auto minmax(0, 1fr);
+gap: 0.75rem;
+padding: 0.8rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface);
+}
+
+.maintenance-check.is-pass {
+border-color: var(--color-success);
+background: var(--color-success-light);
+}
+
+.maintenance-check.is-warning {
+border-color: var(--color-warning);
+background: var(--color-warning-light);
+}
+
+.maintenance-check.is-fail {
+border-color: var(--color-error);
+background: var(--color-error-light);
+}
+
+.maintenance-check-symbol {
+width: 2rem;
+height: 2rem;
+display: grid;
+place-items: center;
+border-radius: 50%;
+background: var(--color-surface);
+font-weight: 900;
+}
+
+.maintenance-check.is-pass .maintenance-check-symbol {
+color: var(--color-success);
+}
+
+.maintenance-check.is-warning .maintenance-check-symbol {
+color: var(--color-warning);
+}
+
+.maintenance-check.is-fail .maintenance-check-symbol {
+color: var(--color-error);
+}
+
+.maintenance-check-copy {
+min-width: 0;
+}
+
+.maintenance-check-copy strong {
+display: block;
+margin-bottom: 0.18rem;
+}
+
+.maintenance-check-copy p {
+margin: 0;
+color: var(--color-text-muted);
+font-size: 0.84rem;
+line-height: 1.45;
+overflow-wrap: anywhere;
+}
+
+.maintenance-technical-details {
+padding: 0.85rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface-muted);
+}
+
+.maintenance-technical-details summary {
+font-weight: 750;
+cursor: pointer;
+}
+
+.maintenance-technical-details pre {
+max-height: 18rem;
+overflow: auto;
+margin: 0.8rem 0 0;
+padding: 0.75rem;
+border-radius: var(--radius-small);
+background: var(--color-text);
+color: #ffffff;
+font-size: 0.75rem;
+line-height: 1.5;
+white-space: pre-wrap;
+}
+
+/* ---------------------------------------------------------
+Importhinweis
+--------------------------------------------------------- */
+
+.maintenance-import-note {
+padding: 0.85rem 0.95rem;
+border-left: 0.35rem solid var(--color-info);
+border-radius: var(--radius-small);
+background: var(--color-info-light);
+font-size: 0.86rem;
+}
+
+.maintenance-import-note strong {
+display: block;
+margin-bottom: 0.2rem;
+}
+
+@media (max-width: 660px) {
+.maintenance-dialog {
+width: 100vw;
+max-width: none;
+max-height: 100vh;
+border-radius: 0;
+}
+
+.maintenance-dialog-shell {
+max-height: 100vh;
+}
+
+.maintenance-dialog-content {
+padding: 0.8rem;
+}
+
+.maintenance-summary {
+grid-template-columns: 1fr;
+text-align: center;
+}
+
+.maintenance-summary-icon {
+justify-self: center;
+}
+
+.maintenance-count-grid {
+grid-template-columns: 1fr;
+}
+
+.maintenance-dialog-footer {
+display: grid;
+}
+
+.maintenance-dialog-footer .button {
+width: 100%;
+}
+}
+/* =========================================================
+ABSCHNITT 14: BARRIEREFREIHEIT UND ANZEIGEEINSTELLUNGEN
+========================================================= */
+
+/* ---------------------------------------------------------
+Sprunglink und Live-Region
+--------------------------------------------------------- */
+
+.a11y-skip-link {
+position: fixed;
+top: 0.5rem;
+left: 0.5rem;
+z-index: 5000;
+padding: 0.65rem 0.9rem;
+border: 2px solid var(--color-primary);
+border-radius: var(--radius-small);
+background: var(--color-surface);
+color: var(--color-primary-dark);
+font-weight: 800;
+text-decoration: none;
+transform: translateY(-180%);
+transition: transform var(--transition-fast);
+}
+
+.a11y-skip-link:focus {
+transform: translateY(0);
+}
+
+.a11y-live-region {
+position: fixed;
+width: 1px;
+height: 1px;
+overflow: hidden;
+clip-path: inset(50%);
+white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+Kopfzeilenschaltfläche
+--------------------------------------------------------- */
+
+.a11y-settings-button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+gap: 0.5rem;
+}
+
+.a11y-settings-count {
+display: none;
+min-width: 1.5rem;
+padding: 0.15rem 0.4rem;
+border-radius: 999px;
+background: var(--color-primary);
+color: #ffffff;
+font-size: 0.7rem;
+font-weight: 850;
+line-height: 1.2;
+text-align: center;
+}
+
+.a11y-settings-count.is-active {
+display: inline-block;
+}
+
+/* ---------------------------------------------------------
+Einstellungsdialog
+--------------------------------------------------------- */
+
+.a11y-dialog {
+width: min(94vw, 48rem);
+max-width: 48rem;
+max-height: 92vh;
+padding: 0;
+overflow: hidden;
+border: 1px solid var(--color-border-strong);
+border-radius: var(--radius-medium);
+background: var(--color-surface);
+color: var(--color-text);
+box-shadow: 0 1.4rem 4rem rgba(12, 30, 38, 0.28);
+}
+
+.a11y-dialog::backdrop {
+background: rgba(10, 25, 32, 0.66);
+backdrop-filter: blur(2px);
+}
+
+.a11y-dialog.is-fallback-open {
+position: fixed;
+inset: 4vh 3vw;
+z-index: 1200;
+display: block;
+margin: auto;
+}
+
+.a11y-dialog-shell {
+max-height: 92vh;
+display: grid;
+grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.a11y-dialog-header {
+display: flex;
+align-items: flex-start;
+justify-content: space-between;
+gap: 1rem;
+padding: 1rem 1.2rem;
+border-bottom: 1px solid var(--color-border);
+background: var(--color-surface);
+}
+
+.a11y-dialog-eyebrow {
+color: var(--color-text-muted);
+font-size: 0.76rem;
+font-weight: 850;
+letter-spacing: 0.05em;
+text-transform: uppercase;
+}
+
+.a11y-dialog-header h1 {
+margin: 0.15rem 0 0;
+font-size: clamp(1.25rem, 2vw, 1.7rem);
+}
+
+.a11y-dialog-content {
+overflow-y: auto;
+overscroll-behavior: contain;
+padding: 1.15rem;
+}
+
+.a11y-dialog-footer {
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-end;
+gap: 0.65rem;
+padding: 0.9rem 1.2rem;
+border-top: 1px solid var(--color-border);
+background: var(--color-surface-muted);
+}
+
+.a11y-dialog-open {
+overflow: hidden;
+}
+
+/* ---------------------------------------------------------
+Einstellungsgruppen
+--------------------------------------------------------- */
+
+.a11y-settings-form {
+display: grid;
+gap: 1rem;
+}
+
+.a11y-settings-section {
+padding: 1rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-medium);
+background: var(--color-surface);
+}
+
+.a11y-settings-section h2 {
+margin-bottom: 0.25rem;
+font-size: 1.05rem;
+}
+
+.a11y-settings-description {
+margin: 0 0 0.85rem;
+color: var(--color-text-muted);
+font-size: 0.86rem;
+line-height: 1.5;
+}
+
+.a11y-font-options {
+display: grid;
+grid-template-columns:
+repeat(4, minmax(0, 1fr));
+gap: 0.55rem;
+}
+
+.a11y-font-option {
+position: relative;
+display: grid;
+place-items: center;
+min-height: 4rem;
+padding: 0.65rem;
+border: 2px solid var(--color-border);
+border-radius: var(--radius-small);
+background: var(--color-surface-muted);
+cursor: pointer;
+}
+
+.a11y-font-option:hover {
+border-color: var(--color-primary);
+}
+
+.a11y-font-option:has(input:checked) {
+border-color: var(--color-primary);
+background: var(--color-primary-light);
+}
+
+.a11y-font-option input {
+position: absolute;
+top: 0.45rem;
+right: 0.45rem;
+accent-color: var(--color-primary);
+}
+
+.a11y-font-option strong {
+font-size: 1rem;
+}
+
+.a11y-font-option small {
+color: var(--color-text-muted);
+}
+
+.a11y-toggle-list {
+display: grid;
+gap: 0.65rem;
+}
+
+.a11y-toggle {
+display: grid;
+grid-template-columns: minmax(0, 1fr) auto;
+align-items: center;
+gap: 1rem;
+padding: 0.75rem;
+border: 1px solid var(--color-border);
+border-radius: var(--radius-small);
+background: var(--color-surface-muted);
+cursor: pointer;
+}
+
+.a11y-toggle:hover {
+border-color: var(--color-primary);
+}
+
+.a11y-toggle-copy strong {
+display: block;
+margin-bottom: 0.15rem;
+}
+
+.a11y-toggle-copy small {
+display: block;
+color: var(--color-text-muted);
+line-height: 1.4;
+}
+
+.a11y-switch {
+position: relative;
+width: 3.1rem;
+height: 1.7rem;
+flex: 0 0 auto;
+}
+
+.a11y-switch input {
+position: absolute;
+opacity: 0;
+pointer-events: none;
+}
+
+.a11y-switch-track {
+position: absolute;
+inset: 0;
+border: 1px solid var(--color-border-strong);
+border-radius: 999px;
+background: var(--color-border);
+transition:
+background var(--transition-fast),
+border-color var(--transition-fast);
+}
+
+.a11y-switch-track::after {
+content: "";
+position: absolute;
+top: 0.17rem;
+left: 0.17rem;
+width: 1.25rem;
+height: 1.25rem;
+border-radius: 50%;
+background: #ffffff;
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+transition: transform var(--transition-fast);
+}
+
+.a11y-switch input:checked + .a11y-switch-track {
+border-color: var(--color-primary);
+background: var(--color-primary);
+}
+
+.a11y-switch input:checked + .a11y-switch-track::after {
+transform: translateX(1.38rem);
+}
+
+.a11y-switch input:focus-visible + .a11y-switch-track {
+outline: 3px solid var(--color-primary-light);
+outline-offset: 2px;
+}
+
+.a11y-shortcut-table {
+width: 100%;
+border-collapse: collapse;
+}
+
+.a11y-shortcut-table th,
+.a11y-shortcut-table td {
+padding: 0.55rem;
+border-bottom: 1px solid var(--color-border);
+text-align: left;
+vertical-align: middle;
+}
+
+.a11y-shortcut-table tr:last-child th,
+.a11y-shortcut-table tr:last-child td {
+border-bottom: 0;
+}
+
+.a11y-shortcut-table th {
+width: 42%;
+font-weight: 700;
+}
+
+.a11y-key {
+display: inline-block;
+min-width: 1.8rem;
+padding: 0.18rem 0.4rem;
+border: 1px solid var(--color-border-strong);
+border-bottom-width: 3px;
+border-radius: 0.3rem;
+background: var(--color-surface);
+font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+font-size: 0.76rem;
+font-weight: 800;
+text-align: center;
+}
+
+/* ---------------------------------------------------------
+Allgemeiner Tastaturfokus
+--------------------------------------------------------- */
+
+html.a11y-enhanced-focus
+:where(
+button,
+a,
+input,
+select,
+textarea,
+summary,
+[tabindex]
+):focus-visible {
+outline: 4px solid var(--color-primary);
+outline-offset: 3px;
+}
+
+/* ---------------------------------------------------------
+Hoher Kontrast
+--------------------------------------------------------- */
+
+html.a11y-high-contrast {
+--color-text: #000000;
+--color-text-muted: #252525;
+--color-surface: #ffffff;
+--color-surface-muted: #eeeeee;
+--color-border: #666666;
+--color-border-strong: #000000;
+
+--color-primary: #005465;
+--color-primary-dark: #003b47;
+--color-primary-light: #d8f7ff;
+
+--color-success: #00662b;
+--color-success-light: #dcf6e5;
+
+--color-warning: #704600;
+--color-warning-light: #fff1c7;
+
+--color-error: #990000;
+--color-error-light: #ffe0e0;
+
+--color-info: #004d99;
+--color-info-light: #deefff;
+}
+
+html.a11y-high-contrast
+:where(
+button,
+input,
+select,
+textarea,
+dialog,
+fieldset,
+table,
+.task-card
+) {
+border-color: var(--color-border-strong);
+}
+
+html.a11y-high-contrast
+:where(
+input,
+select,
+textarea
+) {
+background: #ffffff;
+color: #000000;
+}
+
+/* ---------------------------------------------------------
+Reduzierte Bewegung
+--------------------------------------------------------- */
+
+html.a11y-reduced-motion {
+scroll-behavior: auto;
+}
+
+html.a11y-reduced-motion *,
+html.a11y-reduced-motion *::before,
+html.a11y-reduced-motion *::after {
+scroll-behavior: auto !important;
+animation-duration: 0.001ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: 0.001ms !important;
+}
+
+/* Betriebssystemeinstellung ebenfalls berücksichtigen */
+
+@media (prefers-reduced-motion: reduce) {
+*,
+*::before,
+*::after {
+scroll-behavior: auto !important;
+animation-duration: 0.001ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: 0.001ms !important;
+}
+}
+
+/* ---------------------------------------------------------
+Fokusmodus
+--------------------------------------------------------- */
+
+html.a11y-focus-mode #module-nav,
+html.a11y-focus-mode .app-sidebar,
+html.a11y-focus-mode .sidebar,
+html.a11y-focus-mode [data-app-sidebar] {
+display: none !important;
+}
+
+html.a11y-focus-mode #app {
+grid-template-columns: minmax(0, 1fr) !important;
+}
+
+html.a11y-focus-mode #main-content {
+width: min(100%, 76rem);
+margin-inline: auto;
+}
+
+html.a11y-focus-mode #task-card {
+box-shadow: none;
+}
+
+/* ---------------------------------------------------------
+Lesemodus
+--------------------------------------------------------- */
+
+html.a11y-reading-mode
+:where(
+#task-instruction,
+#task-content p,
+#task-content li,
+#feedback-message,
+.free-response-textarea
+) {
+line-height: 1.78;
+letter-spacing: 0.012em;
+word-spacing: 0.04em;
+}
+
+html.a11y-reading-mode
+:where(
+#task-instruction,
+#task-content > p,
+#feedback-message
+) {
+max-width: 76ch;
+}
+
+/* ---------------------------------------------------------
+Große Bedienelemente
+--------------------------------------------------------- */
+
+html.a11y-large-controls
+:where(
+button,
+.button,
+input:not([type="radio"]):not([type="checkbox"]),
+select
+) {
+min-height: 3rem;
+}
+
+html.a11y-large-controls
+:where(
+input[type="radio"],
+input[type="checkbox"]
+) {
+min-width: 1.35rem;
+min-height: 1.35rem;
+}
+
+/* ---------------------------------------------------------
+Mobile Darstellung
+--------------------------------------------------------- */
+
+@media (max-width: 660px) {
+.a11y-dialog {
+width: 100vw;
+max-width: none;
+max-height: 100vh;
+border-radius: 0;
+}
+
+.a11y-dialog-shell {
+max-height: 100vh;
+}
+
+.a11y-dialog-content {
+padding: 0.8rem;
+}
+
+.a11y-font-options {
+grid-template-columns:
+repeat(2, minmax(0, 1fr));
+}
+
+.a11y-toggle {
+grid-template-columns: 1fr auto;
+}
+
+.a11y-dialog-footer {
+display: grid;
+}
+
+.a11y-dialog-footer .button {
+width: 100%;
+}
+}
 
 <style>
     /* =========================================================
@@ -21167,6 +23136,6008 @@ configureTask("task-29", {
     "Kreis = ohne Allopurinol; Dreieck = mit Allopurinol."
   ]
 });
+   /* =========================================================
+ABSCHNITT 10: MODUL 7 – AUSWERTUNG UND THERAPEUTISCHE WIRKUNG
+Aufgaben 30 bis 42
+========================================================= */
+
+/* =========================================================
+
+1. GEMEINSAME HILFSFUNKTIONEN FÜR DIE AUSWERTUNG
+   ========================================================= */
+
+function parseLocalizedNumber(rawValue) {
+if (typeof rawValue === "number") {
+return Number.isFinite(rawValue)
+? rawValue
+: null;
+}
+
+if (typeof rawValue !== "string") {
+return null;
+}
+
+const normalized = rawValue
+.trim()
+.replaceAll(" ", "")
+.replace("%", "")
+.replace(",", ".");
+
+if (normalized === "") {
+return null;
+}
+
+const value = Number(normalized);
+
+return Number.isFinite(value)
+? value
+: null;
+}
+
+function createExpectedSeriesPointMap(seriesKey) {
+const points = {};
+
+for (const entry of EXPERIMENT_DATA[seriesKey]) {
+points[canonicalSubstrateKey(entry.s)] = entry.v;
+}
+
+return points;
+}
+
+function getExperimentRow(substrate) {
+const withoutValue = getExpectedDiagramValue(
+"withoutAllopurinol",
+substrate
+);
+
+const withValue = getExpectedDiagramValue(
+"withAllopurinol",
+substrate
+);
+
+if (
+!Number.isFinite(withoutValue) ||
+!Number.isFinite(withValue)
+) {
+return null;
+}
+
+return {
+substrate: Number(substrate),
+withoutValue,
+withValue,
+difference:
+withoutValue - withValue,
+relativeInhibition:
+((withoutValue - withValue) /
+withoutValue) *
+100
+};
+}
+
+function renderAnalysisReference({
+idPrefix,
+title = "Messdaten als Grundlage",
+description =
+"Nutze Tabelle und Diagramm für die Auswertung.",
+highlightSubstrates = [],
+showDiagram = true
+}) {
+const highlightedKeys = new Set(
+highlightSubstrates.map(
+canonicalSubstrateKey
+)
+);
+
+const tableMarkup = ` <div class="analysis-table-wrapper"> <table class="analysis-data-table"> <thead> <tr> <th scope="col">
+S / µmol·l⁻¹ </th>
+
+```
+        <th scope="col">
+          v ohne Allopurinol
+        </th>
+
+        <th scope="col">
+          v mit Allopurinol
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      ${EXPERIMENT_DATA.withoutAllopurinol
+        .map((entry, index) => {
+          const comparisonEntry =
+            EXPERIMENT_DATA.withAllopurinol[index];
+
+          const key = canonicalSubstrateKey(entry.s);
+
+          return `
+            <tr class="${
+              highlightedKeys.has(key)
+                ? "is-highlighted"
+                : ""
+            }">
+              <th scope="row">
+                ${formatGermanNumber(entry.s)}
+              </th>
+
+              <td>
+                ${formatGermanNumber(entry.v)}
+              </td>
+
+              <td>
+                ${formatGermanNumber(comparisonEntry.v)}
+              </td>
+            </tr>
+          `;
+        })
+        .join("")}
+    </tbody>
+  </table>
+</div>
+```
+
+`;
+
+const diagramMarkup =
+showDiagram &&
+typeof renderExperimentDiagramSvg === "function"
+? `         <div class="analysis-plot-frame">
+          ${renderExperimentDiagramSvg({
+            idPrefix,
+            pointSets: {
+              withoutAllopurinol:
+                createExpectedSeriesPointMap(
+                  "withoutAllopurinol"
+                ),
+              withAllopurinol:
+                createExpectedSeriesPointMap(
+                  "withAllopurinol"
+                )
+            },
+            showCurves: true,
+            showLegend: true
+          })}         </div>
+      `
+: ` <div class="analysis-callout"> <strong>
+Diagrammansicht nicht verfügbar </strong>
+
+```
+      Verwende die Messwerttabelle. Die Diagrammfunktion wird
+      durch Abschnitt 9 bereitgestellt.
+    </div>
+  `;
+```
+
+return ` <section class="analysis-reference"> <article class="analysis-reference-card"> <h2>
+${escapeHtml(title)} </h2>
+
+```
+    <p class="analysis-card-description">
+      ${escapeHtml(description)}
+    </p>
+
+    ${tableMarkup}
+  </article>
+
+  ${
+    showDiagram
+      ? `
+        <article class="analysis-reference-card">
+          <h2>
+            Diagramm der beiden Messreihen
+          </h2>
+
+          <p class="analysis-card-description">
+            Kreise: ohne Allopurinol · Dreiecke:
+            mit Allopurinol
+          </p>
+
+          ${diagramMarkup}
+        </article>
+      `
+      : ""
+  }
+</section>
+```
+
+`;
+}
+
+function renderEvidenceSummary() {
+const low = getExperimentRow(0.5);
+const middle = getExperimentRow(10);
+const high = getExperimentRow(20);
+
+return ` <div class="evidence-summary-grid"> <article class="evidence-summary-card"> <strong>
+Niedrige Substratkonzentration </strong>
+
+```
+    <span>
+      S = 0,5: v sinkt von
+      ${formatGermanNumber(low.withoutValue)} auf
+      ${formatGermanNumber(low.withValue)}.
+    </span>
+  </article>
+
+  <article class="evidence-summary-card">
+    <strong>
+      Mittlere Substratkonzentration
+    </strong>
+
+    <span>
+      S = 10: Die Differenz beträgt nur noch
+      ${formatGermanNumber(middle.difference)}
+      µmol/(l · min).
+    </span>
+  </article>
+
+  <article class="evidence-summary-card">
+    <strong>
+      Hohe Substratkonzentration
+    </strong>
+
+    <span>
+      S = 20: Beide Reihen erreichen
+      ${formatGermanNumber(high.withoutValue)}
+      µmol/(l · min).
+    </span>
+  </article>
+</div>
+```
+
+`;
+}
+
+/* =========================================================
+2. GENERISCHER CONTROLLER FÜR ZAHLENAUFGABEN
+========================================================= */
+
+const analysisNumericController = {
+render(context) {
+const config = getTaskConfig(context.task);
+
+```
+if (
+  !config ||
+  !Array.isArray(config.questions)
+) {
+  return renderUnconfiguredComponent(
+    context,
+    "questions mit expected, tolerance und unit"
+  );
+}
+
+const root = context.elements.taskContent;
+
+let answers =
+  isPlainObject(context.taskState.answer)
+    ? { ...context.taskState.answer }
+    : {};
+
+function createAnswer() {
+  return { ...answers };
+}
+
+function saveAnswer() {
+  context.app.setAnswer(createAnswer());
+}
+
+function renderQuestions() {
+  return config.questions
+    .map((question, index) => `
+      <div
+        class="numeric-question"
+        data-numeric-question-id="${escapeHtml(question.id)}"
+      >
+        <div class="numeric-question-copy">
+          <strong>
+            ${index + 1}. ${escapeHtml(question.prompt)}
+          </strong>
+
+          ${
+            question.detail
+              ? `
+                <small>
+                  ${escapeHtml(question.detail)}
+                </small>
+              `
+              : ""
+          }
+
+          <div
+            class="numeric-status"
+            aria-live="polite"
+          ></div>
+        </div>
+
+        <label class="numeric-input-wrap">
+          <span class="visually-hidden">
+            ${escapeHtml(question.prompt)}
+          </span>
+
+          <input
+            class="numeric-input"
+            type="text"
+            inputmode="decimal"
+            autocomplete="off"
+            data-numeric-input="${escapeHtml(question.id)}"
+            value="${escapeHtml(answers[question.id] ?? "")}"
+            placeholder="${escapeHtml(question.placeholder ?? "Wert")}"
+          >
+
+          <span class="numeric-unit">
+            ${escapeHtml(question.unit ?? "")}
+          </span>
+        </label>
+      </div>
+    `)
+    .join("");
+}
+
+root.innerHTML = `
+  <div class="analysis-task">
+    ${renderAnalysisReference({
+      idPrefix: `analysis-${context.task.id}`,
+      title:
+        config.referenceTitle ??
+        "Messdaten als Grundlage",
+      description:
+        config.referenceDescription ??
+        "Lies die benötigten Werte aus Tabelle oder Diagramm ab.",
+      highlightSubstrates:
+        config.highlightSubstrates ?? [],
+      showDiagram:
+        config.showDiagram !== false
+    })}
+
+    ${
+      config.formula
+        ? `
+          <section class="analysis-formula-card">
+            <h2>
+              ${escapeHtml(
+                config.formulaTitle ??
+                "Rechenhilfe"
+              )}
+            </h2>
+
+            <div class="formula-display">
+              <strong>
+                ${escapeHtml(config.formulaLabel ?? "Formel")}
+              </strong>
+
+              <div class="formula-line">
+                ${escapeHtml(config.formula)}
+              </div>
+            </div>
+
+            ${
+              config.example
+                ? `
+                  <div class="calculation-example">
+                    ${escapeHtml(config.example)}
+                  </div>
+                `
+                : ""
+            }
+          </section>
+        `
+        : ""
+    }
+
+    <section class="analysis-input-card">
+      <h2>
+        ${escapeHtml(
+          config.inputTitle ??
+          "Ergebnisse eintragen"
+        )}
+      </h2>
+
+      <p class="analysis-card-description">
+        ${escapeHtml(
+          config.inputDescription ??
+          "Dezimalzahlen können mit Komma oder Punkt eingegeben werden."
+        )}
+      </p>
+
+      <div class="numeric-question-list">
+        ${renderQuestions()}
+      </div>
+    </section>
+  </div>
+`;
+
+root
+  .querySelectorAll("[data-numeric-input]")
+  .forEach((input) => {
+    input.addEventListener("input", () => {
+      answers[input.dataset.numericInput] = input.value;
+
+      input.classList.remove(
+        "is-correct",
+        "is-incorrect",
+        "is-empty"
+      );
+
+      const questionElement = input.closest(
+        ".numeric-question"
+      );
+
+      questionElement?.classList.remove(
+        "is-correct",
+        "is-incorrect",
+        "is-empty"
+      );
+
+      const status = questionElement?.querySelector(
+        ".numeric-status"
+      );
+
+      if (status) {
+        status.textContent = "";
+      }
+
+      saveAnswer();
+    });
+  });
+
+return {
+  check() {
+    let correctParts = 0;
+
+    for (const question of config.questions) {
+      const rawValue = answers[question.id] ?? "";
+      const parsedValue = parseLocalizedNumber(rawValue);
+      const tolerance = question.tolerance ?? 0.05;
+
+      const input = root.querySelector(
+        `[data-numeric-input="${CSS.escape(question.id)}"]`
+      );
+
+      const questionElement = root.querySelector(
+        `[data-numeric-question-id="${CSS.escape(question.id)}"]`
+      );
+
+      const status = questionElement?.querySelector(
+        ".numeric-status"
+      );
+
+      input?.classList.remove(
+        "is-correct",
+        "is-incorrect",
+        "is-empty"
+      );
+
+      questionElement?.classList.remove(
+        "is-correct",
+        "is-incorrect",
+        "is-empty"
+      );
+
+      if (parsedValue === null) {
+        input?.classList.add("is-empty");
+        questionElement?.classList.add("is-empty");
+
+        if (status) {
+          status.textContent = "Noch kein gültiger Zahlenwert.";
+        }
+
+        continue;
+      }
+
+      const correct =
+        Math.abs(parsedValue - question.expected) <= tolerance;
+
+      if (correct) {
+        correctParts += 1;
+        input?.classList.add("is-correct");
+        questionElement?.classList.add("is-correct");
+
+        if (status) {
+          status.textContent = "Korrekt.";
+        }
+      } else {
+        input?.classList.add("is-incorrect");
+        questionElement?.classList.add("is-incorrect");
+
+        if (status) {
+          status.textContent =
+            question.incorrectHint ??
+            "Der Wert liegt außerhalb der zulässigen Toleranz.";
+        }
+      }
+    }
+
+    return createEvaluationResult({
+      task: context.task,
+      correctParts,
+      totalParts: config.questions.length,
+      answer: createAnswer(),
+      correctMessage: config.correctMessage,
+      partialMessage: config.partialMessage,
+      incorrectMessage: config.incorrectMessage
+    });
+  },
+
+  reset() {
+    answers = {};
+
+    root
+      .querySelectorAll("[data-numeric-input]")
+      .forEach((input) => {
+        input.value = "";
+      });
+
+    clearEvaluationClasses(root);
+
+    root
+      .querySelectorAll(".numeric-status")
+      .forEach((status) => {
+        status.textContent = "";
+      });
+
+    saveAnswer();
+  },
+
+  canProceed() {
+    return ![
+      "unseen",
+      "started"
+    ].includes(
+      context.app.getTaskState().status
+    );
+  }
+};
+```
+
+}
+};
+
+registerTaskController(
+"task-30",
+analysisNumericController
+);
+
+registerTaskController(
+"task-31",
+analysisNumericController
+);
+
+registerTaskController(
+"task-32",
+analysisNumericController
+);
+
+/* =========================================================
+3. AUFGABE 30 – MESSWERTE ABLESEN
+========================================================= */
+
+configureTask("task-30", {
+referenceTitle:
+"Tabelle und Diagramm ablesen",
+
+referenceDescription:
+"Die hervorgehobenen Konzentrationen werden in den Eingabefeldern abgefragt.",
+
+highlightSubstrates: [3, 15],
+
+inputTitle:
+"Vier Reaktionsgeschwindigkeiten",
+
+inputDescription:
+"Trage die Werte ohne zusätzliche Einheiten in die Felder ein.",
+
+questions: [
+{
+id: "without-3",
+prompt:
+"Reaktionsgeschwindigkeit ohne Allopurinol bei S = 3 µmol/l",
+expected: 4.8,
+tolerance: 0.05,
+unit: "µmol/(l · min)",
+placeholder: "z. B. 4,8"
+},
+{
+id: "with-3",
+prompt:
+"Reaktionsgeschwindigkeit mit Allopurinol bei S = 3 µmol/l",
+expected: 1.9,
+tolerance: 0.05,
+unit: "µmol/(l · min)",
+placeholder: "z. B. 1,9"
+},
+{
+id: "without-15",
+prompt:
+"Reaktionsgeschwindigkeit ohne Allopurinol bei S = 15 µmol/l",
+expected: 6.7,
+tolerance: 0.05,
+unit: "µmol/(l · min)",
+placeholder: "z. B. 6,7"
+},
+{
+id: "with-15",
+prompt:
+"Reaktionsgeschwindigkeit mit Allopurinol bei S = 15 µmol/l",
+expected: 6.2,
+tolerance: 0.05,
+unit: "µmol/(l · min)",
+placeholder: "z. B. 6,2"
+}
+],
+
+correctMessage:
+"Alle vier Messwerte wurden korrekt abgelesen.",
+
+partialMessage:
+"Ein Teil der Messwerte ist korrekt. Prüfe die Zuordnung zur Messreihe mit beziehungsweise ohne Allopurinol.",
+
+incorrectMessage:
+"Die Werte stimmen noch nicht mit Tabelle und Diagramm überein.",
+
+helpLevels: [
+"Suche zuerst die gefragte Substratkonzentration in der ersten Tabellenspalte.",
+"Lies anschließend getrennt die Spalte ohne und die Spalte mit Allopurinol ab.",
+"Bei S = 3 lauten die Werte 4,8 und 1,9; bei S = 15 lauten sie 6,7 und 6,2."
+]
+});
+
+/* =========================================================
+4. AUFGABE 31 – ABSOLUTE DIFFERENZEN
+========================================================= */
+
+configureTask("task-31", {
+referenceTitle:
+"Messreihen vergleichen",
+
+referenceDescription:
+"Berechne an zwei Stellen den vertikalen Abstand zwischen den Messreihen.",
+
+highlightSubstrates: [1, 15],
+
+formulaTitle:
+"Absolute Differenz",
+
+formulaLabel:
+"Rechenvorschrift",
+
+formula:
+"Δv = v(ohne Allopurinol) − v(mit Allopurinol)",
+
+example:
+"Beispiel für S = 5: Δv = 5,7 − 3,0 = 2,7 µmol/(l · min).",
+
+inputTitle:
+"Differenzen berechnen",
+
+questions: [
+{
+id: "difference-1",
+prompt:
+"Absolute Differenz bei S = 1 µmol/l",
+detail:
+"Subtrahiere den Wert mit Allopurinol vom Wert ohne Allopurinol.",
+expected: 2.0,
+tolerance: 0.05,
+unit: "µmol/(l · min)",
+placeholder: "Ergebnis"
+},
+{
+id: "difference-15",
+prompt:
+"Absolute Differenz bei S = 15 µmol/l",
+detail:
+"Verwende dieselbe Rechenrichtung wie im ersten Feld.",
+expected: 0.5,
+tolerance: 0.05,
+unit: "µmol/(l · min)",
+placeholder: "Ergebnis"
+}
+],
+
+correctMessage:
+"Beide Differenzen sind korrekt. Der Abstand zwischen den Messreihen ist bei hoher Substratkonzentration deutlich kleiner.",
+
+partialMessage:
+"Eine Differenz ist korrekt. Prüfe Rechenrichtung und Dezimalstelle.",
+
+incorrectMessage:
+"Die Differenzen sind noch nicht korrekt berechnet. Ziehe jeweils den Wert mit Allopurinol vom Wert ohne Allopurinol ab.",
+
+helpLevels: [
+"Bei S = 1 werden 2,8 und 0,8 verglichen.",
+"Bei S = 15 werden 6,7 und 6,2 verglichen.",
+"Die gesuchten Differenzen sind 2,0 und 0,5 µmol/(l · min)."
+]
+});
+
+/* =========================================================
+5. AUFGABE 32 – RELATIVE HEMMUNG
+========================================================= */
+
+configureTask("task-32", {
+referenceTitle:
+"Relative statt absolute Hemmung",
+
+referenceDescription:
+"Die relative Hemmung bezieht die Geschwindigkeitsabnahme auf die Geschwindigkeit ohne Allopurinol.",
+
+highlightSubstrates: [1, 10, 20],
+
+formulaTitle:
+"Relative Hemmung in Prozent",
+
+formulaLabel:
+"Rechenvorschrift",
+
+formula:
+"relative Hemmung = [(v ohne − v mit) / v ohne] · 100 %",
+
+example:
+"Runde auf eine Nachkommastelle. Eine Abweichung von ±0,2 Prozentpunkten wird akzeptiert.",
+
+inputTitle:
+"Relative Hemmung berechnen",
+
+questions: [
+{
+id: "relative-1",
+prompt:
+"Relative Hemmung bei S = 1 µmol/l",
+expected:
+((2.8 - 0.8) / 2.8) * 100,
+tolerance: 0.2,
+unit: "%",
+placeholder: "Prozentwert",
+incorrectHint:
+"Teile die Differenz 2,0 durch den Ausgangswert 2,8 und multipliziere mit 100."
+},
+{
+id: "relative-10",
+prompt:
+"Relative Hemmung bei S = 10 µmol/l",
+expected:
+((6.5 - 4.7) / 6.5) * 100,
+tolerance: 0.2,
+unit: "%",
+placeholder: "Prozentwert",
+incorrectHint:
+"Teile die Differenz 1,8 durch 6,5 und multipliziere mit 100."
+},
+{
+id: "relative-20",
+prompt:
+"Relative Hemmung bei S = 20 µmol/l",
+expected: 0,
+tolerance: 0.2,
+unit: "%",
+placeholder: "Prozentwert",
+incorrectHint:
+"Bei S = 20 sind beide Geschwindigkeiten gleich groß."
+}
+],
+
+correctMessage:
+"Alle relativen Hemmungen sind korrekt. Die Hemmwirkung nimmt von etwa 71,4 % über 27,7 % auf 0 % ab.",
+
+partialMessage:
+"Ein Teil der Prozentwerte ist korrekt. Prüfe, ob du jeweils durch den Wert ohne Allopurinol geteilt hast.",
+
+incorrectMessage:
+"Die relative Hemmung ist noch nicht korrekt berechnet. Der Bezugswert ist stets die Reaktionsgeschwindigkeit ohne Allopurinol.",
+
+helpLevels: [
+"Berechne zuerst v ohne minus v mit.",
+"Teile die Differenz anschließend durch v ohne Allopurinol.",
+"Die gerundeten Ergebnisse lauten etwa 71,4 %, 27,7 % und 0 %."
+]
+});
+
+/* =========================================================
+6. AUFGABE 33 – KURVENVERLÄUFE BESCHREIBEN
+========================================================= */
+
+configureTask("task-33", {
+prompt:
+"Welche Aussagen beschreiben die Messdaten und Kurvenverläufe korrekt? Wähle alle zutreffenden Aussagen.",
+
+shuffle: true,
+
+options: [
+{
+id: "both-rise",
+text:
+"In beiden Messreihen steigt die Reaktionsgeschwindigkeit mit zunehmender Substratkonzentration zunächst an."
+},
+{
+id: "plateau-without",
+text:
+"Die Messreihe ohne Allopurinol nähert sich bei hohen Substratkonzentrationen einem Plateau um etwa 6,8 µmol/(l · min)."
+},
+{
+id: "lower-with-inhibitor",
+text:
+"Bei niedrigen und mittleren Substratkonzentrationen liegt die Reaktionsgeschwindigkeit mit Allopurinol unter der Vergleichsreihe."
+},
+{
+id: "gap-decreases",
+text:
+"Der Abstand zwischen den beiden Messreihen wird mit steigender Substratkonzentration kleiner."
+},
+{
+id: "same-at-20",
+text:
+"Bei S = 20 µmol/l besitzen beide Messreihen denselben Messwert von 6,8 µmol/(l · min)."
+},
+{
+id: "constant-gap",
+text:
+"Der Abstand zwischen den Kurven bleibt über den gesamten Konzentrationsbereich konstant."
+},
+{
+id: "inhibitor-raises-rate",
+text:
+"Allopurinol erhöht die Reaktionsgeschwindigkeit besonders bei niedriger Substratkonzentration."
+},
+{
+id: "linear-unlimited",
+text:
+"Beide Geschwindigkeiten steigen proportional und unbegrenzt mit der Substratkonzentration."
+}
+],
+
+correctIds: [
+"both-rise",
+"plateau-without",
+"lower-with-inhibitor",
+"gap-decreases",
+"same-at-20"
+],
+
+correctMessage:
+"Alle fünf Merkmale wurden korrekt ausgewählt. Besonders wichtig sind der kleiner werdende Kurvenabstand und der gleiche Endwert bei hoher Substratkonzentration.",
+
+partialMessage:
+"Ein Teil der Kurvenbeschreibung ist korrekt. Prüfe, ob eine ausgewählte Aussage einen konstanten oder unbegrenzten Verlauf behauptet.",
+
+incorrectMessage:
+"Die Auswahl beschreibt die Daten noch nicht korrekt. Vergleiche niedrige und hohe Substratkonzentrationen getrennt.",
+
+helpLevels: [
+"Beide Reihen steigen an und flachen bei hohen Konzentrationen ab.",
+"Die Hemmwirkung ist bei niedriger Substratkonzentration besonders deutlich.",
+"Bei S = 20 erreichen beide Reihen 6,8 µmol/(l · min)."
+]
+});
+
+/* =========================================================
+7. AUFGABE 34 – SÄTTIGUNG ERKLÄREN
+========================================================= */
+
+configureTask("task-34", {
+segments: [
+"Bei niedriger Substratkonzentration sind noch viele ",
+{
+id: "blank-active-sites",
+label: "Erster Fachbegriff",
+options: [
+{
+value: "active-sites-free",
+label: "aktive Zentren frei"
+},
+{
+value: "enzymes-destroyed",
+label: "Enzyme zerstört"
+},
+{
+value: "products-bound",
+label: "Produkte dauerhaft gebunden"
+}
+],
+correctValue: "active-sites-free"
+},
+". Steigt die Substratkonzentration, entstehen zunächst mehr ",
+{
+id: "blank-complexes",
+label: "Zweiter Fachbegriff",
+options: [
+{
+value: "enzyme-substrate-complexes",
+label: "Enzym-Substrat-Komplexe"
+},
+{
+value: "enzyme-molecules",
+label: "Enzymmoleküle"
+},
+{
+value: "inhibitor-molecules",
+label: "Hemmstoffmoleküle"
+}
+],
+correctValue: "enzyme-substrate-complexes"
+},
+". Bei sehr hoher Substratkonzentration sind nahezu alle aktiven Zentren besetzt; deshalb nähert sich die Reaktionsgeschwindigkeit einer ",
+{
+id: "blank-maximum",
+label: "Dritter Fachbegriff",
+options: [
+{
+value: "maximum-rate",
+label: "Maximalgeschwindigkeit"
+},
+{
+value: "Mindestgeschwindigkeit",
+label: "Mindestgeschwindigkeit"
+},
+{
+value: "negativen Geschwindigkeit",
+label: "negativen Geschwindigkeit"
+}
+],
+correctValue: "maximum-rate"
+},
+"."
+],
+
+correctMessage:
+"Die Sättigung ist korrekt erklärt: Die begrenzte Zahl aktiver Zentren verhindert einen unbegrenzten Geschwindigkeitsanstieg.",
+
+partialMessage:
+"Ein Teil des Lückentexts ist korrekt. Prüfe den Zusammenhang zwischen aktiven Zentren, Enzym-Substrat-Komplexen und Maximalgeschwindigkeit.",
+
+incorrectMessage:
+"Die Erklärung ist noch nicht korrekt. Eine höhere Substratkonzentration erzeugt keine zusätzlichen Enzymmoleküle.",
+
+helpLevels: [
+"Die Zahl der aktiven Zentren ist durch die eingesetzte Enzymmenge begrenzt.",
+"Mehr Substrat erzeugt zunächst mehr Enzym-Substrat-Komplexe.",
+"Sind nahezu alle aktiven Zentren besetzt, nähert sich die Geschwindigkeit einem Maximum."
+]
+});
+
+/* =========================================================
+8. AUFGABE 35 – HEMMUNGSMODELLE VERGLEICHEN
+========================================================= */
+
+configureTask("task-35", {
+prompt:
+"Ordne jede Vorhersage dem Hemmungsmodell zu, zu dem sie am besten passt.",
+
+rowLabel:
+"Vorhersage oder Merkmal",
+
+valueColumnLabel:
+"Passendes Modell",
+
+options: [
+{
+value: "competitive",
+label: "kompetitive Hemmung"
+},
+{
+value: "not-displaceable",
+label: "nicht durch Substrat verdrängbare Hemmung beziehungsweise dauerhafte Teilinaktivierung"
+}
+],
+
+rows: [
+{
+id: "competition-active-site",
+label:
+"Substrat und Hemmstoff konkurrieren um das aktive Zentrum.",
+correctValue: "competitive"
+},
+{
+id: "high-substrate-overcomes",
+label:
+"Eine hohe Substratkonzentration schwächt die Hemmwirkung deutlich ab.",
+correctValue: "competitive"
+},
+{
+id: "same-maximum",
+label:
+"Bei ausreichend hoher Substratkonzentration bleibt ungefähr dieselbe Maximalgeschwindigkeit erreichbar.",
+correctValue: "competitive"
+},
+{
+id: "lower-plateau",
+label:
+"Auch bei sehr hoher Substratkonzentration bleibt das Geschwindigkeitsplateau deutlich niedriger.",
+correctValue: "not-displaceable"
+},
+{
+id: "effect-independent",
+label:
+"Die Hemmwirkung bleibt weitgehend unabhängig von der Substratkonzentration bestehen.",
+correctValue: "not-displaceable"
+}
+],
+
+correctMessage:
+"Alle Vorhersagen wurden korrekt zugeordnet. Entscheidend ist, ob eine hohe Substratkonzentration den Hemmstoff wirksam verdrängen kann.",
+
+partialMessage:
+"Ein Teil der Modelle ist korrekt zugeordnet. Prüfe besonders die Vorhersage zur erreichbaren Maximalgeschwindigkeit.",
+
+incorrectMessage:
+"Die Modellzuordnung ist noch nicht korrekt. Eine kompetitive Hemmung kann durch eine hohe Substratkonzentration abgeschwächt werden.",
+
+helpLevels: [
+"Bei kompetitiver Hemmung konkurrieren zwei Stoffe um dieselbe Bindungsstelle.",
+"Mehr Substrat erhöht die Wahrscheinlichkeit, dass das Substrat statt des Hemmstoffs bindet.",
+"Bleibt das Plateau trotz sehr hoher Substratkonzentration deutlich niedriger, passt dies nicht zum einfachen kompetitiven Modell."
+]
+});
+
+/* =========================================================
+9. AUFGABE 36 – HEMMUNGSTYP AUSWÄHLEN
+========================================================= */
+
+configureTask("task-36", {
+prompt:
+"Welches Hemmungsmodell erklärt die Versuchsdaten im Rahmen des Modellversuchs am besten?",
+
+options: [
+{
+id: "competitive",
+text: "kompetitive Hemmung",
+description:
+"Substrat und Hemmstoff konkurrieren um das aktive Zentrum."
+},
+{
+id: "noncompetitive",
+text: "nichtkompetitive Hemmung",
+description:
+"Der Hemmstoff senkt die erreichbare Maximalgeschwindigkeit unabhängig von der Substratkonzentration."
+},
+{
+id: "uncompetitive",
+text: "unkompetitive Hemmung",
+description:
+"Der Hemmstoff bindet bevorzugt an den Enzym-Substrat-Komplex."
+},
+{
+id: "irreversible",
+text: "vollständig irreversible Inaktivierung",
+description:
+"Ein Teil oder die Gesamtheit des Enzyms bleibt dauerhaft funktionslos."
+}
+],
+
+correctId: "competitive",
+
+correctMessage:
+"Richtig. Die starke Hemmung bei niedriger Substratkonzentration und ihre weitgehende Überwindung bei hoher Substratkonzentration entsprechen im Modellversuch einer kompetitiven Hemmung.",
+
+incorrectMessage:
+"Dieses Modell erklärt den gleichen Endwert beider Messreihen bei hoher Substratkonzentration nicht so gut wie eine kompetitive Hemmung.",
+
+helpLevels: [
+"Achte darauf, ob die Hemmwirkung bei hoher Substratkonzentration bestehen bleibt.",
+"Bei S = 20 erreichen beide Reihen denselben Messwert.",
+"Im einfachen Modell spricht dies für eine kompetitive Hemmung."
+]
+});
+
+/* =========================================================
+10. AUFGABE 37 – DATEN ALS BELEGE AUSWÄHLEN
+========================================================= */
+
+configureTask("task-37", {
+prompt:
+"Welche Beobachtungen aus den Messdaten stützen die Deutung als kompetitive Hemmung? Wähle alle tragfähigen Belege.",
+
+shuffle: true,
+
+options: [
+{
+id: "strong-low-substrate-effect",
+text:
+"Bei S = 0,5 sinkt die Geschwindigkeit durch Allopurinol von 1,8 auf 0,4 µmol/(l · min)."
+},
+{
+id: "decreasing-gap",
+text:
+"Der Abstand zwischen den Messreihen nimmt mit steigender Substratkonzentration ab."
+},
+{
+id: "same-high-value",
+text:
+"Bei S = 20 erreichen beide Messreihen 6,8 µmol/(l · min)."
+},
+{
+id: "maximum-reachable",
+text:
+"Die Messreihe mit Allopurinol nähert sich bei hoher Substratkonzentration demselben Geschwindigkeitsbereich wie die Kontrollreihe."
+},
+{
+id: "constant-relative-effect",
+text:
+"Die relative Hemmung ist bei allen Substratkonzentrationen gleich groß."
+},
+{
+id: "inhibitor-activates",
+text:
+"Allopurinol beschleunigt die Reaktion bei hohen Substratkonzentrationen über den Kontrollwert hinaus."
+},
+{
+id: "permanent-loss",
+text:
+"Die Daten zeigen, dass ein fester Anteil der Enzyme bei jeder Substratkonzentration dauerhaft ausfällt."
+}
+],
+
+correctIds: [
+"strong-low-substrate-effect",
+"decreasing-gap",
+"same-high-value",
+"maximum-reachable"
+],
+
+correctMessage:
+"Alle vier tragfähigen Belege wurden ausgewählt. Gemeinsam zeigen sie, dass eine hohe Substratkonzentration die Hemmwirkung weitgehend überwindet.",
+
+partialMessage:
+"Ein Teil der Belege ist korrekt. Prüfe, ob eine ausgewählte Aussage tatsächlich aus den Messwerten folgt.",
+
+incorrectMessage:
+"Die Auswahl stützt die kompetitive Deutung noch nicht. Vergleiche vor allem die Kurvenabstände bei niedriger und hoher Substratkonzentration.",
+
+helpLevels: [
+"Ein guter Beleg muss direkt aus den Messwerten oder dem Kurvenverlauf hervorgehen.",
+"Die Differenz zwischen den Reihen wird bei steigender Substratkonzentration kleiner.",
+"Bei S = 20 ist kein Geschwindigkeitsunterschied mehr messbar."
+]
+});
+
+/* =========================================================
+11. AUFGABE 38 – ALTERNATIVES MODELL WIDERLEGEN
+========================================================= */
+
+configureTask("task-38", {
+prompt:
+"Welche einzelne Beobachtung spricht am stärksten gegen das Modell, Allopurinol habe einen festen Anteil der Enzyme dauerhaft inaktiviert?",
+
+rowLabel:
+"Zu prüfende Aussage",
+
+valueColumnLabel:
+"Stärkster Gegenbeleg",
+
+options: [
+{
+value: "same-at-20",
+label:
+"Bei S = 20 erreichen beide Messreihen 6,8 µmol/(l · min)."
+},
+{
+value: "lower-at-05",
+label:
+"Bei S = 0,5 ist die Geschwindigkeit mit Allopurinol niedriger."
+},
+{
+value: "xanthine-substrate",
+label:
+"Xanthin ist das Substrat der untersuchten Reaktion."
+},
+{
+value: "purified-enzyme",
+label:
+"Im Versuch wurde gereinigte Xanthinoxidase eingesetzt."
+}
+],
+
+rows: [
+{
+id: "counter-evidence",
+label:
+"Ein dauerhaft verringerter Anteil funktionsfähiger Enzyme müsste die maximal erreichbare Reaktionsgeschwindigkeit senken.",
+correctValue: "same-at-20"
+}
+],
+
+correctMessage:
+"Richtig. Der gleiche hohe Messwert beider Reihen widerspricht der Annahme, ein fester Anteil der Enzyme sei dauerhaft ausgeschaltet.",
+
+partialMessage:
+"Prüfe, welche Beobachtung unmittelbar eine Aussage über die maximal erreichbare Geschwindigkeit ermöglicht.",
+
+incorrectMessage:
+"Diese Beobachtung widerlegt die dauerhafte Teilinaktivierung nicht entscheidend. Maßgeblich ist der gleiche Endwert beider Reihen bei hoher Substratkonzentration.",
+
+helpLevels: [
+"Eine dauerhafte Verringerung der funktionsfähigen Enzymmenge würde das erreichbare Plateau senken.",
+"Vergleiche deshalb die höchsten gemessenen Geschwindigkeiten.",
+"Bei S = 20 liegen beide Reihen bei 6,8 µmol/(l · min)."
+]
+});
+
+/* =========================================================
+12. AUFGABE 39 – MECHANISMUS ORDNEN
+========================================================= */
+
+configureTask("task-39", {
+prompt:
+"Ordne die acht Schritte zu einer mechanistischen Erklärung der kompetitiven Hemmung. Beginne mit der Ähnlichkeit des Hemmstoffs und ende mit der Wirkung einer hohen Substratkonzentration.",
+
+items: [
+{
+id: "similarity",
+text:
+"Allopurinol besitzt relevante strukturelle Ähnlichkeiten zu einem natürlichen Substrat der Xanthinoxidase."
+},
+{
+id: "inhibitor-binding",
+text:
+"Allopurinol kann dadurch am aktiven Zentrum der Xanthinoxidase binden."
+},
+{
+id: "site-blocked",
+text:
+"Während Allopurinol gebunden ist, steht dieses aktive Zentrum dem Substrat nicht zur Verfügung."
+},
+{
+id: "fewer-substrate-bindings",
+text:
+"Bei niedriger Substratkonzentration bindet deshalb ein kleinerer Anteil der Substratmoleküle erfolgreich."
+},
+{
+id: "fewer-complexes",
+text:
+"Es entstehen weniger Enzym-Substrat-Komplexe mit Xanthin."
+},
+{
+id: "lower-rate",
+text:
+"Die gemessene Reaktionsgeschwindigkeit ist vermindert."
+},
+{
+id: "more-substrate-competition",
+text:
+"Bei hoher Substratkonzentration konkurrieren sehr viele Substratmoleküle mit dem Hemmstoff um die aktiven Zentren."
+},
+{
+id: "inhibition-overcome",
+text:
+"Der Hemmstoff wird dadurch häufiger verdrängt, sodass die Hemmwirkung weitgehend überwunden und derselbe maximale Geschwindigkeitsbereich erreichbar wird."
+}
+],
+
+correctOrder: [
+"similarity",
+"inhibitor-binding",
+"site-blocked",
+"fewer-substrate-bindings",
+"fewer-complexes",
+"lower-rate",
+"more-substrate-competition",
+"inhibition-overcome"
+],
+
+shuffle: true,
+
+correctMessage:
+"Der Mechanismus ist vollständig korrekt geordnet. Die Hemmung beruht auf Konkurrenz um das aktive Zentrum und kann durch eine hohe Substratkonzentration abgeschwächt werden.",
+
+partialMessage:
+"Einige Schritte stehen bereits richtig. Prüfe, ob Bindung und Blockierung vor der verminderten Bildung von Enzym-Substrat-Komplexen stehen.",
+
+incorrectMessage:
+"Die Reihenfolge ist noch nicht mechanistisch schlüssig. Beginne mit der Strukturähnlichkeit und trenne die Situation bei niedriger und hoher Substratkonzentration.",
+
+helpLevels: [
+"Die Bindung des Hemmstoffs muss vor der verringerten Reaktionsgeschwindigkeit stehen.",
+"Weniger erfolgreiche Substratbindungen führen zu weniger Enzym-Substrat-Komplexen.",
+"Die letzten beiden Schritte erklären, weshalb viel Substrat die Hemmwirkung abschwächt."
+]
+});
+
+/* =========================================================
+13. AUFGABE 40 – WIRKUNGSEBENEN
+========================================================= */
+
+configureTask("task-40", {
+prompt:
+"Ordne jede Aussage der Ebene zu, auf der die beschriebene Wirkung unmittelbar liegt.",
+
+rowLabel:
+"Wirkung von Allopurinol",
+
+valueColumnLabel:
+"Wirkungsebene",
+
+options: [
+{
+value: "molecular",
+label: "molekulare Ebene"
+},
+{
+value: "enzymatic",
+label: "enzymatische Ebene"
+},
+{
+value: "metabolic",
+label: "stoffwechselphysiologische Ebene"
+},
+{
+value: "organism",
+label: "organismische beziehungsweise klinische Ebene"
+}
+],
+
+rows: [
+{
+id: "binds-active-site",
+label:
+"Allopurinol bindet aufgrund passender Strukturmerkmale am aktiven Zentrum.",
+correctValue: "molecular"
+},
+{
+id: "lower-enzyme-rate",
+label:
+"Die durch Xanthinoxidase katalysierte Reaktionsgeschwindigkeit sinkt.",
+correctValue: "enzymatic"
+},
+{
+id: "less-uric-acid",
+label:
+"Im Purinabbau wird weniger Harnsäure gebildet.",
+correctValue: "metabolic"
+},
+{
+id: "fewer-crystals-symptoms",
+label:
+"Kristallablagerungen und damit verbundene Gichtbeschwerden werden weniger wahrscheinlich.",
+correctValue: "organism"
+}
+],
+
+correctMessage:
+"Alle vier Wirkungsebenen sind korrekt zugeordnet. Die therapeutische Erklärung verbindet molekulare Bindung mit einer Wirkung auf den gesamten Organismus.",
+
+partialMessage:
+"Ein Teil der Ebenen ist korrekt. Unterscheide unmittelbare Enzymaktivität von der nachfolgenden Veränderung des Stoffwechsels.",
+
+incorrectMessage:
+"Die Wirkungsebenen sind noch nicht korrekt getrennt. Beginne bei der Molekülbindung und gehe schrittweise zur klinischen Folge über.",
+
+helpLevels: [
+"Die Bindung am aktiven Zentrum ist ein Vorgang zwischen Molekülen.",
+"Die verringerte Reaktionsgeschwindigkeit beschreibt direkt die Enzymfunktion.",
+"Kristallbildung und Beschwerden betreffen Gewebe beziehungsweise den gesamten Organismus."
+]
+});
+
+/* =========================================================
+14. AUFGABE 41 – WIRKUNGSKETTE ALS LÜCKENTEXT
+========================================================= */
+
+configureTask("task-41", {
+segments: [
+"Allopurinol bindet am ",
+{
+id: "chain-active-site",
+label: "Bindungsort",
+options: [
+{
+value: "active-site",
+label: "aktiven Zentrum"
+},
+{
+value: "cell-membrane",
+label: "Zellmembranrezeptor"
+},
+{
+value: "gene",
+label: "Gen der Xanthinoxidase"
+}
+],
+correctValue: "active-site"
+},
+" der Xanthinoxidase. Dadurch wird Xanthin ",
+{
+id: "chain-conversion",
+label: "Veränderung der Umsetzung",
+options: [
+{
+value: "less-converted",
+label: "langsamer beziehungsweise seltener umgesetzt"
+},
+{
+value: "faster-converted",
+label: "schneller umgesetzt"
+},
+{
+value: "newly-produced",
+label: "neu gebildet"
+}
+],
+correctValue: "less-converted"
+},
+". Deshalb entsteht im betrachteten Stoffwechselweg weniger ",
+{
+id: "chain-product",
+label: "Produkt",
+options: [
+{
+value: "uric-acid",
+label: "Harnsäure"
+},
+{
+value: "xanthine-oxidase",
+label: "Xanthinoxidase"
+},
+{
+value: "DNA",
+label: "DNA"
+}
+],
+correctValue: "uric-acid"
+},
+". Die Harnsäurekonzentration kann dadurch ",
+{
+id: "chain-concentration",
+label: "Konzentrationsänderung",
+options: [
+{
+value: "decrease",
+label: "sinken"
+},
+{
+value: "increase",
+label: "steigen"
+},
+{
+value: "necessarily-double",
+label: "sich zwingend verdoppeln"
+}
+],
+correctValue: "decrease"
+},
+", sodass die Bildung und Ablagerung von ",
+{
+id: "chain-crystals",
+label: "Ablagerung",
+options: [
+{
+value: "uric-acid-crystals",
+label: "Harnsäurekristallen"
+},
+{
+value: "enzyme-crystals",
+label: "Enzymkristallen"
+},
+{
+value: "glucose-crystals",
+label: "Glucosekristallen"
+}
+],
+correctValue: "uric-acid-crystals"
+},
+" weniger wahrscheinlich wird."
+],
+
+correctMessage:
+"Die Wirkungskette ist vollständig korrekt. Sie verbindet die Bindung am Enzym mit der verminderten Kristallbildung.",
+
+partialMessage:
+"Ein Teil der Wirkungskette ist korrekt. Prüfe besonders Produkt, Konzentrationsänderung und Art der Kristalle.",
+
+incorrectMessage:
+"Die Wirkungskette ist noch nicht korrekt. Allopurinol vermindert im Modell die Bildung des nachgeschalteten Produkts Harnsäure.",
+
+helpLevels: [
+"Der Wirkstoff greift zunächst am aktiven Zentrum der Xanthinoxidase an.",
+"Dadurch wird weniger Harnsäure aus Xanthin gebildet.",
+"Weniger Harnsäure bedeutet eine geringere Wahrscheinlichkeit für Harnsäurekristalle."
+]
+});
+
+/* =========================================================
+15. AUFGABE 42 – GESAMTERKLÄRUNG ORDNEN
+========================================================= */
+
+configureTask("task-42", {
+prompt:
+"Ordne die sieben Satzbausteine zu einer zusammenhängenden Gesamterklärung der therapeutischen Wirkung von Allopurinol.",
+
+items: [
+{
+id: "structure",
+text:
+"Allopurinol besitzt Strukturmerkmale, die eine Bindung an die Xanthinoxidase ermöglichen."
+},
+{
+id: "active-site",
+text:
+"Der Wirkstoff bindet am aktiven Zentrum und konkurriert dort mit dem natürlichen Substrat."
+},
+{
+id: "fewer-complexes",
+text:
+"Dadurch entstehen zunächst weniger produktive Enzym-Substrat-Komplexe."
+},
+{
+id: "lower-reaction-rate",
+text:
+"Die Reaktionsgeschwindigkeit der durch Xanthinoxidase katalysierten Umsetzung sinkt."
+},
+{
+id: "less-uric-acid",
+text:
+"Im Purinabbau wird deshalb weniger Harnsäure gebildet."
+},
+{
+id: "less-crystallization",
+text:
+"Eine niedrigere Harnsäurebelastung verringert die Wahrscheinlichkeit, dass die Löslichkeitsgrenze überschritten wird und Kristalle entstehen."
+},
+{
+id: "clinical-effect",
+text:
+"Weniger Kristallablagerungen können Entzündungsreaktionen und typische Gichtbeschwerden vermindern."
+}
+],
+
+correctOrder: [
+"structure",
+"active-site",
+"fewer-complexes",
+"lower-reaction-rate",
+"less-uric-acid",
+"less-crystallization",
+"clinical-effect"
+],
+
+shuffle: true,
+
+correctMessage:
+"Die Gesamterklärung ist vollständig korrekt geordnet. Sie führt von der Molekülstruktur über Enzymhemmung und Stoffwechselwirkung bis zur möglichen klinischen Wirkung.",
+
+partialMessage:
+"Einige Satzbausteine stehen bereits an der richtigen Position. Prüfe die Abfolge Molekülbindung → Enzymaktivität → Harnsäurebildung → Kristallbildung → Beschwerden.",
+
+incorrectMessage:
+"Die Erklärung ist noch nicht kausal geordnet. Beginne mit den Strukturmerkmalen des Wirkstoffs und ende mit der Wirkung auf Kristallablagerungen und Beschwerden.",
+
+helpLevels: [
+"Die Struktur des Wirkstoffs steht am Anfang der Erklärung.",
+"Die verminderte Harnsäurebildung folgt erst nach der verminderten Enzymaktivität.",
+"Die klinische Wirkung steht am Ende der Wirkungskette."
+]
+});
+
+/* =========================================================
+16. ERGÄNZENDE FACHLICHE HINWEISE IM MODUL
+========================================================= */
+
+function installAnalysisModuleContext() {
+/*
+Keine bestehende Renderfunktion wird überschrieben.
+Der Abschnitt stellt lediglich Datenhilfen für spätere
+Erweiterungen über die öffentliche Schnittstelle bereit.
+*/
+
+Object.assign(window.EnzymeApp, {
+experimentData: cloneData(EXPERIMENT_DATA),
+
+```
+getExperimentRow(substrate) {
+  const row = getExperimentRow(substrate);
+
+  return row
+    ? cloneData(row)
+    : null;
+},
+
+renderEvidenceSummary
+```
+
+});
+}
+
+installAnalysisModuleContext();
+/* =========================================================
+ABSCHNITT 11: MODUL 8 – FREIE SICHERUNG
+Aufgaben 43 und 44
+========================================================= */
+
+/* =========================================================
+
+1. HILFSFUNKTIONEN
+   ========================================================= */
+
+function countFreeResponseWords(text) {
+const normalized = String(text ?? "")
+.trim()
+.replace(/\s+/g, " ");
+
+if (normalized === "") {
+return 0;
+}
+
+return normalized.split(" ").length;
+}
+
+function sanitizeSelfCheckRating(value) {
+return [
+"present",
+"partial",
+"missing"
+].includes(value)
+? value
+: "";
+}
+
+function getFreeResponseProgress({
+text,
+minimumWords,
+minimumCharacters
+}) {
+const trimmedText = String(text ?? "").trim();
+const wordCount = countFreeResponseWords(trimmedText);
+const characterCount = trimmedText.length;
+
+const wordProgress =
+minimumWords > 0
+? Math.min(
+1,
+wordCount / minimumWords
+)
+: 1;
+
+const characterProgress =
+minimumCharacters > 0
+? Math.min(
+1,
+characterCount /
+minimumCharacters
+)
+: 1;
+
+const progress =
+Math.min(
+wordProgress,
+characterProgress
+);
+
+return {
+wordCount,
+characterCount,
+progress,
+percentage:
+Math.round(progress * 100),
+ready:
+wordCount >= minimumWords &&
+characterCount >= minimumCharacters
+};
+}
+
+function getSelfCheckCounts(criteria, ratings) {
+const counts = {
+present: 0,
+partial: 0,
+missing: 0,
+open: 0
+};
+
+for (const criterion of criteria) {
+const rating =
+sanitizeSelfCheckRating(
+ratings[criterion.id]
+);
+
+```
+if (rating === "") {
+  counts.open += 1;
+} else {
+  counts[rating] += 1;
+}
+```
+
+}
+
+return counts;
+}
+
+function getSelfCheckScoreUnits(
+criteria,
+ratings
+) {
+return criteria.reduce(
+(sum, criterion) => {
+const rating =
+sanitizeSelfCheckRating(
+ratings[criterion.id]
+);
+
+```
+  if (rating === "present") {
+    return sum + 1;
+  }
+
+  if (rating === "partial") {
+    return sum + 0.5;
+  }
+
+  return sum;
+},
+0
+```
+
+);
+}
+
+/* =========================================================
+2. GENERISCHER FREITEXT-CONTROLLER
+========================================================= */
+
+const guidedFreeResponseController = {
+render(context) {
+const config = getTaskConfig(context.task);
+
+```
+if (
+  !config ||
+  !Array.isArray(config.criteria) ||
+  !Array.isArray(config.planningQuestions)
+) {
+  return renderUnconfiguredComponent(
+    context,
+    "criteria, planningQuestions und modelAnswer"
+  );
+}
+
+const root = context.elements.taskContent;
+
+const savedAnswer =
+  isPlainObject(context.taskState.answer)
+    ? context.taskState.answer
+    : {};
+
+let responseText =
+  typeof savedAnswer.text === "string"
+    ? savedAnswer.text
+    : "";
+
+let modelRevealed =
+  savedAnswer.modelRevealed === true;
+
+let modelVisible =
+  modelRevealed &&
+  savedAnswer.modelVisible !== false;
+
+let revealSnapshot =
+  typeof savedAnswer.revealSnapshot ===
+  "string"
+    ? savedAnswer.revealSnapshot
+    : modelRevealed
+      ? responseText
+      : "";
+
+let revisionMade =
+  savedAnswer.revisionMade === true;
+
+let ratings = {};
+
+const savedRatings =
+  isPlainObject(savedAnswer.ratings)
+    ? savedAnswer.ratings
+    : {};
+
+for (const criterion of config.criteria) {
+  ratings[criterion.id] =
+    sanitizeSelfCheckRating(
+      savedRatings[criterion.id]
+    );
+}
+
+const minimumWords =
+  config.minimumWords ?? 20;
+
+const minimumCharacters =
+  config.minimumCharacters ?? 100;
+
+const recommendedWords =
+  config.recommendedWords ??
+  minimumWords;
+
+const modelParagraphs =
+  Array.isArray(config.modelAnswer)
+    ? config.modelAnswer
+    : [String(config.modelAnswer ?? "")];
+
+function createAnswer() {
+  return {
+    text: responseText,
+    modelRevealed,
+    modelVisible,
+    revealSnapshot,
+    revisionMade,
+    ratings: {
+      ...ratings
+    }
+  };
+}
+
+function saveAnswer() {
+  context.app.setAnswer(createAnswer());
+}
+
+function getProgress() {
+  return getFreeResponseProgress({
+    text: responseText,
+    minimumWords,
+    minimumCharacters
+  });
+}
+
+function getRatingClass(rating) {
+  if (rating === "present") {
+    return "is-present";
+  }
+
+  if (rating === "partial") {
+    return "is-partial";
+  }
+
+  if (rating === "missing") {
+    return "is-missing";
+  }
+
+  return "";
+}
+
+function renderRubric() {
+  if (!modelRevealed) {
+    return `
+      <div class="free-response-locked">
+        <strong>
+          Selbstprüfung noch gesperrt
+        </strong>
+
+        Verfasse zuerst eine ausreichend ausführliche eigene
+        Antwort und öffne anschließend die Musterlösung.
+      </div>
+    `;
+  }
+
+  return `
+    <section class="free-response-rubric">
+      <h2>
+        Kriterienbasierte Selbstprüfung
+      </h2>
+
+      <p class="free-response-description">
+        Vergleiche deine Antwort mit der Musterlösung.
+        Bewerte jedes Kriterium ehrlich als vollständig,
+        teilweise oder nicht enthalten.
+      </p>
+
+      <div class="self-check-rubric">
+        ${config.criteria
+          .map((criterion, index) => {
+            const rating =
+              ratings[criterion.id] ?? "";
+
+            return `
+              <div
+                class="self-check-item ${getRatingClass(rating)}"
+                data-self-check-item="${escapeHtml(criterion.id)}"
+              >
+                <div class="self-check-copy">
+                  <strong>
+                    ${index + 1}. ${escapeHtml(criterion.label)}
+                  </strong>
+
+                  ${
+                    criterion.explanation
+                      ? `
+                        <small>
+                          ${escapeHtml(criterion.explanation)}
+                        </small>
+                      `
+                      : ""
+                  }
+                </div>
+
+                <label>
+                  <span class="visually-hidden">
+                    Bewertung für
+                    ${escapeHtml(criterion.label)}
+                  </span>
+
+                  <select
+                    class="form-control self-check-select"
+                    data-self-check-rating="${escapeHtml(criterion.id)}"
+                  >
+                    <option value="">
+                      Noch nicht bewertet
+                    </option>
+
+                    <option
+                      value="present"
+                      ${
+                        rating === "present"
+                          ? "selected"
+                          : ""
+                      }
+                    >
+                      vollständig enthalten
+                    </option>
+
+                    <option
+                      value="partial"
+                      ${
+                        rating === "partial"
+                          ? "selected"
+                          : ""
+                      }
+                    >
+                      teilweise enthalten
+                    </option>
+
+                    <option
+                      value="missing"
+                      ${
+                        rating === "missing"
+                          ? "selected"
+                          : ""
+                      }
+                    >
+                      fehlt
+                    </option>
+                  </select>
+                </label>
+              </div>
+            `;
+          })
+          .join("")}
+      </div>
+    </section>
+  `;
+}
+
+function renderSummary() {
+  const counts =
+    getSelfCheckCounts(
+      config.criteria,
+      ratings
+    );
+
+  return `
+    <section class="free-response-summary">
+      <h2>
+        Stand der Selbstprüfung
+      </h2>
+
+      <div class="self-check-summary-grid">
+        <div class="self-check-summary-value is-present">
+          <strong data-summary-present>
+            ${counts.present}
+          </strong>
+
+          <span>
+            vollständig
+          </span>
+        </div>
+
+        <div class="self-check-summary-value is-partial">
+          <strong data-summary-partial>
+            ${counts.partial}
+          </strong>
+
+          <span>
+            teilweise
+          </span>
+        </div>
+
+        <div class="self-check-summary-value is-missing">
+          <strong data-summary-missing>
+            ${counts.missing}
+          </strong>
+
+          <span>
+            fehlt
+          </span>
+        </div>
+
+        <div class="self-check-summary-value is-open">
+          <strong data-summary-open>
+            ${counts.open}
+          </strong>
+
+          <span>
+            noch offen
+          </span>
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function renderInterface() {
+  const progress = getProgress();
+
+  root.innerHTML = `
+    <div class="free-response-task">
+
+      <div class="free-response-note">
+        <strong>
+          Offline-Selbstprüfung
+        </strong>
+
+        Die App kann den fachlichen Inhalt eines freien Textes
+        nicht automatisch verstehen. Die Punkte beruhen daher
+        auf deiner eigenen kriteriengestützten Einschätzung.
+      </div>
+
+      <section class="free-response-planning">
+        <h2>
+          Antwort planen
+        </h2>
+
+        <p class="free-response-description">
+          Die folgenden Leitfragen helfen beim Aufbau einer
+          zusammenhängenden Erklärung.
+        </p>
+
+        <ol class="free-response-planning-list">
+          ${config.planningQuestions
+            .map((question) => `
+              <li>
+                ${escapeHtml(question)}
+              </li>
+            `)
+            .join("")}
+        </ol>
+      </section>
+
+      <section class="free-response-editor">
+        <h2>
+          Eigene Antwort
+        </h2>
+
+        <p class="free-response-description">
+          ${escapeHtml(config.editorDescription)}
+        </p>
+
+        <label
+          class="visually-hidden"
+          for="free-response-text-${escapeHtml(context.task.id)}"
+        >
+          Freie Antwort
+        </label>
+
+        <textarea
+          id="free-response-text-${escapeHtml(context.task.id)}"
+          class="free-response-textarea ${
+            progress.ready
+              ? "is-ready"
+              : "is-too-short"
+          }"
+          data-free-response-text
+          spellcheck="true"
+          placeholder="${escapeHtml(config.placeholder)}"
+        >${escapeHtml(responseText)}</textarea>
+
+        <div class="free-response-progress">
+          <div
+            class="free-response-progress-fill ${
+              progress.ready
+                ? "is-complete"
+                : ""
+            }"
+            data-free-response-progress
+            style="width: ${progress.percentage}%;"
+          ></div>
+        </div>
+
+        <p
+          class="free-response-requirement ${
+            progress.ready
+              ? "is-met"
+              : ""
+          }"
+          data-free-response-requirement
+        >
+          ${
+            progress.ready
+              ? "Mindestumfang erreicht. Die Musterlösung kann geöffnet werden."
+              : `Erforderlich sind mindestens ${minimumWords} Wörter und ${minimumCharacters} Zeichen.`
+          }
+        </p>
+
+        <div class="free-response-toolbar">
+          <div class="free-response-metrics">
+            <span class="free-response-metric">
+              Wörter:
+              <strong data-free-response-word-count>
+                ${progress.wordCount}
+              </strong>
+            </span>
+
+            <span class="free-response-metric">
+              Zeichen:
+              <strong data-free-response-character-count>
+                ${progress.characterCount}
+              </strong>
+            </span>
+
+            <span class="free-response-metric">
+              Empfehlung:
+              <strong>
+                etwa ${recommendedWords} Wörter
+              </strong>
+            </span>
+          </div>
+
+          <div class="free-response-actions">
+            <button
+              class="button button--primary"
+              type="button"
+              data-toggle-model-answer
+              ${
+                !modelRevealed &&
+                !progress.ready
+                  ? "disabled"
+                  : ""
+              }
+            >
+              ${
+                !modelRevealed
+                  ? "Musterlösung anzeigen"
+                  : modelVisible
+                    ? "Musterlösung ausblenden"
+                    : "Musterlösung erneut anzeigen"
+              }
+            </button>
+          </div>
+        </div>
+
+        ${
+          modelRevealed
+            ? `
+              <div
+                class="free-response-revision-status ${
+                  revisionMade
+                    ? "is-revised"
+                    : ""
+                }"
+                data-revision-status
+              >
+                ${
+                  revisionMade
+                    ? "Die Antwort wurde nach dem Öffnen der Musterlösung überarbeitet."
+                    : "Die Antwort wurde seit dem Öffnen der Musterlösung noch nicht verändert."
+                }
+              </div>
+            `
+            : ""
+        }
+      </section>
+
+      <section
+        class="free-response-model"
+        data-model-answer-panel
+        ${
+          modelVisible
+            ? ""
+            : "hidden"
+        }
+      >
+        <span class="free-response-model-label">
+          Musterlösung
+        </span>
+
+        <h2>
+          Mögliche fachlich vollständige Antwort
+        </h2>
+
+        <div class="free-response-model-copy">
+          ${modelParagraphs
+            .map((paragraph) => `
+              <p>
+                ${escapeHtml(paragraph)}
+              </p>
+            `)
+            .join("")}
+        </div>
+      </section>
+
+      ${renderRubric()}
+
+      ${
+        modelRevealed
+          ? renderSummary()
+          : ""
+      }
+
+      <div class="free-response-integrity-note">
+        <strong>
+          Bewertungshinweis:
+        </strong>
+
+        Wähle „vollständig enthalten“ nur dann, wenn der
+        jeweilige Gedanke in deiner eigenen Antwort fachlich
+        erkennbar formuliert ist. Die Musterlösung allein
+        zählt nicht als eigene Leistung.
+      </div>
+
+    </div>
+  `;
+
+  bindEvents();
+}
+
+function updateLiveMetrics() {
+  const progress = getProgress();
+
+  const textarea = root.querySelector(
+    "[data-free-response-text]"
+  );
+
+  const wordCount = root.querySelector(
+    "[data-free-response-word-count]"
+  );
+
+  const characterCount = root.querySelector(
+    "[data-free-response-character-count]"
+  );
+
+  const progressFill = root.querySelector(
+    "[data-free-response-progress]"
+  );
+
+  const requirement = root.querySelector(
+    "[data-free-response-requirement]"
+  );
+
+  const modelButton = root.querySelector(
+    "[data-toggle-model-answer]"
+  );
+
+  if (wordCount) {
+    wordCount.textContent =
+      String(progress.wordCount);
+  }
+
+  if (characterCount) {
+    characterCount.textContent =
+      String(progress.characterCount);
+  }
+
+  if (progressFill) {
+    progressFill.style.width =
+      `${progress.percentage}%`;
+
+    progressFill.classList.toggle(
+      "is-complete",
+      progress.ready
+    );
+  }
+
+  if (requirement) {
+    requirement.classList.toggle(
+      "is-met",
+      progress.ready
+    );
+
+    requirement.textContent =
+      progress.ready
+        ? "Mindestumfang erreicht. Die Musterlösung kann geöffnet werden."
+        : `Erforderlich sind mindestens ${minimumWords} Wörter und ${minimumCharacters} Zeichen.`;
+  }
+
+  textarea?.classList.toggle(
+    "is-ready",
+    progress.ready
+  );
+
+  textarea?.classList.toggle(
+    "is-too-short",
+    !progress.ready
+  );
+
+  if (
+    modelButton &&
+    !modelRevealed
+  ) {
+    modelButton.disabled =
+      !progress.ready;
+  }
+
+  if (
+    modelRevealed &&
+    responseText !== revealSnapshot
+  ) {
+    revisionMade = true;
+
+    const revisionStatus =
+      root.querySelector(
+        "[data-revision-status]"
+      );
+
+    if (revisionStatus) {
+      revisionStatus.classList.add(
+        "is-revised"
+      );
+
+      revisionStatus.textContent =
+        "Die Antwort wurde nach dem Öffnen der Musterlösung überarbeitet.";
+    }
+  }
+}
+
+function updateRubricSummary() {
+  const counts =
+    getSelfCheckCounts(
+      config.criteria,
+      ratings
+    );
+
+  const summaryValues = {
+    present:
+      root.querySelector(
+        "[data-summary-present]"
+      ),
+    partial:
+      root.querySelector(
+        "[data-summary-partial]"
+      ),
+    missing:
+      root.querySelector(
+        "[data-summary-missing]"
+      ),
+    open:
+      root.querySelector(
+        "[data-summary-open]"
+      )
+  };
+
+  for (
+    const [key, element] of
+    Object.entries(summaryValues)
+  ) {
+    if (element) {
+      element.textContent =
+        String(counts[key]);
+    }
+  }
+}
+
+function bindEvents() {
+  const textarea = root.querySelector(
+    "[data-free-response-text]"
+  );
+
+  textarea?.addEventListener(
+    "input",
+    () => {
+      responseText =
+        textarea.value;
+
+      if (
+        modelRevealed &&
+        responseText !== revealSnapshot
+      ) {
+        revisionMade = true;
+      }
+
+      saveAnswer();
+      updateLiveMetrics();
+    }
+  );
+
+  root
+    .querySelector(
+      "[data-toggle-model-answer]"
+    )
+    ?.addEventListener(
+      "click",
+      () => {
+        const progress = getProgress();
+
+        if (
+          !modelRevealed &&
+          !progress.ready
+        ) {
+          context.app.showFeedback({
+            type: "warning",
+            title:
+              "Eigene Antwort noch zu kurz",
+            message:
+              `Verfasse mindestens ${minimumWords} Wörter und ${minimumCharacters} Zeichen, bevor du die Musterlösung öffnest.`
+          });
+
+          return;
+        }
+
+        if (!modelRevealed) {
+          modelRevealed = true;
+          modelVisible = true;
+          revealSnapshot = responseText;
+          revisionMade = false;
+
+          saveAnswer();
+          renderInterface();
+
+          context.app.showFeedback({
+            type: "info",
+            title:
+              "Musterlösung freigegeben",
+            message:
+              "Vergleiche beide Texte, überarbeite deine Antwort und fülle anschließend das Kriterienraster aus."
+          });
+
+          return;
+        }
+
+        modelVisible =
+          !modelVisible;
+
+        saveAnswer();
+        renderInterface();
+      }
+    );
+
+  root
+    .querySelectorAll(
+      "[data-self-check-rating]"
+    )
+    .forEach((select) => {
+      select.addEventListener(
+        "change",
+        () => {
+          const criterionId =
+            select.dataset
+              .selfCheckRating;
+
+          ratings[criterionId] =
+            sanitizeSelfCheckRating(
+              select.value
+            );
+
+          const item =
+            select.closest(
+              ".self-check-item"
+            );
+
+          item?.classList.remove(
+            "is-present",
+            "is-partial",
+            "is-missing"
+          );
+
+          const ratingClass =
+            getRatingClass(
+              ratings[criterionId]
+            );
+
+          if (
+            item &&
+            ratingClass !== ""
+          ) {
+            item.classList.add(
+              ratingClass
+            );
+          }
+
+          select.classList.remove(
+            "is-correct",
+            "is-incorrect",
+            "is-empty"
+          );
+
+          saveAnswer();
+          updateRubricSummary();
+        }
+      );
+    });
+}
+
+renderInterface();
+
+return {
+  check() {
+    const progress = getProgress();
+
+    if (!progress.ready) {
+      return {
+        correct: false,
+        partial: false,
+        score: 0,
+        answer: createAnswer(),
+        title:
+          "Freitext noch nicht prüfbar",
+        message:
+          `Die Antwort benötigt mindestens ${minimumWords} Wörter und ${minimumCharacters} Zeichen.`
+      };
+    }
+
+    if (!modelRevealed) {
+      return {
+        correct: false,
+        partial: false,
+        score: 0,
+        answer: createAnswer(),
+        title:
+          "Selbstprüfung noch nicht durchgeführt",
+        message:
+          "Öffne die Musterlösung und vergleiche sie mit deiner eigenen Antwort."
+      };
+    }
+
+    const counts =
+      getSelfCheckCounts(
+        config.criteria,
+        ratings
+      );
+
+    const achievedUnits =
+      getSelfCheckScoreUnits(
+        config.criteria,
+        ratings
+      );
+
+    const totalUnits =
+      config.criteria.length;
+
+    const score =
+      calculateScaledScore(
+        achievedUnits,
+        totalUnits,
+        context.task.maxPoints
+      );
+
+    if (counts.open > 0) {
+      root
+        .querySelectorAll(
+          "[data-self-check-rating]"
+        )
+        .forEach((select) => {
+          if (select.value === "") {
+            select.classList.add(
+              "is-empty"
+            );
+          }
+        });
+
+      return {
+        correct: false,
+        partial:
+          achievedUnits > 0,
+        score,
+        answer: createAnswer(),
+        title:
+          "Selbstprüfung unvollständig",
+        message:
+          `${counts.open} Kriterien sind noch nicht bewertet. Fülle das gesamte Raster aus und prüfe die Aufgabe erneut.`
+      };
+    }
+
+    const correct =
+      counts.present ===
+      totalUnits;
+
+    const partial =
+      !correct &&
+      achievedUnits > 0;
+
+    let message;
+
+    if (correct) {
+      message =
+        config.completeMessage ??
+        "Nach deiner Selbsteinschätzung enthält die Antwort alle geforderten Fachaspekte.";
+    } else if (
+      counts.missing > 0
+    ) {
+      message =
+        `${counts.present} Kriterien sind vollständig, ` +
+        `${counts.partial} teilweise und ` +
+        `${counts.missing} fehlen. Überarbeite fehlende Fachaspekte bei Bedarf.`;
+    } else {
+      message =
+        `${counts.present} Kriterien sind vollständig und ` +
+        `${counts.partial} teilweise enthalten. Präzisiere die teilweise erfüllten Aspekte bei Bedarf.`;
+    }
+
+    return {
+      correct,
+      partial,
+      score,
+      answer: createAnswer(),
+      title:
+        correct
+          ? "Selbstprüfung abgeschlossen"
+          : "Selbstprüfung ausgewertet",
+      message
+    };
+  },
+
+  reset() {
+    responseText = "";
+    modelRevealed = false;
+    modelVisible = false;
+    revealSnapshot = "";
+    revisionMade = false;
+    ratings = {};
+
+    for (
+      const criterion of
+      config.criteria
+    ) {
+      ratings[criterion.id] = "";
+    }
+
+    saveAnswer();
+    renderInterface();
+  },
+
+  canProceed() {
+    const progress = getProgress();
+
+    const counts =
+      getSelfCheckCounts(
+        config.criteria,
+        ratings
+      );
+
+    const taskStatus =
+      context.app.getTaskState()
+        .status;
+
+    return (
+      progress.ready &&
+      modelRevealed &&
+      counts.open === 0 &&
+      ![
+        "unseen",
+        "started"
+      ].includes(taskStatus)
+    );
+  }
+};
+```
+
+}
+};
+
+/* =========================================================
+3. CONTROLLER REGISTRIEREN
+========================================================= */
+
+registerTaskController(
+"task-43",
+guidedFreeResponseController
+);
+
+registerTaskController(
+"task-44",
+guidedFreeResponseController
+);
+
+/* =========================================================
+4. AUFGABE 43:
+KOMPETITIVE HEMMUNG KURZ ERKLÄREN
+========================================================= */
+
+configureTask("task-43", {
+minimumWords: 25,
+minimumCharacters: 140,
+recommendedWords: 45,
+
+editorDescription:
+"Erkläre die kompetitive Hemmung in einem zusammenhängenden Absatz. Gehe auch auf die Wirkung einer hohen Substratkonzentration ein.",
+
+placeholder:
+"Bei einer kompetitiven Hemmung ...",
+
+planningQuestions: [
+"Wo binden Substrat und kompetitiver Hemmstoff?",
+"Wie beeinflusst die Bindung des Hemmstoffs die Bildung von Enzym-Substrat-Komplexen?",
+"Wie verändert sich die Reaktionsgeschwindigkeit?",
+"Warum wird die Hemmung bei hoher Substratkonzentration schwächer?"
+],
+
+modelAnswer: [
+"Bei einer kompetitiven Hemmung konkurrieren Substrat und Hemmstoff um dasselbe aktive Zentrum des Enzyms. Der Hemmstoff kann aufgrund passender Strukturmerkmale binden und verhindert während seiner Bindung, dass das Substrat dasselbe aktive Zentrum besetzt.",
+
+```
+"Dadurch entstehen zunächst weniger Enzym-Substrat-Komplexe und die Reaktionsgeschwindigkeit sinkt. Bei hoher Substratkonzentration bindet jedoch häufiger das Substrat statt des Hemmstoffs. Die Hemmung wird deshalb abgeschwächt; im einfachen kompetitiven Modell bleibt die Maximalgeschwindigkeit grundsätzlich erreichbar."
+```
+
+],
+
+criteria: [
+{
+id: "same-active-site",
+label:
+"Konkurrenz um dasselbe aktive Zentrum",
+explanation:
+"Substrat und Hemmstoff dürfen nicht als Bindungspartner an völlig unterschiedlichen Stellen beschrieben werden."
+},
+{
+id: "fewer-complexes",
+label:
+"Weniger Enzym-Substrat-Komplexe und geringere Reaktionsgeschwindigkeit",
+explanation:
+"Die Blockierung des aktiven Zentrums muss mit der gemessenen Geschwindigkeitsabnahme verknüpft werden."
+},
+{
+id: "high-substrate",
+label:
+"Hohe Substratkonzentration schwächt die Hemmung ab",
+explanation:
+"Viele Substratmoleküle erhöhen die Wahrscheinlichkeit einer erfolgreichen Substratbindung."
+},
+{
+id: "maximum-rate",
+label:
+"Maximalgeschwindigkeit bleibt im einfachen Modell erreichbar",
+explanation:
+"Die Aussage unterscheidet die kompetitive Hemmung von Modellen mit dauerhaft verringerter Enzymaktivität."
+}
+],
+
+completeMessage:
+"Nach deiner Selbsteinschätzung enthält die Antwort alle vier Kernelemente einer kompetitiven Hemmung.",
+
+helpLevels: [
+"Verwende die Begriffe aktives Zentrum, Substrat und Hemmstoff.",
+"Erkläre die Geschwindigkeitsabnahme über eine geringere Zahl produktiver Enzym-Substrat-Komplexe.",
+"Ergänze, weshalb sehr viel Substrat den Hemmstoff häufiger verdrängt."
+]
+});
+
+/* =========================================================
+5. AUFGABE 44:
+ALLOPURINOL BEI GICHT ERKLÄREN
+========================================================= */
+
+configureTask("task-44", {
+minimumWords: 45,
+minimumCharacters: 260,
+recommendedWords: 85,
+
+editorDescription:
+"Erkläre die Wirkung von Allopurinol vom Molekül über die Enzymreaktion und den Purinabbau bis zu Kristallbildung, Entzündung und Beschwerden.",
+
+placeholder:
+"Allopurinol kann bei Gicht eingesetzt werden, weil ...",
+
+planningQuestions: [
+"An welchem Enzym und an welcher Stelle greift Allopurinol an?",
+"Welche Reaktion des Purinabbaus wird dadurch verlangsamt?",
+"Wie verändert sich die Bildung von Harnsäure?",
+"Welche Folge hat eine geringere Harnsäurebelastung für Kristallbildung und Ablagerung?",
+"Wie hängt dies mit Entzündung, Schwellung, Rötung und Schmerzen zusammen?",
+"Welches Hemmungsmodell wird im vorliegenden Modellversuch verwendet?"
+],
+
+modelAnswer: [
+"Allopurinol besitzt Strukturmerkmale, die eine Bindung an die Xanthinoxidase ermöglichen. Im Rahmen des Modellversuchs wird diese Wirkung als kompetitive Hemmung am aktiven Zentrum beschrieben. Während Allopurinol gebunden ist, kann das natürliche Substrat dort nicht produktiv binden.",
+
+```
+"Dadurch wird die Umsetzung von Xanthin zu Harnsäure verlangsamt und es wird weniger Harnsäure gebildet. Die Harnsäurekonzentration beziehungsweise die Harnsäurebelastung kann dadurch sinken. Die Löslichkeitsgrenze wird seltener überschritten, sodass weniger Harnsäurekristalle entstehen und sich in Gelenken oder anderen Geweben ablagern.",
+
+"Weniger Kristallablagerungen können die dadurch ausgelösten Entzündungsreaktionen vermindern. Schwellung, Rötung und starke Gelenkschmerzen werden damit weniger wahrscheinlich beziehungsweise können abgeschwächt werden."
+```
+
+],
+
+criteria: [
+{
+id: "target-binding",
+label:
+"Bindung von Allopurinol an die Xanthinoxidase",
+explanation:
+"Die Erklärung sollte das aktive Zentrum oder die Konkurrenz mit dem natürlichen Substrat nennen."
+},
+{
+id: "reaction-inhibited",
+label:
+"Verminderte Umsetzung zu Harnsäure",
+explanation:
+"Die Hemmung muss mit einer geringeren Reaktionsgeschwindigkeit der Xanthinoxidase verknüpft werden."
+},
+{
+id: "less-uric-acid",
+label:
+"Geringere Harnsäurebildung beziehungsweise Harnsäurebelastung",
+explanation:
+"Die Wirkung auf den Stoffwechsel muss ausdrücklich formuliert sein."
+},
+{
+id: "fewer-crystals",
+label:
+"Weniger Kristallbildung und Ablagerung",
+explanation:
+"Der Zusammenhang mit Löslichkeit oder dem Überschreiten der Löslichkeitsgrenze sollte erkennbar sein."
+},
+{
+id: "fewer-symptoms",
+label:
+"Weniger Entzündungsreaktionen und Gichtbeschwerden",
+explanation:
+"Mögliche Folgen sind weniger Schwellung, Rötung und Schmerz."
+},
+{
+id: "model-limitation",
+label:
+"Kompetitive Hemmung als Deutung des Modellversuchs",
+explanation:
+"Die Aussage sollte auf den vorliegenden Versuch beziehungsweise das verwendete Unterrichtsmodell bezogen sein."
+}
+],
+
+completeMessage:
+"Nach deiner Selbsteinschätzung verbindet die Antwort alle sechs Ebenen von der Enzymbindung bis zur therapeutischen Wirkung.",
+
+helpLevels: [
+"Beginne mit der Bindung von Allopurinol an die Xanthinoxidase.",
+"Führe die Wirkungskette über weniger Harnsäure und weniger Kristalle weiter.",
+"Beende die Erklärung mit den Folgen für Entzündung, Schwellung, Rötung und Schmerzen."
+]
+});
+/* =========================================================
+ABSCHNITT 12: ERGEBNISÜBERSICHT UND ABSCHLUSSFUNKTIONEN
+========================================================= */
+
+/* =========================================================
+
+1. STATUS- UND AUSWERTUNGSHILFEN
+   ========================================================= */
+
+const RESULT_STATUS_META = {
+correct: {
+label: "vollständig korrekt",
+shortLabel: "korrekt",
+className: "is-correct"
+},
+
+partial: {
+label: "teilweise korrekt",
+shortLabel: "teilweise",
+className: "is-partial"
+},
+
+incorrect: {
+label: "bearbeitet, noch nicht korrekt",
+shortLabel: "zu prüfen",
+className: "is-incorrect"
+},
+
+started: {
+label: "begonnen",
+shortLabel: "begonnen",
+className: "is-started"
+},
+
+unseen: {
+label: "noch nicht begonnen",
+shortLabel: "offen",
+className: "is-unseen"
+}
+};
+
+function normalizeResultStatus(rawStatus) {
+if (rawStatus === "completed") {
+return "correct";
+}
+
+if (rawStatus === "evaluated") {
+return "partial";
+}
+
+return Object.prototype.hasOwnProperty.call(
+RESULT_STATUS_META,
+rawStatus
+)
+? rawStatus
+: "unseen";
+}
+
+function isResultTaskEvaluated(status) {
+return [
+"correct",
+"partial",
+"incorrect"
+].includes(
+normalizeResultStatus(status)
+);
+}
+
+function getResultTaskState(taskId) {
+return isPlainObject(appState?.tasks?.[taskId])
+? appState.tasks[taskId]
+: {};
+}
+
+function getResultTaskPoints(task) {
+const taskState = getResultTaskState(task.id);
+
+const rawPoints = Number.isFinite(
+Number(taskState.points)
+)
+? Number(taskState.points)
+: Number.isFinite(Number(taskState.score))
+? Number(taskState.score)
+: 0;
+
+return clamp(
+rawPoints,
+0,
+Number(task.maxPoints) || 0
+);
+}
+
+function getResultTaskAttempts(taskId) {
+const taskState = getResultTaskState(taskId);
+
+const attempts = Number.isFinite(
+Number(taskState.attempts)
+)
+? Number(taskState.attempts)
+: Number.isFinite(
+Number(taskState.attemptCount)
+)
+? Number(taskState.attemptCount)
+: 0;
+
+return Math.max(0, attempts);
+}
+
+function getResultModuleTasks(moduleId) {
+return TASKS.filter(
+(task) => task.moduleId === moduleId
+);
+}
+
+function calculateResultPercentage(
+value,
+maximum
+) {
+if (
+!Number.isFinite(maximum) ||
+maximum <= 0
+) {
+return 0;
+}
+
+return Math.round(
+clamp(value / maximum, 0, 1) * 100
+);
+}
+
+function createResultsSnapshot() {
+const taskResults = TASKS.map((task) => {
+const taskState =
+getResultTaskState(task.id);
+
+```
+const status =
+  normalizeResultStatus(
+    taskState.status
+  );
+
+return {
+  id: task.id,
+  number: task.number,
+  title: task.title,
+  moduleId: task.moduleId,
+  status,
+  points:
+    getResultTaskPoints(task),
+  maxPoints:
+    Number(task.maxPoints) || 0,
+  attempts:
+    getResultTaskAttempts(task.id),
+  evaluated:
+    isResultTaskEvaluated(status)
+};
+```
+
+});
+
+const moduleResults =
+MODULES.map(
+(module, moduleIndex) => {
+const moduleTasks =
+taskResults.filter(
+(task) =>
+task.moduleId ===
+module.id
+);
+
+```
+    const points =
+      moduleTasks.reduce(
+        (sum, task) =>
+          sum + task.points,
+        0
+      );
+
+    const maxPoints =
+      moduleTasks.reduce(
+        (sum, task) =>
+          sum + task.maxPoints,
+        0
+      );
+
+    const evaluatedCount =
+      moduleTasks.filter(
+        (task) =>
+          task.evaluated
+      ).length;
+
+    const correctCount =
+      moduleTasks.filter(
+        (task) =>
+          task.status ===
+          "correct"
+      ).length;
+
+    return {
+      id: module.id,
+
+      number:
+        module.number ??
+        moduleIndex + 1,
+
+      title: module.title,
+      tasks: moduleTasks,
+      taskCount:
+        moduleTasks.length,
+      evaluatedCount,
+      correctCount,
+      points,
+      maxPoints,
+
+      completionPercentage:
+        calculateResultPercentage(
+          evaluatedCount,
+          moduleTasks.length
+        ),
+
+      scorePercentage:
+        calculateResultPercentage(
+          points,
+          maxPoints
+        )
+    };
+  }
+);
+```
+
+const points =
+taskResults.reduce(
+(sum, task) =>
+sum + task.points,
+0
+);
+
+const maxPoints =
+taskResults.reduce(
+(sum, task) =>
+sum + task.maxPoints,
+0
+);
+
+const evaluatedCount =
+taskResults.filter(
+(task) =>
+task.evaluated
+).length;
+
+const correctCount =
+taskResults.filter(
+(task) =>
+task.status === "correct"
+).length;
+
+const partialCount =
+taskResults.filter(
+(task) =>
+task.status === "partial"
+).length;
+
+const incorrectCount =
+taskResults.filter(
+(task) =>
+task.status === "incorrect"
+).length;
+
+const startedCount =
+taskResults.filter(
+(task) =>
+task.status === "started"
+).length;
+
+const unseenCount =
+taskResults.filter(
+(task) =>
+task.status === "unseen"
+).length;
+
+return {
+generatedAt:
+new Date().toISOString(),
+
+```
+taskResults,
+moduleResults,
+taskCount:
+  taskResults.length,
+evaluatedCount,
+correctCount,
+partialCount,
+incorrectCount,
+startedCount,
+unseenCount,
+points,
+maxPoints,
+
+completionPercentage:
+  calculateResultPercentage(
+    evaluatedCount,
+    taskResults.length
+  ),
+
+scorePercentage:
+  calculateResultPercentage(
+    points,
+    maxPoints
+  ),
+
+allTasksEvaluated:
+  evaluatedCount ===
+  taskResults.length,
+
+allTasksCorrect:
+  correctCount ===
+  taskResults.length
+```
+
+};
+}
+
+/* =========================================================
+2. HTML DER ERGEBNISÜBERSICHT
+========================================================= */
+
+function renderResultStatusBadge(status) {
+const normalizedStatus =
+normalizeResultStatus(status);
+
+const meta =
+RESULT_STATUS_META[
+normalizedStatus
+];
+
+return `     <span
+      class="result-status-badge ${meta.className}"
+      title="${escapeHtml(meta.label)}"     >
+      ${escapeHtml(meta.shortLabel)}     </span>
+  `;
+}
+
+function renderResultsModuleCard(
+moduleResult
+) {
+return ` <article class="result-module-card"> <div class="result-module-card-header"> <div> <span class="result-module-number">
+Modul ${escapeHtml(
+String(moduleResult.number)
+)} </span>
+
+```
+      <h3>
+        ${escapeHtml(
+          moduleResult.title
+        )}
+      </h3>
+    </div>
+
+    <strong class="result-module-score">
+      ${formatGermanNumber(
+        moduleResult.points
+      )} /
+      ${formatGermanNumber(
+        moduleResult.maxPoints
+      )} P
+    </strong>
+  </div>
+
+  <div class="result-module-progress-copy">
+    <span>
+      ${moduleResult.evaluatedCount}
+      von ${moduleResult.taskCount}
+      Aufgaben ausgewertet
+    </span>
+
+    <strong>
+      ${moduleResult.completionPercentage} %
+    </strong>
+  </div>
+
+  <div
+    class="result-module-progress"
+    role="progressbar"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="${moduleResult.completionPercentage}"
+  >
+    <div
+      class="result-module-progress-fill"
+      style="width: ${moduleResult.completionPercentage}%;"
+    ></div>
+  </div>
+
+  <p class="result-module-detail">
+    ${moduleResult.correctCount}
+    vollständig korrekt ·
+    Punktestand
+    ${moduleResult.scorePercentage} %
+  </p>
+</article>
+```
+
+`;
+}
+
+function renderResultsTaskTable(
+moduleResult
+) {
+return ` <details class="result-task-details"> <summary> <span>
+Modul ${escapeHtml(
+String(moduleResult.number)
+)}:
+${escapeHtml(
+moduleResult.title
+)} </span>
+
+```
+    <span>
+      ${moduleResult.evaluatedCount} /
+      ${moduleResult.taskCount}
+    </span>
+  </summary>
+
+  <div class="result-task-table-wrapper">
+    <table class="result-task-table">
+      <thead>
+        <tr>
+          <th scope="col">
+            Aufgabe
+          </th>
+
+          <th scope="col">
+            Status
+          </th>
+
+          <th scope="col">
+            Versuche
+          </th>
+
+          <th scope="col">
+            Punkte
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        ${moduleResult.tasks
+          .map((task) => `
+            <tr>
+              <th scope="row">
+                <span class="result-task-number">
+                  ${escapeHtml(
+                    String(task.number)
+                  )}
+                </span>
+
+                <span>
+                  ${escapeHtml(
+                    task.title
+                  )}
+                </span>
+              </th>
+
+              <td>
+                ${renderResultStatusBadge(
+                  task.status
+                )}
+              </td>
+
+              <td>
+                ${task.attempts}
+              </td>
+
+              <td>
+                ${formatGermanNumber(
+                  task.points
+                )} /
+                ${formatGermanNumber(
+                  task.maxPoints
+                )}
+              </td>
+            </tr>
+          `)
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</details>
+```
+
+`;
+}
+
+function renderResultsDialogContent(
+snapshot
+) {
+const completionHeading =
+snapshot.allTasksEvaluated
+? "Lernpfad vollständig bearbeitet"
+: "Zwischenstand des Lernpfads";
+
+const completionMessage =
+snapshot.allTasksEvaluated
+? "Alle 44 Aufgaben wurden mindestens einmal ausgewertet. Teilweise oder noch nicht korrekt gelöste Aufgaben können weiterhin überarbeitet werden."
+: `${snapshot.evaluatedCount} von ${snapshot.taskCount} Aufgaben wurden ausgewertet. Offene und begonnene Aufgaben bleiben im Lernpfad zugänglich.`;
+
+return ` <div class="results-report"> <section class="results-hero"> <div class="results-hero-copy"> <span class="results-kicker">
+Ergebnisübersicht </span>
+
+```
+      <h2>
+        ${escapeHtml(
+          completionHeading
+        )}
+      </h2>
+
+      <p>
+        ${escapeHtml(
+          completionMessage
+        )}
+      </p>
+    </div>
+
+    <div
+      class="results-progress-ring"
+      style="--result-progress: ${snapshot.completionPercentage};"
+      role="img"
+      aria-label="${snapshot.completionPercentage} Prozent der Aufgaben ausgewertet"
+    >
+      <span>
+        <strong>
+          ${snapshot.completionPercentage} %
+        </strong>
+
+        <small>
+          bearbeitet
+        </small>
+      </span>
+    </div>
+  </section>
+
+  <section class="results-stat-grid">
+    <article class="results-stat-card">
+      <span>
+        Ausgewertet
+      </span>
+
+      <strong>
+        ${snapshot.evaluatedCount} /
+        ${snapshot.taskCount}
+      </strong>
+    </article>
+
+    <article class="results-stat-card is-success">
+      <span>
+        Vollständig korrekt
+      </span>
+
+      <strong>
+        ${snapshot.correctCount}
+      </strong>
+    </article>
+
+    <article class="results-stat-card is-warning">
+      <span>
+        Teilweise korrekt
+      </span>
+
+      <strong>
+        ${snapshot.partialCount}
+      </strong>
+    </article>
+
+    <article class="results-stat-card is-points">
+      <span>
+        Punktestand
+      </span>
+
+      <strong>
+        ${formatGermanNumber(
+          snapshot.points
+        )} /
+        ${formatGermanNumber(
+          snapshot.maxPoints
+        )}
+      </strong>
+    </article>
+  </section>
+
+  <section class="results-score-section">
+    <div class="results-score-header">
+      <div>
+        <h3>
+          Gesamtpunktestand
+        </h3>
+
+        <p>
+          Freitextpunkte aus den
+          Aufgaben 43 und 44 beruhen
+          auf der eigenen
+          Kriterienbewertung.
+        </p>
+      </div>
+
+      <strong>
+        ${snapshot.scorePercentage} %
+      </strong>
+    </div>
+
+    <div
+      class="results-score-track"
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow="${snapshot.scorePercentage}"
+    >
+      <div
+        class="results-score-fill"
+        style="width: ${snapshot.scorePercentage}%;"
+      ></div>
+    </div>
+  </section>
+
+  <section class="results-section">
+    <div class="results-section-heading">
+      <h3>
+        Module im Überblick
+      </h3>
+
+      <p>
+        Bearbeitungsstand und Punkte
+        werden getrennt dargestellt.
+      </p>
+    </div>
+
+    <div class="result-module-grid">
+      ${snapshot.moduleResults
+        .map(
+          renderResultsModuleCard
+        )
+        .join("")}
+    </div>
+  </section>
+
+  <section class="results-section">
+    <div class="results-section-heading">
+      <h3>
+        Aufgabenprotokoll
+      </h3>
+
+      <p>
+        Öffne ein Modul, um Status,
+        Versuche und Punkte der
+        einzelnen Aufgaben zu prüfen.
+      </p>
+    </div>
+
+    <div class="result-task-details-list">
+      ${snapshot.moduleResults
+        .map(
+          renderResultsTaskTable
+        )
+        .join("")}
+    </div>
+  </section>
+
+  <section class="results-notes">
+    <h3>
+      Einordnung der Ergebnisse
+    </h3>
+
+    <ul>
+      <li>
+        „Ausgewertet“ bedeutet, dass
+        die Aufgabe mindestens einmal
+        geprüft oder im vorgesehenen
+        Selbstcheck abgeschlossen
+        wurde.
+      </li>
+
+      <li>
+        Teilpunkte zeigen einen
+        fachlich bereits richtigen
+        Anteil, ersetzen aber nicht
+        die Überarbeitung noch
+        fehlerhafter Aspekte.
+      </li>
+
+      <li>
+        Der Bericht wird
+        ausschließlich im Browser
+        erzeugt. Es werden keine
+        Lerndaten übertragen.
+      </li>
+    </ul>
+  </section>
+</div>
+```
+
+`;
+}
+
+/* =========================================================
+3. DIALOG UND BEDIENELEMENTE
+========================================================= */
+
+function ensureResultsDialog() {
+let dialog =
+document.getElementById(
+"results-overview-dialog"
+);
+
+if (dialog) {
+return dialog;
+}
+
+dialog =
+document.createElement(
+"dialog"
+);
+
+dialog.id =
+"results-overview-dialog";
+
+dialog.className =
+"results-dialog";
+
+dialog.innerHTML = ` <div class="results-dialog-shell"> <header class="results-dialog-header"> <div> <span class="results-dialog-eyebrow">
+Enzymhemmung –
+Anwendungsaufgabe </span>
+
+```
+      <h1>
+        Ergebnisse und Abschluss
+      </h1>
+    </div>
+
+    <button
+      class="results-icon-button"
+      type="button"
+      data-results-close
+      aria-label="Ergebnisübersicht schließen"
+    >
+      ×
+    </button>
+  </header>
+
+  <div
+    class="results-dialog-content"
+    data-results-content
+  ></div>
+
+  <footer class="results-dialog-footer">
+    <button
+      class="button button--secondary"
+      type="button"
+      data-results-export
+    >
+      Fortschritt exportieren
+    </button>
+
+    <button
+      class="button button--secondary"
+      type="button"
+      data-results-print
+    >
+      Bericht drucken
+    </button>
+
+    <button
+      class="button button--primary"
+      type="button"
+      data-results-close
+    >
+      Schließen
+    </button>
+  </footer>
+</div>
+```
+
+`;
+
+document.body.append(dialog);
+
+dialog
+.querySelectorAll(
+"[data-results-close]"
+)
+.forEach((button) => {
+button.addEventListener(
+"click",
+() => {
+closeResultsOverview();
+}
+);
+});
+
+dialog
+.querySelector(
+"[data-results-export]"
+)
+?.addEventListener(
+"click",
+() => {
+exportLearningProgress();
+}
+);
+
+dialog
+.querySelector(
+"[data-results-print]"
+)
+?.addEventListener(
+"click",
+() => {
+printResultsOverview();
+}
+);
+
+dialog.addEventListener(
+"click",
+(event) => {
+if (event.target === dialog) {
+closeResultsOverview();
+}
+}
+);
+
+dialog.addEventListener(
+"cancel",
+(event) => {
+event.preventDefault();
+closeResultsOverview();
+}
+);
+
+return dialog;
+}
+
+function openResultsOverview() {
+const dialog =
+ensureResultsDialog();
+
+const snapshot =
+createResultsSnapshot();
+
+const content =
+dialog.querySelector(
+"[data-results-content]"
+);
+
+if (content) {
+content.innerHTML =
+renderResultsDialogContent(
+snapshot
+);
+}
+
+if (
+typeof dialog.showModal ===
+"function" &&
+!dialog.open
+) {
+dialog.showModal();
+} else {
+dialog.setAttribute(
+"open",
+""
+);
+
+```
+dialog.classList.add(
+  "is-fallback-open"
+);
+```
+
+}
+
+document.body.classList.add(
+"results-dialog-open"
+);
+}
+
+function closeResultsOverview() {
+const dialog =
+document.getElementById(
+"results-overview-dialog"
+);
+
+if (!dialog) {
+return;
+}
+
+if (
+typeof dialog.close ===
+"function" &&
+dialog.open
+) {
+dialog.close();
+} else {
+dialog.removeAttribute(
+"open"
+);
+
+```
+dialog.classList.remove(
+  "is-fallback-open"
+);
+```
+
+}
+
+document.body.classList.remove(
+"results-dialog-open"
+);
+}
+
+/* =========================================================
+4. EXPORT UND DRUCK
+========================================================= */
+
+function createProgressExportPayload() {
+const snapshot =
+createResultsSnapshot();
+
+return {
+format:
+"enzymhemmung-lernstand",
+
+```
+formatVersion: 1,
+
+appVersion:
+  typeof APP_VERSION ===
+  "string"
+    ? APP_VERSION
+    : "unbekannt",
+
+exportedAt:
+  new Date().toISOString(),
+
+summary: {
+  taskCount:
+    snapshot.taskCount,
+
+  evaluatedCount:
+    snapshot.evaluatedCount,
+
+  correctCount:
+    snapshot.correctCount,
+
+  points:
+    snapshot.points,
+
+  maxPoints:
+    snapshot.maxPoints,
+
+  completionPercentage:
+    snapshot.completionPercentage,
+
+  scorePercentage:
+    snapshot.scorePercentage
+},
+
+state:
+  cloneData(appState)
+```
+
+};
+}
+
+function exportLearningProgress() {
+const payload =
+createProgressExportPayload();
+
+const blob = new Blob(
+[
+JSON.stringify(
+payload,
+null,
+2
+)
+],
+{
+type:
+"application/json;charset=utf-8"
+}
+);
+
+const url =
+URL.createObjectURL(blob);
+
+const link =
+document.createElement("a");
+
+const date =
+new Date()
+.toISOString()
+.slice(0, 10);
+
+link.href = url;
+
+link.download =
+`enzymhemmung-lernstand-${date}.json`;
+
+document.body.append(link);
+
+link.click();
+link.remove();
+
+window.setTimeout(() => {
+URL.revokeObjectURL(url);
+}, 0);
+}
+
+function printResultsOverview() {
+const dialog =
+ensureResultsDialog();
+
+if (!dialog.open) {
+openResultsOverview();
+}
+
+document.body.classList.add(
+"printing-results"
+);
+
+window.setTimeout(() => {
+window.print();
+}, 50);
+}
+
+window.addEventListener(
+"afterprint",
+() => {
+document.body.classList.remove(
+"printing-results"
+);
+}
+);
+
+/* =========================================================
+5. HEADER-SCHALTFLÄCHE UND ABSCHLUSSHINWEIS
+========================================================= */
+
+function updateResultsHeaderButton() {
+const button =
+document.getElementById(
+"save-progress-button"
+);
+
+if (!button) {
+return;
+}
+
+const snapshot =
+createResultsSnapshot();
+
+button.disabled = false;
+
+button.classList.add(
+"results-header-button"
+);
+
+button.innerHTML = ` <span>
+Ergebnisse </span>
+
+```
+<span
+  class="results-header-count"
+  aria-hidden="true"
+>
+  ${snapshot.evaluatedCount}/${snapshot.taskCount}
+</span>
+```
+
+`;
+
+button.setAttribute(
+"aria-label",
+`Ergebnisse öffnen. ${snapshot.evaluatedCount} von ${snapshot.taskCount} Aufgaben ausgewertet.`
+);
+
+button.title =
+"Ergebnisübersicht öffnen und Lernstand exportieren";
+
+if (
+!button.dataset.resultsBound
+) {
+button.addEventListener(
+"click",
+(event) => {
+event.preventDefault();
+
+```
+    event.stopImmediatePropagation();
+
+    openResultsOverview();
+  },
+  {
+    capture: true
+  }
+);
+
+button.dataset.resultsBound =
+  "true";
+```
+
+}
+}
+
+function getVisibleTaskNumber() {
+const taskNumberElement =
+document.getElementById(
+"task-number"
+);
+
+const match =
+taskNumberElement
+?.textContent
+?.match(/\d+/);
+
+return match
+? Number(match[0])
+: null;
+}
+
+function updateFinalTaskCompletionPanel() {
+const existingPanel =
+document.getElementById(
+"final-results-panel"
+);
+
+if (
+getVisibleTaskNumber() !== 44
+) {
+existingPanel?.remove();
+return;
+}
+
+const taskCard =
+document.getElementById(
+"task-card"
+);
+
+if (!taskCard) {
+return;
+}
+
+const taskState =
+getResultTaskState(
+"task-44"
+);
+
+const status =
+normalizeResultStatus(
+taskState.status
+);
+
+if (
+!isResultTaskEvaluated(status)
+) {
+existingPanel?.remove();
+return;
+}
+
+const snapshot =
+createResultsSnapshot();
+
+const panel =
+existingPanel ??
+document.createElement(
+"section"
+);
+
+panel.id =
+"final-results-panel";
+
+panel.className =
+"final-results-panel";
+
+panel.innerHTML = ` <div> <span class="final-results-kicker">
+Abschluss </span>
+
+```
+  <h2>
+    ${
+      snapshot.allTasksEvaluated
+        ? "Alle Aufgaben wurden ausgewertet."
+        : "Die freie Sicherung ist abgeschlossen."
+    }
+  </h2>
+
+  <p>
+    Öffne die Ergebnisübersicht,
+    um Punkte, Bearbeitungsstände
+    und offene Aufgaben zu prüfen.
+  </p>
+</div>
+
+<button
+  class="button button--primary"
+  type="button"
+  data-open-final-results
+>
+  Ergebnisübersicht öffnen
+</button>
+```
+
+`;
+
+if (!existingPanel) {
+taskCard.insertAdjacentElement(
+"afterend",
+panel
+);
+}
+
+panel
+.querySelector(
+"[data-open-final-results]"
+)
+?.addEventListener(
+"click",
+openResultsOverview,
+{
+once: true
+}
+);
+}
+
+/* =========================================================
+6. INSTALLATION UND ÖFFENTLICHE SCHNITTSTELLE
+========================================================= */
+
+function installResultsOverview() {
+ensureResultsDialog();
+
+updateResultsHeaderButton();
+
+updateFinalTaskCompletionPanel();
+
+const observedElements = [
+document.getElementById(
+"task-card"
+),
+
+```
+document.getElementById(
+  "progress-label"
+),
+
+document.getElementById(
+  "module-nav"
+)
+```
+
+].filter(Boolean);
+
+const observer =
+new MutationObserver(() => {
+updateResultsHeaderButton();
+
+```
+  updateFinalTaskCompletionPanel();
+});
+```
+
+for (
+const element of
+observedElements
+) {
+observer.observe(
+element,
+{
+childList: true,
+subtree: true,
+characterData: true,
+attributes: true
+}
+);
+}
+
+Object.assign(
+window.EnzymeApp,
+{
+openResultsOverview,
+
+```
+  closeResultsOverview,
+
+  createResultsSnapshot,
+
+  exportLearningProgress,
+
+  printResultsOverview
+}
+```
+
+);
+}
+
+/*
+Der Aufruf erfolgt als Microtask, damit zuerst die
+unmittelbar danach stehende initializeApplication()-
+Funktion ausgeführt wird.
+*/
+
+queueMicrotask(
+installResultsOverview
+);
+/* =========================================================
+ABSCHNITT 13: IMPORT, RESET UND SYSTEMDIAGNOSE
+========================================================= */
+
+/* =========================================================
+
+1. ALLGEMEINE HILFSFUNKTIONEN
+   ========================================================= */
+
+const MAINTENANCE_EXPECTED_MODULE_COUNT = 8;
+const MAINTENANCE_EXPECTED_TASK_COUNT = 44;
+
+function maintenanceIsPlainObject(value) {
+return (
+value !== null &&
+typeof value === "object" &&
+!Array.isArray(value)
+);
+}
+
+function maintenanceClone(value) {
+if (
+typeof structuredClone ===
+"function"
+) {
+return structuredClone(value);
+}
+
+return JSON.parse(
+JSON.stringify(value)
+);
+}
+
+function maintenanceShowMessage({
+type = "info",
+title,
+message
+}) {
+const publicFeedback =
+window.EnzymeApp
+?.showFeedback;
+
+if (
+typeof publicFeedback ===
+"function"
+) {
+try {
+publicFeedback({
+type,
+title,
+message
+});
+
+```
+  return;
+} catch (error) {
+  /* Fallback auf Browserdialog. */
+}
+```
+
+}
+
+window.alert(
+`${title}\n\n${message}`
+);
+}
+
+function maintenanceLooksLikeAppState(
+candidate
+) {
+if (
+!maintenanceIsPlainObject(
+candidate
+) ||
+!maintenanceIsPlainObject(
+candidate.tasks
+)
+) {
+return false;
+}
+
+const knownTaskMatches =
+TASKS.filter(
+(task) =>
+Object.prototype.hasOwnProperty.call(
+candidate.tasks,
+task.id
+)
+).length;
+
+return knownTaskMatches >= 3;
+}
+
+function maintenanceFindStorageRecords() {
+const records = [];
+
+for (
+let index = 0;
+index < localStorage.length;
+index += 1
+) {
+const key =
+localStorage.key(index);
+
+```
+if (!key) {
+  continue;
+}
+
+try {
+  const parsed =
+    JSON.parse(
+      localStorage.getItem(key)
+    );
+
+  if (
+    maintenanceLooksLikeAppState(
+      parsed
+    )
+  ) {
+    records.push({
+      key,
+      wrapper: "direct",
+      parsed
+    });
+
+    continue;
+  }
+
+  if (
+    maintenanceIsPlainObject(parsed) &&
+    maintenanceLooksLikeAppState(
+      parsed.state
+    )
+  ) {
+    records.push({
+      key,
+      wrapper: "state",
+      parsed
+    });
+  }
+} catch (error) {
+  /*
+    Andere LocalStorage-Einträge müssen
+    nicht als JSON lesbar sein.
+  */
+}
+```
+
+}
+
+return records;
+}
+
+function maintenanceTestLocalStorage() {
+const testKey =
+`__enzyme_test_${Date.now()}__`;
+
+try {
+localStorage.setItem(
+testKey,
+"1"
+);
+
+```
+const readable =
+  localStorage.getItem(
+    testKey
+  ) === "1";
+
+localStorage.removeItem(
+  testKey
+);
+
+return readable;
+```
+
+} catch (error) {
+return false;
+}
+}
+
+function maintenanceMergeImportedState(
+importedState
+) {
+const currentState =
+maintenanceClone(appState);
+
+const mergedState = {
+...currentState,
+...maintenanceClone(
+importedState
+)
+};
+
+const importedTasks =
+maintenanceIsPlainObject(
+importedState.tasks
+)
+? importedState.tasks
+: {};
+
+const currentTasks =
+maintenanceIsPlainObject(
+currentState.tasks
+)
+? currentState.tasks
+: {};
+
+mergedState.tasks = {
+...currentTasks
+};
+
+for (const task of TASKS) {
+if (
+maintenanceIsPlainObject(
+importedTasks[task.id]
+)
+) {
+mergedState.tasks[task.id] = {
+...currentTasks[task.id],
+...maintenanceClone(
+importedTasks[task.id]
+)
+};
+}
+}
+
+return mergedState;
+}
+
+/* =========================================================
+2. IMPORTVALIDIERUNG
+========================================================= */
+
+function maintenanceValidateImportPayload(
+payload
+) {
+const errors = [];
+const warnings = [];
+
+if (
+!maintenanceIsPlainObject(
+payload
+)
+) {
+errors.push(
+"Die Datei enthält kein gültiges JSON-Objekt."
+);
+
+```
+return {
+  valid: false,
+  errors,
+  warnings,
+  state: null
+};
+```
+
+}
+
+if (
+payload.format !==
+"enzymhemmung-lernstand"
+) {
+warnings.push(
+"Die Formatkennung entspricht nicht dem Export aus Abschnitt 12."
+);
+}
+
+if (
+!maintenanceIsPlainObject(
+payload.state
+)
+) {
+errors.push(
+"Das Feld „state“ fehlt oder enthält keinen gültigen Lernstand."
+);
+
+```
+return {
+  valid: false,
+  errors,
+  warnings,
+  state: null
+};
+```
+
+}
+
+if (
+!maintenanceIsPlainObject(
+payload.state.tasks
+)
+) {
+errors.push(
+"Der importierte Lernstand enthält keine Aufgabenzustände."
+);
+}
+
+const importedTaskIds =
+maintenanceIsPlainObject(
+payload.state.tasks
+)
+? Object.keys(
+payload.state.tasks
+)
+: [];
+
+const knownTaskIds =
+new Set(
+TASKS.map(
+(task) => task.id
+)
+);
+
+const unknownTaskIds =
+importedTaskIds.filter(
+(taskId) =>
+!knownTaskIds.has(taskId)
+);
+
+if (
+unknownTaskIds.length > 0
+) {
+warnings.push(
+`${unknownTaskIds.length} unbekannte Aufgabenkennungen werden ignoriert.`
+);
+}
+
+const knownImportedCount =
+importedTaskIds.filter(
+(taskId) =>
+knownTaskIds.has(taskId)
+).length;
+
+if (knownImportedCount === 0) {
+errors.push(
+"Die Datei enthält keine bekannte Aufgabe des Lernpfads."
+);
+} else if (
+knownImportedCount <
+TASKS.length
+) {
+warnings.push(
+`Die Datei enthält Zustände für ${knownImportedCount} von ${TASKS.length} Aufgaben. Fehlende Aufgaben behalten ihren aktuellen Ausgangszustand.`
+);
+}
+
+return {
+valid:
+errors.length === 0,
+errors,
+warnings,
+state:
+errors.length === 0
+? payload.state
+: null
+};
+}
+
+/* =========================================================
+3. LERNSTAND IMPORTIEREN
+========================================================= */
+
+async function maintenanceImportProgressFile(
+file
+) {
+if (!file) {
+return;
+}
+
+let text;
+
+try {
+text = await file.text();
+} catch (error) {
+maintenanceShowMessage({
+type: "error",
+title:
+"Datei konnte nicht gelesen werden",
+message:
+"Der ausgewählte Lernstand konnte nicht geöffnet werden."
+});
+
+```
+return;
+```
+
+}
+
+let payload;
+
+try {
+payload =
+JSON.parse(text);
+} catch (error) {
+maintenanceShowMessage({
+type: "error",
+title:
+"Ungültige JSON-Datei",
+message:
+"Die ausgewählte Datei enthält kein gültiges JSON."
+});
+
+```
+return;
+```
+
+}
+
+const validation =
+maintenanceValidateImportPayload(
+payload
+);
+
+if (!validation.valid) {
+maintenanceShowMessage({
+type: "error",
+title:
+"Lernstand nicht importierbar",
+message:
+validation.errors.join(
+"\n"
+)
+});
+
+```
+return;
+```
+
+}
+
+const storageRecords =
+maintenanceFindStorageRecords();
+
+if (
+storageRecords.length === 0
+) {
+maintenanceShowMessage({
+type: "error",
+title:
+"Speicherort nicht gefunden",
+message:
+"Der LocalStorage-Eintrag der Anwendung konnte nicht eindeutig identifiziert werden. Öffne zunächst mindestens eine Aufgabe und lade die Seite danach neu."
+});
+
+```
+return;
+```
+
+}
+
+const confirmed =
+window.confirm(
+"Der aktuelle Lernstand wird durch die importierten Daten ersetzt beziehungsweise ergänzt. Fortfahren?"
+);
+
+if (!confirmed) {
+return;
+}
+
+const mergedState =
+maintenanceMergeImportedState(
+validation.state
+);
+
+const targetRecord =
+storageRecords[0];
+
+try {
+if (
+targetRecord.wrapper ===
+"state"
+) {
+const wrapper =
+maintenanceClone(
+targetRecord.parsed
+);
+
+```
+  wrapper.state =
+    mergedState;
+
+  localStorage.setItem(
+    targetRecord.key,
+    JSON.stringify(wrapper)
+  );
+} else {
+  localStorage.setItem(
+    targetRecord.key,
+    JSON.stringify(
+      mergedState
+    )
+  );
+}
+```
+
+} catch (error) {
+maintenanceShowMessage({
+type: "error",
+title:
+"Import fehlgeschlagen",
+message:
+"Der importierte Lernstand konnte nicht im Browser gespeichert werden."
+});
+
+```
+return;
+```
+
+}
+
+const warningText =
+validation.warnings.length > 0
+? `\n\nHinweise:\n${validation.warnings.join("\n")}`
+: "";
+
+window.alert(
+"Der Lernstand wurde importiert. Die Anwendung wird nun neu geladen." +
+warningText
+);
+
+window.location.reload();
+}
+
+/* =========================================================
+4. LERNSTAND ZURÜCKSETZEN
+========================================================= */
+
+function maintenanceResetProgress() {
+const firstConfirmation =
+window.confirm(
+"Soll der gesamte lokale Lernstand dieser Anwendung zurückgesetzt werden?"
+);
+
+if (!firstConfirmation) {
+return;
+}
+
+const secondConfirmation =
+window.confirm(
+"Diese Aktion entfernt Antworten, Punkte und Bearbeitungsstände. Der Vorgang kann nur mit einer zuvor exportierten JSON-Datei rückgängig gemacht werden. Wirklich zurücksetzen?"
+);
+
+if (!secondConfirmation) {
+return;
+}
+
+const storageRecords =
+maintenanceFindStorageRecords();
+
+if (
+storageRecords.length === 0
+) {
+maintenanceShowMessage({
+type: "warning",
+title:
+"Kein Lernstand gefunden",
+message:
+"Es wurde kein passender LocalStorage-Eintrag gefunden."
+});
+
+```
+return;
+```
+
+}
+
+try {
+for (
+const record of
+storageRecords
+) {
+localStorage.removeItem(
+record.key
+);
+}
+} catch (error) {
+maintenanceShowMessage({
+type: "error",
+title:
+"Zurücksetzen fehlgeschlagen",
+message:
+"Der lokale Lernstand konnte nicht vollständig entfernt werden."
+});
+
+```
+return;
+```
+
+}
+
+window.alert(
+"Der lokale Lernstand wurde entfernt. Die Anwendung wird neu geladen."
+);
+
+window.location.reload();
+}
+
+/* =========================================================
+5. SYSTEMPRÜFUNGEN
+========================================================= */
+
+function maintenanceCreateCheck({
+id,
+label,
+status,
+detail,
+technical = null
+}) {
+return {
+id,
+label,
+status,
+detail,
+technical
+};
+}
+
+function maintenanceGetDuplicateValues(
+values
+) {
+const counts = new Map();
+
+for (const value of values) {
+counts.set(
+value,
+(counts.get(value) ?? 0) + 1
+);
+}
+
+return [
+...counts.entries()
+]
+.filter(
+([, count]) =>
+count > 1
+)
+.map(
+([value]) => value
+);
+}
+
+function maintenanceRunDiagnostics() {
+const checks = [];
+
+/* Modulanzahl */
+
+checks.push(
+maintenanceCreateCheck({
+id: "module-count",
+label:
+"Anzahl der Module",
+status:
+MODULES.length ===
+MAINTENANCE_EXPECTED_MODULE_COUNT
+? "pass"
+: "fail",
+detail:
+`${MODULES.length} Module gefunden; erwartet werden ${MAINTENANCE_EXPECTED_MODULE_COUNT}.`
+})
+);
+
+/* Aufgabenanzahl */
+
+checks.push(
+maintenanceCreateCheck({
+id: "task-count",
+label:
+"Anzahl der Aufgaben",
+status:
+TASKS.length ===
+MAINTENANCE_EXPECTED_TASK_COUNT
+? "pass"
+: "fail",
+detail:
+`${TASKS.length} Aufgaben gefunden; erwartet werden ${MAINTENANCE_EXPECTED_TASK_COUNT}.`
+})
+);
+
+/* Doppelte Aufgabenkennungen */
+
+const duplicateTaskIds =
+maintenanceGetDuplicateValues(
+TASKS.map(
+(task) => task.id
+)
+);
+
+const duplicateTaskNumbers =
+maintenanceGetDuplicateValues(
+TASKS.map(
+(task) => task.number
+)
+);
+
+checks.push(
+maintenanceCreateCheck({
+id: "task-uniqueness",
+label:
+"Eindeutige Aufgabenkennungen",
+status:
+duplicateTaskIds.length === 0 &&
+duplicateTaskNumbers.length === 0
+? "pass"
+: "fail",
+detail:
+duplicateTaskIds.length === 0 &&
+duplicateTaskNumbers.length === 0
+? "Alle Aufgaben-IDs und Aufgabennummern sind eindeutig."
+: "Es wurden doppelte Aufgaben-IDs oder Aufgabennummern gefunden.",
+technical: {
+duplicateTaskIds,
+duplicateTaskNumbers
+}
+})
+);
+
+/* Modulzuordnungen */
+
+const moduleIds =
+new Set(
+MODULES.map(
+(module) => module.id
+)
+);
+
+const invalidModuleTasks =
+TASKS.filter(
+(task) =>
+!moduleIds.has(
+task.moduleId
+)
+);
+
+checks.push(
+maintenanceCreateCheck({
+id: "module-relations",
+label:
+"Zuordnung der Aufgaben zu Modulen",
+status:
+invalidModuleTasks.length === 0
+? "pass"
+: "fail",
+detail:
+invalidModuleTasks.length === 0
+? "Jede Aufgabe verweist auf ein vorhandenes Modul."
+: `${invalidModuleTasks.length} Aufgaben besitzen eine ungültige Modulzuordnung.`,
+technical:
+invalidModuleTasks.map(
+(task) => ({
+id: task.id,
+moduleId:
+task.moduleId
+})
+)
+})
+);
+
+/* Controllerabdeckung */
+
+const controllerCoverage =
+TASKS.map((task) => {
+const hasTaskController =
+typeof TASK_CONTROLLERS_BY_ID
+?.has === "function" &&
+TASK_CONTROLLERS_BY_ID.has(
+task.id
+);
+
+```
+  const hasTypeController =
+    typeof TASK_CONTROLLERS_BY_TYPE
+      ?.has === "function" &&
+    TASK_CONTROLLERS_BY_TYPE.has(
+      task.type
+    );
+
+  return {
+    taskId: task.id,
+    type: task.type,
+    covered:
+      hasTaskController ||
+      hasTypeController
+  };
+});
+```
+
+const uncoveredTasks =
+controllerCoverage.filter(
+(entry) =>
+!entry.covered
+);
+
+checks.push(
+maintenanceCreateCheck({
+id: "controller-coverage",
+label:
+"Controller für alle Aufgabentypen",
+status:
+uncoveredTasks.length === 0
+? "pass"
+: "fail",
+detail:
+uncoveredTasks.length === 0
+? "Für jede Aufgabe ist ein aufgabenspezifischer oder typbezogener Controller registriert."
+: `${uncoveredTasks.length} Aufgaben besitzen keinen registrierten Controller.`,
+technical:
+uncoveredTasks
+})
+);
+
+/* Aufgabenkonfiguration */
+
+const unconfiguredTasks =
+typeof TASK_CONFIGS?.has ===
+"function"
+? TASKS.filter(
+(task) =>
+!TASK_CONFIGS.has(
+task.id
+)
+)
+: TASKS;
+
+checks.push(
+maintenanceCreateCheck({
+id: "task-configurations",
+label:
+"Inhaltliche Aufgabenkonfigurationen",
+status:
+unconfiguredTasks.length === 0
+? "pass"
+: "warning",
+detail:
+unconfiguredTasks.length === 0
+? "Alle Aufgaben besitzen einen Konfigurationseintrag."
+: `${unconfiguredTasks.length} Aufgaben besitzen keinen Eintrag in TASK_CONFIGS. Bei vollständig aufgabenspezifischen Controllern kann dies zulässig sein.`,
+technical:
+unconfiguredTasks.map(
+(task) => ({
+id: task.id,
+type: task.type
+})
+)
+})
+);
+
+/* Punktebereiche */
+
+const invalidPointTasks =
+TASKS.filter((task) => {
+const maximum =
+Number(task.maxPoints);
+
+```
+  return (
+    !Number.isFinite(maximum) ||
+    maximum < 0
+  );
+});
+```
+
+checks.push(
+maintenanceCreateCheck({
+id: "point-ranges",
+label:
+"Gültige Maximalpunktzahlen",
+status:
+invalidPointTasks.length === 0
+? "pass"
+: "fail",
+detail:
+invalidPointTasks.length === 0
+? "Alle Maximalpunktzahlen sind numerisch und nicht negativ."
+: `${invalidPointTasks.length} Aufgaben besitzen eine ungültige Maximalpunktzahl.`,
+technical:
+invalidPointTasks.map(
+(task) => ({
+id: task.id,
+maxPoints:
+task.maxPoints
+})
+)
+})
+);
+
+/* DOM-Pflichtelemente */
+
+const requiredDomIds = [
+"app",
+"module-nav",
+"task-card",
+"task-number",
+"task-title",
+"task-content",
+"feedback-region",
+"check-task-button",
+"next-task-button",
+"save-progress-button"
+];
+
+const missingDomIds =
+requiredDomIds.filter(
+(id) =>
+!document.getElementById(id)
+);
+
+checks.push(
+maintenanceCreateCheck({
+id: "required-dom",
+label:
+"Erforderliche Oberflächenelemente",
+status:
+missingDomIds.length === 0
+? "pass"
+: "fail",
+detail:
+missingDomIds.length === 0
+? "Alle zentralen DOM-Elemente sind vorhanden."
+: `${missingDomIds.length} erforderliche Elemente fehlen.`,
+technical:
+missingDomIds
+})
+);
+
+/* Doppelte DOM-IDs */
+
+const allDomIds = [
+...document.querySelectorAll(
+"[id]"
+)
+].map(
+(element) => element.id
+);
+
+const duplicateDomIds =
+maintenanceGetDuplicateValues(
+allDomIds
+);
+
+checks.push(
+maintenanceCreateCheck({
+id: "duplicate-dom-ids",
+label:
+"Eindeutige HTML-IDs",
+status:
+duplicateDomIds.length === 0
+? "pass"
+: "fail",
+detail:
+duplicateDomIds.length === 0
+? "Im aktuellen Dokument wurden keine doppelten IDs gefunden."
+: `${duplicateDomIds.length} HTML-IDs kommen mehrfach vor.`,
+technical:
+duplicateDomIds
+})
+);
+
+/* LocalStorage */
+
+const storageAvailable =
+maintenanceTestLocalStorage();
+
+const storageRecords =
+storageAvailable
+? maintenanceFindStorageRecords()
+: [];
+
+checks.push(
+maintenanceCreateCheck({
+id: "local-storage",
+label:
+"Lokaler Browserspeicher",
+status:
+storageAvailable &&
+storageRecords.length > 0
+? "pass"
+: storageAvailable
+? "warning"
+: "fail",
+detail:
+!storageAvailable
+? "LocalStorage ist nicht beschreibbar. Lernstände können nicht dauerhaft gespeichert werden."
+: storageRecords.length > 0
+? `${storageRecords.length} passender Anwendungsspeicher wurde gefunden.`
+: "LocalStorage ist verfügbar, aber es wurde noch kein eindeutig passender Anwendungsspeicher erkannt.",
+technical:
+storageRecords.map(
+(record) => ({
+key: record.key,
+wrapper:
+record.wrapper
+})
+)
+})
+);
+
+/* Externe Ressourcen */
+
+const externalResources = [];
+
+const resourceAttributes = [
+["script[src]", "src"],
+[
+"link[rel='stylesheet'][href]",
+"href"
+],
+["img[src]", "src"],
+["iframe[src]", "src"],
+["video[src]", "src"],
+["audio[src]", "src"],
+["source[src]", "src"]
+];
+
+for (
+const [
+selector,
+attribute
+] of resourceAttributes
+) {
+document
+.querySelectorAll(selector)
+.forEach((element) => {
+const value =
+element.getAttribute(
+attribute
+) ?? "";
+
+```
+    if (
+      /^(https?:)?\/\//i.test(
+        value
+      )
+    ) {
+      externalResources.push({
+        tag:
+          element.tagName,
+        attribute,
+        value
+      });
+    }
+  });
+```
+
+}
+
+checks.push(
+maintenanceCreateCheck({
+id: "offline-resources",
+label:
+"Offlinefähigkeit der Ressourcen",
+status:
+externalResources.length === 0
+? "pass"
+: "warning",
+detail:
+externalResources.length === 0
+? "Es wurden keine externen HTTP-Ressourcen in Skripten, Stylesheets oder Medien gefunden."
+: `${externalResources.length} externe Ressourcen können die vollständige Offlinefähigkeit beeinträchtigen.`,
+technical:
+externalResources
+})
+);
+
+/* Ergebnisübersicht */
+
+const resultsAvailable =
+typeof createResultsSnapshot ===
+"function" &&
+typeof openResultsOverview ===
+"function";
+
+checks.push(
+maintenanceCreateCheck({
+id: "results-overview",
+label:
+"Ergebnis- und Exportfunktionen",
+status:
+resultsAvailable
+? "pass"
+: "fail",
+detail:
+resultsAvailable
+? "Ergebnisübersicht und Lernstandsexport aus Abschnitt 12 sind verfügbar."
+: "Die Abschlussfunktionen aus Abschnitt 12 wurden nicht vollständig gefunden."
+})
+);
+
+/* Experimentdaten */
+
+const experimentDataValid =
+typeof EXPERIMENT_DATA ===
+"object" &&
+Array.isArray(
+EXPERIMENT_DATA
+.withoutAllopurinol
+) &&
+Array.isArray(
+EXPERIMENT_DATA
+.withAllopurinol
+) &&
+EXPERIMENT_DATA
+.withoutAllopurinol
+.length === 8 &&
+EXPERIMENT_DATA
+.withAllopurinol
+.length === 8;
+
+checks.push(
+maintenanceCreateCheck({
+id: "experiment-data",
+label:
+"Vollständigkeit der Messdaten",
+status:
+experimentDataValid
+? "pass"
+: "fail",
+detail:
+experimentDataValid
+? "Beide Messreihen enthalten jeweils acht Datenpaare."
+: "Die Messreihen aus Abschnitt 9 sind nicht vollständig verfügbar."
+})
+);
+
+const counts = {
+pass:
+checks.filter(
+(check) =>
+check.status === "pass"
+).length,
+
+```
+warning:
+  checks.filter(
+    (check) =>
+      check.status === "warning"
+  ).length,
+
+fail:
+  checks.filter(
+    (check) =>
+      check.status === "fail"
+  ).length
+```
+
+};
+
+const overallStatus =
+counts.fail > 0
+? "fail"
+: counts.warning > 0
+? "warning"
+: "pass";
+
+return {
+generatedAt:
+new Date().toISOString(),
+
+```
+appVersion:
+  typeof APP_VERSION ===
+  "string"
+    ? APP_VERSION
+    : "unbekannt",
+
+overallStatus,
+counts,
+checks
+```
+
+};
+}
+
+/* =========================================================
+6. DIAGNOSEBERICHT DARSTELLEN
+========================================================= */
+
+function maintenanceStatusMeta(
+status
+) {
+if (status === "pass") {
+return {
+symbol: "✓",
+label: "bestanden"
+};
+}
+
+if (status === "warning") {
+return {
+symbol: "!",
+label: "Hinweis"
+};
+}
+
+return {
+symbol: "×",
+label: "Fehler"
+};
+}
+
+function maintenanceRenderDiagnosticReport(
+report
+) {
+const overallMeta =
+maintenanceStatusMeta(
+report.overallStatus
+);
+
+const overallHeading =
+report.overallStatus === "pass"
+? "Alle Systemprüfungen bestanden"
+: report.overallStatus ===
+"warning"
+? "System funktionsfähig mit Hinweisen"
+: "Technische Fehler gefunden";
+
+const overallDescription =
+report.overallStatus === "pass"
+? "Metadaten, Controller, Konfigurationen, Speicher und zentrale Oberflächenelemente sind konsistent."
+: report.overallStatus ===
+"warning"
+? "Es wurden keine zwingend blockierenden Fehler festgestellt. Die gelb markierten Punkte sollten dennoch geprüft werden."
+: "Mindestens eine Prüfung ist fehlgeschlagen. Die rot markierten Punkte können einzelne Funktionen der Anwendung beeinträchtigen.";
+
+return ` <div class="maintenance-report">
+
+```
+  <section
+    class="maintenance-summary is-${escapeHtml(report.overallStatus)}"
+  >
+    <div
+      class="maintenance-summary-icon"
+      aria-hidden="true"
+    >
+      ${overallMeta.symbol}
+    </div>
+
+    <div>
+      <h2>
+        ${escapeHtml(
+          overallHeading
+        )}
+      </h2>
+
+      <p>
+        ${escapeHtml(
+          overallDescription
+        )}
+      </p>
+    </div>
+  </section>
+
+  <section class="maintenance-count-grid">
+    <article class="maintenance-count-card is-pass">
+      <strong>
+        ${report.counts.pass}
+      </strong>
+
+      <span>
+        bestanden
+      </span>
+    </article>
+
+    <article class="maintenance-count-card is-warning">
+      <strong>
+        ${report.counts.warning}
+      </strong>
+
+      <span>
+        Hinweise
+      </span>
+    </article>
+
+    <article class="maintenance-count-card is-fail">
+      <strong>
+        ${report.counts.fail}
+      </strong>
+
+      <span>
+        Fehler
+      </span>
+    </article>
+  </section>
+
+  <div class="maintenance-import-note">
+    <strong>
+      Prüfzeitpunkt
+    </strong>
+
+    ${escapeHtml(
+      new Date(
+        report.generatedAt
+      ).toLocaleString("de-DE")
+    )}
+    · App-Version:
+    ${escapeHtml(
+      report.appVersion
+    )}
+  </div>
+
+  <section class="maintenance-check-list">
+    ${report.checks
+      .map((check) => {
+        const meta =
+          maintenanceStatusMeta(
+            check.status
+          );
+
+        return `
+          <article
+            class="maintenance-check is-${escapeHtml(check.status)}"
+          >
+            <div
+              class="maintenance-check-symbol"
+              aria-hidden="true"
+            >
+              ${meta.symbol}
+            </div>
+
+            <div class="maintenance-check-copy">
+              <strong>
+                ${escapeHtml(check.label)}
+              </strong>
+
+              <p>
+                ${escapeHtml(check.detail)}
+              </p>
+            </div>
+          </article>
+        `;
+      })
+      .join("")}
+  </section>
+
+  <details class="maintenance-technical-details">
+    <summary>
+      Technische Details anzeigen
+    </summary>
+
+    <pre>${escapeHtml(
+      JSON.stringify(
+        report,
+        null,
+        2
+      )
+    )}</pre>
+  </details>
+
+</div>
+```
+
+`;
+}
+
+/* =========================================================
+7. DIAGNOSEDIALOG
+========================================================= */
+
+function maintenanceEnsureDialog() {
+let dialog =
+document.getElementById(
+"maintenance-diagnostics-dialog"
+);
+
+if (dialog) {
+return dialog;
+}
+
+dialog =
+document.createElement(
+"dialog"
+);
+
+dialog.id =
+"maintenance-diagnostics-dialog";
+
+dialog.className =
+"maintenance-dialog";
+
+dialog.innerHTML = ` <div class="maintenance-dialog-shell"> <header class="maintenance-dialog-header"> <div> <span class="maintenance-dialog-eyebrow">
+Technische Abschlussprüfung </span>
+
+```
+      <h1>
+        Systemdiagnose
+      </h1>
+    </div>
+
+    <button
+      class="results-icon-button"
+      type="button"
+      data-maintenance-close
+      aria-label="Systemdiagnose schließen"
+    >
+      ×
+    </button>
+  </header>
+
+  <div
+    class="maintenance-dialog-content"
+    data-maintenance-content
+  ></div>
+
+  <footer class="maintenance-dialog-footer">
+    <button
+      class="button button--secondary"
+      type="button"
+      data-maintenance-export-report
+    >
+      Diagnosebericht speichern
+    </button>
+
+    <button
+      class="button button--secondary"
+      type="button"
+      data-maintenance-rerun
+    >
+      Erneut prüfen
+    </button>
+
+    <button
+      class="button button--primary"
+      type="button"
+      data-maintenance-close
+    >
+      Schließen
+    </button>
+  </footer>
+</div>
+```
+
+`;
+
+document.body.append(dialog);
+
+dialog
+.querySelectorAll(
+"[data-maintenance-close]"
+)
+.forEach((button) => {
+button.addEventListener(
+"click",
+maintenanceCloseDiagnostics
+);
+});
+
+dialog
+.querySelector(
+"[data-maintenance-rerun]"
+)
+?.addEventListener(
+"click",
+maintenanceRefreshDiagnostics
+);
+
+dialog
+.querySelector(
+"[data-maintenance-export-report]"
+)
+?.addEventListener(
+"click",
+maintenanceExportDiagnosticReport
+);
+
+dialog.addEventListener(
+"cancel",
+(event) => {
+event.preventDefault();
+maintenanceCloseDiagnostics();
+}
+);
+
+return dialog;
+}
+
+function maintenanceRefreshDiagnostics() {
+const dialog =
+maintenanceEnsureDialog();
+
+const content =
+dialog.querySelector(
+"[data-maintenance-content]"
+);
+
+const report =
+maintenanceRunDiagnostics();
+
+dialog._maintenanceReport =
+report;
+
+if (content) {
+content.innerHTML =
+maintenanceRenderDiagnosticReport(
+report
+);
+}
+}
+
+function maintenanceOpenDiagnostics() {
+if (
+typeof closeResultsOverview ===
+"function"
+) {
+closeResultsOverview();
+}
+
+const dialog =
+maintenanceEnsureDialog();
+
+maintenanceRefreshDiagnostics();
+
+if (
+typeof dialog.showModal ===
+"function" &&
+!dialog.open
+) {
+dialog.showModal();
+} else {
+dialog.setAttribute(
+"open",
+""
+);
+
+```
+dialog.classList.add(
+  "is-fallback-open"
+);
+```
+
+}
+}
+
+function maintenanceCloseDiagnostics() {
+const dialog =
+document.getElementById(
+"maintenance-diagnostics-dialog"
+);
+
+if (!dialog) {
+return;
+}
+
+if (
+typeof dialog.close ===
+"function" &&
+dialog.open
+) {
+dialog.close();
+} else {
+dialog.removeAttribute(
+"open"
+);
+
+```
+dialog.classList.remove(
+  "is-fallback-open"
+);
+```
+
+}
+}
+
+function maintenanceExportDiagnosticReport() {
+const dialog =
+maintenanceEnsureDialog();
+
+const report =
+dialog._maintenanceReport ??
+maintenanceRunDiagnostics();
+
+const blob = new Blob(
+[
+JSON.stringify(
+report,
+null,
+2
+)
+],
+{
+type:
+"application/json;charset=utf-8"
+}
+);
+
+const url =
+URL.createObjectURL(blob);
+
+const link =
+document.createElement("a");
+
+link.href = url;
+
+link.download =
+`enzymhemmung-diagnose-${
+      new Date()
+        .toISOString()
+        .slice(0, 10)
+    }.json`;
+
+document.body.append(link);
+link.click();
+link.remove();
+
+window.setTimeout(
+() => {
+URL.revokeObjectURL(url);
+},
+0
+);
+}
+
+/* =========================================================
+8. BEDIENELEMENTE IN DIE ERGEBNISÜBERSICHT EINFÜGEN
+========================================================= */
+
+function maintenanceInstallResultActions() {
+if (
+typeof ensureResultsDialog !==
+"function"
+) {
+return false;
+}
+
+const resultsDialog =
+ensureResultsDialog();
+
+const footer =
+resultsDialog.querySelector(
+".results-dialog-footer"
+);
+
+if (!footer) {
+return false;
+}
+
+let fileInput =
+document.getElementById(
+"maintenance-progress-import"
+);
+
+if (!fileInput) {
+fileInput =
+document.createElement(
+"input"
+);
+
+```
+fileInput.id =
+  "maintenance-progress-import";
+
+fileInput.className =
+  "maintenance-file-input";
+
+fileInput.type =
+  "file";
+
+fileInput.accept =
+  ".json,application/json";
+
+document.body.append(
+  fileInput
+);
+
+fileInput.addEventListener(
+  "change",
+  async () => {
+    const file =
+      fileInput.files?.[0];
+
+    await maintenanceImportProgressFile(
+      file
+    );
+
+    fileInput.value = "";
+  }
+);
+```
+
+}
+
+if (
+!footer.querySelector(
+"[data-maintenance-import]"
+)
+) {
+const importButton =
+document.createElement(
+"button"
+);
+
+```
+importButton.type =
+  "button";
+
+importButton.className =
+  "button button--secondary";
+
+importButton.dataset
+  .maintenanceImport = "true";
+
+importButton.textContent =
+  "Fortschritt importieren";
+
+importButton.addEventListener(
+  "click",
+  () => {
+    fileInput.click();
+  }
+);
+
+footer.prepend(
+  importButton
+);
+```
+
+}
+
+if (
+!footer.querySelector(
+"[data-maintenance-diagnostics]"
+)
+) {
+const diagnosticButton =
+document.createElement(
+"button"
+);
+
+```
+diagnosticButton.type =
+  "button";
+
+diagnosticButton.className =
+  "button button--secondary";
+
+diagnosticButton.dataset
+  .maintenanceDiagnostics =
+  "true";
+
+diagnosticButton.textContent =
+  "Systemprüfung";
+
+diagnosticButton.addEventListener(
+  "click",
+  maintenanceOpenDiagnostics
+);
+
+footer.prepend(
+  diagnosticButton
+);
+```
+
+}
+
+if (
+!footer.querySelector(
+"[data-maintenance-reset]"
+)
+) {
+const resetButton =
+document.createElement(
+"button"
+);
+
+```
+resetButton.type =
+  "button";
+
+resetButton.className =
+  "button maintenance-danger-button";
+
+resetButton.dataset
+  .maintenanceReset =
+  "true";
+
+resetButton.textContent =
+  "Lernstand zurücksetzen";
+
+resetButton.addEventListener(
+  "click",
+  maintenanceResetProgress
+);
+
+footer.prepend(
+  resetButton
+);
+```
+
+}
+
+return true;
+}
+
+/* =========================================================
+9. INSTALLATION UND ÖFFENTLICHE SCHNITTSTELLE
+========================================================= */
+
+function maintenanceInstallTools() {
+maintenanceEnsureDialog();
+
+const installed =
+maintenanceInstallResultActions();
+
+if (!installed) {
+window.setTimeout(
+maintenanceInstallResultActions,
+100
+);
+}
+
+Object.assign(
+window.EnzymeApp,
+{
+importProgressFile:
+maintenanceImportProgressFile,
+
+```
+  resetProgress:
+    maintenanceResetProgress,
+
+  runDiagnostics:
+    maintenanceRunDiagnostics,
+
+  openDiagnostics:
+    maintenanceOpenDiagnostics,
+
+  exportDiagnosticReport:
+    maintenanceExportDiagnosticReport
+}
+```
+
+);
+}
+
+/*
+Abschnitt 12 installiert die Ergebnisübersicht ebenfalls
+über eine Microtask. Da Abschnitt 13 nach Abschnitt 12
+eingefügt wird, erfolgt diese Installation anschließend.
+*/
+
+queueMicrotask(
+maintenanceInstallTools
+);
+
   initializeApplication();
 </script>
 </body>
