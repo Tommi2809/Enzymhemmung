@@ -14,8 +14,668 @@
   >
 
   <title>Enzymhemmung – Allopurinol bei Gicht</title>
+/* =========================================================
+   ABSCHNITT 3: WIEDERVERWENDBARE AUFGABENKOMPONENTEN
+   ========================================================= */
 
-  <style>
+.task-component {
+  width: min(100%, 58rem);
+  margin-inline: auto;
+}
+
+.task-fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+.task-fieldset > legend {
+  margin-bottom: 1rem;
+  font-weight: 750;
+}
+
+.option-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.choice-option {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.4rem minmax(0, 1fr);
+  align-items: start;
+  gap: 0.75rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.choice-option:hover {
+  border-color: var(--color-primary);
+  background: #f7fbfc;
+}
+
+.choice-option input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.18rem;
+  accent-color: var(--color-primary);
+}
+
+.choice-option.is-selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.choice-option.is-correct {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.choice-option.is-incorrect {
+  border-color: var(--color-error);
+  background: var(--color-error-light);
+}
+
+.choice-option.is-missed {
+  border-style: dashed;
+  border-color: var(--color-warning);
+  background: var(--color-warning-light);
+}
+
+.choice-text {
+  min-width: 0;
+}
+
+.choice-title {
+  display: block;
+  font-weight: 700;
+}
+
+.choice-description {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.component-note {
+  margin: 0 0 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+/* Dropdown- und Zuordnungsaufgaben */
+
+.assignment-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+}
+
+.assignment-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.assignment-table th,
+.assignment-table td {
+  padding: 0.85rem 0.9rem;
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.assignment-table th {
+  background: var(--color-surface-strong);
+  font-size: 0.9rem;
+}
+
+.assignment-table tbody tr:last-child th,
+.assignment-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.assignment-row-label {
+  min-width: 13rem;
+  font-weight: 700;
+}
+
+.form-control {
+  width: 100%;
+  min-width: 10rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 2.2rem 0.55rem 0.7rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.form-control:hover {
+  border-color: var(--color-primary);
+}
+
+.form-control.is-correct {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.form-control.is-incorrect {
+  border-color: var(--color-error);
+  background: var(--color-error-light);
+}
+
+.form-control.is-empty {
+  border-color: var(--color-warning);
+  background: var(--color-warning-light);
+}
+
+/* Lückentexte */
+
+.cloze-text {
+  padding: 1.15rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+  font-size: 1.03rem;
+  line-height: 2.3;
+}
+
+.cloze-select {
+  width: auto;
+  min-width: 10rem;
+  max-width: 100%;
+  margin-inline: 0.25rem;
+  vertical-align: middle;
+}
+
+/* Reihenfolge und Argumentationsketten */
+
+.ordering-list {
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+  padding: 0;
+  margin: 0;
+}
+
+.ordering-item {
+  display: grid;
+  grid-template-columns: 2.3rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-small);
+}
+
+.ordering-item[draggable="true"] {
+  cursor: grab;
+}
+
+.ordering-item.is-dragging {
+  opacity: 0.45;
+}
+
+.ordering-item.is-drag-target {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.ordering-item.is-correct {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.ordering-item.is-incorrect {
+  border-color: var(--color-error);
+  background: var(--color-error-light);
+}
+
+.ordering-position {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.ordering-copy {
+  min-width: 0;
+}
+
+.ordering-copy strong {
+  display: block;
+}
+
+.ordering-copy small {
+  display: block;
+  margin-top: 0.15rem;
+  color: var(--color-text-muted);
+}
+
+.ordering-controls {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.ordering-button {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.ordering-button:hover:not(:disabled) {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.ordering-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.chain-connector {
+  display: flex;
+  justify-content: center;
+  padding-block: 0.2rem;
+}
+
+.chain-connector select {
+  width: auto;
+  min-width: 8rem;
+}
+
+/* Status- und Auswertungshinweise innerhalb einer Aufgabe */
+
+.component-status {
+  margin-top: 1rem;
+  padding: 0.75rem 0.9rem;
+  border-radius: var(--radius-small);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.component-status strong {
+  color: var(--color-text);
+}
+
+.unconfigured-component {
+  max-width: 40rem;
+  text-align: center;
+}
+
+.unconfigured-component code {
+  padding: 0.1rem 0.3rem;
+  border-radius: 0.25rem;
+  background: var(--color-surface-strong);
+}
+
+/* Mobile Anpassungen */
+
+@media (max-width: 680px) {
+  .assignment-table,
+  .assignment-table tbody,
+  .assignment-table tr,
+  .assignment-table th,
+  .assignment-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .assignment-table thead {
+    display: none;
+  }
+
+  .assignment-table tr {
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .assignment-table tbody tr:last-child {
+    border-bottom: 0;
+  }
+
+  .assignment-table th,
+  .assignment-table td {
+    padding: 0.35rem 0;
+    border: 0;
+  }
+
+  .assignment-row-label {
+    min-width: 0;
+    margin-bottom: 0.35rem;
+  }
+
+  .form-control {
+    min-width: 0;
+  }
+
+  .ordering-item {
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+
+  .ordering-controls {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+
+  .cloze-text {
+    line-height: 1.8;
+  }
+
+  .cloze-select {
+    width: 100%;
+    margin: 0.35rem 0;
+  }
+}
+/* =========================================================
+   ABSCHNITT 4: MODUL 1 – PURINABBAU
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Allgemeine Teilaufgaben
+   --------------------------------------------------------- */
+
+.multi-part-task {
+  width: min(100%, 68rem);
+  display: grid;
+  gap: 1.25rem;
+  margin-inline: auto;
+}
+
+.subtask-card {
+  padding: 1.15rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+}
+
+.subtask-card h2 {
+  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+}
+
+.subtask-description {
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+/* ---------------------------------------------------------
+   Aufgabe 1: Stoffwechselweg
+   --------------------------------------------------------- */
+
+.pathway-component {
+  width: min(100%, 72rem);
+  margin-inline: auto;
+}
+
+.pathway-instruction {
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.pathway-card-pool {
+  min-height: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+}
+
+.pathway-card-pool.is-empty::after {
+  content: "Alle Stoffkarten wurden eingesetzt.";
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.pathway-card {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-small);
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-weight: 750;
+  cursor: grab;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.pathway-card:hover {
+  background: #c8e7ea;
+}
+
+.pathway-card.is-selected {
+  outline: 3px solid #f0a400;
+  outline-offset: 3px;
+}
+
+.pathway-card:active {
+  cursor: grabbing;
+}
+
+.pathway-diagram {
+  overflow-x: auto;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+}
+
+.pathway-row {
+  min-width: 58rem;
+  display: grid;
+  grid-template-columns:
+    minmax(7rem, 1fr)
+    2.2rem
+    minmax(8.5rem, 1.1fr)
+    2.2rem
+    minmax(8.5rem, 1.1fr)
+    2.2rem
+    minmax(8.5rem, 1.1fr)
+    2.2rem
+    minmax(7.5rem, 1fr);
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.pathway-row + .pathway-row {
+  margin-top: 1.2rem;
+}
+
+.pathway-row--guanine {
+  grid-template-columns:
+    minmax(7rem, 1fr)
+    2.2rem
+    minmax(8.5rem, 1.1fr)
+    minmax(0, 3.2fr);
+}
+
+.pathway-fixed-node {
+  min-height: 3.25rem;
+  display: grid;
+  place-items: center;
+  padding: 0.65rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-small);
+  background: var(--color-surface-strong);
+  font-weight: 750;
+  text-align: center;
+}
+
+.pathway-arrow {
+  color: var(--color-primary-dark);
+  font-size: 1.4rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.pathway-merge-note {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.pathway-merge-arrow {
+  color: var(--color-primary-dark);
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.pathway-slot {
+  min-height: 3.7rem;
+  display: grid;
+  place-items: center;
+  padding: 0.35rem;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-small);
+  background: var(--color-surface-muted);
+  text-align: center;
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.pathway-slot:hover,
+.pathway-slot.is-drop-target {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.pathway-slot.is-correct {
+  border-style: solid;
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.pathway-slot.is-incorrect {
+  border-style: solid;
+  border-color: var(--color-error);
+  background: var(--color-error-light);
+}
+
+.pathway-slot.is-empty {
+  border-color: var(--color-warning);
+  background: var(--color-warning-light);
+}
+
+.pathway-slot-placeholder {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+.pathway-placed-card {
+  width: 100%;
+  min-height: 2.8rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.75rem;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-small);
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-weight: 750;
+  cursor: grab;
+}
+
+.pathway-remove-card {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-error);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.pathway-selection-status {
+  margin-top: 0.9rem;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------------------------------------------------------
+   Aufgabe 3: Löslichkeit und Kausalkette
+   --------------------------------------------------------- */
+
+.solubility-select {
+  min-width: 12rem;
+}
+
+.causal-chain-list {
+  list-style: none;
+  display: grid;
+  gap: 0.55rem;
+  padding: 0;
+  margin: 0;
+}
+
+.causal-chain-list > li {
+  position: relative;
+}
+
+.causal-chain-list > li:not(:last-child)::after {
+  content: "↓";
+  display: block;
+  margin-block: 0.3rem;
+  color: var(--color-primary-dark);
+  font-size: 1.35rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .pathway-diagram {
+    padding: 0.75rem;
+  }
+
+  .pathway-row {
+    min-width: 50rem;
+  }
+} 
+<style>
     /* =========================================================
        1. GRUNDEINSTELLUNGEN
        ========================================================= */
@@ -3964,15 +4624,3295 @@
       `Enzymhemmung-Anwendung geladen: ${APP_VERSION}`
     );
   }
+/* =========================================================
+   ABSCHNITT 3: WIEDERVERWENDBARE AUFGABENTYPEN
+   ========================================================= */
 
-  /* =========================================================
-     EINFÜGEPUNKT FÜR ABSCHNITT 3
+/* =========================================================
+   1. AUFGABENKONFIGURATIONEN
 
-     Die Controller für die wiederverwendbaren Aufgabentypen
-     werden später unmittelbar VOR initializeApplication()
-     eingefügt.
-     ========================================================= */
+   Die fachlichen Inhalte der einzelnen Aufgaben werden in den
+   folgenden Abschnitten mit configureTask() hinterlegt.
+   ========================================================= */
 
+const TASK_CONFIGS = new Map();
+
+/**
+ * Hinterlegt die konkrete Konfiguration einer Aufgabe.
+ *
+ * Beispiel:
+ *
+ * configureTask("task-22", {
+ *   prompt: "Welcher Diagrammtyp ist geeignet?",
+ *   options: [
+ *     { id: "point", text: "Punktdiagramm" },
+ *     { id: "pie", text: "Kreisdiagramm" }
+ *   ],
+ *   correctId: "point"
+ * });
+ */
+function configureTask(taskId, config) {
+  const task = TASKS_BY_ID.get(taskId);
+
+  if (!task) {
+    throw new Error(
+      `Die Aufgabe ${taskId} ist nicht definiert.`
+    );
+  }
+
+  if (!isPlainObject(config)) {
+    throw new Error(
+      `Die Konfiguration für ${taskId} ist ungültig.`
+    );
+  }
+
+  TASK_CONFIGS.set(taskId, config);
+
+  if (Array.isArray(config.helpLevels)) {
+    task.helpLevels = [...config.helpLevels];
+  }
+
+  if (appState.currentTaskId === taskId) {
+    renderCurrentTask();
+  }
+}
+
+function getTaskConfig(taskOrId) {
+  const taskId =
+    typeof taskOrId === "string"
+      ? taskOrId
+      : taskOrId?.id;
+
+  return TASK_CONFIGS.get(taskId) ?? null;
+}
+
+/* =========================================================
+   2. ALLGEMEINE HILFSFUNKTIONEN
+   ========================================================= */
+
+function arraysEqual(firstArray, secondArray) {
+  return (
+    Array.isArray(firstArray) &&
+    Array.isArray(secondArray) &&
+    firstArray.length === secondArray.length &&
+    firstArray.every(
+      (value, index) => value === secondArray[index]
+    )
+  );
+}
+
+function setsEqual(firstSet, secondSet) {
+  if (firstSet.size !== secondSet.size) {
+    return false;
+  }
+
+  for (const value of firstSet) {
+    if (!secondSet.has(value)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function shuffleArray(values) {
+  const shuffledValues = [...values];
+
+  for (
+    let currentIndex = shuffledValues.length - 1;
+    currentIndex > 0;
+    currentIndex -= 1
+  ) {
+    let randomValue;
+
+    if (
+      window.crypto &&
+      typeof window.crypto.getRandomValues === "function"
+    ) {
+      const randomBuffer = new Uint32Array(1);
+      window.crypto.getRandomValues(randomBuffer);
+      randomValue =
+        randomBuffer[0] / 4294967296;
+    } else {
+      randomValue = Math.random();
+    }
+
+    const randomIndex = Math.floor(
+      randomValue * (currentIndex + 1)
+    );
+
+    [
+      shuffledValues[currentIndex],
+      shuffledValues[randomIndex]
+    ] = [
+      shuffledValues[randomIndex],
+      shuffledValues[currentIndex]
+    ];
+  }
+
+  return shuffledValues;
+}
+
+function calculateScaledScore(
+  correctParts,
+  totalParts,
+  maxPoints
+) {
+  if (
+    totalParts <= 0 ||
+    maxPoints <= 0
+  ) {
+    return 0;
+  }
+
+  return Math.round(
+    (correctParts / totalParts) * maxPoints
+  );
+}
+
+function createEvaluationResult({
+  task,
+  correctParts,
+  totalParts,
+  answer,
+  correctMessage,
+  partialMessage,
+  incorrectMessage
+}) {
+  const correct =
+    totalParts > 0 &&
+    correctParts === totalParts;
+
+  const partial =
+    !correct &&
+    correctParts > 0;
+
+  return {
+    correct,
+    partial,
+    score: correct
+      ? task.maxPoints
+      : calculateScaledScore(
+          correctParts,
+          totalParts,
+          task.maxPoints
+        ),
+    answer,
+    title: correct
+      ? "Vollständig korrekt"
+      : partial
+        ? "Teilweise korrekt"
+        : "Noch nicht korrekt",
+    message: correct
+      ? correctMessage ??
+        "Alle Teilaspekte wurden korrekt bearbeitet."
+      : partial
+        ? partialMessage ??
+          `${correctParts} von ${totalParts} Teilaspekten sind korrekt.`
+        : incorrectMessage ??
+          "Prüfe deine Eingaben und versuche es erneut."
+  };
+}
+
+function renderUnconfiguredComponent(
+  context,
+  expectedDescription
+) {
+  context.elements.taskContent.innerHTML = `
+    <div class="unconfigured-component">
+      <div
+        class="workspace-placeholder-icon"
+        aria-hidden="true"
+      >
+        ⚙
+      </div>
+
+      <h2>
+        Aufgabenkomponente vorbereitet
+      </h2>
+
+      <p>
+        Der wiederverwendbare Aufgabentyp ist programmiert.
+        Die fachlichen Inhalte für
+        <strong>${escapeHtml(context.task.title)}</strong>
+        werden im zugehörigen Modul ergänzt.
+      </p>
+
+      <p>
+        Erwartete Konfiguration:
+        <code>${escapeHtml(expectedDescription)}</code>
+      </p>
+    </div>
+  `;
+
+  return {
+    canProceed() {
+      return true;
+    }
+  };
+}
+
+function clearEvaluationClasses(rootElement) {
+  rootElement
+    .querySelectorAll(
+      ".is-correct, .is-incorrect, .is-missed, .is-empty"
+    )
+    .forEach((element) => {
+      element.classList.remove(
+        "is-correct",
+        "is-incorrect",
+        "is-missed",
+        "is-empty"
+      );
+    });
+}
+
+function createComponentStatus(text) {
+  const statusElement =
+    document.createElement("div");
+
+  statusElement.className = "component-status";
+  statusElement.setAttribute(
+    "aria-live",
+    "polite"
+  );
+  statusElement.textContent = text;
+
+  return statusElement;
+}
+
+/* =========================================================
+   3. EINZELAUSWAHL UND MEHRFACHAUSWAHL
+   ========================================================= */
+
+/**
+ * Konfigurationsschema:
+ *
+ * {
+ *   prompt: "Frage",
+ *   options: [
+ *     {
+ *       id: "a",
+ *       text: "Antwort",
+ *       description: "optional"
+ *     }
+ *   ],
+ *   correctId: "a",            // Einzelauswahl
+ *   correctIds: ["a", "c"],    // Mehrfachauswahl
+ *   shuffle: true,
+ *   correctMessage: "...",
+ *   partialMessage: "...",
+ *   incorrectMessage: "..."
+ * }
+ */
+function createSelectionController({
+  multiple = false
+} = {}) {
+  return {
+    render(context) {
+      const config =
+        getTaskConfig(context.task);
+
+      if (
+        !config ||
+        !Array.isArray(config.options)
+      ) {
+        return renderUnconfiguredComponent(
+          context,
+          multiple
+            ? "options und correctIds"
+            : "options und correctId"
+        );
+      }
+
+      const root =
+        context.elements.taskContent;
+
+      const savedAnswer =
+        context.taskState.answer;
+
+      const selectedIds = new Set(
+        multiple
+          ? (
+              Array.isArray(savedAnswer)
+                ? savedAnswer
+                : []
+            )
+          : (
+              typeof savedAnswer === "string"
+                ? [savedAnswer]
+                : []
+            )
+      );
+
+      const options =
+        config.shuffle === true &&
+        !Array.isArray(config.fixedOptionOrder)
+          ? shuffleArray(config.options)
+          : (
+              Array.isArray(config.fixedOptionOrder)
+                ? config.fixedOptionOrder
+                    .map((optionId) =>
+                      config.options.find(
+                        (option) =>
+                          option.id === optionId
+                      )
+                    )
+                    .filter(Boolean)
+                : config.options
+            );
+
+      if (
+        config.shuffle === true &&
+        !Array.isArray(config.fixedOptionOrder)
+      ) {
+        config.fixedOptionOrder =
+          options.map((option) => option.id);
+      }
+
+      root.innerHTML = `
+        <div class="task-component">
+          <form class="selection-form">
+            <fieldset class="task-fieldset">
+              <legend>
+                ${escapeHtml(
+                  config.prompt ??
+                  context.task.instruction
+                )}
+              </legend>
+
+              <div class="option-list">
+                ${options
+                  .map((option) => {
+                    const inputType =
+                      multiple
+                        ? "checkbox"
+                        : "radio";
+
+                    const checked =
+                      selectedIds.has(option.id)
+                        ? "checked"
+                        : "";
+
+                    return `
+                      <label
+                        class="choice-option ${
+                          selectedIds.has(option.id)
+                            ? "is-selected"
+                            : ""
+                        }"
+                        data-option-id="${escapeHtml(option.id)}"
+                      >
+                        <input
+                          type="${inputType}"
+                          name="selection-${escapeHtml(context.task.id)}"
+                          value="${escapeHtml(option.id)}"
+                          ${checked}
+                        >
+
+                        <span class="choice-text">
+                          <span class="choice-title">
+                            ${escapeHtml(option.text)}
+                          </span>
+
+                          ${
+                            option.description
+                              ? `
+                                <span class="choice-description">
+                                  ${escapeHtml(option.description)}
+                                </span>
+                              `
+                              : ""
+                          }
+                        </span>
+                      </label>
+                    `;
+                  })
+                  .join("")}
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      `;
+
+      const form =
+        root.querySelector(".selection-form");
+
+      function readAnswer() {
+        const checkedInputs =
+          Array.from(
+            form.querySelectorAll(
+              "input:checked"
+            )
+          );
+
+        if (multiple) {
+          return checkedInputs.map(
+            (input) => input.value
+          );
+        }
+
+        return checkedInputs[0]?.value ?? null;
+      }
+
+      function saveAnswer() {
+        const answer = readAnswer();
+
+        context.app.setAnswer(answer);
+
+        root
+          .querySelectorAll(".choice-option")
+          .forEach((label) => {
+            const input =
+              label.querySelector("input");
+
+            label.classList.toggle(
+              "is-selected",
+              input.checked
+            );
+          });
+      }
+
+      function markEvaluation() {
+        clearEvaluationClasses(root);
+
+        const correctIds = new Set(
+          multiple
+            ? config.correctIds ?? []
+            : [config.correctId]
+        );
+
+        root
+          .querySelectorAll(".choice-option")
+          .forEach((label) => {
+            const optionId =
+              label.dataset.optionId;
+
+            const input =
+              label.querySelector("input");
+
+            if (
+              input.checked &&
+              correctIds.has(optionId)
+            ) {
+              label.classList.add("is-correct");
+            } else if (
+              input.checked &&
+              !correctIds.has(optionId)
+            ) {
+              label.classList.add("is-incorrect");
+            } else if (
+              multiple &&
+              !input.checked &&
+              correctIds.has(optionId)
+            ) {
+              label.classList.add("is-missed");
+            }
+          });
+      }
+
+      form.addEventListener(
+        "change",
+        saveAnswer
+      );
+
+      return {
+        check() {
+          const answer = readAnswer();
+
+          markEvaluation();
+
+          if (!multiple) {
+            const correct =
+              answer === config.correctId;
+
+            return {
+              correct,
+              partial: false,
+              score: correct
+                ? context.task.maxPoints
+                : 0,
+              answer,
+              message: correct
+                ? config.correctMessage ??
+                  "Die ausgewählte Antwort ist korrekt."
+                : config.incorrectMessage ??
+                  "Die ausgewählte Antwort ist noch nicht korrekt."
+            };
+          }
+
+          const selectedSet =
+            new Set(answer);
+
+          const correctSet =
+            new Set(config.correctIds ?? []);
+
+          const correctSelections =
+            [...selectedSet].filter(
+              (id) => correctSet.has(id)
+            ).length;
+
+          const wrongSelections =
+            [...selectedSet].filter(
+              (id) => !correctSet.has(id)
+            ).length;
+
+          const isCorrect =
+            setsEqual(
+              selectedSet,
+              correctSet
+            );
+
+          const netCorrectSelections =
+            Math.max(
+              0,
+              correctSelections -
+              wrongSelections
+            );
+
+          const score = isCorrect
+            ? context.task.maxPoints
+            : calculateScaledScore(
+                netCorrectSelections,
+                Math.max(1, correctSet.size),
+                context.task.maxPoints
+              );
+
+          return {
+            correct: isCorrect,
+            partial:
+              !isCorrect &&
+              correctSelections > 0,
+            score,
+            answer,
+            message: isCorrect
+              ? config.correctMessage ??
+                "Alle richtigen Aussagen wurden ausgewählt."
+              : correctSelections > 0
+                ? config.partialMessage ??
+                  "Ein Teil deiner Auswahl ist richtig. Prüfe zusätzlich ausgewählte oder noch fehlende Aussagen."
+                : config.incorrectMessage ??
+                  "In der Auswahl ist noch keine erwartete Aussage enthalten."
+          };
+        },
+
+        reset() {
+          form.reset();
+          clearEvaluationClasses(root);
+
+          root
+            .querySelectorAll(".choice-option")
+            .forEach((label) => {
+              label.classList.remove(
+                "is-selected"
+              );
+            });
+        },
+
+        canProceed() {
+          return ![
+            "unseen",
+            "started"
+          ].includes(
+            context.app.getTaskState().status
+          );
+        }
+      };
+    }
+  };
+}
+
+/* =========================================================
+   4. DROPDOWN-MATRIX UND ZUORDNUNGEN
+   ========================================================= */
+
+/**
+ * Konfigurationsschema für eine einfache Zuordnung:
+ *
+ * {
+ *   prompt: "...",
+ *   options: [
+ *     { value: "a", label: "Kategorie A" },
+ *     { value: "b", label: "Kategorie B" }
+ *   ],
+ *   rows: [
+ *     {
+ *       id: "row-1",
+ *       label: "Begriff",
+ *       correctValue: "a"
+ *     }
+ *   ]
+ * }
+ *
+ * Konfigurationsschema für mehrere Felder je Zeile:
+ *
+ * {
+ *   rows: [
+ *     {
+ *       id: "row-1",
+ *       label: "Therapieansatz",
+ *       fields: [
+ *         {
+ *           id: "assessment",
+ *           label: "Bewertung",
+ *           options: [...],
+ *           correctValue: "useful"
+ *         },
+ *         {
+ *           id: "experiment",
+ *           label: "Versuchsbezug",
+ *           options: [...],
+ *           correctValue: "direct"
+ *         }
+ *       ]
+ *     }
+ *   ]
+ * }
+ */
+const dropdownGridController = {
+  render(context) {
+    const config =
+      getTaskConfig(context.task);
+
+    if (
+      !config ||
+      !Array.isArray(config.rows)
+    ) {
+      return renderUnconfiguredComponent(
+        context,
+        "rows sowie options oder fields"
+      );
+    }
+
+    const root =
+      context.elements.taskContent;
+
+    const savedAnswer =
+      isPlainObject(context.taskState.answer)
+        ? context.taskState.answer
+        : {};
+
+    function normalizeFields(row) {
+      if (Array.isArray(row.fields)) {
+        return row.fields;
+      }
+
+      return [
+        {
+          id: "value",
+          label:
+            config.valueColumnLabel ??
+            "Zuordnung",
+          options:
+            row.options ??
+            config.options ??
+            [],
+          correctValue:
+            row.correctValue
+        }
+      ];
+    }
+
+    const columnDefinitions =
+      config.rows[0]
+        ? normalizeFields(config.rows[0])
+        : [];
+
+    root.innerHTML = `
+      <div class="task-component">
+        ${
+          config.prompt
+            ? `
+              <p class="component-note">
+                ${escapeHtml(config.prompt)}
+              </p>
+            `
+            : ""
+        }
+
+        <div class="assignment-table-wrapper">
+          <table class="assignment-table">
+            <thead>
+              <tr>
+                <th scope="col">
+                  ${
+                    escapeHtml(
+                      config.rowLabel ??
+                      "Element"
+                    )
+                  }
+                </th>
+
+                ${columnDefinitions
+                  .map(
+                    (field) => `
+                      <th scope="col">
+                        ${escapeHtml(field.label)}
+                      </th>
+                    `
+                  )
+                  .join("")}
+              </tr>
+            </thead>
+
+            <tbody>
+              ${config.rows
+                .map((row) => {
+                  const fields =
+                    normalizeFields(row);
+
+                  return `
+                    <tr data-row-id="${escapeHtml(row.id)}">
+                      <th
+                        class="assignment-row-label"
+                        scope="row"
+                      >
+                        ${escapeHtml(row.label)}
+                      </th>
+
+                      ${fields
+                        .map((field) => {
+                          const selectedValue =
+                            savedAnswer?.[row.id]?.[field.id] ??
+                            "";
+
+                          return `
+                            <td>
+                              <label class="visually-hidden">
+                                ${escapeHtml(
+                                  `${row.label}: ${field.label}`
+                                )}
+                              </label>
+
+                              <select
+                                class="form-control"
+                                data-row-id="${escapeHtml(row.id)}"
+                                data-field-id="${escapeHtml(field.id)}"
+                              >
+                                <option value="">
+                                  Bitte auswählen
+                                </option>
+
+                                ${(field.options ?? [])
+                                  .map(
+                                    (option) => `
+                                      <option
+                                        value="${escapeHtml(option.value)}"
+                                        ${
+                                          selectedValue === option.value
+                                            ? "selected"
+                                            : ""
+                                        }
+                                      >
+                                        ${escapeHtml(option.label)}
+                                      </option>
+                                    `
+                                  )
+                                  .join("")}
+                              </select>
+                            </td>
+                          `;
+                        })
+                        .join("")}
+                    </tr>
+                  `;
+                })
+                .join("")}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    `;
+
+    function readAnswer() {
+      const answer = {};
+
+      root
+        .querySelectorAll("select[data-row-id]")
+        .forEach((select) => {
+          const rowId =
+            select.dataset.rowId;
+
+          const fieldId =
+            select.dataset.fieldId;
+
+          answer[rowId] ??= {};
+          answer[rowId][fieldId] =
+            select.value;
+        });
+
+      return answer;
+    }
+
+    function saveAnswer() {
+      context.app.setAnswer(
+        readAnswer()
+      );
+    }
+
+    root.addEventListener(
+      "change",
+      (event) => {
+        if (
+          event.target.matches(
+            "select[data-row-id]"
+          )
+        ) {
+          event.target.classList.remove(
+            "is-correct",
+            "is-incorrect",
+            "is-empty"
+          );
+
+          saveAnswer();
+        }
+      }
+    );
+
+    return {
+      check() {
+        const answer =
+          readAnswer();
+
+        let correctParts = 0;
+        let totalParts = 0;
+
+        clearEvaluationClasses(root);
+
+        for (const row of config.rows) {
+          const fields =
+            normalizeFields(row);
+
+          for (const field of fields) {
+            totalParts += 1;
+
+            const select =
+              root.querySelector(
+                `select[data-row-id="${CSS.escape(row.id)}"]` +
+                `[data-field-id="${CSS.escape(field.id)}"]`
+              );
+
+            const selectedValue =
+              answer?.[row.id]?.[field.id] ??
+              "";
+
+            if (
+              selectedValue === field.correctValue
+            ) {
+              correctParts += 1;
+              select?.classList.add(
+                "is-correct"
+              );
+            } else if (
+              selectedValue === ""
+            ) {
+              select?.classList.add(
+                "is-empty"
+              );
+            } else {
+              select?.classList.add(
+                "is-incorrect"
+              );
+            }
+          }
+        }
+
+        return createEvaluationResult({
+          task: context.task,
+          correctParts,
+          totalParts,
+          answer,
+          correctMessage:
+            config.correctMessage,
+          partialMessage:
+            config.partialMessage,
+          incorrectMessage:
+            config.incorrectMessage
+        });
+      },
+
+      reset() {
+        root
+          .querySelectorAll("select")
+          .forEach((select) => {
+            select.value = "";
+          });
+
+        clearEvaluationClasses(root);
+      },
+
+      canProceed() {
+        return ![
+          "unseen",
+          "started"
+        ].includes(
+          context.app.getTaskState().status
+        );
+      }
+    };
+  }
+};
+
+/* =========================================================
+   5. LÜCKENTEXT MIT DROPDOWN-FELDERN
+   ========================================================= */
+
+/**
+ * Konfigurationsschema:
+ *
+ * {
+ *   segments: [
+ *     "Bei niedriger Konzentration sind viele ",
+ *     {
+ *       id: "blank-1",
+ *       options: [
+ *         { value: "active", label: "aktive" }
+ *       ],
+ *       correctValue: "active"
+ *     },
+ *     " Zentren frei."
+ *   ]
+ * }
+ */
+const clozeDropdownController = {
+  render(context) {
+    const config =
+      getTaskConfig(context.task);
+
+    if (
+      !config ||
+      !Array.isArray(config.segments)
+    ) {
+      return renderUnconfiguredComponent(
+        context,
+        "segments mit Texten und Dropdown-Lücken"
+      );
+    }
+
+    const root =
+      context.elements.taskContent;
+
+    const savedAnswer =
+      isPlainObject(context.taskState.answer)
+        ? context.taskState.answer
+        : {};
+
+    const blankSegments =
+      config.segments.filter(
+        (segment) =>
+          isPlainObject(segment) &&
+          segment.id
+      );
+
+    root.innerHTML = `
+      <div class="task-component">
+        <div class="cloze-text">
+          ${config.segments
+            .map((segment) => {
+              if (
+                typeof segment === "string"
+              ) {
+                return escapeHtml(segment);
+              }
+
+              const selectedValue =
+                savedAnswer[segment.id] ?? "";
+
+              return `
+                <label>
+                  <span class="visually-hidden">
+                    ${escapeHtml(
+                      segment.label ??
+                      "Passenden Begriff auswählen"
+                    )}
+                  </span>
+
+                  <select
+                    class="form-control cloze-select"
+                    data-blank-id="${escapeHtml(segment.id)}"
+                  >
+                    <option value="">
+                      Bitte auswählen
+                    </option>
+
+                    ${(segment.options ?? [])
+                      .map(
+                        (option) => `
+                          <option
+                            value="${escapeHtml(option.value)}"
+                            ${
+                              selectedValue === option.value
+                                ? "selected"
+                                : ""
+                            }
+                          >
+                            ${escapeHtml(option.label)}
+                          </option>
+                        `
+                      )
+                      .join("")}
+                  </select>
+                </label>
+              `;
+            })
+            .join("")}
+        </div>
+      </div>
+    `;
+
+    function readAnswer() {
+      const answer = {};
+
+      root
+        .querySelectorAll(
+          "select[data-blank-id]"
+        )
+        .forEach((select) => {
+          answer[select.dataset.blankId] =
+            select.value;
+        });
+
+      return answer;
+    }
+
+    root.addEventListener(
+      "change",
+      (event) => {
+        if (
+          event.target.matches(
+            "select[data-blank-id]"
+          )
+        ) {
+          event.target.classList.remove(
+            "is-correct",
+            "is-incorrect",
+            "is-empty"
+          );
+
+          context.app.setAnswer(
+            readAnswer()
+          );
+        }
+      }
+    );
+
+    return {
+      check() {
+        const answer =
+          readAnswer();
+
+        let correctParts = 0;
+
+        clearEvaluationClasses(root);
+
+        for (const blank of blankSegments) {
+          const select =
+            root.querySelector(
+              `select[data-blank-id="${CSS.escape(blank.id)}"]`
+            );
+
+          if (
+            answer[blank.id] ===
+            blank.correctValue
+          ) {
+            correctParts += 1;
+            select?.classList.add(
+              "is-correct"
+            );
+          } else if (
+            !answer[blank.id]
+          ) {
+            select?.classList.add(
+              "is-empty"
+            );
+          } else {
+            select?.classList.add(
+              "is-incorrect"
+            );
+          }
+        }
+
+        return createEvaluationResult({
+          task: context.task,
+          correctParts,
+          totalParts:
+            blankSegments.length,
+          answer,
+          correctMessage:
+            config.correctMessage,
+          partialMessage:
+            config.partialMessage,
+          incorrectMessage:
+            config.incorrectMessage
+        });
+      },
+
+      reset() {
+        root
+          .querySelectorAll("select")
+          .forEach((select) => {
+            select.value = "";
+          });
+
+        clearEvaluationClasses(root);
+      },
+
+      canProceed() {
+        return ![
+          "unseen",
+          "started"
+        ].includes(
+          context.app.getTaskState().status
+        );
+      }
+    };
+  }
+};
+
+/* =========================================================
+   6. REIHENFOLGE UND ARGUMENTATIONSKETTEN
+   ========================================================= */
+
+/**
+ * Konfigurationsschema:
+ *
+ * {
+ *   prompt: "...",
+ *   items: [
+ *     {
+ *       id: "step-1",
+ *       text: "Erster Schritt",
+ *       description: "optional"
+ *     }
+ *   ],
+ *   correctOrder: [
+ *     "step-1",
+ *     "step-2"
+ *   ],
+ *   shuffle: true,
+ *
+ *   connectorOptions: [
+ *     { value: "because", label: "weil" },
+ *     { value: "therefore", label: "deshalb" }
+ *   ],
+ *
+ *   correctConnectors: [
+ *     "therefore"
+ *   ]
+ * }
+ */
+const orderingController = {
+  render(context) {
+    const config =
+      getTaskConfig(context.task);
+
+    if (
+      !config ||
+      !Array.isArray(config.items) ||
+      !Array.isArray(config.correctOrder)
+    ) {
+      return renderUnconfiguredComponent(
+        context,
+        "items und correctOrder"
+      );
+    }
+
+    const root =
+      context.elements.taskContent;
+
+    const itemMap =
+      new Map(
+        config.items.map(
+          (item) => [item.id, item]
+        )
+      );
+
+    function isValidOrder(order) {
+      return (
+        Array.isArray(order) &&
+        order.length === config.items.length &&
+        order.every(
+          (itemId) => itemMap.has(itemId)
+        ) &&
+        new Set(order).size ===
+          config.items.length
+      );
+    }
+
+    const savedAnswer =
+      context.taskState.answer;
+
+    let order;
+
+    let connectorValues;
+
+    if (
+      Array.isArray(savedAnswer)
+    ) {
+      order = isValidOrder(savedAnswer)
+        ? [...savedAnswer]
+        : null;
+
+      connectorValues = [];
+    } else if (
+      isPlainObject(savedAnswer)
+    ) {
+      order = isValidOrder(savedAnswer.order)
+        ? [...savedAnswer.order]
+        : null;
+
+      connectorValues =
+        Array.isArray(savedAnswer.connectors)
+          ? [...savedAnswer.connectors]
+          : [];
+    }
+
+    if (!order) {
+      order =
+        config.shuffle === false
+          ? config.items.map(
+              (item) => item.id
+            )
+          : shuffleArray(
+              config.items.map(
+                (item) => item.id
+              )
+            );
+
+      connectorValues = [];
+
+      context.app.setAnswer(
+        createStoredAnswer()
+      );
+    }
+
+    let draggedItemId = null;
+
+    function createStoredAnswer() {
+      if (
+        Array.isArray(
+          config.connectorOptions
+        )
+      ) {
+        return {
+          order: [...order],
+          connectors:
+            [...connectorValues]
+        };
+      }
+
+      return [...order];
+    }
+
+    function saveAnswer() {
+      context.app.setAnswer(
+        createStoredAnswer()
+      );
+    }
+
+    function renderList() {
+      root.innerHTML = `
+        <div class="task-component">
+          ${
+            config.prompt
+              ? `
+                <p class="component-note">
+                  ${escapeHtml(config.prompt)}
+                </p>
+              `
+              : ""
+          }
+
+          <ol class="ordering-list">
+            ${order
+              .map((itemId, index) => {
+                const item =
+                  itemMap.get(itemId);
+
+                const isFirst =
+                  index === 0;
+
+                const isLast =
+                  index === order.length - 1;
+
+                const connector =
+                  (
+                    index < order.length - 1 &&
+                    Array.isArray(
+                      config.connectorOptions
+                    )
+                  )
+                    ? `
+                      <div class="chain-connector">
+                        <label>
+                          <span class="visually-hidden">
+                            Verbindung nach Schritt ${index + 1}
+                          </span>
+
+                          <select
+                            class="form-control"
+                            data-connector-index="${index}"
+                          >
+                            <option value="">
+                              Verbindung wählen
+                            </option>
+
+                            ${config.connectorOptions
+                              .map(
+                                (option) => `
+                                  <option
+                                    value="${escapeHtml(option.value)}"
+                                    ${
+                                      connectorValues[index] ===
+                                      option.value
+                                        ? "selected"
+                                        : ""
+                                    }
+                                  >
+                                    ${escapeHtml(option.label)}
+                                  </option>
+                                `
+                              )
+                              .join("")}
+                          </select>
+                        </label>
+                      </div>
+                    `
+                    : "";
+
+                return `
+                  <li>
+                    <div
+                      class="ordering-item"
+                      data-item-id="${escapeHtml(itemId)}"
+                      draggable="true"
+                    >
+                      <span
+                        class="ordering-position"
+                        aria-hidden="true"
+                      >
+                        ${index + 1}
+                      </span>
+
+                      <span class="ordering-copy">
+                        <strong>
+                          ${escapeHtml(item.text)}
+                        </strong>
+
+                        ${
+                          item.description
+                            ? `
+                              <small>
+                                ${escapeHtml(item.description)}
+                              </small>
+                            `
+                            : ""
+                        }
+                      </span>
+
+                      <span class="ordering-controls">
+                        <button
+                          class="ordering-button"
+                          type="button"
+                          data-move="up"
+                          data-item-id="${escapeHtml(itemId)}"
+                          aria-label="${escapeHtml(item.text)} nach oben verschieben"
+                          ${isFirst ? "disabled" : ""}
+                        >
+                          ↑
+                        </button>
+
+                        <button
+                          class="ordering-button"
+                          type="button"
+                          data-move="down"
+                          data-item-id="${escapeHtml(itemId)}"
+                          aria-label="${escapeHtml(item.text)} nach unten verschieben"
+                          ${isLast ? "disabled" : ""}
+                        >
+                          ↓
+                        </button>
+                      </span>
+                    </div>
+
+                    ${connector}
+                  </li>
+                `;
+              })
+              .join("")}
+          </ol>
+        </div>
+      `;
+
+      bindOrderingEvents();
+    }
+
+    function moveItem(
+      itemId,
+      direction
+    ) {
+      const currentIndex =
+        order.indexOf(itemId);
+
+      if (currentIndex < 0) {
+        return;
+      }
+
+      const targetIndex =
+        direction === "up"
+          ? currentIndex - 1
+          : currentIndex + 1;
+
+      if (
+        targetIndex < 0 ||
+        targetIndex >= order.length
+      ) {
+        return;
+      }
+
+      [
+        order[currentIndex],
+        order[targetIndex]
+      ] = [
+        order[targetIndex],
+        order[currentIndex]
+      ];
+
+      clearEvaluationClasses(root);
+      saveAnswer();
+      renderList();
+    }
+
+    function moveBefore(
+      draggedId,
+      targetId
+    ) {
+      if (
+        draggedId === targetId
+      ) {
+        return;
+      }
+
+      const nextOrder =
+        order.filter(
+          (itemId) =>
+            itemId !== draggedId
+        );
+
+      const targetIndex =
+        nextOrder.indexOf(targetId);
+
+      if (targetIndex < 0) {
+        return;
+      }
+
+      nextOrder.splice(
+        targetIndex,
+        0,
+        draggedId
+      );
+
+      order = nextOrder;
+
+      clearEvaluationClasses(root);
+      saveAnswer();
+      renderList();
+    }
+
+    function bindOrderingEvents() {
+      root
+        .querySelectorAll(
+          "button[data-move]"
+        )
+        .forEach((button) => {
+          button.addEventListener(
+            "click",
+            () => {
+              moveItem(
+                button.dataset.itemId,
+                button.dataset.move
+              );
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          "select[data-connector-index]"
+        )
+        .forEach((select) => {
+          select.addEventListener(
+            "change",
+            () => {
+              connectorValues[
+                Number(
+                  select.dataset.connectorIndex
+                )
+              ] = select.value;
+
+              select.classList.remove(
+                "is-correct",
+                "is-incorrect",
+                "is-empty"
+              );
+
+              saveAnswer();
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          ".ordering-item"
+        )
+        .forEach((itemElement) => {
+          itemElement.addEventListener(
+            "dragstart",
+            (event) => {
+              draggedItemId =
+                itemElement.dataset.itemId;
+
+              itemElement.classList.add(
+                "is-dragging"
+              );
+
+              event.dataTransfer.effectAllowed =
+                "move";
+
+              event.dataTransfer.setData(
+                "text/plain",
+                draggedItemId
+              );
+            }
+          );
+
+          itemElement.addEventListener(
+            "dragend",
+            () => {
+              draggedItemId = null;
+
+              root
+                .querySelectorAll(
+                  ".ordering-item"
+                )
+                .forEach((element) => {
+                  element.classList.remove(
+                    "is-dragging",
+                    "is-drag-target"
+                  );
+                });
+            }
+          );
+
+          itemElement.addEventListener(
+            "dragover",
+            (event) => {
+              event.preventDefault();
+
+              itemElement.classList.add(
+                "is-drag-target"
+              );
+            }
+          );
+
+          itemElement.addEventListener(
+            "dragleave",
+            () => {
+              itemElement.classList.remove(
+                "is-drag-target"
+              );
+            }
+          );
+
+          itemElement.addEventListener(
+            "drop",
+            (event) => {
+              event.preventDefault();
+
+              const sourceId =
+                draggedItemId ||
+                event.dataTransfer.getData(
+                  "text/plain"
+                );
+
+              moveBefore(
+                sourceId,
+                itemElement.dataset.itemId
+              );
+            }
+          );
+        });
+    }
+
+    renderList();
+
+    return {
+      check() {
+        clearEvaluationClasses(root);
+
+        let correctParts = 0;
+        let totalParts =
+          config.correctOrder.length;
+
+        order.forEach(
+          (itemId, index) => {
+            const itemElement =
+              root.querySelector(
+                `.ordering-item[data-item-id="${CSS.escape(itemId)}"]`
+              );
+
+            if (
+              itemId ===
+              config.correctOrder[index]
+            ) {
+              correctParts += 1;
+              itemElement?.classList.add(
+                "is-correct"
+              );
+            } else {
+              itemElement?.classList.add(
+                "is-incorrect"
+              );
+            }
+          }
+        );
+
+        if (
+          Array.isArray(
+            config.correctConnectors
+          )
+        ) {
+          totalParts +=
+            config.correctConnectors.length;
+
+          config.correctConnectors.forEach(
+            (
+              correctConnector,
+              index
+            ) => {
+              const select =
+                root.querySelector(
+                  `select[data-connector-index="${index}"]`
+                );
+
+              const selectedConnector =
+                connectorValues[index] ?? "";
+
+              if (
+                selectedConnector ===
+                correctConnector
+              ) {
+                correctParts += 1;
+                select?.classList.add(
+                  "is-correct"
+                );
+              } else if (
+                selectedConnector === ""
+              ) {
+                select?.classList.add(
+                  "is-empty"
+                );
+              } else {
+                select?.classList.add(
+                  "is-incorrect"
+                );
+              }
+            }
+          );
+        }
+
+        return createEvaluationResult({
+          task: context.task,
+          correctParts,
+          totalParts,
+          answer:
+            createStoredAnswer(),
+          correctMessage:
+            config.correctMessage,
+          partialMessage:
+            config.partialMessage ??
+            "Einige Schritte befinden sich bereits an der richtigen Position.",
+          incorrectMessage:
+            config.incorrectMessage ??
+            "Die Reihenfolge entspricht noch nicht der fachlichen Abfolge."
+        });
+      },
+
+      reset() {
+        order =
+          config.shuffle === false
+            ? config.items.map(
+                (item) => item.id
+              )
+            : shuffleArray(
+                config.items.map(
+                  (item) => item.id
+                )
+              );
+
+        connectorValues = [];
+
+        saveAnswer();
+        renderList();
+      },
+
+      canProceed() {
+        return ![
+          "unseen",
+          "started"
+        ].includes(
+          context.app.getTaskState().status
+        );
+      }
+    };
+  }
+};
+
+/* =========================================================
+   7. CONTROLLER REGISTRIEREN
+   ========================================================= */
+
+/* Einzelauswahl */
+registerTaskTypeController(
+  "single-choice",
+  createSelectionController({
+    multiple: false
+  })
+);
+
+/* Mehrfachauswahl */
+registerTaskTypeController(
+  "multiple-select",
+  createSelectionController({
+    multiple: true
+  })
+);
+
+/* Dropdown- und Zuordnungsvarianten */
+[
+  "classification-matrix",
+  "dropdown-matrix",
+  "dropdown-fields",
+  "matching",
+  "multi-classification",
+  "statement-evaluation",
+  "evidence-matching",
+  "hypothesis-matrix"
+].forEach((taskType) => {
+  registerTaskTypeController(
+    taskType,
+    dropdownGridController
+  );
+});
+
+/* Lückentext */
+registerTaskTypeController(
+  "cloze-dropdown",
+  clozeDropdownController
+);
+
+/* Reihenfolge und Argumentationsketten */
+[
+  "ordering",
+  "argument-chain"
+].forEach((taskType) => {
+  registerTaskTypeController(
+    taskType,
+    orderingController
+  );
+});
+
+/* =========================================================
+   8. SCHNITTSTELLE ERWEITERN
+   ========================================================= */
+
+Object.assign(
+  window.EnzymeApp,
+  {
+    configureTask,
+
+    getTaskConfig(taskId) {
+      const config =
+        getTaskConfig(taskId);
+
+      return config
+        ? cloneData(config)
+        : null;
+    },
+
+    componentTypes: {
+      singleChoice:
+        "single-choice",
+      multipleSelect:
+        "multiple-select",
+      dropdownGrid:
+        "classification-matrix",
+      clozeDropdown:
+        "cloze-dropdown",
+      ordering:
+        "ordering",
+      argumentChain:
+        "argument-chain"
+    }
+  }
+);
+/* =========================================================
+   ABSCHNITT 4: MODUL 1 – PURINABBAU
+   Aufgaben 1 bis 4
+   ========================================================= */
+
+/* =========================================================
+   1. AUFGABE 1:
+   VERZWEIGTEN STOFFWECHSELWEG AUFBAUEN
+   ========================================================= */
+
+const purinePathwayController = {
+  render(context) {
+    const config = getTaskConfig(context.task);
+
+    if (
+      !config ||
+      !Array.isArray(config.cards) ||
+      !Array.isArray(config.slots)
+    ) {
+      return renderUnconfiguredComponent(
+        context,
+        "cards und slots"
+      );
+    }
+
+    const root = context.elements.taskContent;
+
+    const cardMap = new Map(
+      config.cards.map((card) => [card.id, card])
+    );
+
+    const slotMap = new Map(
+      config.slots.map((slot) => [slot.id, slot])
+    );
+
+    let selectedCardId = null;
+    let draggedCardId = null;
+
+    function sanitizePlacements(savedAnswer) {
+      const placements = {};
+      const alreadyUsedCards = new Set();
+
+      const savedPlacements =
+        isPlainObject(savedAnswer) &&
+        isPlainObject(savedAnswer.placements)
+          ? savedAnswer.placements
+          : {};
+
+      for (const slot of config.slots) {
+        const cardId = savedPlacements[slot.id];
+
+        if (
+          typeof cardId === "string" &&
+          cardMap.has(cardId) &&
+          !alreadyUsedCards.has(cardId)
+        ) {
+          placements[slot.id] = cardId;
+          alreadyUsedCards.add(cardId);
+        }
+      }
+
+      return placements;
+    }
+
+    let placements = sanitizePlacements(
+      context.taskState.answer
+    );
+
+    function createAnswer() {
+      return {
+        placements: { ...placements }
+      };
+    }
+
+    function getSlotContainingCard(cardId) {
+      return Object.keys(placements).find(
+        (slotId) => placements[slotId] === cardId
+      ) ?? null;
+    }
+
+    function getUnusedCards() {
+      const usedCards = new Set(
+        Object.values(placements)
+      );
+
+      return config.cards.filter(
+        (card) => !usedCards.has(card.id)
+      );
+    }
+
+    function saveAnswer() {
+      context.app.setAnswer(createAnswer());
+    }
+
+    function clearLocalEvaluation() {
+      root
+        .querySelectorAll(".pathway-slot")
+        .forEach((slotElement) => {
+          slotElement.classList.remove(
+            "is-correct",
+            "is-incorrect",
+            "is-empty"
+          );
+        });
+    }
+
+    function selectCard(cardId) {
+      if (!cardMap.has(cardId)) {
+        return;
+      }
+
+      selectedCardId =
+        selectedCardId === cardId
+          ? null
+          : cardId;
+
+      renderInterface();
+    }
+
+    function placeCard(cardId, slotId) {
+      if (
+        !cardMap.has(cardId) ||
+        !slotMap.has(slotId)
+      ) {
+        return;
+      }
+
+      const previousSlotId =
+        getSlotContainingCard(cardId);
+
+      const displacedCardId =
+        placements[slotId];
+
+      if (previousSlotId) {
+        delete placements[previousSlotId];
+      }
+
+      if (
+        displacedCardId &&
+        displacedCardId !== cardId
+      ) {
+        delete placements[slotId];
+      }
+
+      placements[slotId] = cardId;
+      selectedCardId = null;
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function removeCardFromSlot(slotId) {
+      if (!placements[slotId]) {
+        return;
+      }
+
+      delete placements[slotId];
+      selectedCardId = null;
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function renderPoolCard(card) {
+      const selected =
+        selectedCardId === card.id;
+
+      return `
+        <button
+          class="pathway-card ${
+            selected ? "is-selected" : ""
+          }"
+          type="button"
+          draggable="true"
+          data-card-id="${escapeHtml(card.id)}"
+          aria-pressed="${selected}"
+        >
+          ${escapeHtml(card.label)}
+        </button>
+      `;
+    }
+
+    function renderSlot(slotId) {
+      const slot = slotMap.get(slotId);
+      const cardId = placements[slotId];
+      const card = cardId
+        ? cardMap.get(cardId)
+        : null;
+
+      return `
+        <div
+          class="pathway-slot"
+          data-slot-id="${escapeHtml(slotId)}"
+          tabindex="0"
+          role="button"
+          aria-label="${
+            card
+              ? escapeHtml(
+                  `${slot.label}: ${card.label}. Mit Enter entfernen oder ausgewählte Karte einsetzen.`
+                )
+              : escapeHtml(
+                  `${slot.label}. Ausgewählte Stoffkarte einsetzen.`
+                )
+          }"
+        >
+          ${
+            card
+              ? `
+                <div
+                  class="pathway-placed-card"
+                  draggable="true"
+                  data-card-id="${escapeHtml(card.id)}"
+                >
+                  <span>
+                    ${escapeHtml(card.label)}
+                  </span>
+
+                  <button
+                    class="pathway-remove-card"
+                    type="button"
+                    data-remove-slot="${escapeHtml(slotId)}"
+                    aria-label="${escapeHtml(card.label)} entfernen"
+                  >
+                    ×
+                  </button>
+                </div>
+              `
+              : `
+                <span class="pathway-slot-placeholder">
+                  ${escapeHtml(slot.placeholder)}
+                </span>
+              `
+          }
+        </div>
+      `;
+    }
+
+    function renderInterface() {
+      const unusedCards = getUnusedCards();
+
+      root.innerHTML = `
+        <div class="pathway-component">
+          <p class="pathway-instruction">
+            Ziehe die Stoffkarten in die Felder. Alternativ kannst
+            du zuerst eine Karte und anschließend das gewünschte
+            Feld anklicken. Eine eingesetzte Karte kann über
+            <strong>×</strong> wieder entfernt werden.
+          </p>
+
+          <div
+            class="pathway-card-pool ${
+              unusedCards.length === 0
+                ? "is-empty"
+                : ""
+            }"
+            aria-label="Noch nicht eingesetzte Stoffkarten"
+          >
+            ${unusedCards
+              .map(renderPoolCard)
+              .join("")}
+          </div>
+
+          <div
+            class="pathway-diagram"
+            aria-label="Schema des Purinabbaus"
+          >
+            <div class="pathway-row">
+              <div class="pathway-fixed-node">
+                Adenin
+              </div>
+
+              <div class="pathway-arrow" aria-hidden="true">
+                →
+              </div>
+
+              ${renderSlot("adenine-intermediate")}
+
+              <div class="pathway-arrow" aria-hidden="true">
+                →
+              </div>
+
+              ${renderSlot("adenine-common")}
+
+              <div class="pathway-arrow" aria-hidden="true">
+                →
+              </div>
+
+              ${renderSlot("shared-product")}
+
+              <div class="pathway-arrow" aria-hidden="true">
+                →
+              </div>
+
+              <div class="pathway-fixed-node">
+                Ausscheidung
+              </div>
+            </div>
+
+            <div class="pathway-row pathway-row--guanine">
+              <div class="pathway-fixed-node">
+                Guanin
+              </div>
+
+              <div class="pathway-arrow" aria-hidden="true">
+                →
+              </div>
+
+              ${renderSlot("guanine-common")}
+
+              <div class="pathway-merge-note">
+                <span
+                  class="pathway-merge-arrow"
+                  aria-hidden="true"
+                >
+                  ↗
+                </span>
+
+                <span>
+                  Dieser Weg mündet in denselben Abschnitt,
+                  der zur Harnsäure führt.
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <p class="pathway-selection-status">
+            ${
+              selectedCardId
+                ? `Ausgewählt: ${
+                    escapeHtml(
+                      cardMap.get(selectedCardId).label
+                    )
+                  }. Wähle nun ein Zielfeld.`
+                : "Aktuell ist keine Stoffkarte ausgewählt."
+            }
+          </p>
+        </div>
+      `;
+
+      bindInteractionEvents();
+    }
+
+    function bindDragSource(element) {
+      element.addEventListener(
+        "dragstart",
+        (event) => {
+          draggedCardId =
+            element.dataset.cardId;
+
+          event.dataTransfer.effectAllowed =
+            "move";
+
+          event.dataTransfer.setData(
+            "text/plain",
+            draggedCardId
+          );
+        }
+      );
+
+      element.addEventListener(
+        "dragend",
+        () => {
+          draggedCardId = null;
+
+          root
+            .querySelectorAll(".pathway-slot")
+            .forEach((slotElement) => {
+              slotElement.classList.remove(
+                "is-drop-target"
+              );
+            });
+        }
+      );
+    }
+
+    function bindInteractionEvents() {
+      root
+        .querySelectorAll(
+          ".pathway-card[data-card-id]"
+        )
+        .forEach((cardElement) => {
+          bindDragSource(cardElement);
+
+          cardElement.addEventListener(
+            "click",
+            () => {
+              selectCard(
+                cardElement.dataset.cardId
+              );
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          ".pathway-placed-card[data-card-id]"
+        )
+        .forEach((cardElement) => {
+          bindDragSource(cardElement);
+        });
+
+      root
+        .querySelectorAll(".pathway-slot")
+        .forEach((slotElement) => {
+          const slotId =
+            slotElement.dataset.slotId;
+
+          slotElement.addEventListener(
+            "click",
+            (event) => {
+              if (
+                event.target.closest(
+                  ".pathway-remove-card"
+                )
+              ) {
+                return;
+              }
+
+              if (selectedCardId) {
+                placeCard(
+                  selectedCardId,
+                  slotId
+                );
+              }
+            }
+          );
+
+          slotElement.addEventListener(
+            "keydown",
+            (event) => {
+              if (
+                event.key !== "Enter" &&
+                event.key !== " "
+              ) {
+                return;
+              }
+
+              event.preventDefault();
+
+              if (selectedCardId) {
+                placeCard(
+                  selectedCardId,
+                  slotId
+                );
+              } else if (placements[slotId]) {
+                removeCardFromSlot(slotId);
+              }
+            }
+          );
+
+          slotElement.addEventListener(
+            "dragover",
+            (event) => {
+              event.preventDefault();
+
+              slotElement.classList.add(
+                "is-drop-target"
+              );
+            }
+          );
+
+          slotElement.addEventListener(
+            "dragleave",
+            () => {
+              slotElement.classList.remove(
+                "is-drop-target"
+              );
+            }
+          );
+
+          slotElement.addEventListener(
+            "drop",
+            (event) => {
+              event.preventDefault();
+
+              slotElement.classList.remove(
+                "is-drop-target"
+              );
+
+              const cardId =
+                draggedCardId ||
+                event.dataTransfer.getData(
+                  "text/plain"
+                );
+
+              placeCard(cardId, slotId);
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          "[data-remove-slot]"
+        )
+        .forEach((removeButton) => {
+          removeButton.addEventListener(
+            "click",
+            (event) => {
+              event.stopPropagation();
+
+              removeCardFromSlot(
+                removeButton.dataset.removeSlot
+              );
+            }
+          );
+        });
+    }
+
+    renderInterface();
+
+    return {
+      check() {
+        clearLocalEvaluation();
+
+        let correctParts = 0;
+
+        for (const slot of config.slots) {
+          const cardId = placements[slot.id];
+          const card = cardId
+            ? cardMap.get(cardId)
+            : null;
+
+          const slotElement =
+            root.querySelector(
+              `.pathway-slot[data-slot-id="${CSS.escape(slot.id)}"]`
+            );
+
+          if (!card) {
+            slotElement?.classList.add(
+              "is-empty"
+            );
+          } else if (
+            card.value === slot.correctValue
+          ) {
+            correctParts += 1;
+
+            slotElement?.classList.add(
+              "is-correct"
+            );
+          } else {
+            slotElement?.classList.add(
+              "is-incorrect"
+            );
+          }
+        }
+
+        return createEvaluationResult({
+          task: context.task,
+          correctParts,
+          totalParts: config.slots.length,
+          answer: createAnswer(),
+
+          correctMessage:
+            "Beide Abbauwege sind korrekt dargestellt. Adenin wird über Hypoxanthin und Xanthin abgebaut; Guanin mündet direkt über Xanthin in den gemeinsamen Weg.",
+
+          partialMessage:
+            `${correctParts} von ${config.slots.length} Positionen sind korrekt. Prüfe insbesondere, an welchem Stoff die beiden Wege zusammenlaufen.`,
+
+          incorrectMessage:
+            "Die Abfolge ist noch nicht korrekt. Beachte, dass Hypoxanthin nur im Adeninabbau vorkommt und beide Wege über Xanthin zur Harnsäure führen."
+        });
+      },
+
+      reset() {
+        placements = {};
+        selectedCardId = null;
+        draggedCardId = null;
+
+        saveAnswer();
+        renderInterface();
+      },
+
+      canProceed() {
+        return ![
+          "unseen",
+          "started"
+        ].includes(
+          context.app.getTaskState().status
+        );
+      }
+    };
+  }
+};
+
+/* =========================================================
+   2. AUFGABE 3:
+   LÖSLICHKEIT UND KAUSALKETTE
+   ========================================================= */
+
+const solubilityAndCausalityController = {
+  render(context) {
+    const config = getTaskConfig(context.task);
+
+    if (
+      !config ||
+      !Array.isArray(config.solubilityRows) ||
+      !Array.isArray(config.solubilityOptions) ||
+      !Array.isArray(config.chainItems) ||
+      !Array.isArray(config.correctOrder)
+    ) {
+      return renderUnconfiguredComponent(
+        context,
+        "solubilityRows, solubilityOptions, chainItems und correctOrder"
+      );
+    }
+
+    const root = context.elements.taskContent;
+
+    const chainItemMap = new Map(
+      config.chainItems.map(
+        (item) => [item.id, item]
+      )
+    );
+
+    const savedAnswer =
+      isPlainObject(context.taskState.answer)
+        ? context.taskState.answer
+        : {};
+
+    let solubility =
+      isPlainObject(savedAnswer.solubility)
+        ? { ...savedAnswer.solubility }
+        : {};
+
+    function isValidOrder(order) {
+      return (
+        Array.isArray(order) &&
+        order.length === config.chainItems.length &&
+        order.every(
+          (itemId) => chainItemMap.has(itemId)
+        ) &&
+        new Set(order).size ===
+          config.chainItems.length
+      );
+    }
+
+    let chainOrder = isValidOrder(
+      savedAnswer.chain
+    )
+      ? [...savedAnswer.chain]
+      : shuffleArray(
+          config.chainItems.map(
+            (item) => item.id
+          )
+        );
+
+    let draggedChainItemId = null;
+
+    function createAnswer() {
+      return {
+        solubility: { ...solubility },
+        chain: [...chainOrder]
+      };
+    }
+
+    function saveAnswer() {
+      context.app.setAnswer(
+        createAnswer()
+      );
+    }
+
+    function renderInterface() {
+      root.innerHTML = `
+        <div class="multi-part-task">
+
+          <section class="subtask-card">
+            <h2>
+              Teil A: Löslichkeit der Stoffe
+            </h2>
+
+            <p class="subtask-description">
+              Ordne den drei Stoffen die im Material angegebene
+              Löslichkeit zu.
+            </p>
+
+            <div class="assignment-table-wrapper">
+              <table class="assignment-table">
+                <thead>
+                  <tr>
+                    <th scope="col">
+                      Stoff
+                    </th>
+
+                    <th scope="col">
+                      Löslichkeit
+                    </th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  ${config.solubilityRows
+                    .map((row) => `
+                      <tr>
+                        <th
+                          class="assignment-row-label"
+                          scope="row"
+                        >
+                          ${escapeHtml(row.label)}
+                        </th>
+
+                        <td>
+                          <label class="visually-hidden">
+                            Löslichkeit von
+                            ${escapeHtml(row.label)}
+                          </label>
+
+                          <select
+                            class="form-control solubility-select"
+                            data-solubility-id="${escapeHtml(row.id)}"
+                          >
+                            <option value="">
+                              Bitte auswählen
+                            </option>
+
+                            ${config.solubilityOptions
+                              .map((option) => `
+                                <option
+                                  value="${escapeHtml(option.value)}"
+                                  ${
+                                    solubility[row.id] === option.value
+                                      ? "selected"
+                                      : ""
+                                  }
+                                >
+                                  ${escapeHtml(option.label)}
+                                </option>
+                              `)
+                              .join("")}
+                          </select>
+                        </td>
+                      </tr>
+                    `)
+                    .join("")}
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="subtask-card">
+            <h2>
+              Teil B: Von der Konzentration zur Ablagerung
+            </h2>
+
+            <p class="subtask-description">
+              Bringe die Vorgänge in eine fachlich sinnvolle
+              Reihenfolge. Du kannst die Karten ziehen oder mit
+              den Pfeiltasten verschieben.
+            </p>
+
+            <ol class="causal-chain-list">
+              ${chainOrder
+                .map((itemId, index) => {
+                  const item =
+                    chainItemMap.get(itemId);
+
+                  return `
+                    <li>
+                      <div
+                        class="ordering-item"
+                        draggable="true"
+                        data-chain-item-id="${escapeHtml(itemId)}"
+                      >
+                        <span
+                          class="ordering-position"
+                          aria-hidden="true"
+                        >
+                          ${index + 1}
+                        </span>
+
+                        <span class="ordering-copy">
+                          <strong>
+                            ${escapeHtml(item.text)}
+                          </strong>
+                        </span>
+
+                        <span class="ordering-controls">
+                          <button
+                            class="ordering-button"
+                            type="button"
+                            data-chain-move="up"
+                            data-chain-item-id="${escapeHtml(itemId)}"
+                            aria-label="${escapeHtml(item.text)} nach oben verschieben"
+                            ${index === 0 ? "disabled" : ""}
+                          >
+                            ↑
+                          </button>
+
+                          <button
+                            class="ordering-button"
+                            type="button"
+                            data-chain-move="down"
+                            data-chain-item-id="${escapeHtml(itemId)}"
+                            aria-label="${escapeHtml(item.text)} nach unten verschieben"
+                            ${
+                              index === chainOrder.length - 1
+                                ? "disabled"
+                                : ""
+                            }
+                          >
+                            ↓
+                          </button>
+                        </span>
+                      </div>
+                    </li>
+                  `;
+                })
+                .join("")}
+            </ol>
+          </section>
+
+        </div>
+      `;
+
+      bindInteractionEvents();
+    }
+
+    function moveChainItem(itemId, direction) {
+      const currentIndex =
+        chainOrder.indexOf(itemId);
+
+      if (currentIndex < 0) {
+        return;
+      }
+
+      const targetIndex =
+        direction === "up"
+          ? currentIndex - 1
+          : currentIndex + 1;
+
+      if (
+        targetIndex < 0 ||
+        targetIndex >= chainOrder.length
+      ) {
+        return;
+      }
+
+      [
+        chainOrder[currentIndex],
+        chainOrder[targetIndex]
+      ] = [
+        chainOrder[targetIndex],
+        chainOrder[currentIndex]
+      ];
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function moveChainItemBefore(
+      sourceId,
+      targetId
+    ) {
+      if (
+        sourceId === targetId ||
+        !chainItemMap.has(sourceId) ||
+        !chainItemMap.has(targetId)
+      ) {
+        return;
+      }
+
+      const nextOrder =
+        chainOrder.filter(
+          (itemId) => itemId !== sourceId
+        );
+
+      const targetIndex =
+        nextOrder.indexOf(targetId);
+
+      nextOrder.splice(
+        targetIndex,
+        0,
+        sourceId
+      );
+
+      chainOrder = nextOrder;
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function bindInteractionEvents() {
+      root
+        .querySelectorAll(
+          "select[data-solubility-id]"
+        )
+        .forEach((select) => {
+          select.addEventListener(
+            "change",
+            () => {
+              solubility[
+                select.dataset.solubilityId
+              ] = select.value;
+
+              select.classList.remove(
+                "is-correct",
+                "is-incorrect",
+                "is-empty"
+              );
+
+              saveAnswer();
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          "button[data-chain-move]"
+        )
+        .forEach((button) => {
+          button.addEventListener(
+            "click",
+            () => {
+              moveChainItem(
+                button.dataset.chainItemId,
+                button.dataset.chainMove
+              );
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          ".ordering-item[data-chain-item-id]"
+        )
+        .forEach((itemElement) => {
+          itemElement.addEventListener(
+            "dragstart",
+            (event) => {
+              draggedChainItemId =
+                itemElement.dataset.chainItemId;
+
+              event.dataTransfer.effectAllowed =
+                "move";
+
+              event.dataTransfer.setData(
+                "text/plain",
+                draggedChainItemId
+              );
+
+              itemElement.classList.add(
+                "is-dragging"
+              );
+            }
+          );
+
+          itemElement.addEventListener(
+            "dragend",
+            () => {
+              draggedChainItemId = null;
+
+              root
+                .querySelectorAll(
+                  ".ordering-item"
+                )
+                .forEach((element) => {
+                  element.classList.remove(
+                    "is-dragging",
+                    "is-drag-target"
+                  );
+                });
+            }
+          );
+
+          itemElement.addEventListener(
+            "dragover",
+            (event) => {
+              event.preventDefault();
+
+              itemElement.classList.add(
+                "is-drag-target"
+              );
+            }
+          );
+
+          itemElement.addEventListener(
+            "dragleave",
+            () => {
+              itemElement.classList.remove(
+                "is-drag-target"
+              );
+            }
+          );
+
+          itemElement.addEventListener(
+            "drop",
+            (event) => {
+              event.preventDefault();
+
+              moveChainItemBefore(
+                draggedChainItemId ||
+                  event.dataTransfer.getData(
+                    "text/plain"
+                  ),
+                itemElement.dataset.chainItemId
+              );
+            }
+          );
+        });
+    }
+
+    /*
+      Der anfängliche Kartenstand wird direkt gespeichert,
+      damit die zufällige Reihenfolge nach einem Neuladen
+      erhalten bleibt.
+    */
+    if (
+      !isPlainObject(context.taskState.answer)
+    ) {
+      saveAnswer();
+    }
+
+    renderInterface();
+
+    return {
+      check() {
+        clearEvaluationClasses(root);
+
+        let correctParts = 0;
+        const totalParts =
+          config.solubilityRows.length +
+          config.correctOrder.length;
+
+        for (const row of config.solubilityRows) {
+          const select =
+            root.querySelector(
+              `select[data-solubility-id="${CSS.escape(row.id)}"]`
+            );
+
+          const selectedValue =
+            solubility[row.id] ?? "";
+
+          if (
+            selectedValue === row.correctValue
+          ) {
+            correctParts += 1;
+
+            select?.classList.add(
+              "is-correct"
+            );
+          } else if (
+            selectedValue === ""
+          ) {
+            select?.classList.add(
+              "is-empty"
+            );
+          } else {
+            select?.classList.add(
+              "is-incorrect"
+            );
+          }
+        }
+
+        chainOrder.forEach(
+          (itemId, index) => {
+            const itemElement =
+              root.querySelector(
+                `.ordering-item[data-chain-item-id="${CSS.escape(itemId)}"]`
+              );
+
+            if (
+              itemId === config.correctOrder[index]
+            ) {
+              correctParts += 1;
+
+              itemElement?.classList.add(
+                "is-correct"
+              );
+            } else {
+              itemElement?.classList.add(
+                "is-incorrect"
+              );
+            }
+          }
+        );
+
+        return createEvaluationResult({
+          task: context.task,
+          correctParts,
+          totalParts,
+          answer: createAnswer(),
+
+          correctMessage:
+            "Die Stoffeigenschaften und die Kausalkette sind vollständig korrekt. Erst die Überschreitung der Löslichkeitsgrenze ermöglicht die Kristallbildung.",
+
+          partialMessage:
+            `${correctParts} von ${totalParts} Teilaspekten sind korrekt. Prüfe sowohl die Stoffeigenschaften als auch die Abfolge von Konzentrationsanstieg, Kristallbildung und Ablagerung.`,
+
+          incorrectMessage:
+            "Die Zuordnungen und die Kausalkette sind noch nicht korrekt. Beachte, dass eine erhöhte Konzentration zunächst zur Überschreitung der Löslichkeitsgrenze führt."
+        });
+      },
+
+      reset() {
+        solubility = {};
+
+        chainOrder = shuffleArray(
+          config.chainItems.map(
+            (item) => item.id
+          )
+        );
+
+        saveAnswer();
+        renderInterface();
+      },
+
+      canProceed() {
+        return ![
+          "unseen",
+          "started"
+        ].includes(
+          context.app.getTaskState().status
+        );
+      }
+    };
+  }
+};
+
+/* =========================================================
+   3. SPEZIELLE CONTROLLER REGISTRIEREN
+   ========================================================= */
+
+registerTaskController(
+  "task-01",
+  purinePathwayController
+);
+
+registerTaskController(
+  "task-03",
+  solubilityAndCausalityController
+);
+
+/* =========================================================
+   4. AUFGABE 1 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-01", {
+  cards: [
+    {
+      id: "card-hypoxanthine",
+      label: "Hypoxanthin",
+      value: "hypoxanthine"
+    },
+    {
+      id: "card-xanthine-a",
+      label: "Xanthin",
+      value: "xanthine"
+    },
+    {
+      id: "card-xanthine-b",
+      label: "Xanthin",
+      value: "xanthine"
+    },
+    {
+      id: "card-uric-acid",
+      label: "Harnsäure",
+      value: "uric-acid"
+    }
+  ],
+
+  slots: [
+    {
+      id: "adenine-intermediate",
+      label: "Erstes Zwischenprodukt des Adeninabbaus",
+      placeholder: "Zwischenprodukt",
+      correctValue: "hypoxanthine"
+    },
+    {
+      id: "adenine-common",
+      label: "Gemeinsames Zwischenprodukt im Adeninabbau",
+      placeholder: "Zwischenprodukt",
+      correctValue: "xanthine"
+    },
+    {
+      id: "guanine-common",
+      label: "Zwischenprodukt des Guaninabbaus",
+      placeholder: "Zwischenprodukt",
+      correctValue: "xanthine"
+    },
+    {
+      id: "shared-product",
+      label: "Endprodukt des dargestellten Abbauwegs",
+      placeholder: "Endprodukt",
+      correctValue: "uric-acid"
+    }
+  ],
+
+  helpLevels: [
+    "Beide Abbauwege führen schließlich über denselben Stoff zur Harnsäure.",
+    "Guanin wird im dargestellten Weg direkt zu Xanthin weiterverarbeitet.",
+    "Die vollständige Adeninfolge lautet: Adenin → Hypoxanthin → Xanthin → Harnsäure."
+  ]
+});
+
+/* =========================================================
+   5. AUFGABE 2 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-02", {
+  prompt:
+    "Ordne jeden Stoff seiner präzisesten Funktion im dargestellten Purinabbau zu.",
+
+  rowLabel: "Stoff",
+
+  valueColumnLabel:
+    "Funktion im Stoffwechselweg",
+
+  options: [
+    {
+      value: "starting-material",
+      label: "Ausgangsstoff"
+    },
+    {
+      value: "intermediate",
+      label: "Zwischenprodukt"
+    },
+    {
+      value: "shared-intermediate",
+      label: "gemeinsames Zwischenprodukt"
+    },
+    {
+      value: "end-product",
+      label: "Endprodukt des dargestellten Abbaus"
+    }
+  ],
+
+  rows: [
+    {
+      id: "adenine",
+      label: "Adenin",
+      correctValue: "starting-material"
+    },
+    {
+      id: "guanine",
+      label: "Guanin",
+      correctValue: "starting-material"
+    },
+    {
+      id: "hypoxanthine",
+      label: "Hypoxanthin",
+      correctValue: "intermediate"
+    },
+    {
+      id: "xanthine",
+      label: "Xanthin",
+      correctValue: "shared-intermediate"
+    },
+    {
+      id: "uric-acid",
+      label: "Harnsäure",
+      correctValue: "end-product"
+    }
+  ],
+
+  correctMessage:
+    "Alle Stoffe wurden korrekt eingeordnet. Xanthin ist das gemeinsame Zwischenprodukt, an dem die beiden dargestellten Abbauwege zusammenlaufen.",
+
+  partialMessage:
+    "Ein Teil der Stoffe ist korrekt eingeordnet. Prüfe besonders den Unterschied zwischen einem beliebigen Zwischenprodukt und dem gemeinsamen Zwischenprodukt.",
+
+  incorrectMessage:
+    "Die Einordnung ist noch nicht korrekt. Ausgangsstoffe stehen am Beginn des Weges; das Endprodukt steht unmittelbar vor der Ausscheidung.",
+
+  helpLevels: [
+    "Betrachte nicht nur die Position eines Stoffes, sondern auch, ob beide Wege über ihn verlaufen.",
+    "Hypoxanthin gehört nur zum Adeninweg; Xanthin kommt in beiden Wegen vor.",
+    "Harnsäure ist das Endprodukt des im Material dargestellten Purinabbaus."
+  ]
+});
+
+/* =========================================================
+   6. AUFGABE 3 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-03", {
+  solubilityOptions: [
+    {
+      value: "soluble",
+      label: "löslich"
+    },
+    {
+      value: "poorly-soluble",
+      label: "schwerlöslich"
+    }
+  ],
+
+  solubilityRows: [
+    {
+      id: "hypoxanthine",
+      label: "Hypoxanthin",
+      correctValue: "soluble"
+    },
+    {
+      id: "xanthine",
+      label: "Xanthin",
+      correctValue: "soluble"
+    },
+    {
+      id: "uric-acid",
+      label: "Harnsäure",
+      correctValue: "poorly-soluble"
+    }
+  ],
+
+  chainItems: [
+    {
+      id: "concentration-rise",
+      text:
+        "Die Harnsäurekonzentration im Blut steigt."
+    },
+    {
+      id: "solubility-limit",
+      text:
+        "Die Löslichkeitsgrenze der Harnsäure wird überschritten."
+    },
+    {
+      id: "crystal-formation",
+      text:
+        "Harnsäurekristalle entstehen."
+    },
+    {
+      id: "deposition",
+      text:
+        "Kristalle lagern sich in Gelenken und Geweben ab."
+    }
+  ],
+
+  correctOrder: [
+    "concentration-rise",
+    "solubility-limit",
+    "crystal-formation",
+    "deposition"
+  ],
+
+  helpLevels: [
+    "Kristalle entstehen nicht allein dadurch, dass ein Stoff im Blut vorhanden ist.",
+    "Zunächst muss die Konzentration so hoch sein, dass die Löslichkeitsgrenze überschritten wird.",
+    "Die Reihenfolge lautet: Konzentrationsanstieg → Überschreitung der Löslichkeitsgrenze → Kristallbildung → Ablagerung."
+  ]
+});
+
+/* =========================================================
+   7. AUFGABE 4 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-04", {
+  prompt:
+    "Leite für jede Größe die fachlich sinnvollste Veränderung bei einer Hemmung der Xanthinoxidase ab.",
+
+  rowLabel:
+    "Betrachtete Größe",
+
+  rows: [
+    {
+      id: "uric-acid-formation",
+      label: "Bildung von Harnsäure",
+
+      fields: [
+        {
+          id: "change",
+          label: "Erwartete Veränderung",
+
+          options: [
+            {
+              value: "decreases",
+              label: "nimmt ab"
+            },
+            {
+              value: "increases",
+              label: "nimmt zu"
+            },
+            {
+              value: "unchanged",
+              label: "bleibt unverändert"
+            }
+          ],
+
+          correctValue: "decreases"
+        }
+      ]
+    },
+
+    {
+      id: "xanthine-conversion",
+      label:
+        "Umsetzung von Xanthin zu Harnsäure",
+
+      fields: [
+        {
+          id: "change",
+          label: "Erwartete Veränderung",
+
+          options: [
+            {
+              value: "decreases",
+              label: "nimmt ab"
+            },
+            {
+              value: "increases",
+              label: "nimmt zu"
+            },
+            {
+              value: "unchanged",
+              label: "bleibt unverändert"
+            }
+          ],
+
+          correctValue: "decreases"
+        }
+      ]
+    },
+
+    {
+      id: "precursors",
+      label:
+        "Menge der Stoffe vor dem gehemmten Reaktionsschritt",
+
+      fields: [
+        {
+          id: "change",
+          label: "Erwartete Veränderung",
+
+          options: [
+            {
+              value: "may-increase",
+              label: "kann zunehmen"
+            },
+            {
+              value: "must-decrease",
+              label: "muss abnehmen"
+            },
+            {
+              value: "necessarily-unchanged",
+              label: "bleibt zwingend unverändert"
+            }
+          ],
+
+          correctValue: "may-increase"
+        }
+      ]
+    }
+  ],
+
+  correctMessage:
+    "Die Vorhersage ist vollständig korrekt. Durch die Hemmung wird weniger Xanthin umgesetzt und dadurch weniger Harnsäure gebildet. Stoffe vor dem gehemmten Schritt können sich anreichern.",
+
+  partialMessage:
+    "Ein Teil der Vorhersage ist korrekt. Prüfe, wie sich eine Hemmung auf die Stoffe vor und nach dem gehemmten Reaktionsschritt auswirkt.",
+
+  incorrectMessage:
+    "Die Vorhersage ist noch nicht korrekt. Ein gehemmter Reaktionsschritt vermindert die Bildung der nachfolgenden Produkte.",
+
+  helpLevels: [
+    "Betrachte die Xanthinoxidase als Verbindung zwischen Vorstufen und Harnsäure.",
+    "Wird ein Reaktionsschritt gehemmt, entsteht weniger Produkt hinter diesem Schritt.",
+    "Weniger Xanthin wird zu Harnsäure umgesetzt; Vorstufen können deshalb stärker erhalten bleiben."
+  ]
+});
   initializeApplication();
 </script>
 </body>
