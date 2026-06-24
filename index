@@ -1,0 +1,3979 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Interaktive Lernanwendung zur Enzymhemmung durch Allopurinol"
+  >
+
+  <title>Enzymhemmung – Allopurinol bei Gicht</title>
+
+  <style>
+    /* =========================================================
+       1. GRUNDEINSTELLUNGEN
+       ========================================================= */
+
+    :root {
+      color-scheme: light;
+
+      --color-page: #f3f6f8;
+      --color-surface: #ffffff;
+      --color-surface-muted: #edf3f6;
+      --color-surface-strong: #dfe9ed;
+
+      --color-text: #16242b;
+      --color-text-muted: #52646d;
+      --color-border: #c8d5da;
+      --color-border-strong: #9eb0b8;
+
+      --color-primary: #176b75;
+      --color-primary-dark: #10515a;
+      --color-primary-light: #d9eef0;
+
+      --color-accent: #875d0a;
+      --color-accent-light: #fff1c9;
+
+      --color-success: #17633b;
+      --color-success-light: #e0f3e8;
+
+      --color-warning: #7a4d00;
+      --color-warning-light: #fff0cf;
+
+      --color-error: #a12a2a;
+      --color-error-light: #fbe5e5;
+
+      --color-info: #205a8c;
+      --color-info-light: #e3f0fa;
+
+      --shadow-small:
+        0 1px 2px rgba(20, 40, 48, 0.08),
+        0 3px 8px rgba(20, 40, 48, 0.05);
+
+      --shadow-medium:
+        0 4px 14px rgba(20, 40, 48, 0.09);
+
+      --radius-small: 0.45rem;
+      --radius-medium: 0.75rem;
+      --radius-large: 1rem;
+
+      --content-width: 1500px;
+      --sidebar-width: 19rem;
+
+      --transition-fast: 140ms ease;
+      --transition-normal: 220ms ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100%;
+      margin: 0;
+      background: var(--color-page);
+      color: var(--color-text);
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      touch-action: manipulation;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(1.55rem, 2vw, 2.15rem);
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    a {
+      color: var(--color-primary-dark);
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid #f0a400;
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* =========================================================
+       2. SPRUNGLINK
+       ========================================================= */
+
+    .skip-link {
+      position: fixed;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 1000;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-small);
+      background: var(--color-text);
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+      transform: translateY(-160%);
+      transition: transform var(--transition-fast);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       3. ANWENDUNGSRAHMEN
+       ========================================================= */
+
+    .app-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--color-border);
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: var(--shadow-small);
+      backdrop-filter: blur(8px);
+    }
+
+    .header-inner {
+      width: min(100% - 2rem, var(--content-width));
+      margin-inline: auto;
+      padding-block: 1rem 0.85rem;
+    }
+
+    .header-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 0.85rem;
+    }
+
+    .brand-symbol {
+      flex: 0 0 auto;
+      width: 3rem;
+      height: 3rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #ffffff;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-title {
+      margin: 0;
+      color: var(--color-text);
+      font-size: clamp(1.05rem, 2vw, 1.4rem);
+      font-weight: 800;
+    }
+
+    .brand-subtitle {
+      margin: 0.1rem 0 0;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.6rem;
+    }
+
+    /* =========================================================
+       4. FORTSCHRITTSANZEIGE
+       ========================================================= */
+
+    .progress-section {
+      margin-top: 0.9rem;
+    }
+
+    .progress-copy {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .progress-copy strong {
+      color: var(--color-text);
+    }
+
+    .progress-track {
+      height: 0.7rem;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      background: var(--color-surface-muted);
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--color-primary);
+      transition: width var(--transition-normal);
+    }
+
+    /* =========================================================
+       5. HAUPTLAYOUT
+       ========================================================= */
+
+    .app-layout {
+      width: min(100% - 2rem, var(--content-width));
+      flex: 1;
+      display: grid;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      align-items: start;
+      gap: 1.5rem;
+      margin-inline: auto;
+      padding-block: 1.5rem 2.5rem;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 8.5rem;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-large);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-small);
+    }
+
+    .sidebar-header {
+      padding: 1.1rem 1.1rem 0.9rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .sidebar-header h2 {
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar-header p {
+      margin-bottom: 0;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .main-content {
+      min-width: 0;
+    }
+
+    /* =========================================================
+       6. MODULNAVIGATION
+       ========================================================= */
+
+    .module-list {
+      list-style: none;
+      padding: 0.75rem;
+      margin: 0;
+    }
+
+    .module-list li + li {
+      margin-top: 0.35rem;
+    }
+
+    .module-button {
+      width: 100%;
+      min-height: 3.35rem;
+      display: grid;
+      grid-template-columns: 2.2rem minmax(0, 1fr) 1.25rem;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-medium);
+      background: transparent;
+      color: var(--color-text);
+      text-align: left;
+      cursor: pointer;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .module-button:hover {
+      background: var(--color-surface-muted);
+    }
+
+    .module-button[aria-current="step"] {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+
+    .module-index {
+      width: 2.1rem;
+      height: 2.1rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--color-border-strong);
+      border-radius: 50%;
+      background: var(--color-surface);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .module-button[aria-current="step"] .module-index {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+
+    .module-copy {
+      min-width: 0;
+    }
+
+    .module-name {
+      display: block;
+      font-weight: 750;
+    }
+
+    .module-task-count {
+      display: block;
+      margin-top: 0.05rem;
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+    }
+
+    .module-status {
+      display: grid;
+      place-items: center;
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .status-legend {
+      padding: 0.85rem 1.1rem 1rem;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface-muted);
+    }
+
+    .status-legend h3 {
+      margin-bottom: 0.55rem;
+      font-size: 0.9rem;
+    }
+
+    .status-legend-list {
+      list-style: none;
+      display: grid;
+      gap: 0.3rem;
+      padding: 0;
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+    }
+
+    .status-symbol {
+      display: inline-block;
+      width: 1.3rem;
+      color: var(--color-text);
+      font-weight: 800;
+    }
+
+    /* =========================================================
+       7. AUFGABENKARTE
+       ========================================================= */
+
+    .task-card {
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-large);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .task-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.25rem;
+      padding: 1.4rem 1.5rem 1.2rem;
+      border-bottom: 1px solid var(--color-border);
+      background:
+        linear-gradient(
+          135deg,
+          var(--color-primary-light),
+          #ffffff 70%
+        );
+    }
+
+    .task-header-copy {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      margin-bottom: 0.25rem;
+      color: var(--color-primary-dark);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .task-header h1 {
+      margin-bottom: 0;
+    }
+
+    .task-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.45rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.85rem;
+      padding: 0.25rem 0.65rem;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      background: var(--color-surface);
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge--automatic {
+      border-color: #a9cbd0;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+    }
+
+    .task-body {
+      padding: 1.5rem;
+    }
+
+    .task-instruction {
+      max-width: 78ch;
+      margin-bottom: 1.25rem;
+      color: var(--color-text);
+      font-size: 1.04rem;
+    }
+
+    .task-instruction strong {
+      font-weight: 800;
+    }
+
+    .task-workspace {
+      min-height: 17rem;
+      display: grid;
+      place-items: center;
+      padding: 1.25rem;
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-medium);
+      background: var(--color-surface-muted);
+    }
+
+    .workspace-placeholder {
+      max-width: 42rem;
+      text-align: center;
+    }
+
+    .workspace-placeholder-icon {
+      width: 4.2rem;
+      height: 4.2rem;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      font-size: 1.7rem;
+      font-weight: 900;
+    }
+
+    .workspace-placeholder h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .workspace-placeholder p {
+      margin-bottom: 0;
+      color: var(--color-text-muted);
+    }
+
+    /* =========================================================
+       8. AUFGABENWERKZEUGE
+       ========================================================= */
+
+    .task-tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--color-border);
+      background: #fafcfd;
+    }
+
+    .tool-note {
+      margin-left: auto;
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* =========================================================
+       9. FEEDBACKBEREICH
+       ========================================================= */
+
+    .feedback {
+      margin: 0 1.5rem 1.2rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--color-border);
+      border-left-width: 0.4rem;
+      border-radius: var(--radius-medium);
+      background: var(--color-info-light);
+    }
+
+    .feedback h2 {
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .feedback p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feedback--success {
+      border-color: var(--color-success);
+      background: var(--color-success-light);
+    }
+
+    .feedback--warning {
+      border-color: var(--color-warning);
+      background: var(--color-warning-light);
+    }
+
+    .feedback--error {
+      border-color: var(--color-error);
+      background: var(--color-error-light);
+    }
+
+    .feedback--info {
+      border-color: var(--color-info);
+      background: var(--color-info-light);
+    }
+
+    /* =========================================================
+       10. AUFGABENNAVIGATION
+       ========================================================= */
+
+    .task-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface-muted);
+    }
+
+    .task-actions-left,
+    .task-actions-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    /* =========================================================
+       11. SCHALTFLÄCHEN
+       ========================================================= */
+
+    .button {
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.62rem 0.95rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-small);
+      font-weight: 750;
+      line-height: 1.2;
+      cursor: pointer;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .button:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    .button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .button:disabled,
+    .button[aria-disabled="true"] {
+      cursor: not-allowed;
+      opacity: 0.52;
+    }
+
+    .button--primary {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+
+    .button--primary:hover:not(:disabled) {
+      border-color: var(--color-primary-dark);
+      background: var(--color-primary-dark);
+    }
+
+    .button--secondary {
+      border-color: var(--color-border-strong);
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .button--secondary:hover:not(:disabled) {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+
+    .button--ghost {
+      border-color: transparent;
+      background: transparent;
+      color: var(--color-primary-dark);
+    }
+
+    .button--ghost:hover:not(:disabled) {
+      background: var(--color-primary-light);
+    }
+
+    .button-icon {
+      font-size: 1.05em;
+      line-height: 1;
+    }
+
+    /* =========================================================
+       12. ZUSATZHINWEISE
+       ========================================================= */
+
+    .information-card {
+      margin-top: 1.25rem;
+      padding: 1.2rem 1.35rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-large);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-small);
+    }
+
+    .information-card h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    .information-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .information-item {
+      padding: 0.9rem;
+      border-radius: var(--radius-medium);
+      background: var(--color-surface-muted);
+    }
+
+    .information-item strong {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .information-item p {
+      margin-bottom: 0;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* =========================================================
+       13. DIALOGFENSTER
+       ========================================================= */
+
+    .app-dialog {
+      width: min(92vw, 42rem);
+      max-height: 85vh;
+      padding: 0;
+      overflow: auto;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-large);
+      background: var(--color-surface);
+      color: var(--color-text);
+      box-shadow: 0 20px 60px rgba(10, 28, 35, 0.24);
+    }
+
+    .app-dialog::backdrop {
+      background: rgba(12, 27, 34, 0.56);
+    }
+
+    .dialog-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.2rem 1.3rem;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-primary-light);
+    }
+
+    .dialog-header h2 {
+      margin-bottom: 0;
+    }
+
+    .dialog-body {
+      padding: 1.3rem;
+    }
+
+    .dialog-footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem 1.3rem;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface-muted);
+    }
+
+    .dialog-close-icon {
+      width: 2.6rem;
+      height: 2.6rem;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       14. FUSSZEILE
+       ========================================================= */
+
+    .site-footer {
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .site-footer-inner {
+      width: min(100% - 2rem, var(--content-width));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-inline: auto;
+      padding-block: 1rem;
+      color: var(--color-text-muted);
+      font-size: 0.82rem;
+    }
+
+    /* =========================================================
+       15. RESPONSIVES LAYOUT
+       ========================================================= */
+
+    @media (max-width: 1100px) {
+      .app-layout {
+        grid-template-columns: 15.5rem minmax(0, 1fr);
+      }
+
+      .module-button {
+        grid-template-columns: 2rem minmax(0, 1fr);
+      }
+
+      .module-status {
+        display: none;
+      }
+
+      .information-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .site-header {
+        position: static;
+      }
+
+      .header-main-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .app-layout {
+        grid-template-columns: 1fr;
+        padding-top: 1rem;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .module-list {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+      }
+
+      .module-list li {
+        flex: 0 0 min(17rem, 82vw);
+        scroll-snap-align: start;
+      }
+
+      .module-list li + li {
+        margin-top: 0;
+      }
+
+      .status-legend {
+        display: none;
+      }
+
+      .task-header {
+        flex-direction: column;
+      }
+
+      .task-badges {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .header-inner,
+      .app-layout,
+      .site-footer-inner {
+        width: min(100% - 1rem, var(--content-width));
+      }
+
+      .brand-symbol {
+        width: 2.65rem;
+        height: 2.65rem;
+      }
+
+      .brand-subtitle {
+        display: none;
+      }
+
+      .header-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .header-actions .button {
+        width: 100%;
+      }
+
+      .task-header,
+      .task-body,
+      .task-tools,
+      .task-footer {
+        padding-inline: 1rem;
+      }
+
+      .feedback {
+        margin-inline: 1rem;
+      }
+
+      .task-footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .task-actions-left,
+      .task-actions-right {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .task-footer .button {
+        width: 100%;
+      }
+
+      .tool-note {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .header-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .task-workspace {
+        min-height: 14rem;
+        padding: 0.9rem;
+      }
+    }
+
+    /* =========================================================
+       16. REDUZIERTE BEWEGUNG
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    /* =========================================================
+       17. DRUCKANSICHT
+       ========================================================= */
+
+    @media print {
+      .site-header,
+      .sidebar,
+      .task-tools,
+      .task-footer,
+      .site-footer,
+      .information-card {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff;
+      }
+
+      .app-layout {
+        display: block;
+        width: 100%;
+        padding: 0;
+      }
+
+      .task-card {
+        border: 0;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">
+    Direkt zum Aufgabenbereich
+  </a>
+
+  <div id="app" class="app-shell">
+
+    <!-- =====================================================
+         KOPFBEREICH
+         ===================================================== -->
+
+    <header class="site-header">
+      <div class="header-inner">
+
+        <div class="header-main-row">
+          <div class="brand">
+            <div class="brand-symbol" aria-hidden="true">
+              E
+            </div>
+
+            <div class="brand-copy">
+              <p class="brand-title">
+                Enzymhemmung – Allopurinol bei Gicht
+              </p>
+
+              <p class="brand-subtitle">
+                Interaktive Lernanwendung für die Jahrgangsstufe 11
+              </p>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <button
+              id="chemistry-help-button"
+              class="button button--secondary"
+              type="button"
+            >
+              <span class="button-icon" aria-hidden="true">⌬</span>
+              Chemie-Hilfe
+            </button>
+
+            <button
+              id="save-progress-button"
+              class="button button--secondary"
+              type="button"
+              disabled
+              aria-disabled="true"
+              title="Die Speicherfunktion wird in Abschnitt 2 ergänzt."
+            >
+              <span class="button-icon" aria-hidden="true">▣</span>
+              Fortschritt speichern
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="progress-section"
+          aria-label="Bearbeitungsfortschritt"
+        >
+          <div class="progress-copy">
+            <span id="progress-label">
+              Modul 1 von 8 · Aufgabe 1 von 44
+            </span>
+
+            <strong id="progress-percent">
+              0 %
+            </strong>
+          </div>
+
+          <div
+            id="overall-progress"
+            class="progress-track"
+            role="progressbar"
+            aria-label="Gesamtfortschritt"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <div
+              id="progress-bar"
+              class="progress-fill"
+              style="width: 0%;"
+            ></div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- =====================================================
+         HAUPTBEREICH
+         ===================================================== -->
+
+    <div class="app-layout">
+
+      <!-- ===================================================
+           MODULNAVIGATION
+           =================================================== -->
+
+      <aside
+        class="sidebar"
+        aria-labelledby="module-navigation-title"
+      >
+        <div class="sidebar-header">
+          <h2 id="module-navigation-title">
+            Module
+          </h2>
+
+          <p>
+            Wähle einen bereits freigeschalteten Aufgabenbereich.
+          </p>
+        </div>
+
+        <nav aria-label="Navigation durch die Lernmodule">
+          <ol id="module-nav" class="module-list">
+
+            <li>
+              <button
+                class="module-button"
+                type="button"
+                data-module-id="module-01"
+                aria-current="step"
+              >
+                <span class="module-index" aria-hidden="true">
+                  1
+                </span>
+
+                <span class="module-copy">
+                  <span class="module-name">
+                    Purinabbau
+                  </span>
+
+                  <span class="module-task-count">
+                    Aufgaben 1–4
+                  </span>
+                </span>
+
+                <span
+                  class="module-status"
+                  aria-label="Aktuelles Modul"
+                >
+                  ●
+                </span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="module-button"
+                type="button"
+                data-module-id="module-02"
+              >
+                <span class="module-index" aria-hidden="true">
+                  2
+                </span>
+
+                <span class="module-copy">
+                  <span class="module-name">
+                    Gicht
+                  </span>
+
+                  <span class="module-task-count">
+                    Aufgaben 5–8
+                  </span>
+                </span>
+
+                <span
+                  class="module-status"
+                  aria-label="Noch nicht bearbeitet"
+                >
+                  ○
+                </span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="module-button"
+                type="button"
+                data-module-id="module-03"
+              >
+                <span class="module-index" aria-hidden="true">
+                  3
+                </span>
+
+                <span class="module-copy">
+                  <span class="module-name">
+                    Xanthinoxidase
+                  </span>
+
+                  <span class="module-task-count">
+                    Aufgaben 9–13
+                  </span>
+                </span>
+
+                <span
+                  class="module-status"
+                  aria-label="Noch nicht bearbeitet"
+                >
+                  ○
+                </span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="module-button"
+                type="button"
+                data-module-id="module-04"
+              >
+                <span class="module-index" aria-hidden="true">
+                  4
+                </span>
+
+                <span class="module-copy">
+                  <span class="module-name">
+                    Strukturformeln
+                  </span>
+
+                  <span class="module-task-count">
+                    Aufgaben 14–18
+                  </span>
+                </span>
+
+                <span
+                  class="module-status"
+                  aria-label="Noch nicht bearbeitet"
+                >
+                  ○
+                </span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="module-button"
+                type="button"
+                data-module-id="module-05"
+              >
+                <span class="module-index" aria-hidden="true">
+                  5
+                </span>
+
+                <span class="module-copy">
+                  <span class="module-name">
+                    Versuchsaufbau
+                  </span>
+
+                  <span class="module-task-count">
+                    Aufgaben 19–23
+                  </span>
+                </span>
+
+                <span
+                  class="module-status"
+                  aria-label="Noch nicht bearbeitet"
+                >
+                  ○
+                </span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="module-button"
+                type="button"
+                data-module-id="module-06"
+              >
+                <span class="module-index" aria-hidden="true">
+                  6
+                </span>
+
+                <span class="module-copy">
+                  <span class="module-name">
+                    Diagramm
+                  </span>
+
+                  <span class="module-task-count">
+                    Aufgaben 24–29
+                  </span>
+                </span>
+
+                <span
+                  class="module-status"
+                  aria-label="Noch nicht bearbeitet"
+                >
+                  ○
+                </span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="module-button"
+                type="button"
+                data-module-id="module-07"
+              >
+                <span class="module-index" aria-hidden="true">
+                  7
+                </span>
+
+                <span class="module-copy">
+                  <span class="module-name">
+                    Auswertung
+                  </span>
+
+                  <span class="module-task-count">
+                    Aufgaben 30–42
+                  </span>
+                </span>
+
+                <span
+                  class="module-status"
+                  aria-label="Noch nicht bearbeitet"
+                >
+                  ○
+                </span>
+              </button>
+            </li>
+
+            <li>
+              <button
+                class="module-button"
+                type="button"
+                data-module-id="module-08"
+              >
+                <span class="module-index" aria-hidden="true">
+                  8
+                </span>
+
+                <span class="module-copy">
+                  <span class="module-name">
+                    Freie Sicherung
+                  </span>
+
+                  <span class="module-task-count">
+                    Aufgaben 43–44
+                  </span>
+                </span>
+
+                <span
+                  class="module-status"
+                  aria-label="Noch nicht bearbeitet"
+                >
+                  ○
+                </span>
+              </button>
+            </li>
+
+          </ol>
+        </nav>
+
+        <div class="status-legend">
+          <h3>
+            Aufgabenstatus
+          </h3>
+
+          <ul class="status-legend-list">
+            <li>
+              <span class="status-symbol" aria-hidden="true">○</span>
+              noch nicht bearbeitet
+            </li>
+
+            <li>
+              <span class="status-symbol" aria-hidden="true">◐</span>
+              begonnen
+            </li>
+
+            <li>
+              <span class="status-symbol" aria-hidden="true">△</span>
+              teilweise korrekt
+            </li>
+
+            <li>
+              <span class="status-symbol" aria-hidden="true">✓</span>
+              vollständig korrekt
+            </li>
+
+            <li>
+              <span class="status-symbol" aria-hidden="true">✎</span>
+              Selbstkontrolle durchgeführt
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- ===================================================
+           AUFGABENBEREICH
+           =================================================== -->
+
+      <main
+        id="main-content"
+        class="main-content"
+        tabindex="-1"
+      >
+        <article
+          id="task-card"
+          class="task-card"
+          aria-labelledby="task-title"
+        >
+
+          <header class="task-header">
+            <div class="task-header-copy">
+              <p id="task-number" class="eyebrow">
+                Modul 1 · Aufgabe 1
+              </p>
+
+              <h1 id="task-title">
+                Stoffwechselweg aufbauen
+              </h1>
+            </div>
+
+            <div class="task-badges">
+              <span class="badge badge--automatic">
+                Automatisch auswertbar
+              </span>
+
+              <span id="task-points-badge" class="badge">
+                0 von 4 Punkten
+              </span>
+            </div>
+          </header>
+
+          <div class="task-body">
+            <p id="task-instruction" class="task-instruction">
+              <strong>Arbeitsauftrag:</strong>
+              Ordne die Stoffe den richtigen Positionen im
+              Purinabbau zu.
+            </p>
+
+            <!--
+              Dieser Bereich wird in den folgenden Abschnitten
+              durch die jeweilige interaktive Aufgabe ersetzt.
+            -->
+
+            <section
+              id="task-content"
+              class="task-workspace"
+              data-task-type="placeholder"
+              aria-label="Interaktiver Aufgabenbereich"
+            >
+              <div class="workspace-placeholder">
+                <div
+                  class="workspace-placeholder-icon"
+                  aria-hidden="true"
+                >
+                  ↔
+                </div>
+
+                <h2>
+                  Interaktiver Aufgabenbereich
+                </h2>
+
+                <p>
+                  Hier erscheinen später Drag-and-drop-Aufgaben,
+                  Zuordnungen, Diagramme, Molekülansichten und
+                  weitere interaktive Elemente.
+                </p>
+              </div>
+            </section>
+          </div>
+
+          <!-- =================================================
+               WERKZEUGE UND HILFEN
+               ================================================= -->
+
+          <div class="task-tools">
+            <button
+              id="hint-button"
+              class="button button--ghost"
+              type="button"
+              disabled
+              aria-disabled="true"
+            >
+              <span class="button-icon" aria-hidden="true">?</span>
+              Hinweis anzeigen
+            </button>
+
+            <span id="attempt-counter" class="tool-note">
+              Noch kein Prüfversuch
+            </span>
+          </div>
+
+          <!-- =================================================
+               RÜCKMELDUNGSBEREICH
+               Wird später dynamisch ein- und ausgeblendet.
+               ================================================= -->
+
+          <section
+            id="feedback-region"
+            class="feedback feedback--info"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            hidden
+          >
+            <h2 id="feedback-title">
+              Rückmeldung
+            </h2>
+
+            <p id="feedback-message">
+              Die Rückmeldung zur Aufgabe erscheint an dieser Stelle.
+            </p>
+          </section>
+
+          <!-- =================================================
+               AUFGABENNAVIGATION
+               ================================================= -->
+
+          <footer class="task-footer">
+            <div class="task-actions-left">
+              <button
+                id="previous-task-button"
+                class="button button--secondary"
+                type="button"
+                disabled
+              >
+                <span class="button-icon" aria-hidden="true">←</span>
+                Zurück
+              </button>
+            </div>
+
+            <div class="task-actions-right">
+              <button
+                id="reset-task-button"
+                class="button button--secondary"
+                type="button"
+                disabled
+              >
+                Aufgabe zurücksetzen
+              </button>
+
+              <button
+                id="check-task-button"
+                class="button button--primary"
+                type="button"
+                disabled
+              >
+                Antwort prüfen
+              </button>
+
+              <button
+                id="next-task-button"
+                class="button button--secondary"
+                type="button"
+                disabled
+              >
+                Weiter
+                <span class="button-icon" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </footer>
+
+        </article>
+
+        <!-- ===================================================
+             ALLGEMEINE BEARBEITUNGSHINWEISE
+             =================================================== -->
+
+        <section
+          class="information-card"
+          aria-labelledby="working-information-title"
+        >
+          <h2 id="working-information-title">
+            Hinweise zur Bearbeitung
+          </h2>
+
+          <div class="information-grid">
+            <div class="information-item">
+              <strong>
+                Material verwenden
+              </strong>
+
+              <p>
+                Nutze den Informationstext, die Tabelle und die
+                Abbildungen parallel zur Anwendung.
+              </p>
+            </div>
+
+            <div class="information-item">
+              <strong>
+                Antworten kontrollieren
+              </strong>
+
+              <p>
+                Strukturierte Aufgaben werden automatisch geprüft und
+                können anschließend überarbeitet werden.
+              </p>
+            </div>
+
+            <div class="information-item">
+              <strong>
+                Hilfen gezielt einsetzen
+              </strong>
+
+              <p>
+                Anspruchsvolle Aufgaben enthalten gestufte Hinweise,
+                die nacheinander geöffnet werden können.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <!-- =====================================================
+         FUSSZEILE
+         ===================================================== -->
+
+    <footer class="site-footer">
+      <div class="site-footer-inner">
+        <span>
+          Offline-Lernanwendung · Es werden keine Daten übertragen.
+        </span>
+
+        <span id="app-version">
+          Version 1.0 · Grundgerüst
+        </span>
+      </div>
+    </footer>
+  </div>
+
+  <!-- =======================================================
+       CHEMIE-HILFE-DIALOG
+       Der Inhalt wird beim Strukturformel-Modul erweitert.
+       ======================================================= -->
+
+  <dialog
+    id="chemistry-help-dialog"
+    class="app-dialog"
+    aria-labelledby="chemistry-help-title"
+  >
+    <div class="dialog-header">
+      <div>
+        <p class="eyebrow">
+          Unterstützungsbereich
+        </p>
+
+        <h2 id="chemistry-help-title">
+          Chemische Grundlagen
+        </h2>
+      </div>
+
+      <button
+        id="chemistry-help-close-icon"
+        class="dialog-close-icon"
+        type="button"
+        aria-label="Chemie-Hilfe schließen"
+      >
+        ×
+      </button>
+    </div>
+
+    <div class="dialog-body">
+      <p>
+        Dieser Bereich wird im Abschnitt zu den Strukturformeln mit
+        interaktiven Erklärungen ergänzt.
+      </p>
+
+      <p>
+        Vorgesehen sind Hilfen zu Einfach- und Doppelbindungen,
+        heterocyclischen Ringsystemen, Polarität,
+        Wasserstoffbrücken und funktionellen Gruppen.
+      </p>
+    </div>
+
+    <div class="dialog-footer">
+      <button
+        id="chemistry-help-close-button"
+        class="button button--primary"
+        type="button"
+      >
+        Schließen
+      </button>
+    </div>
+  </dialog>
+
+ <script>
+  "use strict";
+
+  /* =========================================================
+     1. KONSTANTEN
+     ========================================================= */
+
+  const APP_VERSION = "1.0.0-section-2";
+  const STATE_SCHEMA_VERSION = 1;
+  const STORAGE_KEY = "enzymhemmung-app-v1";
+
+  const VALID_TASK_STATUSES = new Set([
+    "unseen",
+    "started",
+    "checked-incorrect",
+    "checked-partial",
+    "correct",
+    "completed-self-check"
+  ]);
+
+  const COMPLETED_TASK_STATUSES = new Set([
+    "correct",
+    "completed-self-check"
+  ]);
+
+  /* =========================================================
+     2. MODULDEFINITIONEN
+     ========================================================= */
+
+  const MODULES = [
+    {
+      id: "module-01",
+      number: 1,
+      title: "Purinabbau",
+      firstTask: 1,
+      lastTask: 4
+    },
+    {
+      id: "module-02",
+      number: 2,
+      title: "Gicht",
+      firstTask: 5,
+      lastTask: 8
+    },
+    {
+      id: "module-03",
+      number: 3,
+      title: "Xanthinoxidase",
+      firstTask: 9,
+      lastTask: 13
+    },
+    {
+      id: "module-04",
+      number: 4,
+      title: "Strukturformeln",
+      firstTask: 14,
+      lastTask: 18
+    },
+    {
+      id: "module-05",
+      number: 5,
+      title: "Versuchsaufbau",
+      firstTask: 19,
+      lastTask: 23
+    },
+    {
+      id: "module-06",
+      number: 6,
+      title: "Diagramm",
+      firstTask: 24,
+      lastTask: 29
+    },
+    {
+      id: "module-07",
+      number: 7,
+      title: "Auswertung",
+      firstTask: 30,
+      lastTask: 42
+    },
+    {
+      id: "module-08",
+      number: 8,
+      title: "Freie Sicherung",
+      firstTask: 43,
+      lastTask: 44
+    }
+  ];
+
+  /* =========================================================
+     3. HILFSFUNKTION ZUR AUFGABENDEFINITION
+     ========================================================= */
+
+  function defineTask({
+    number,
+    moduleId,
+    title,
+    type,
+    instruction,
+    maxPoints = 1,
+    mode = "automatic",
+    helpLevels = []
+  }) {
+    return {
+      id: `task-${String(number).padStart(2, "0")}`,
+      number,
+      moduleId,
+      title,
+      type,
+      instruction,
+      maxPoints,
+      mode,
+      helpLevels
+    };
+  }
+
+  /* =========================================================
+     4. AUFGABENDEFINITIONEN
+
+     mode:
+     - automatic   = automatisch auswertbar
+     - exploration = interaktive Lernhilfe
+     - self-check  = Freitext mit Selbstkontrolle
+     ========================================================= */
+
+  const TASKS = [
+    defineTask({
+      number: 1,
+      moduleId: "module-01",
+      title: "Stoffwechselweg aufbauen",
+      type: "ordering-path",
+      instruction:
+        "Ordne die Stoffe den richtigen Positionen im Purinabbau zu.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 2,
+      moduleId: "module-01",
+      title: "Stoffe funktional einordnen",
+      type: "classification-matrix",
+      instruction:
+        "Ordne die Stoffe ihrer Funktion innerhalb des dargestellten Stoffwechselwegs zu.",
+      maxPoints: 5
+    }),
+
+    defineTask({
+      number: 3,
+      moduleId: "module-01",
+      title: "Löslichkeit zuordnen",
+      type: "matching-and-ordering",
+      instruction:
+        "Ordne den Stoffen ihre Löslichkeit zu und bilde anschließend eine Kausalkette zur Kristallbildung.",
+      maxPoints: 7
+    }),
+
+    defineTask({
+      number: 4,
+      moduleId: "module-01",
+      title: "Folgen einer Enzymhemmung vorhersagen",
+      type: "dropdown-matrix",
+      instruction:
+        "Leite aus dem Stoffwechselweg ab, wie sich eine Hemmung der Xanthinoxidase auf verschiedene Stoffe auswirkt.",
+      maxPoints: 3
+    }),
+
+    defineTask({
+      number: 5,
+      moduleId: "module-02",
+      title: "Bilanzmodell bedienen",
+      type: "balance-simulation",
+      instruction:
+        "Verändere Bildung und Ausscheidung von Harnsäure und untersuche die Folgen für die Konzentration im Blut.",
+      maxPoints: 3
+    }),
+
+    defineTask({
+      number: 6,
+      moduleId: "module-02",
+      title: "Krankheitsentstehung ordnen",
+      type: "ordering",
+      instruction:
+        "Ordne die Vorgänge von der gestörten Ausscheidung bis zu den Gichtsymptomen.",
+      maxPoints: 7
+    }),
+
+    defineTask({
+      number: 7,
+      moduleId: "module-02",
+      title: "Folgen kategorisieren",
+      type: "classification-matrix",
+      instruction:
+        "Unterscheide Stoffwechselfolgen, physikalisch-chemische Folgen, Gewebereaktionen und Symptome.",
+      maxPoints: 6
+    }),
+
+    defineTask({
+      number: 8,
+      moduleId: "module-02",
+      title: "Therapieansätze bewerten",
+      type: "multi-classification",
+      instruction:
+        "Bewerte verschiedene Therapieansätze fachlich und ordne ihren Bezug zum Experiment ein.",
+      maxPoints: 10
+    }),
+
+    defineTask({
+      number: 9,
+      moduleId: "module-03",
+      title: "Reaktionsschritte vervollständigen",
+      type: "reaction-drag-drop",
+      instruction:
+        "Vervollständige die beiden durch Xanthinoxidase katalysierten Reaktionsschritte.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 10,
+      moduleId: "module-03",
+      title: "Substrat und Produkt unterscheiden",
+      type: "matching",
+      instruction:
+        "Bestimme die Funktion von Xanthin in den beiden aufeinanderfolgenden Reaktionen.",
+      maxPoints: 2
+    }),
+
+    defineTask({
+      number: 11,
+      moduleId: "module-03",
+      title: "Ablauf am aktiven Zentrum ordnen",
+      type: "ordering",
+      instruction:
+        "Bringe die molekularen Vorgänge einer Enzymreaktion in die richtige Reihenfolge.",
+      maxPoints: 6
+    }),
+
+    defineTask({
+      number: 12,
+      moduleId: "module-03",
+      title: "Einfluss der Substratkonzentration erklären",
+      type: "select-and-order",
+      instruction:
+        "Wähle die fachlich korrekten Aussagen aus und ordne sie zu einer Erklärung der Enzymsättigung.",
+      maxPoints: 5
+    }),
+
+    defineTask({
+      number: 13,
+      moduleId: "module-03",
+      title: "Kompetitive Hemmung vorhersagen",
+      type: "hypothesis-matrix",
+      instruction:
+        "Formuliere eine Vorhersage zur Wirkung eines kompetitiven Hemmstoffs bei unterschiedlichen Substratkonzentrationen.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 14,
+      moduleId: "module-04",
+      title: "Interaktive Molekülansicht erkunden",
+      type: "molecule-exploration",
+      instruction:
+        "Untersuche die Strukturformeln und rufe Informationen zu Atomen, Bindungen und Molekülbereichen auf.",
+      maxPoints: 0,
+      mode: "exploration"
+    }),
+
+    defineTask({
+      number: 15,
+      moduleId: "module-04",
+      title: "Chemische Strukturmerkmale identifizieren",
+      type: "svg-marking",
+      instruction:
+        "Markiere vorgegebene Strukturmerkmale in den Molekülabbildungen.",
+      maxPoints: 5
+    }),
+
+    defineTask({
+      number: 16,
+      moduleId: "module-04",
+      title: "Hypoxanthin und Allopurinol vergleichen",
+      type: "double-svg-marking",
+      instruction:
+        "Markiere strukturelle Gemeinsamkeiten und Unterschiede zwischen Hypoxanthin und Allopurinol.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 17,
+      moduleId: "module-04",
+      title: "Strukturähnlichkeit deuten",
+      type: "multiple-select",
+      instruction:
+        "Wähle die Strukturmerkmale aus, die eine Bindung von Allopurinol am aktiven Zentrum begünstigen können.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 18,
+      moduleId: "module-04",
+      title: "Struktur und Hemmung verknüpfen",
+      type: "argument-chain",
+      instruction:
+        "Ordne die Argumentationsschritte von der Strukturähnlichkeit bis zur verminderten Reaktionsgeschwindigkeit.",
+      maxPoints: 6
+    }),
+
+    defineTask({
+      number: 19,
+      moduleId: "module-05",
+      title: "Versuchsvariablen bestimmen",
+      type: "classification-matrix",
+      instruction:
+        "Ordne die Größen des Versuchs als unabhängige, abhängige und konstant zu haltende Variablen ein.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 20,
+      moduleId: "module-05",
+      title: "Kontrollansatz begründen",
+      type: "multiple-select",
+      instruction:
+        "Wähle die Gründe aus, weshalb eine Messreihe ohne Allopurinol erforderlich ist.",
+      maxPoints: 3
+    }),
+
+    defineTask({
+      number: 21,
+      moduleId: "module-05",
+      title: "Mehrere Substratkonzentrationen begründen",
+      type: "statement-evaluation",
+      instruction:
+        "Bewerte Aussagen zur Bedeutung der verschiedenen Substratkonzentrationen.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 22,
+      moduleId: "module-05",
+      title: "Geeigneten Diagrammtyp auswählen",
+      type: "single-choice",
+      instruction:
+        "Wähle die geeignete Darstellungsform für den Zusammenhang zwischen Substratkonzentration und Reaktionsgeschwindigkeit.",
+      maxPoints: 1
+    }),
+
+    defineTask({
+      number: 23,
+      moduleId: "module-05",
+      title: "Achsen und Einheiten festlegen",
+      type: "dropdown-fields",
+      instruction:
+        "Lege Messgrößen, Achsen und Einheiten des Diagramms fest.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 24,
+      moduleId: "module-06",
+      title: "Skalierung auswählen",
+      type: "scale-selection",
+      instruction:
+        "Wähle eine fachlich und graphisch sinnvolle Skalierung für beide Achsen.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 25,
+      moduleId: "module-06",
+      title: "Messpunkte ohne Allopurinol eintragen",
+      type: "interactive-diagram-points",
+      instruction:
+        "Übertrage die Messwerte der Versuchsreihe ohne Allopurinol in das Koordinatensystem.",
+      maxPoints: 8
+    }),
+
+    defineTask({
+      number: 26,
+      moduleId: "module-06",
+      title: "Messpunkte mit Allopurinol eintragen",
+      type: "interactive-diagram-points",
+      instruction:
+        "Übertrage die Messwerte der Versuchsreihe mit Allopurinol in das Koordinatensystem.",
+      maxPoints: 8
+    }),
+
+    defineTask({
+      number: 27,
+      moduleId: "module-06",
+      title: "Fehlerhafte Punkte korrigieren",
+      type: "diagram-correction",
+      instruction:
+        "Überprüfe die Rückmeldungen des Diagramms und korrigiere fehlerhaft gesetzte Datenpunkte.",
+      maxPoints: 1
+    }),
+
+    defineTask({
+      number: 28,
+      moduleId: "module-06",
+      title: "Geeigneten Kurvenverlauf auswählen",
+      type: "single-choice",
+      instruction:
+        "Entscheide, wie die Messpunkte zur Darstellung des biologischen Zusammenhangs verbunden werden sollten.",
+      maxPoints: 1
+    }),
+
+    defineTask({
+      number: 29,
+      moduleId: "module-06",
+      title: "Legende erstellen",
+      type: "matching",
+      instruction:
+        "Ordne den beiden Versuchsreihen die richtigen Diagrammsymbole zu.",
+      maxPoints: 2
+    }),
+
+    defineTask({
+      number: 30,
+      moduleId: "module-07",
+      title: "Messwerte ablesen",
+      type: "number-inputs",
+      instruction:
+        "Lies ausgewählte Reaktionsgeschwindigkeiten aus der Tabelle oder dem Diagramm ab.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 31,
+      moduleId: "module-07",
+      title: "Differenzen berechnen",
+      type: "number-inputs",
+      instruction:
+        "Berechne die absoluten Unterschiede zwischen den beiden Versuchsreihen.",
+      maxPoints: 2
+    }),
+
+    defineTask({
+      number: 32,
+      moduleId: "module-07",
+      title: "Relative Hemmung berechnen",
+      type: "calculation-inputs",
+      instruction:
+        "Berechne die relative Hemmung bei ausgewählten Substratkonzentrationen.",
+      maxPoints: 3
+    }),
+
+    defineTask({
+      number: 33,
+      moduleId: "module-07",
+      title: "Kurvenverläufe beschreiben",
+      type: "multiple-select",
+      instruction:
+        "Wähle alle Aussagen aus, die die beiden Kurven fachlich korrekt beschreiben.",
+      maxPoints: 5
+    }),
+
+    defineTask({
+      number: 34,
+      moduleId: "module-07",
+      title: "Sättigung erklären",
+      type: "cloze-dropdown",
+      instruction:
+        "Vervollständige die Erklärung des Kurvenverlaufs bei steigender Substratkonzentration.",
+      maxPoints: 3
+    }),
+
+    defineTask({
+      number: 35,
+      moduleId: "module-07",
+      title: "Hemmungsmodelle vergleichen",
+      type: "classification-matrix",
+      instruction:
+        "Ordne verschiedene Versuchsvorhersagen den passenden Hemmungsmodellen zu.",
+      maxPoints: 5
+    }),
+
+    defineTask({
+      number: 36,
+      moduleId: "module-07",
+      title: "Passenden Hemmungstyp auswählen",
+      type: "single-choice",
+      instruction:
+        "Wähle den Hemmungsmechanismus, der die Versuchsdaten am besten erklärt.",
+      maxPoints: 1
+    }),
+
+    defineTask({
+      number: 37,
+      moduleId: "module-07",
+      title: "Daten als Belege auswählen",
+      type: "multiple-select",
+      instruction:
+        "Wähle die Messwertbeobachtungen aus, die für eine kompetitive Hemmung sprechen.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 38,
+      moduleId: "module-07",
+      title: "Alternatives Modell widerlegen",
+      type: "evidence-matching",
+      instruction:
+        "Wähle die Beobachtung aus, die gegen eine dauerhafte Inaktivierung eines Teils der Enzyme spricht.",
+      maxPoints: 1
+    }),
+
+    defineTask({
+      number: 39,
+      moduleId: "module-07",
+      title: "Mechanismus der kompetitiven Hemmung ordnen",
+      type: "argument-chain",
+      instruction:
+        "Ordne die Schritte der kompetitiven Hemmung zu einer vollständigen mechanistischen Erklärung.",
+      maxPoints: 8
+    }),
+
+    defineTask({
+      number: 40,
+      moduleId: "module-07",
+      title: "Wirkungsebenen zuordnen",
+      type: "classification-matrix",
+      instruction:
+        "Ordne die Wirkungen von Allopurinol der molekularen, enzymatischen, stoffwechselphysiologischen und organismischen Ebene zu.",
+      maxPoints: 4
+    }),
+
+    defineTask({
+      number: 41,
+      moduleId: "module-07",
+      title: "Wirkungskette vervollständigen",
+      type: "cloze-dropdown",
+      instruction:
+        "Vervollständige die Wirkungskette von Allopurinol bis zur verminderten Kristallbildung.",
+      maxPoints: 5
+    }),
+
+    defineTask({
+      number: 42,
+      moduleId: "module-07",
+      title: "Gesamterklärung aus Satzbausteinen",
+      type: "argument-chain",
+      instruction:
+        "Ordne die Satzbausteine zu einer vollständigen Erklärung der therapeutischen Wirkung.",
+      maxPoints: 7
+    }),
+
+    defineTask({
+      number: 43,
+      moduleId: "module-08",
+      title: "Kompetitive Hemmung kurz erklären",
+      type: "free-text-self-check",
+      instruction:
+        "Erkläre in zwei bis drei Sätzen, woran sich im Diagramm eine kompetitive Hemmung erkennen lässt.",
+      maxPoints: 0,
+      mode: "self-check"
+    }),
+
+    defineTask({
+      number: 44,
+      moduleId: "module-08",
+      title: "Wirkung von Allopurinol zusammenhängend erklären",
+      type: "free-text-self-check",
+      instruction:
+        "Erkläre die Wirkung von Allopurinol bei der Behandlung der Gicht in einem zusammenhängenden Fachtext.",
+      maxPoints: 0,
+      mode: "self-check"
+    })
+  ];
+
+  /* =========================================================
+     5. NACHSCHLAGETABELLEN
+     ========================================================= */
+
+  const TASKS_BY_ID = new Map(
+    TASKS.map((task) => [task.id, task])
+  );
+
+  const TASKS_BY_NUMBER = new Map(
+    TASKS.map((task) => [task.number, task])
+  );
+
+  const MODULES_BY_ID = new Map(
+    MODULES.map((module) => [module.id, module])
+  );
+
+  /* =========================================================
+     6. DOM-REFERENZEN
+     ========================================================= */
+
+  const ui = {
+    app: document.getElementById("app"),
+    mainContent: document.getElementById("main-content"),
+    taskCard: document.getElementById("task-card"),
+
+    chemistryHelpButton:
+      document.getElementById("chemistry-help-button"),
+
+    chemistryHelpDialog:
+      document.getElementById("chemistry-help-dialog"),
+
+    chemistryHelpCloseIcon:
+      document.getElementById("chemistry-help-close-icon"),
+
+    chemistryHelpCloseButton:
+      document.getElementById("chemistry-help-close-button"),
+
+    saveProgressButton:
+      document.getElementById("save-progress-button"),
+
+    progressLabel:
+      document.getElementById("progress-label"),
+
+    progressPercent:
+      document.getElementById("progress-percent"),
+
+    overallProgress:
+      document.getElementById("overall-progress"),
+
+    progressBar:
+      document.getElementById("progress-bar"),
+
+    moduleNav:
+      document.getElementById("module-nav"),
+
+    moduleButtons:
+      Array.from(document.querySelectorAll(".module-button")),
+
+    taskNumber:
+      document.getElementById("task-number"),
+
+    taskTitle:
+      document.getElementById("task-title"),
+
+    taskInstruction:
+      document.getElementById("task-instruction"),
+
+    taskContent:
+      document.getElementById("task-content"),
+
+    automaticBadge:
+      document.querySelector(".badge--automatic"),
+
+    taskPointsBadge:
+      document.getElementById("task-points-badge"),
+
+    hintButton:
+      document.getElementById("hint-button"),
+
+    attemptCounter:
+      document.getElementById("attempt-counter"),
+
+    feedbackRegion:
+      document.getElementById("feedback-region"),
+
+    feedbackTitle:
+      document.getElementById("feedback-title"),
+
+    feedbackMessage:
+      document.getElementById("feedback-message"),
+
+    previousTaskButton:
+      document.getElementById("previous-task-button"),
+
+    resetTaskButton:
+      document.getElementById("reset-task-button"),
+
+    checkTaskButton:
+      document.getElementById("check-task-button"),
+
+    nextTaskButton:
+      document.getElementById("next-task-button"),
+
+    appVersion:
+      document.getElementById("app-version")
+  };
+
+  /* =========================================================
+     7. AUFGABEN-CONTROLLER
+
+     Spätere Abschnitte registrieren hier die eigentlichen
+     interaktiven Aufgabentypen.
+     ========================================================= */
+
+  const TASK_CONTROLLERS_BY_ID = new Map();
+  const TASK_CONTROLLERS_BY_TYPE = new Map();
+
+  let activeController = null;
+  let activeTaskContext = null;
+  let activeControllerCleanup = null;
+  let saveFeedbackTimer = null;
+
+  /* =========================================================
+     8. ANFANGSZUSTAND
+     ========================================================= */
+
+  function createInitialTaskState(task) {
+    return {
+      taskId: task.id,
+      status: "unseen",
+      answer: null,
+      attempts: 0,
+      usedHints: 0,
+      points: 0,
+      maxPoints: task.maxPoints,
+      lastModified: null
+    };
+  }
+
+  function createInitialState() {
+    const taskStates = {};
+
+    for (const task of TASKS) {
+      taskStates[task.id] = createInitialTaskState(task);
+    }
+
+    return {
+      schemaVersion: STATE_SCHEMA_VERSION,
+      appVersion: APP_VERSION,
+      currentTaskId: TASKS[0].id,
+      highestUnlockedTask: 1,
+
+      startedAt: new Date().toISOString(),
+      lastOpenedAt: new Date().toISOString(),
+      lastSavedAt: null,
+
+      lastTaskByModule: {
+        "module-01": "task-01"
+      },
+
+      tasks: taskStates,
+
+      settings: {
+        chemistryHelpEnabled: false,
+        reducedMotion:
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+        fontSize: "normal"
+      }
+    };
+  }
+
+  /* =========================================================
+     9. SPEICHERSTAND VALIDIEREN UND ZUSAMMENFÜHREN
+     ========================================================= */
+
+  function isPlainObject(value) {
+    return (
+      typeof value === "object" &&
+      value !== null &&
+      !Array.isArray(value)
+    );
+  }
+
+  function normalizeTaskState(savedTaskState, task) {
+    const initialTaskState = createInitialTaskState(task);
+
+    if (!isPlainObject(savedTaskState)) {
+      return initialTaskState;
+    }
+
+    const status = VALID_TASK_STATUSES.has(savedTaskState.status)
+      ? savedTaskState.status
+      : initialTaskState.status;
+
+    const attempts = Number.isInteger(savedTaskState.attempts)
+      ? Math.max(0, savedTaskState.attempts)
+      : 0;
+
+    const usedHints = Number.isInteger(savedTaskState.usedHints)
+      ? Math.max(0, savedTaskState.usedHints)
+      : 0;
+
+    const points = Number.isFinite(savedTaskState.points)
+      ? Math.max(
+          0,
+          Math.min(task.maxPoints, savedTaskState.points)
+        )
+      : 0;
+
+    return {
+      taskId: task.id,
+      status,
+      answer:
+        savedTaskState.answer === undefined
+          ? null
+          : savedTaskState.answer,
+      attempts,
+      usedHints,
+      points,
+      maxPoints: task.maxPoints,
+      lastModified:
+        typeof savedTaskState.lastModified === "string"
+          ? savedTaskState.lastModified
+          : null
+    };
+  }
+
+  function mergeSavedState(savedState) {
+    const freshState = createInitialState();
+
+    if (
+      !isPlainObject(savedState) ||
+      savedState.schemaVersion !== STATE_SCHEMA_VERSION
+    ) {
+      return freshState;
+    }
+
+    const mergedTasks = {};
+
+    for (const task of TASKS) {
+      mergedTasks[task.id] = normalizeTaskState(
+        savedState.tasks?.[task.id],
+        task
+      );
+    }
+
+    const savedCurrentTask =
+      typeof savedState.currentTaskId === "string" &&
+      TASKS_BY_ID.has(savedState.currentTaskId)
+        ? savedState.currentTaskId
+        : freshState.currentTaskId;
+
+    const currentTaskNumber =
+      TASKS_BY_ID.get(savedCurrentTask).number;
+
+    const savedHighestUnlocked =
+      Number.isInteger(savedState.highestUnlockedTask)
+        ? savedState.highestUnlockedTask
+        : 1;
+
+    const highestUnlockedTask = Math.max(
+      1,
+      Math.min(
+        TASKS.length,
+        Math.max(savedHighestUnlocked, currentTaskNumber)
+      )
+    );
+
+    const lastTaskByModule = {};
+
+    if (isPlainObject(savedState.lastTaskByModule)) {
+      for (const module of MODULES) {
+        const candidate =
+          savedState.lastTaskByModule[module.id];
+
+        if (
+          typeof candidate === "string" &&
+          TASKS_BY_ID.has(candidate) &&
+          TASKS_BY_ID.get(candidate).moduleId === module.id
+        ) {
+          lastTaskByModule[module.id] = candidate;
+        }
+      }
+    }
+
+    return {
+      ...freshState,
+
+      currentTaskId: savedCurrentTask,
+      highestUnlockedTask,
+
+      startedAt:
+        typeof savedState.startedAt === "string"
+          ? savedState.startedAt
+          : freshState.startedAt,
+
+      lastOpenedAt: new Date().toISOString(),
+
+      lastSavedAt:
+        typeof savedState.lastSavedAt === "string"
+          ? savedState.lastSavedAt
+          : null,
+
+      lastTaskByModule,
+      tasks: mergedTasks,
+
+      settings: {
+        ...freshState.settings,
+        ...(isPlainObject(savedState.settings)
+          ? savedState.settings
+          : {})
+      }
+    };
+  }
+
+  /* =========================================================
+     10. LOCALSTORAGE
+     ========================================================= */
+
+  function loadState() {
+    try {
+      const serializedState =
+        window.localStorage.getItem(STORAGE_KEY);
+
+      if (!serializedState) {
+        return createInitialState();
+      }
+
+      const parsedState = JSON.parse(serializedState);
+      return mergeSavedState(parsedState);
+    } catch (error) {
+      console.warn(
+        "Der gespeicherte Bearbeitungsstand konnte nicht geladen werden.",
+        error
+      );
+
+      return createInitialState();
+    }
+  }
+
+  let appState = loadState();
+
+  function persistState({ announce = false } = {}) {
+    appState.appVersion = APP_VERSION;
+    appState.lastSavedAt = new Date().toISOString();
+
+    try {
+      window.localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(appState)
+      );
+
+      if (announce) {
+        showFeedback({
+          type: "success",
+          title: "Bearbeitungsstand gespeichert",
+          message:
+            "Der aktuelle Stand wurde lokal in diesem Browser gespeichert.",
+          autoHide: true
+        });
+      }
+
+      return true;
+    } catch (error) {
+      console.error(
+        "Der Bearbeitungsstand konnte nicht gespeichert werden.",
+        error
+      );
+
+      if (announce) {
+        showFeedback({
+          type: "error",
+          title: "Speichern nicht möglich",
+          message:
+            "Der Browser hat das lokale Speichern verhindert. Die Anwendung kann trotzdem weiterbearbeitet werden."
+        });
+      }
+
+      return false;
+    }
+  }
+
+  /* =========================================================
+     11. ALLGEMEINE HILFSFUNKTIONEN
+     ========================================================= */
+
+  function cloneData(value) {
+    return JSON.parse(JSON.stringify(value));
+  }
+
+  function clamp(value, minimum, maximum) {
+    return Math.min(maximum, Math.max(minimum, value));
+  }
+
+  function getCurrentTask() {
+    return TASKS_BY_ID.get(appState.currentTaskId);
+  }
+
+  function getCurrentTaskState() {
+    return appState.tasks[appState.currentTaskId];
+  }
+
+  function getModuleForTask(task) {
+    return MODULES_BY_ID.get(task.moduleId);
+  }
+
+  function getTaskByNumber(taskNumber) {
+    return TASKS_BY_NUMBER.get(taskNumber) ?? null;
+  }
+
+  function getTaskController(task) {
+    return (
+      TASK_CONTROLLERS_BY_ID.get(task.id) ??
+      TASK_CONTROLLERS_BY_TYPE.get(task.type) ??
+      null
+    );
+  }
+
+  function getTasksForModule(moduleId) {
+    return TASKS.filter(
+      (task) => task.moduleId === moduleId
+    );
+  }
+
+  function isTaskCompleted(taskState) {
+    return COMPLETED_TASK_STATUSES.has(taskState.status);
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function formatAttemptText(taskState) {
+    const attemptPart =
+      taskState.attempts === 0
+        ? "Noch kein Prüfversuch"
+        : taskState.attempts === 1
+          ? "1 Prüfversuch"
+          : `${taskState.attempts} Prüfversuche`;
+
+    if (taskState.usedHints === 0) {
+      return attemptPart;
+    }
+
+    const hintPart =
+      taskState.usedHints === 1
+        ? "1 Hinweis verwendet"
+        : `${taskState.usedHints} Hinweise verwendet`;
+
+    return `${attemptPart} · ${hintPart}`;
+  }
+
+  /* =========================================================
+     12. FEEDBACKBEREICH
+     ========================================================= */
+
+  function hideFeedback() {
+    if (saveFeedbackTimer !== null) {
+      window.clearTimeout(saveFeedbackTimer);
+      saveFeedbackTimer = null;
+    }
+
+    ui.feedbackRegion.hidden = true;
+  }
+
+  function showFeedback({
+    type = "info",
+    title = "Rückmeldung",
+    message = "",
+    autoHide = false
+  }) {
+    if (saveFeedbackTimer !== null) {
+      window.clearTimeout(saveFeedbackTimer);
+      saveFeedbackTimer = null;
+    }
+
+    ui.feedbackRegion.className =
+      `feedback feedback--${type}`;
+
+    ui.feedbackTitle.textContent = title;
+    ui.feedbackMessage.textContent = message;
+    ui.feedbackRegion.hidden = false;
+
+    if (autoHide) {
+      saveFeedbackTimer = window.setTimeout(
+        hideFeedback,
+        2800
+      );
+    }
+  }
+
+  /* =========================================================
+     13. AUFGABENSTATUS AKTUALISIEREN
+     ========================================================= */
+
+  function markTaskStarted(taskId) {
+    const taskState = appState.tasks[taskId];
+
+    if (!taskState) {
+      return;
+    }
+
+    if (taskState.status === "unseen") {
+      taskState.status = "started";
+      taskState.lastModified = new Date().toISOString();
+    }
+  }
+
+  function updateTaskState(
+    taskId,
+    patch,
+    {
+      save = true,
+      refresh = true
+    } = {}
+  ) {
+    const task = TASKS_BY_ID.get(taskId);
+    const taskState = appState.tasks[taskId];
+
+    if (!task || !taskState || !isPlainObject(patch)) {
+      return false;
+    }
+
+    if (
+      patch.status !== undefined &&
+      VALID_TASK_STATUSES.has(patch.status)
+    ) {
+      taskState.status = patch.status;
+    }
+
+    if (patch.answer !== undefined) {
+      taskState.answer = patch.answer;
+    }
+
+    if (
+      patch.attempts !== undefined &&
+      Number.isInteger(patch.attempts)
+    ) {
+      taskState.attempts = Math.max(0, patch.attempts);
+    }
+
+    if (
+      patch.usedHints !== undefined &&
+      Number.isInteger(patch.usedHints)
+    ) {
+      taskState.usedHints = Math.max(
+        0,
+        patch.usedHints
+      );
+    }
+
+    if (
+      patch.points !== undefined &&
+      Number.isFinite(patch.points)
+    ) {
+      taskState.points = clamp(
+        patch.points,
+        0,
+        task.maxPoints
+      );
+    }
+
+    taskState.lastModified = new Date().toISOString();
+
+    if (save) {
+      persistState();
+    }
+
+    if (refresh) {
+      updateInterfaceWithoutRerender();
+    }
+
+    return true;
+  }
+
+  function setTaskAnswer(taskId, answer) {
+    return updateTaskState(
+      taskId,
+      { answer },
+      {
+        save: true,
+        refresh: false
+      }
+    );
+  }
+
+  function completeSelfCheck(taskId, answer = undefined) {
+    const patch = {
+      status: "completed-self-check"
+    };
+
+    if (answer !== undefined) {
+      patch.answer = answer;
+    }
+
+    updateTaskState(taskId, patch);
+  }
+
+  /* =========================================================
+     14. FORTSCHRITT
+     ========================================================= */
+
+  function calculateProgress() {
+    const completedTasks = TASKS.filter((task) =>
+      isTaskCompleted(appState.tasks[task.id])
+    ).length;
+
+    const percentage = Math.round(
+      (completedTasks / TASKS.length) * 100
+    );
+
+    return {
+      completedTasks,
+      totalTasks: TASKS.length,
+      percentage
+    };
+  }
+
+  function updateProgressDisplay() {
+    const currentTask = getCurrentTask();
+    const currentModule = getModuleForTask(currentTask);
+    const progress = calculateProgress();
+
+    ui.progressLabel.textContent =
+      `Modul ${currentModule.number} von ${MODULES.length}` +
+      ` · Aufgabe ${currentTask.number} von ${TASKS.length}`;
+
+    ui.progressPercent.textContent =
+      `${progress.percentage} %`;
+
+    ui.progressBar.style.width =
+      `${progress.percentage}%`;
+
+    ui.overallProgress.setAttribute(
+      "aria-valuenow",
+      String(progress.percentage)
+    );
+
+    ui.overallProgress.setAttribute(
+      "aria-valuetext",
+      `${progress.completedTasks} von ${progress.totalTasks} Aufgaben abgeschlossen`
+    );
+  }
+
+  /* =========================================================
+     15. MODULSTATUS
+     ========================================================= */
+
+  function calculateModuleStatus(moduleId) {
+    const moduleTasks = getTasksForModule(moduleId);
+    const moduleTaskStates = moduleTasks.map(
+      (task) => appState.tasks[task.id]
+    );
+
+    const allCompleted = moduleTaskStates.every(
+      isTaskCompleted
+    );
+
+    if (allCompleted) {
+      return {
+        symbol: "✓",
+        label: "Modul vollständig abgeschlossen"
+      };
+    }
+
+    const hasPartial = moduleTaskStates.some(
+      (taskState) =>
+        taskState.status === "checked-partial" ||
+        taskState.status === "checked-incorrect"
+    );
+
+    if (hasPartial) {
+      return {
+        symbol: "△",
+        label: "Modul teilweise bearbeitet"
+      };
+    }
+
+    const hasStarted = moduleTaskStates.some(
+      (taskState) => taskState.status !== "unseen"
+    );
+
+    if (hasStarted) {
+      return {
+        symbol: "◐",
+        label: "Modul begonnen"
+      };
+    }
+
+    return {
+      symbol: "○",
+      label: "Noch nicht bearbeitet"
+    };
+  }
+
+  function updateModuleNavigation() {
+    const currentTask = getCurrentTask();
+
+    for (const button of ui.moduleButtons) {
+      const moduleId = button.dataset.moduleId;
+      const module = MODULES_BY_ID.get(moduleId);
+
+      if (!module) {
+        continue;
+      }
+
+      const status = calculateModuleStatus(moduleId);
+      const statusElement =
+        button.querySelector(".module-status");
+
+      const isCurrentModule =
+        currentTask.moduleId === moduleId;
+
+      const isUnlocked =
+        module.firstTask <= appState.highestUnlockedTask;
+
+      button.disabled = !isUnlocked;
+
+      if (isUnlocked) {
+        button.removeAttribute("aria-disabled");
+      } else {
+        button.setAttribute("aria-disabled", "true");
+      }
+
+      if (isCurrentModule) {
+        button.setAttribute("aria-current", "step");
+      } else {
+        button.removeAttribute("aria-current");
+      }
+
+      if (statusElement) {
+        statusElement.textContent = status.symbol;
+        statusElement.setAttribute(
+          "aria-label",
+          status.label
+        );
+      }
+    }
+  }
+
+  /* =========================================================
+     16. AUFGABENPLATZHALTER
+
+     Bis die einzelnen Aufgabentypen programmiert sind,
+     wird ein informativer Platzhalter dargestellt.
+     ========================================================= */
+
+  function renderPlaceholderTask(task) {
+    ui.taskContent.dataset.taskType = task.type;
+
+    ui.taskContent.innerHTML = `
+      <div class="workspace-placeholder">
+        <div
+          class="workspace-placeholder-icon"
+          aria-hidden="true"
+        >
+          ${task.mode === "self-check" ? "✎" : "↔"}
+        </div>
+
+        <h2>
+          ${escapeHtml(task.title)}
+        </h2>
+
+        <p>
+          Der interaktive Aufgabentyp
+          <strong>${escapeHtml(task.type)}</strong>
+          wird in einem der folgenden Programmierabschnitte ergänzt.
+        </p>
+      </div>
+    `;
+  }
+
+  /* =========================================================
+     17. CONTROLLER-KONTEXT
+
+     Dieser Kontext wird später an jeden Aufgabentyp übergeben.
+     ========================================================= */
+
+  function createTaskContext(task) {
+    return {
+      task,
+      taskState: appState.tasks[task.id],
+
+      elements: {
+        taskContent: ui.taskContent,
+        checkButton: ui.checkTaskButton,
+        resetButton: ui.resetTaskButton,
+        hintButton: ui.hintButton,
+        nextButton: ui.nextTaskButton
+      },
+
+      app: {
+        getState: () => cloneData(appState),
+        getTaskState: () =>
+          cloneData(appState.tasks[task.id]),
+        setAnswer: (answer) =>
+          setTaskAnswer(task.id, answer),
+        updateTaskState: (patch, options) =>
+          updateTaskState(task.id, patch, options),
+        completeSelfCheck: (answer) =>
+          completeSelfCheck(task.id, answer),
+        showFeedback,
+        hideFeedback,
+        refreshControls: updateTaskControls,
+        save: persistState
+      }
+    };
+  }
+
+  /* =========================================================
+     18. CONTROLLER AKTIVIEREN
+     ========================================================= */
+
+  function activateTaskController(task) {
+    if (typeof activeControllerCleanup === "function") {
+      try {
+        activeControllerCleanup();
+      } catch (error) {
+        console.warn(
+          "Fehler beim Aufräumen des vorherigen Aufgaben-Controllers.",
+          error
+        );
+      }
+    }
+
+    activeController = null;
+    activeTaskContext = createTaskContext(task);
+    activeControllerCleanup = null;
+
+    const registeredController =
+      getTaskController(task);
+
+    if (!registeredController) {
+      renderPlaceholderTask(task);
+      return;
+    }
+
+    try {
+      const controllerInstance =
+        typeof registeredController.render === "function"
+          ? registeredController.render(activeTaskContext)
+          : null;
+
+      activeController = {
+        ...registeredController,
+        ...(isPlainObject(controllerInstance)
+          ? controllerInstance
+          : {})
+      };
+
+      if (
+        typeof activeController.cleanup === "function"
+      ) {
+        activeControllerCleanup =
+          activeController.cleanup;
+      }
+    } catch (error) {
+      console.error(
+        `Die Aufgabe ${task.id} konnte nicht gerendert werden.`,
+        error
+      );
+
+      renderPlaceholderTask(task);
+
+      showFeedback({
+        type: "error",
+        title: "Aufgabe konnte nicht geladen werden",
+        message:
+          "Beim Aufbau dieser Aufgabe ist ein technischer Fehler aufgetreten."
+      });
+    }
+  }
+
+  /* =========================================================
+     19. BADGES UND AUFGABENMETADATEN
+     ========================================================= */
+
+  function updateTaskBadges(task, taskState) {
+    if (task.mode === "self-check") {
+      ui.automaticBadge.textContent =
+        "Freitext · Selbstkontrolle";
+
+      ui.taskPointsBadge.textContent =
+        taskState.status === "completed-self-check"
+          ? "Selbstkontrolle durchgeführt"
+          : "Ohne Punktwertung";
+
+      return;
+    }
+
+    if (task.mode === "exploration") {
+      ui.automaticBadge.textContent =
+        "Interaktive Lernhilfe";
+
+      ui.taskPointsBadge.textContent =
+        taskState.status === "correct"
+          ? "Erkundung abgeschlossen"
+          : "Ohne Punktwertung";
+
+      return;
+    }
+
+    ui.automaticBadge.textContent =
+      "Automatisch auswertbar";
+
+    ui.taskPointsBadge.textContent =
+      `${taskState.points} von ${task.maxPoints} Punkten`;
+  }
+
+  /* =========================================================
+     20. DARF ZUR NÄCHSTEN AUFGABE GEWECHSELT WERDEN?
+     ========================================================= */
+
+  function canProceedFromCurrentTask() {
+    const task = getCurrentTask();
+    const taskState = getCurrentTaskState();
+
+    /*
+      Solange für eine Aufgabe noch kein Controller existiert,
+      bleibt die Navigation zu Testzwecken frei.
+    */
+    if (!activeController) {
+      return true;
+    }
+
+    if (
+      typeof activeController.canProceed === "function"
+    ) {
+      try {
+        return Boolean(
+          activeController.canProceed(activeTaskContext)
+        );
+      } catch (error) {
+        console.warn(
+          "Die Freigabeprüfung des Controllers ist fehlgeschlagen.",
+          error
+        );
+
+        return false;
+      }
+    }
+
+    if (task.mode === "exploration") {
+      return taskState.status !== "unseen";
+    }
+
+    return ![
+      "unseen",
+      "started"
+    ].includes(taskState.status);
+  }
+
+  /* =========================================================
+     21. SCHALTFLÄCHENSTATUS
+     ========================================================= */
+
+  function updateTaskControls() {
+    const currentTask = getCurrentTask();
+    const currentTaskState = getCurrentTaskState();
+
+    ui.previousTaskButton.disabled =
+      currentTask.number === 1;
+
+    ui.nextTaskButton.disabled =
+      currentTask.number === TASKS.length ||
+      !canProceedFromCurrentTask();
+
+    ui.checkTaskButton.disabled =
+      !activeController ||
+      typeof activeController.check !== "function";
+
+    ui.resetTaskButton.disabled =
+      !activeController ||
+      typeof activeController.reset !== "function";
+
+    const hasControllerHint =
+      activeController &&
+      typeof activeController.getHint === "function";
+
+    const hasStaticHint =
+      Array.isArray(currentTask.helpLevels) &&
+      currentTask.helpLevels.length > 0;
+
+    ui.hintButton.disabled =
+      !hasControllerHint && !hasStaticHint;
+
+    ui.attemptCounter.textContent =
+      formatAttemptText(currentTaskState);
+  }
+
+  /* =========================================================
+     22. AUFGABE DARSTELLEN
+     ========================================================= */
+
+  function renderCurrentTask({
+    focusTask = false
+  } = {}) {
+    const task = getCurrentTask();
+    const taskState = getCurrentTaskState();
+    const module = getModuleForTask(task);
+
+    markTaskStarted(task.id);
+
+    appState.lastTaskByModule[module.id] = task.id;
+    appState.lastOpenedAt = new Date().toISOString();
+
+    ui.taskNumber.textContent =
+      `Modul ${module.number} · Aufgabe ${task.number}`;
+
+    ui.taskTitle.textContent = task.title;
+
+    ui.taskInstruction.innerHTML =
+      `<strong>Arbeitsauftrag:</strong> ` +
+      escapeHtml(task.instruction);
+
+    updateTaskBadges(task, taskState);
+
+    hideFeedback();
+    activateTaskController(task);
+
+    updateProgressDisplay();
+    updateModuleNavigation();
+    updateTaskControls();
+
+    persistState();
+
+    if (focusTask) {
+      ui.mainContent.focus({
+        preventScroll: true
+      });
+
+      ui.taskCard.scrollIntoView({
+        behavior: appState.settings.reducedMotion
+          ? "auto"
+          : "smooth",
+        block: "start"
+      });
+    }
+
+    document.dispatchEvent(
+      new CustomEvent("enzymapp:taskchange", {
+        detail: {
+          taskId: task.id,
+          taskNumber: task.number,
+          moduleId: task.moduleId
+        }
+      })
+    );
+  }
+
+  function updateInterfaceWithoutRerender() {
+    const task = getCurrentTask();
+    const taskState = getCurrentTaskState();
+
+    updateTaskBadges(task, taskState);
+    updateProgressDisplay();
+    updateModuleNavigation();
+    updateTaskControls();
+  }
+
+  /* =========================================================
+     23. FREISCHALTUNG UND NAVIGATION
+     ========================================================= */
+
+  function unlockTask(taskNumber) {
+    appState.highestUnlockedTask = Math.max(
+      appState.highestUnlockedTask,
+      clamp(taskNumber, 1, TASKS.length)
+    );
+  }
+
+  function goToTask(
+    taskId,
+    {
+      force = false,
+      focusTask = true
+    } = {}
+  ) {
+    const targetTask = TASKS_BY_ID.get(taskId);
+
+    if (!targetTask) {
+      return false;
+    }
+
+    if (
+      !force &&
+      targetTask.number > appState.highestUnlockedTask
+    ) {
+      showFeedback({
+        type: "warning",
+        title: "Aufgabe noch nicht freigeschaltet",
+        message:
+          "Bearbeite zunächst die vorherigen Aufgaben."
+      });
+
+      return false;
+    }
+
+    appState.currentTaskId = targetTask.id;
+
+    const targetModule =
+      getModuleForTask(targetTask);
+
+    appState.lastTaskByModule[targetModule.id] =
+      targetTask.id;
+
+    persistState();
+    renderCurrentTask({ focusTask });
+
+    return true;
+  }
+
+  function goToPreviousTask() {
+    const currentTask = getCurrentTask();
+
+    if (currentTask.number <= 1) {
+      return;
+    }
+
+    const previousTask =
+      getTaskByNumber(currentTask.number - 1);
+
+    if (previousTask) {
+      goToTask(previousTask.id);
+    }
+  }
+
+  function goToNextTask() {
+    const currentTask = getCurrentTask();
+
+    if (currentTask.number >= TASKS.length) {
+      return;
+    }
+
+    if (!canProceedFromCurrentTask()) {
+      showFeedback({
+        type: "warning",
+        title: "Aufgabe noch nicht abgeschlossen",
+        message:
+          "Prüfe oder vervollständige zunächst die aktuelle Aufgabe."
+      });
+
+      return;
+    }
+
+    const nextTask =
+      getTaskByNumber(currentTask.number + 1);
+
+    if (!nextTask) {
+      return;
+    }
+
+    unlockTask(nextTask.number);
+    goToTask(nextTask.id);
+  }
+
+  function goToModule(moduleId) {
+    const module = MODULES_BY_ID.get(moduleId);
+
+    if (!module) {
+      return;
+    }
+
+    if (
+      module.firstTask > appState.highestUnlockedTask
+    ) {
+      showFeedback({
+        type: "warning",
+        title: "Modul noch nicht freigeschaltet",
+        message:
+          "Bearbeite zunächst die vorherigen Aufgaben."
+      });
+
+      return;
+    }
+
+    const rememberedTaskId =
+      appState.lastTaskByModule[moduleId];
+
+    if (
+      rememberedTaskId &&
+      TASKS_BY_ID.has(rememberedTaskId) &&
+      TASKS_BY_ID.get(rememberedTaskId).number <=
+        appState.highestUnlockedTask
+    ) {
+      goToTask(rememberedTaskId);
+      return;
+    }
+
+    const firstAccessibleTask = TASKS.find(
+      (task) =>
+        task.moduleId === moduleId &&
+        task.number <= appState.highestUnlockedTask
+    );
+
+    if (firstAccessibleTask) {
+      goToTask(firstAccessibleTask.id);
+    }
+  }
+
+  /* =========================================================
+     24. AUSWERTUNGSERGEBNIS VERARBEITEN
+     ========================================================= */
+
+  function applyEvaluationResult(task, result) {
+    const taskState = appState.tasks[task.id];
+
+    const normalizedResult =
+      isPlainObject(result) ? result : {};
+
+    const isCorrect =
+      normalizedResult.correct === true;
+
+    const isPartial =
+      normalizedResult.partial === true;
+
+    const newStatus = isCorrect
+      ? "correct"
+      : isPartial
+        ? "checked-partial"
+        : "checked-incorrect";
+
+    const fallbackPoints = isCorrect
+      ? task.maxPoints
+      : 0;
+
+    taskState.status = newStatus;
+    taskState.points = clamp(
+      Number.isFinite(normalizedResult.score)
+        ? normalizedResult.score
+        : fallbackPoints,
+      0,
+      task.maxPoints
+    );
+
+    if (normalizedResult.answer !== undefined) {
+      taskState.answer = normalizedResult.answer;
+    }
+
+    taskState.lastModified = new Date().toISOString();
+
+    const feedbackType = isCorrect
+      ? "success"
+      : isPartial
+        ? "warning"
+        : "error";
+
+    const feedbackTitle =
+      normalizedResult.title ??
+      (
+        isCorrect
+          ? "Vollständig korrekt"
+          : isPartial
+            ? "Teilweise korrekt"
+            : "Noch nicht korrekt"
+      );
+
+    const feedbackMessage =
+      normalizedResult.message ??
+      (
+        isCorrect
+          ? "Die Aufgabe wurde vollständig korrekt gelöst."
+          : isPartial
+            ? "Ein Teil der Antwort ist korrekt. Prüfe die markierten Bereiche."
+            : "Prüfe deine Eingaben und versuche es erneut."
+      );
+
+    persistState();
+    updateInterfaceWithoutRerender();
+
+    showFeedback({
+      type: feedbackType,
+      title: feedbackTitle,
+      message: feedbackMessage
+    });
+  }
+
+  /* =========================================================
+     25. PRÜFEN
+     ========================================================= */
+
+  async function handleCheckTask() {
+    if (
+      !activeController ||
+      typeof activeController.check !== "function"
+    ) {
+      return;
+    }
+
+    const task = getCurrentTask();
+    const taskState = getCurrentTaskState();
+
+    taskState.attempts += 1;
+    taskState.lastModified = new Date().toISOString();
+
+    ui.checkTaskButton.disabled = true;
+
+    try {
+      const result = await activeController.check(
+        activeTaskContext
+      );
+
+      applyEvaluationResult(task, result);
+    } catch (error) {
+      console.error(
+        `Die Aufgabe ${task.id} konnte nicht geprüft werden.`,
+        error
+      );
+
+      showFeedback({
+        type: "error",
+        title: "Prüfung nicht möglich",
+        message:
+          "Beim Prüfen der Antwort ist ein technischer Fehler aufgetreten."
+      });
+    } finally {
+      updateTaskControls();
+    }
+  }
+
+  /* =========================================================
+     26. AUFGABE ZURÜCKSETZEN
+     ========================================================= */
+
+  function handleResetTask() {
+    if (
+      !activeController ||
+      typeof activeController.reset !== "function"
+    ) {
+      return;
+    }
+
+    const taskState = getCurrentTaskState();
+
+    try {
+      activeController.reset(activeTaskContext);
+
+      taskState.status = "started";
+      taskState.answer = null;
+      taskState.points = 0;
+      taskState.lastModified = new Date().toISOString();
+
+      persistState();
+      hideFeedback();
+      updateInterfaceWithoutRerender();
+    } catch (error) {
+      console.error(
+        "Die Aufgabe konnte nicht zurückgesetzt werden.",
+        error
+      );
+
+      showFeedback({
+        type: "error",
+        title: "Zurücksetzen nicht möglich",
+        message:
+          "Beim Zurücksetzen der Aufgabe ist ein technischer Fehler aufgetreten."
+      });
+    }
+  }
+
+  /* =========================================================
+     27. HILFESTELLUNG
+     ========================================================= */
+
+  function handleHintRequest() {
+    const task = getCurrentTask();
+    const taskState = getCurrentTaskState();
+
+    let hintText = null;
+
+    if (
+      activeController &&
+      typeof activeController.getHint === "function"
+    ) {
+      try {
+        hintText = activeController.getHint(
+          activeTaskContext,
+          taskState.usedHints
+        );
+      } catch (error) {
+        console.warn(
+          "Der Hinweis konnte nicht abgerufen werden.",
+          error
+        );
+      }
+    }
+
+    if (
+      !hintText &&
+      Array.isArray(task.helpLevels) &&
+      task.helpLevels.length > 0
+    ) {
+      const hintIndex = Math.min(
+        taskState.usedHints,
+        task.helpLevels.length - 1
+      );
+
+      hintText = task.helpLevels[hintIndex];
+    }
+
+    if (!hintText) {
+      return;
+    }
+
+    taskState.usedHints += 1;
+    taskState.lastModified = new Date().toISOString();
+
+    persistState();
+    updateTaskControls();
+
+    showFeedback({
+      type: "info",
+      title: `Hinweis ${taskState.usedHints}`,
+      message: hintText
+    });
+  }
+
+  /* =========================================================
+     28. CHEMIE-HILFE
+     ========================================================= */
+
+  function openChemistryHelp() {
+    if (
+      ui.chemistryHelpDialog &&
+      typeof ui.chemistryHelpDialog.showModal === "function"
+    ) {
+      ui.chemistryHelpDialog.showModal();
+    }
+  }
+
+  function closeChemistryHelp() {
+    if (
+      ui.chemistryHelpDialog &&
+      ui.chemistryHelpDialog.open
+    ) {
+      ui.chemistryHelpDialog.close();
+    }
+  }
+
+  /* =========================================================
+     29. CONTROLLER REGISTRIEREN
+
+     Spätere Codeabschnitte können einen Controller entweder
+     für eine bestimmte Aufgabe oder für einen Aufgabentyp
+     registrieren.
+     ========================================================= */
+
+  function registerTaskController(taskId, controller) {
+    if (
+      !TASKS_BY_ID.has(taskId) ||
+      !isPlainObject(controller)
+    ) {
+      throw new Error(
+        `Ungültiger Aufgaben-Controller: ${taskId}`
+      );
+    }
+
+    TASK_CONTROLLERS_BY_ID.set(taskId, controller);
+
+    if (appState.currentTaskId === taskId) {
+      renderCurrentTask();
+    }
+  }
+
+  function registerTaskTypeController(
+    taskType,
+    controller
+  ) {
+    if (
+      typeof taskType !== "string" ||
+      taskType.trim() === "" ||
+      !isPlainObject(controller)
+    ) {
+      throw new Error(
+        `Ungültiger Controller für Aufgabentyp: ${taskType}`
+      );
+    }
+
+    TASK_CONTROLLERS_BY_TYPE.set(
+      taskType,
+      controller
+    );
+
+    const currentTask = getCurrentTask();
+
+    if (currentTask.type === taskType) {
+      renderCurrentTask();
+    }
+  }
+
+  /* =========================================================
+     30. ÖFFENTLICHE SCHNITTSTELLE
+
+     Die folgenden Abschnitte greifen über window.EnzymeApp
+     auf den Anwendungszustand und die Navigation zu.
+     ========================================================= */
+
+  window.EnzymeApp = {
+    version: APP_VERSION,
+
+    modules: cloneData(MODULES),
+    tasks: cloneData(TASKS),
+
+    getState() {
+      return cloneData(appState);
+    },
+
+    getCurrentTask() {
+      return cloneData(getCurrentTask());
+    },
+
+    getTaskState(taskId = appState.currentTaskId) {
+      const taskState = appState.tasks[taskId];
+
+      return taskState
+        ? cloneData(taskState)
+        : null;
+    },
+
+    registerTaskController,
+    registerTaskTypeController,
+
+    updateTaskState,
+    setTaskAnswer,
+    completeSelfCheck,
+
+    goToTask,
+    goToNextTask,
+    goToPreviousTask,
+    goToModule,
+
+    showFeedback,
+    hideFeedback,
+
+    save() {
+      return persistState({
+        announce: true
+      });
+    },
+
+    refresh() {
+      renderCurrentTask();
+    },
+
+    refreshControls() {
+      updateTaskControls();
+    }
+  };
+
+  /* =========================================================
+     31. EREIGNISSE VERKNÜPFEN
+     ========================================================= */
+
+  function bindInterfaceEvents() {
+    ui.chemistryHelpButton.addEventListener(
+      "click",
+      openChemistryHelp
+    );
+
+    ui.chemistryHelpCloseIcon.addEventListener(
+      "click",
+      closeChemistryHelp
+    );
+
+    ui.chemistryHelpCloseButton.addEventListener(
+      "click",
+      closeChemistryHelp
+    );
+
+    ui.chemistryHelpDialog.addEventListener(
+      "click",
+      (event) => {
+        if (event.target === ui.chemistryHelpDialog) {
+          closeChemistryHelp();
+        }
+      }
+    );
+
+    ui.saveProgressButton.addEventListener(
+      "click",
+      () => {
+        persistState({
+          announce: true
+        });
+      }
+    );
+
+    ui.previousTaskButton.addEventListener(
+      "click",
+      goToPreviousTask
+    );
+
+    ui.nextTaskButton.addEventListener(
+      "click",
+      goToNextTask
+    );
+
+    ui.checkTaskButton.addEventListener(
+      "click",
+      handleCheckTask
+    );
+
+    ui.resetTaskButton.addEventListener(
+      "click",
+      handleResetTask
+    );
+
+    ui.hintButton.addEventListener(
+      "click",
+      handleHintRequest
+    );
+
+    for (const button of ui.moduleButtons) {
+      button.addEventListener("click", () => {
+        goToModule(button.dataset.moduleId);
+      });
+    }
+
+    window.addEventListener(
+      "beforeunload",
+      () => {
+        persistState();
+      }
+    );
+  }
+
+  /* =========================================================
+     32. INITIALISIERUNG
+     ========================================================= */
+
+  function initializeApplication() {
+    bindInterfaceEvents();
+
+    ui.saveProgressButton.disabled = false;
+    ui.saveProgressButton.removeAttribute(
+      "aria-disabled"
+    );
+    ui.saveProgressButton.removeAttribute("title");
+
+    ui.appVersion.textContent =
+      `Version ${APP_VERSION}`;
+
+    /*
+      Sicherheitskorrektur für beschädigte oder manuell
+      veränderte Speicherstände.
+    */
+    const currentTask = getCurrentTask();
+
+    appState.highestUnlockedTask = Math.max(
+      appState.highestUnlockedTask,
+      currentTask.number
+    );
+
+    renderCurrentTask();
+
+    console.info(
+      `Enzymhemmung-Anwendung geladen: ${APP_VERSION}`
+    );
+  }
+
+  /* =========================================================
+     EINFÜGEPUNKT FÜR ABSCHNITT 3
+
+     Die Controller für die wiederverwendbaren Aufgabentypen
+     werden später unmittelbar VOR initializeApplication()
+     eingefügt.
+     ========================================================= */
+
+  initializeApplication();
+</script>
+</body>
+</html>
