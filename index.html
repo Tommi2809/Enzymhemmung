@@ -14,7 +14,1043 @@
   >
 
   <title>Enzymhemmung – Allopurinol bei Gicht</title>
-/* =========================================================
+<style>
+    /* =========================================================
+       1. GRUNDEINSTELLUNGEN
+       ========================================================= */
+
+    :root {
+      color-scheme: light;
+
+      --color-page: #f3f6f8;
+      --color-surface: #ffffff;
+      --color-surface-muted: #edf3f6;
+      --color-surface-strong: #dfe9ed;
+
+      --color-text: #16242b;
+      --color-text-muted: #52646d;
+      --color-border: #c8d5da;
+      --color-border-strong: #9eb0b8;
+
+      --color-primary: #176b75;
+      --color-primary-dark: #10515a;
+      --color-primary-light: #d9eef0;
+
+      --color-accent: #875d0a;
+      --color-accent-light: #fff1c9;
+
+      --color-success: #17633b;
+      --color-success-light: #e0f3e8;
+
+      --color-warning: #7a4d00;
+      --color-warning-light: #fff0cf;
+
+      --color-error: #a12a2a;
+      --color-error-light: #fbe5e5;
+
+      --color-info: #205a8c;
+      --color-info-light: #e3f0fa;
+
+      --shadow-small:
+        0 1px 2px rgba(20, 40, 48, 0.08),
+        0 3px 8px rgba(20, 40, 48, 0.05);
+
+      --shadow-medium:
+        0 4px 14px rgba(20, 40, 48, 0.09);
+
+      --radius-small: 0.45rem;
+      --radius-medium: 0.75rem;
+      --radius-large: 1rem;
+
+      --content-width: 1500px;
+      --sidebar-width: 19rem;
+
+      --transition-fast: 140ms ease;
+      --transition-normal: 220ms ease;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100%;
+      margin: 0;
+      background: var(--color-page);
+      color: var(--color-text);
+      font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      touch-action: manipulation;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(1.55rem, 2vw, 2.15rem);
+    }
+
+    h2 {
+      font-size: 1.25rem;
+    }
+
+    a {
+      color: var(--color-primary-dark);
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid #f0a400;
+      outline-offset: 3px;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
+
+    /* =========================================================
+       2. SPRUNGLINK
+       ========================================================= */
+
+    .skip-link {
+      position: fixed;
+      top: 0.75rem;
+      left: 0.75rem;
+      z-index: 1000;
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-small);
+      background: var(--color-text);
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+      transform: translateY(-160%);
+      transition: transform var(--transition-fast);
+    }
+
+    .skip-link:focus {
+      transform: translateY(0);
+    }
+
+    /* =========================================================
+       3. ANWENDUNGSRAHMEN
+       ========================================================= */
+
+    .app-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--color-border);
+      background: rgba(255, 255, 255, 0.97);
+      box-shadow: var(--shadow-small);
+      backdrop-filter: blur(8px);
+    }
+
+    .header-inner {
+      width: min(100% - 2rem, var(--content-width));
+      margin-inline: auto;
+      padding-block: 1rem 0.85rem;
+    }
+
+    .header-main-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      min-width: 0;
+      gap: 0.85rem;
+    }
+
+    .brand-symbol {
+      flex: 0 0 auto;
+      width: 3rem;
+      height: 3rem;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #ffffff;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-title {
+      margin: 0;
+      color: var(--color-text);
+      font-size: clamp(1.05rem, 2vw, 1.4rem);
+      font-weight: 800;
+    }
+
+    .brand-subtitle {
+      margin: 0.1rem 0 0;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .header-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.6rem;
+    }
+
+    /* =========================================================
+       4. FORTSCHRITTSANZEIGE
+       ========================================================= */
+
+    .progress-section {
+      margin-top: 0.9rem;
+    }
+
+    .progress-copy {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.35rem;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .progress-copy strong {
+      color: var(--color-text);
+    }
+
+    .progress-track {
+      height: 0.7rem;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      background: var(--color-surface-muted);
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--color-primary);
+      transition: width var(--transition-normal);
+    }
+
+    /* =========================================================
+       5. HAUPTLAYOUT
+       ========================================================= */
+
+    .app-layout {
+      width: min(100% - 2rem, var(--content-width));
+      flex: 1;
+      display: grid;
+      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+      align-items: start;
+      gap: 1.5rem;
+      margin-inline: auto;
+      padding-block: 1.5rem 2.5rem;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 8.5rem;
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-large);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-small);
+    }
+
+    .sidebar-header {
+      padding: 1.1rem 1.1rem 0.9rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .sidebar-header h2 {
+      margin-bottom: 0.25rem;
+    }
+
+    .sidebar-header p {
+      margin-bottom: 0;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    .main-content {
+      min-width: 0;
+    }
+
+    /* =========================================================
+       6. MODULNAVIGATION
+       ========================================================= */
+
+    .module-list {
+      list-style: none;
+      padding: 0.75rem;
+      margin: 0;
+    }
+
+    .module-list li + li {
+      margin-top: 0.35rem;
+    }
+
+    .module-button {
+      width: 100%;
+      min-height: 3.35rem;
+      display: grid;
+      grid-template-columns: 2.2rem minmax(0, 1fr) 1.25rem;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-medium);
+      background: transparent;
+      color: var(--color-text);
+      text-align: left;
+      cursor: pointer;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .module-button:hover {
+      background: var(--color-surface-muted);
+    }
+
+    .module-button[aria-current="step"] {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+
+    .module-index {
+      width: 2.1rem;
+      height: 2.1rem;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--color-border-strong);
+      border-radius: 50%;
+      background: var(--color-surface);
+      font-size: 0.85rem;
+      font-weight: 800;
+    }
+
+    .module-button[aria-current="step"] .module-index {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+
+    .module-copy {
+      min-width: 0;
+    }
+
+    .module-name {
+      display: block;
+      font-weight: 750;
+    }
+
+    .module-task-count {
+      display: block;
+      margin-top: 0.05rem;
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+    }
+
+    .module-status {
+      display: grid;
+      place-items: center;
+      color: var(--color-text-muted);
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .status-legend {
+      padding: 0.85rem 1.1rem 1rem;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface-muted);
+    }
+
+    .status-legend h3 {
+      margin-bottom: 0.55rem;
+      font-size: 0.9rem;
+    }
+
+    .status-legend-list {
+      list-style: none;
+      display: grid;
+      gap: 0.3rem;
+      padding: 0;
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: 0.8rem;
+    }
+
+    .status-symbol {
+      display: inline-block;
+      width: 1.3rem;
+      color: var(--color-text);
+      font-weight: 800;
+    }
+
+    /* =========================================================
+       7. AUFGABENKARTE
+       ========================================================= */
+
+    .task-card {
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-large);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .task-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.25rem;
+      padding: 1.4rem 1.5rem 1.2rem;
+      border-bottom: 1px solid var(--color-border);
+      background:
+        linear-gradient(
+          135deg,
+          var(--color-primary-light),
+          #ffffff 70%
+        );
+    }
+
+    .task-header-copy {
+      min-width: 0;
+    }
+
+    .eyebrow {
+      margin-bottom: 0.25rem;
+      color: var(--color-primary-dark);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .task-header h1 {
+      margin-bottom: 0;
+    }
+
+    .task-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.45rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.85rem;
+      padding: 0.25rem 0.65rem;
+      border: 1px solid var(--color-border);
+      border-radius: 999px;
+      background: var(--color-surface);
+      color: var(--color-text-muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge--automatic {
+      border-color: #a9cbd0;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+    }
+
+    .task-body {
+      padding: 1.5rem;
+    }
+
+    .task-instruction {
+      max-width: 78ch;
+      margin-bottom: 1.25rem;
+      color: var(--color-text);
+      font-size: 1.04rem;
+    }
+
+    .task-instruction strong {
+      font-weight: 800;
+    }
+
+    .task-workspace {
+      min-height: 17rem;
+      display: grid;
+      place-items: center;
+      padding: 1.25rem;
+      border: 2px dashed var(--color-border);
+      border-radius: var(--radius-medium);
+      background: var(--color-surface-muted);
+    }
+
+    .workspace-placeholder {
+      max-width: 42rem;
+      text-align: center;
+    }
+
+    .workspace-placeholder-icon {
+      width: 4.2rem;
+      height: 4.2rem;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      background: var(--color-primary-light);
+      color: var(--color-primary-dark);
+      font-size: 1.7rem;
+      font-weight: 900;
+    }
+
+    .workspace-placeholder h2 {
+      margin-bottom: 0.5rem;
+    }
+
+    .workspace-placeholder p {
+      margin-bottom: 0;
+      color: var(--color-text-muted);
+    }
+
+    /* =========================================================
+       8. AUFGABENWERKZEUGE
+       ========================================================= */
+
+    .task-tools {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.65rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--color-border);
+      background: #fafcfd;
+    }
+
+    .tool-note {
+      margin-left: auto;
+      color: var(--color-text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* =========================================================
+       9. FEEDBACKBEREICH
+       ========================================================= */
+
+    .feedback {
+      margin: 0 1.5rem 1.2rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--color-border);
+      border-left-width: 0.4rem;
+      border-radius: var(--radius-medium);
+      background: var(--color-info-light);
+    }
+
+    .feedback h2 {
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .feedback p:last-child {
+      margin-bottom: 0;
+    }
+
+    .feedback--success {
+      border-color: var(--color-success);
+      background: var(--color-success-light);
+    }
+
+    .feedback--warning {
+      border-color: var(--color-warning);
+      background: var(--color-warning-light);
+    }
+
+    .feedback--error {
+      border-color: var(--color-error);
+      background: var(--color-error-light);
+    }
+
+    .feedback--info {
+      border-color: var(--color-info);
+      background: var(--color-info-light);
+    }
+
+    /* =========================================================
+       10. AUFGABENNAVIGATION
+       ========================================================= */
+
+    .task-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface-muted);
+    }
+
+    .task-actions-left,
+    .task-actions-right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+    }
+
+    /* =========================================================
+       11. SCHALTFLÄCHEN
+       ========================================================= */
+
+    .button {
+      min-height: 2.75rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.62rem 0.95rem;
+      border: 1px solid transparent;
+      border-radius: var(--radius-small);
+      font-weight: 750;
+      line-height: 1.2;
+      cursor: pointer;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .button:hover:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    .button:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .button:disabled,
+    .button[aria-disabled="true"] {
+      cursor: not-allowed;
+      opacity: 0.52;
+    }
+
+    .button--primary {
+      border-color: var(--color-primary);
+      background: var(--color-primary);
+      color: #ffffff;
+    }
+
+    .button--primary:hover:not(:disabled) {
+      border-color: var(--color-primary-dark);
+      background: var(--color-primary-dark);
+    }
+
+    .button--secondary {
+      border-color: var(--color-border-strong);
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .button--secondary:hover:not(:disabled) {
+      border-color: var(--color-primary);
+      background: var(--color-primary-light);
+    }
+
+    .button--ghost {
+      border-color: transparent;
+      background: transparent;
+      color: var(--color-primary-dark);
+    }
+
+    .button--ghost:hover:not(:disabled) {
+      background: var(--color-primary-light);
+    }
+
+    .button-icon {
+      font-size: 1.05em;
+      line-height: 1;
+    }
+
+    /* =========================================================
+       12. ZUSATZHINWEISE
+       ========================================================= */
+
+    .information-card {
+      margin-top: 1.25rem;
+      padding: 1.2rem 1.35rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-large);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-small);
+    }
+
+    .information-card h2 {
+      margin-bottom: 0.75rem;
+    }
+
+    .information-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.85rem;
+    }
+
+    .information-item {
+      padding: 0.9rem;
+      border-radius: var(--radius-medium);
+      background: var(--color-surface-muted);
+    }
+
+    .information-item strong {
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .information-item p {
+      margin-bottom: 0;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* =========================================================
+       13. DIALOGFENSTER
+       ========================================================= */
+
+    .app-dialog {
+      width: min(92vw, 42rem);
+      max-height: 85vh;
+      padding: 0;
+      overflow: auto;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-large);
+      background: var(--color-surface);
+      color: var(--color-text);
+      box-shadow: 0 20px 60px rgba(10, 28, 35, 0.24);
+    }
+
+    .app-dialog::backdrop {
+      background: rgba(12, 27, 34, 0.56);
+    }
+
+    .dialog-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.2rem 1.3rem;
+      border-bottom: 1px solid var(--color-border);
+      background: var(--color-primary-light);
+    }
+
+    .dialog-header h2 {
+      margin-bottom: 0;
+    }
+
+    .dialog-body {
+      padding: 1.3rem;
+    }
+
+    .dialog-footer {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1rem 1.3rem;
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface-muted);
+    }
+
+    .dialog-close-icon {
+      width: 2.6rem;
+      height: 2.6rem;
+      display: grid;
+      place-items: center;
+      padding: 0;
+      border: 1px solid var(--color-border);
+      border-radius: 50%;
+      background: var(--color-surface);
+      color: var(--color-text);
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       14. FUSSZEILE
+       ========================================================= */
+
+    .site-footer {
+      border-top: 1px solid var(--color-border);
+      background: var(--color-surface);
+    }
+
+    .site-footer-inner {
+      width: min(100% - 2rem, var(--content-width));
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-inline: auto;
+      padding-block: 1rem;
+      color: var(--color-text-muted);
+      font-size: 0.82rem;
+    }
+
+    /* =========================================================
+       15. RESPONSIVES LAYOUT
+       ========================================================= */
+
+    @media (max-width: 1100px) {
+      .app-layout {
+        grid-template-columns: 15.5rem minmax(0, 1fr);
+      }
+
+      .module-button {
+        grid-template-columns: 2rem minmax(0, 1fr);
+      }
+
+      .module-status {
+        display: none;
+      }
+
+      .information-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 820px) {
+      .site-header {
+        position: static;
+      }
+
+      .header-main-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .app-layout {
+        grid-template-columns: 1fr;
+        padding-top: 1rem;
+      }
+
+      .sidebar {
+        position: static;
+      }
+
+      .module-list {
+        display: flex;
+        gap: 0.5rem;
+        overflow-x: auto;
+        scroll-snap-type: x proximity;
+      }
+
+      .module-list li {
+        flex: 0 0 min(17rem, 82vw);
+        scroll-snap-align: start;
+      }
+
+      .module-list li + li {
+        margin-top: 0;
+      }
+
+      .status-legend {
+        display: none;
+      }
+
+      .task-header {
+        flex-direction: column;
+      }
+
+      .task-badges {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .header-inner,
+      .app-layout,
+      .site-footer-inner {
+        width: min(100% - 1rem, var(--content-width));
+      }
+
+      .brand-symbol {
+        width: 2.65rem;
+        height: 2.65rem;
+      }
+
+      .brand-subtitle {
+        display: none;
+      }
+
+      .header-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .header-actions .button {
+        width: 100%;
+      }
+
+      .task-header,
+      .task-body,
+      .task-tools,
+      .task-footer {
+        padding-inline: 1rem;
+      }
+
+      .feedback {
+        margin-inline: 1rem;
+      }
+
+      .task-footer {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .task-actions-left,
+      .task-actions-right {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .task-footer .button {
+        width: 100%;
+      }
+
+      .tool-note {
+        width: 100%;
+        margin-left: 0;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .header-actions {
+        grid-template-columns: 1fr;
+      }
+
+      .task-workspace {
+        min-height: 14rem;
+        padding: 0.9rem;
+      }
+    }
+
+    /* =========================================================
+       16. REDUZIERTE BEWEGUNG
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+
+    /* =========================================================
+       17. DRUCKANSICHT
+       ========================================================= */
+
+    @media print {
+      .site-header,
+      .sidebar,
+      .task-tools,
+      .task-footer,
+      .site-footer,
+      .information-card {
+        display: none !important;
+      }
+
+      body {
+        background: #ffffff;
+      }
+
+      .app-layout {
+        display: block;
+        width: 100%;
+        padding: 0;
+      }
+
+      .task-card {
+        border: 0;
+        box-shadow: none;
+      }
+    }
+  /* =========================================================
    ABSCHNITT 3: WIEDERVERWENDBARE AUFGABENKOMPONENTEN
    ========================================================= */
 
@@ -4038,6 +5074,12 @@ background: var(--color-error-light);
 color: var(--color-error);
 }
 
+.result-status-badge.is-self-check {
+border-color: var(--color-info);
+background: var(--color-info-light);
+color: var(--color-info);
+}
+
 .result-status-badge.is-started,
 .result-status-badge.is-unseen {
 background: var(--color-surface-muted);
@@ -4591,26 +5633,6 @@ ABSCHNITT 14: BARRIEREFREIHEIT UND ANZEIGEEINSTELLUNGEN
 Sprunglink und Live-Region
 --------------------------------------------------------- */
 
-.a11y-skip-link {
-position: fixed;
-top: 0.5rem;
-left: 0.5rem;
-z-index: 5000;
-padding: 0.65rem 0.9rem;
-border: 2px solid var(--color-primary);
-border-radius: var(--radius-small);
-background: var(--color-surface);
-color: var(--color-primary-dark);
-font-weight: 800;
-text-decoration: none;
-transform: translateY(-180%);
-transition: transform var(--transition-fast);
-}
-
-.a11y-skip-link:focus {
-transform: translateY(0);
-}
-
 .a11y-live-region {
 position: fixed;
 width: 1px;
@@ -5006,19 +6028,6 @@ animation-iteration-count: 1 !important;
 transition-duration: 0.001ms !important;
 }
 
-/* Betriebssystemeinstellung ebenfalls berücksichtigen */
-
-@media (prefers-reduced-motion: reduce) {
-*,
-*::before,
-*::after {
-scroll-behavior: auto !important;
-animation-duration: 0.001ms !important;
-animation-iteration-count: 1 !important;
-transition-duration: 0.001ms !important;
-}
-}
-
 /* ---------------------------------------------------------
 Fokusmodus
 --------------------------------------------------------- */
@@ -5129,1043 +6138,6 @@ display: grid;
 width: 100%;
 }
 }
-
-<style>
-    /* =========================================================
-       1. GRUNDEINSTELLUNGEN
-       ========================================================= */
-
-    :root {
-      color-scheme: light;
-
-      --color-page: #f3f6f8;
-      --color-surface: #ffffff;
-      --color-surface-muted: #edf3f6;
-      --color-surface-strong: #dfe9ed;
-
-      --color-text: #16242b;
-      --color-text-muted: #52646d;
-      --color-border: #c8d5da;
-      --color-border-strong: #9eb0b8;
-
-      --color-primary: #176b75;
-      --color-primary-dark: #10515a;
-      --color-primary-light: #d9eef0;
-
-      --color-accent: #875d0a;
-      --color-accent-light: #fff1c9;
-
-      --color-success: #17633b;
-      --color-success-light: #e0f3e8;
-
-      --color-warning: #7a4d00;
-      --color-warning-light: #fff0cf;
-
-      --color-error: #a12a2a;
-      --color-error-light: #fbe5e5;
-
-      --color-info: #205a8c;
-      --color-info-light: #e3f0fa;
-
-      --shadow-small:
-        0 1px 2px rgba(20, 40, 48, 0.08),
-        0 3px 8px rgba(20, 40, 48, 0.05);
-
-      --shadow-medium:
-        0 4px 14px rgba(20, 40, 48, 0.09);
-
-      --radius-small: 0.45rem;
-      --radius-medium: 0.75rem;
-      --radius-large: 1rem;
-
-      --content-width: 1500px;
-      --sidebar-width: 19rem;
-
-      --transition-fast: 140ms ease;
-      --transition-normal: 220ms ease;
-    }
-
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    html {
-      min-height: 100%;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100%;
-      margin: 0;
-      background: var(--color-page);
-      color: var(--color-text);
-      font-family:
-        system-ui,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-      font-size: 1rem;
-      line-height: 1.55;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    button {
-      touch-action: manipulation;
-    }
-
-    img,
-    svg {
-      display: block;
-      max-width: 100%;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1,
-    h2,
-    h3 {
-      line-height: 1.25;
-    }
-
-    h1 {
-      font-size: clamp(1.55rem, 2vw, 2.15rem);
-    }
-
-    h2 {
-      font-size: 1.25rem;
-    }
-
-    a {
-      color: var(--color-primary-dark);
-    }
-
-    button:focus-visible,
-    a:focus-visible,
-    input:focus-visible,
-    select:focus-visible,
-    textarea:focus-visible,
-    [tabindex]:focus-visible {
-      outline: 3px solid #f0a400;
-      outline-offset: 3px;
-    }
-
-    [hidden] {
-      display: none !important;
-    }
-
-    .visually-hidden {
-      position: absolute !important;
-      width: 1px !important;
-      height: 1px !important;
-      padding: 0 !important;
-      margin: -1px !important;
-      overflow: hidden !important;
-      clip: rect(0, 0, 0, 0) !important;
-      white-space: nowrap !important;
-      border: 0 !important;
-    }
-
-    /* =========================================================
-       2. SPRUNGLINK
-       ========================================================= */
-
-    .skip-link {
-      position: fixed;
-      top: 0.75rem;
-      left: 0.75rem;
-      z-index: 1000;
-      padding: 0.75rem 1rem;
-      border-radius: var(--radius-small);
-      background: var(--color-text);
-      color: #ffffff;
-      font-weight: 700;
-      text-decoration: none;
-      transform: translateY(-160%);
-      transition: transform var(--transition-fast);
-    }
-
-    .skip-link:focus {
-      transform: translateY(0);
-    }
-
-    /* =========================================================
-       3. ANWENDUNGSRAHMEN
-       ========================================================= */
-
-    .app-shell {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      border-bottom: 1px solid var(--color-border);
-      background: rgba(255, 255, 255, 0.97);
-      box-shadow: var(--shadow-small);
-      backdrop-filter: blur(8px);
-    }
-
-    .header-inner {
-      width: min(100% - 2rem, var(--content-width));
-      margin-inline: auto;
-      padding-block: 1rem 0.85rem;
-    }
-
-    .header-main-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      min-width: 0;
-      gap: 0.85rem;
-    }
-
-    .brand-symbol {
-      flex: 0 0 auto;
-      width: 3rem;
-      height: 3rem;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: var(--color-primary);
-      color: #ffffff;
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.06em;
-    }
-
-    .brand-copy {
-      min-width: 0;
-    }
-
-    .brand-title {
-      margin: 0;
-      color: var(--color-text);
-      font-size: clamp(1.05rem, 2vw, 1.4rem);
-      font-weight: 800;
-    }
-
-    .brand-subtitle {
-      margin: 0.1rem 0 0;
-      color: var(--color-text-muted);
-      font-size: 0.9rem;
-    }
-
-    .header-actions {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 0.6rem;
-    }
-
-    /* =========================================================
-       4. FORTSCHRITTSANZEIGE
-       ========================================================= */
-
-    .progress-section {
-      margin-top: 0.9rem;
-    }
-
-    .progress-copy {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 0.35rem;
-      color: var(--color-text-muted);
-      font-size: 0.9rem;
-    }
-
-    .progress-copy strong {
-      color: var(--color-text);
-    }
-
-    .progress-track {
-      height: 0.7rem;
-      overflow: hidden;
-      border: 1px solid var(--color-border);
-      border-radius: 999px;
-      background: var(--color-surface-muted);
-    }
-
-    .progress-fill {
-      width: 0%;
-      height: 100%;
-      border-radius: inherit;
-      background: var(--color-primary);
-      transition: width var(--transition-normal);
-    }
-
-    /* =========================================================
-       5. HAUPTLAYOUT
-       ========================================================= */
-
-    .app-layout {
-      width: min(100% - 2rem, var(--content-width));
-      flex: 1;
-      display: grid;
-      grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
-      align-items: start;
-      gap: 1.5rem;
-      margin-inline: auto;
-      padding-block: 1.5rem 2.5rem;
-    }
-
-    .sidebar {
-      position: sticky;
-      top: 8.5rem;
-      overflow: hidden;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-large);
-      background: var(--color-surface);
-      box-shadow: var(--shadow-small);
-    }
-
-    .sidebar-header {
-      padding: 1.1rem 1.1rem 0.9rem;
-      border-bottom: 1px solid var(--color-border);
-    }
-
-    .sidebar-header h2 {
-      margin-bottom: 0.25rem;
-    }
-
-    .sidebar-header p {
-      margin-bottom: 0;
-      color: var(--color-text-muted);
-      font-size: 0.9rem;
-    }
-
-    .main-content {
-      min-width: 0;
-    }
-
-    /* =========================================================
-       6. MODULNAVIGATION
-       ========================================================= */
-
-    .module-list {
-      list-style: none;
-      padding: 0.75rem;
-      margin: 0;
-    }
-
-    .module-list li + li {
-      margin-top: 0.35rem;
-    }
-
-    .module-button {
-      width: 100%;
-      min-height: 3.35rem;
-      display: grid;
-      grid-template-columns: 2.2rem minmax(0, 1fr) 1.25rem;
-      align-items: center;
-      gap: 0.65rem;
-      padding: 0.65rem 0.75rem;
-      border: 1px solid transparent;
-      border-radius: var(--radius-medium);
-      background: transparent;
-      color: var(--color-text);
-      text-align: left;
-      cursor: pointer;
-      transition:
-        background var(--transition-fast),
-        border-color var(--transition-fast);
-    }
-
-    .module-button:hover {
-      background: var(--color-surface-muted);
-    }
-
-    .module-button[aria-current="step"] {
-      border-color: var(--color-primary);
-      background: var(--color-primary-light);
-    }
-
-    .module-index {
-      width: 2.1rem;
-      height: 2.1rem;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--color-border-strong);
-      border-radius: 50%;
-      background: var(--color-surface);
-      font-size: 0.85rem;
-      font-weight: 800;
-    }
-
-    .module-button[aria-current="step"] .module-index {
-      border-color: var(--color-primary);
-      background: var(--color-primary);
-      color: #ffffff;
-    }
-
-    .module-copy {
-      min-width: 0;
-    }
-
-    .module-name {
-      display: block;
-      font-weight: 750;
-    }
-
-    .module-task-count {
-      display: block;
-      margin-top: 0.05rem;
-      color: var(--color-text-muted);
-      font-size: 0.78rem;
-    }
-
-    .module-status {
-      display: grid;
-      place-items: center;
-      color: var(--color-text-muted);
-      font-size: 1rem;
-      font-weight: 800;
-    }
-
-    .status-legend {
-      padding: 0.85rem 1.1rem 1rem;
-      border-top: 1px solid var(--color-border);
-      background: var(--color-surface-muted);
-    }
-
-    .status-legend h3 {
-      margin-bottom: 0.55rem;
-      font-size: 0.9rem;
-    }
-
-    .status-legend-list {
-      list-style: none;
-      display: grid;
-      gap: 0.3rem;
-      padding: 0;
-      margin: 0;
-      color: var(--color-text-muted);
-      font-size: 0.8rem;
-    }
-
-    .status-symbol {
-      display: inline-block;
-      width: 1.3rem;
-      color: var(--color-text);
-      font-weight: 800;
-    }
-
-    /* =========================================================
-       7. AUFGABENKARTE
-       ========================================================= */
-
-    .task-card {
-      overflow: hidden;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-large);
-      background: var(--color-surface);
-      box-shadow: var(--shadow-medium);
-    }
-
-    .task-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1.25rem;
-      padding: 1.4rem 1.5rem 1.2rem;
-      border-bottom: 1px solid var(--color-border);
-      background:
-        linear-gradient(
-          135deg,
-          var(--color-primary-light),
-          #ffffff 70%
-        );
-    }
-
-    .task-header-copy {
-      min-width: 0;
-    }
-
-    .eyebrow {
-      margin-bottom: 0.25rem;
-      color: var(--color-primary-dark);
-      font-size: 0.82rem;
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .task-header h1 {
-      margin-bottom: 0;
-    }
-
-    .task-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 0.45rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      min-height: 1.85rem;
-      padding: 0.25rem 0.65rem;
-      border: 1px solid var(--color-border);
-      border-radius: 999px;
-      background: var(--color-surface);
-      color: var(--color-text-muted);
-      font-size: 0.78rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .badge--automatic {
-      border-color: #a9cbd0;
-      background: var(--color-primary-light);
-      color: var(--color-primary-dark);
-    }
-
-    .task-body {
-      padding: 1.5rem;
-    }
-
-    .task-instruction {
-      max-width: 78ch;
-      margin-bottom: 1.25rem;
-      color: var(--color-text);
-      font-size: 1.04rem;
-    }
-
-    .task-instruction strong {
-      font-weight: 800;
-    }
-
-    .task-workspace {
-      min-height: 17rem;
-      display: grid;
-      place-items: center;
-      padding: 1.25rem;
-      border: 2px dashed var(--color-border);
-      border-radius: var(--radius-medium);
-      background: var(--color-surface-muted);
-    }
-
-    .workspace-placeholder {
-      max-width: 42rem;
-      text-align: center;
-    }
-
-    .workspace-placeholder-icon {
-      width: 4.2rem;
-      height: 4.2rem;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 1rem;
-      border-radius: 50%;
-      background: var(--color-primary-light);
-      color: var(--color-primary-dark);
-      font-size: 1.7rem;
-      font-weight: 900;
-    }
-
-    .workspace-placeholder h2 {
-      margin-bottom: 0.5rem;
-    }
-
-    .workspace-placeholder p {
-      margin-bottom: 0;
-      color: var(--color-text-muted);
-    }
-
-    /* =========================================================
-       8. AUFGABENWERKZEUGE
-       ========================================================= */
-
-    .task-tools {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.65rem;
-      padding: 1rem 1.5rem;
-      border-top: 1px solid var(--color-border);
-      background: #fafcfd;
-    }
-
-    .tool-note {
-      margin-left: auto;
-      color: var(--color-text-muted);
-      font-size: 0.85rem;
-    }
-
-    /* =========================================================
-       9. FEEDBACKBEREICH
-       ========================================================= */
-
-    .feedback {
-      margin: 0 1.5rem 1.2rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid var(--color-border);
-      border-left-width: 0.4rem;
-      border-radius: var(--radius-medium);
-      background: var(--color-info-light);
-    }
-
-    .feedback h2 {
-      margin-bottom: 0.35rem;
-      font-size: 1rem;
-    }
-
-    .feedback p:last-child {
-      margin-bottom: 0;
-    }
-
-    .feedback--success {
-      border-color: var(--color-success);
-      background: var(--color-success-light);
-    }
-
-    .feedback--warning {
-      border-color: var(--color-warning);
-      background: var(--color-warning-light);
-    }
-
-    .feedback--error {
-      border-color: var(--color-error);
-      background: var(--color-error-light);
-    }
-
-    .feedback--info {
-      border-color: var(--color-info);
-      background: var(--color-info-light);
-    }
-
-    /* =========================================================
-       10. AUFGABENNAVIGATION
-       ========================================================= */
-
-    .task-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1rem 1.5rem;
-      border-top: 1px solid var(--color-border);
-      background: var(--color-surface-muted);
-    }
-
-    .task-actions-left,
-    .task-actions-right {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.65rem;
-    }
-
-    /* =========================================================
-       11. SCHALTFLÄCHEN
-       ========================================================= */
-
-    .button {
-      min-height: 2.75rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.45rem;
-      padding: 0.62rem 0.95rem;
-      border: 1px solid transparent;
-      border-radius: var(--radius-small);
-      font-weight: 750;
-      line-height: 1.2;
-      cursor: pointer;
-      transition:
-        background var(--transition-fast),
-        border-color var(--transition-fast),
-        color var(--transition-fast),
-        transform var(--transition-fast);
-    }
-
-    .button:hover:not(:disabled) {
-      transform: translateY(-1px);
-    }
-
-    .button:active:not(:disabled) {
-      transform: translateY(0);
-    }
-
-    .button:disabled,
-    .button[aria-disabled="true"] {
-      cursor: not-allowed;
-      opacity: 0.52;
-    }
-
-    .button--primary {
-      border-color: var(--color-primary);
-      background: var(--color-primary);
-      color: #ffffff;
-    }
-
-    .button--primary:hover:not(:disabled) {
-      border-color: var(--color-primary-dark);
-      background: var(--color-primary-dark);
-    }
-
-    .button--secondary {
-      border-color: var(--color-border-strong);
-      background: var(--color-surface);
-      color: var(--color-text);
-    }
-
-    .button--secondary:hover:not(:disabled) {
-      border-color: var(--color-primary);
-      background: var(--color-primary-light);
-    }
-
-    .button--ghost {
-      border-color: transparent;
-      background: transparent;
-      color: var(--color-primary-dark);
-    }
-
-    .button--ghost:hover:not(:disabled) {
-      background: var(--color-primary-light);
-    }
-
-    .button-icon {
-      font-size: 1.05em;
-      line-height: 1;
-    }
-
-    /* =========================================================
-       12. ZUSATZHINWEISE
-       ========================================================= */
-
-    .information-card {
-      margin-top: 1.25rem;
-      padding: 1.2rem 1.35rem;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-large);
-      background: var(--color-surface);
-      box-shadow: var(--shadow-small);
-    }
-
-    .information-card h2 {
-      margin-bottom: 0.75rem;
-    }
-
-    .information-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0.85rem;
-    }
-
-    .information-item {
-      padding: 0.9rem;
-      border-radius: var(--radius-medium);
-      background: var(--color-surface-muted);
-    }
-
-    .information-item strong {
-      display: block;
-      margin-bottom: 0.2rem;
-    }
-
-    .information-item p {
-      margin-bottom: 0;
-      color: var(--color-text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* =========================================================
-       13. DIALOGFENSTER
-       ========================================================= */
-
-    .app-dialog {
-      width: min(92vw, 42rem);
-      max-height: 85vh;
-      padding: 0;
-      overflow: auto;
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius-large);
-      background: var(--color-surface);
-      color: var(--color-text);
-      box-shadow: 0 20px 60px rgba(10, 28, 35, 0.24);
-    }
-
-    .app-dialog::backdrop {
-      background: rgba(12, 27, 34, 0.56);
-    }
-
-    .dialog-header {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 1rem;
-      padding: 1.2rem 1.3rem;
-      border-bottom: 1px solid var(--color-border);
-      background: var(--color-primary-light);
-    }
-
-    .dialog-header h2 {
-      margin-bottom: 0;
-    }
-
-    .dialog-body {
-      padding: 1.3rem;
-    }
-
-    .dialog-footer {
-      display: flex;
-      justify-content: flex-end;
-      padding: 1rem 1.3rem;
-      border-top: 1px solid var(--color-border);
-      background: var(--color-surface-muted);
-    }
-
-    .dialog-close-icon {
-      width: 2.6rem;
-      height: 2.6rem;
-      display: grid;
-      place-items: center;
-      padding: 0;
-      border: 1px solid var(--color-border);
-      border-radius: 50%;
-      background: var(--color-surface);
-      color: var(--color-text);
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
-
-    /* =========================================================
-       14. FUSSZEILE
-       ========================================================= */
-
-    .site-footer {
-      border-top: 1px solid var(--color-border);
-      background: var(--color-surface);
-    }
-
-    .site-footer-inner {
-      width: min(100% - 2rem, var(--content-width));
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 0.75rem;
-      margin-inline: auto;
-      padding-block: 1rem;
-      color: var(--color-text-muted);
-      font-size: 0.82rem;
-    }
-
-    /* =========================================================
-       15. RESPONSIVES LAYOUT
-       ========================================================= */
-
-    @media (max-width: 1100px) {
-      .app-layout {
-        grid-template-columns: 15.5rem minmax(0, 1fr);
-      }
-
-      .module-button {
-        grid-template-columns: 2rem minmax(0, 1fr);
-      }
-
-      .module-status {
-        display: none;
-      }
-
-      .information-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 820px) {
-      .site-header {
-        position: static;
-      }
-
-      .header-main-row {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .header-actions {
-        width: 100%;
-        justify-content: flex-start;
-      }
-
-      .app-layout {
-        grid-template-columns: 1fr;
-        padding-top: 1rem;
-      }
-
-      .sidebar {
-        position: static;
-      }
-
-      .module-list {
-        display: flex;
-        gap: 0.5rem;
-        overflow-x: auto;
-        scroll-snap-type: x proximity;
-      }
-
-      .module-list li {
-        flex: 0 0 min(17rem, 82vw);
-        scroll-snap-align: start;
-      }
-
-      .module-list li + li {
-        margin-top: 0;
-      }
-
-      .status-legend {
-        display: none;
-      }
-
-      .task-header {
-        flex-direction: column;
-      }
-
-      .task-badges {
-        justify-content: flex-start;
-      }
-    }
-
-    @media (max-width: 620px) {
-      .header-inner,
-      .app-layout,
-      .site-footer-inner {
-        width: min(100% - 1rem, var(--content-width));
-      }
-
-      .brand-symbol {
-        width: 2.65rem;
-        height: 2.65rem;
-      }
-
-      .brand-subtitle {
-        display: none;
-      }
-
-      .header-actions {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .header-actions .button {
-        width: 100%;
-      }
-
-      .task-header,
-      .task-body,
-      .task-tools,
-      .task-footer {
-        padding-inline: 1rem;
-      }
-
-      .feedback {
-        margin-inline: 1rem;
-      }
-
-      .task-footer {
-        align-items: stretch;
-        flex-direction: column;
-      }
-
-      .task-actions-left,
-      .task-actions-right {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      .task-footer .button {
-        width: 100%;
-      }
-
-      .tool-note {
-        width: 100%;
-        margin-left: 0;
-      }
-    }
-
-    @media (max-width: 420px) {
-      .header-actions {
-        grid-template-columns: 1fr;
-      }
-
-      .task-workspace {
-        min-height: 14rem;
-        padding: 0.9rem;
-      }
-    }
-
-    /* =========================================================
-       16. REDUZIERTE BEWEGUNG
-       ========================================================= */
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-      }
-    }
-
-    /* =========================================================
-       17. DRUCKANSICHT
-       ========================================================= */
-
-    @media print {
-      .site-header,
-      .sidebar,
-      .task-tools,
-      .task-footer,
-      .site-footer,
-      .information-card {
-        display: none !important;
-      }
-
-      body {
-        background: #ffffff;
-      }
-
-      .app-layout {
-        display: block;
-        width: 100%;
-        padding: 0;
-      }
-
-      .task-card {
-        border: 0;
-        box-shadow: none;
-      }
-    }
   </style>
 </head>
 
@@ -6221,6 +6193,26 @@ width: 100%;
               <span class="button-icon" aria-hidden="true">▣</span>
               Fortschritt speichern
             </button>
+<button
+  id="results-overview-button"
+  class="button button--secondary results-header-button"
+  type="button"
+  aria-label="Ergebnisübersicht öffnen"
+  title="Ergebnisübersicht öffnen und Lernstand exportieren"
+>
+  <span class="button-icon" aria-hidden="true">▤</span>
+
+  <span>
+    Ergebnisse
+  </span>
+
+  <span
+    class="results-header-count"
+    aria-hidden="true"
+  >
+    0/44
+  </span>
+</button>
           </div>
         </div>
 
@@ -6853,7 +6845,7 @@ width: 100%;
      1. KONSTANTEN
      ========================================================= */
 
-  const APP_VERSION = "1.0.0-section-2";
+const APP_VERSION = "1.0.0";
   const STATE_SCHEMA_VERSION = 1;
   const STORAGE_KEY = "enzymhemmung-app-v1";
 
@@ -8451,12 +8443,17 @@ width: 100%;
         preventScroll: true
       });
 
-      ui.taskCard.scrollIntoView({
-        behavior: appState.settings.reducedMotion
-          ? "auto"
-          : "smooth",
-        block: "start"
-      });
+ui.taskCard.scrollIntoView({
+behavior:
+appState.settings.reducedMotion ||
+document.documentElement.classList.contains(
+"a11y-reduced-motion"
+)
+? "auto"
+: "smooth",
+block: "start"
+});
+
     }
 
     document.dispatchEvent(
@@ -8631,12 +8628,19 @@ width: 100%;
       isPlainObject(result) ? result : {};
 
     const isCorrect =
-      normalizedResult.correct === true;
+  normalizedResult.correct === true;
 
-    const isPartial =
-      normalizedResult.partial === true;
+const isPartial =
+  normalizedResult.partial === true;
 
-    const newStatus = isCorrect
+const isCompletedSelfCheck =
+  task.mode === "self-check" &&
+  normalizedResult.completedSelfCheck === true;
+
+const newStatus =
+  isCompletedSelfCheck
+    ? "completed-self-check"
+    : isCorrect
       ? "correct"
       : isPartial
         ? "checked-partial"
@@ -21515,58 +21519,130 @@ const diagramCorrectionController = {
 
       saveSelection();
     }
+function synchronizeSeriesTaskResult(
+  seriesKey
+) {
+  const taskId =
+    DIAGRAM_SERIES[seriesKey]
+      ?.taskId;
 
-    function changePoint(
+  const task =
+    TASKS_BY_ID.get(taskId);
+
+  if (!task) {
+    return;
+  }
+
+  const points =
+    getSeriesPoints(seriesKey);
+
+  const evaluation =
+    evaluateDiagramSeries(
       seriesKey,
-      substrate,
+      points
+    );
+
+  const totalParts =
+    EXPERIMENT_DATA[
+      seriesKey
+    ].length;
+
+  const fullyCorrect =
+    evaluation.correct ===
+    totalParts;
+
+  const status =
+    fullyCorrect
+      ? "correct"
+      : evaluation.correct > 0
+        ? "checked-partial"
+        : "checked-incorrect";
+
+  const score =
+    fullyCorrect
+      ? task.maxPoints
+      : calculateScaledScore(
+          evaluation.correct,
+          totalParts,
+          task.maxPoints
+        );
+
+  updateTaskState(
+    taskId,
+    {
+      status,
+      points: score,
+      lastModified:
+        new Date().toISOString()
+    },
+    {
+      save: true,
+      refresh: false
+    }
+  );
+}
+
+function changePoint(
+  seriesKey,
+  substrate,
+  velocity
+) {
+  const points =
+    getSeriesPoints(seriesKey);
+
+  points[
+    canonicalSubstrateKey(
+      substrate
+    )
+  ] =
+    roundDiagramValue(
       velocity
-    ) {
-      const points =
-        getSeriesPoints(seriesKey);
+    );
 
-      points[
-        canonicalSubstrateKey(
-          substrate
-        )
-      ] =
-        roundDiagramValue(
-          velocity
-        );
-
-      setSeriesPoints(
-        seriesKey,
-        points,
-        {
-          selectedSubstrate:
-            Number(substrate)
-        }
-      );
+  setSeriesPoints(
+    seriesKey,
+    points,
+    {
+      selectedSubstrate:
+        Number(substrate)
     }
+  );
 
-    function removeSelectedPoint() {
-      const points =
-        getSeriesPoints(
-          selection.seriesKey
-        );
+  synchronizeSeriesTaskResult(
+    seriesKey
+  );
+}
 
-      delete points[
-        canonicalSubstrateKey(
-          selection.substrate
-        )
-      ];
+function removeSelectedPoint() {
+  const seriesKey =
+    selection.seriesKey;
 
-      setSeriesPoints(
-        selection.seriesKey,
-        points,
-        {
-          selectedSubstrate:
-            selection.substrate
-        }
-      );
+  const points =
+    getSeriesPoints(
+      seriesKey
+    );
 
-      renderInterface();
+  delete points[
+    canonicalSubstrateKey(
+      selection.substrate
+    )
+  ];
+
+  setSeriesPoints(
+    seriesKey,
+    points,
+    {
+      selectedSubstrate:
+        selection.substrate
     }
+  );
 
+  synchronizeSeriesTaskResult(
+    seriesKey
+  );
+
+  renderInterface();
+}
     function getCombinedEvaluation() {
       return {
         withoutAllopurinol:
@@ -23231,8 +23307,6 @@ canonicalSubstrateKey
 
 const tableMarkup = ` <div class="analysis-table-wrapper"> <table class="analysis-data-table"> <thead> <tr> <th scope="col">
 S / µmol·l⁻¹ </th>
-
-```
         <th scope="col">
           v ohne Allopurinol
         </th>
@@ -23275,8 +23349,6 @@ S / µmol·l⁻¹ </th>
     </tbody>
   </table>
 </div>
-```
-
 `;
 
 const diagramMarkup =
@@ -23301,18 +23373,14 @@ typeof renderExperimentDiagramSvg === "function"
       `
 : ` <div class="analysis-callout"> <strong>
 Diagrammansicht nicht verfügbar </strong>
-
-```
       Verwende die Messwerttabelle. Die Diagrammfunktion wird
       durch Abschnitt 9 bereitgestellt.
     </div>
   `;
-```
 
 return ` <section class="analysis-reference"> <article class="analysis-reference-card"> <h2>
 ${escapeHtml(title)} </h2>
 
-```
     <p class="analysis-card-description">
       ${escapeHtml(description)}
     </p>
@@ -23339,7 +23407,6 @@ ${escapeHtml(title)} </h2>
       : ""
   }
 </section>
-```
 
 `;
 }
@@ -23352,7 +23419,7 @@ const high = getExperimentRow(20);
 return ` <div class="evidence-summary-grid"> <article class="evidence-summary-card"> <strong>
 Niedrige Substratkonzentration </strong>
 
-```
+
     <span>
       S = 0,5: v sinkt von
       ${formatGermanNumber(low.withoutValue)} auf
@@ -23384,8 +23451,6 @@ Niedrige Substratkonzentration </strong>
     </span>
   </article>
 </div>
-```
-
 `;
 }
 
@@ -23396,8 +23461,6 @@ Niedrige Substratkonzentration </strong>
 const analysisNumericController = {
 render(context) {
 const config = getTaskConfig(context.task);
-
-```
 if (
   !config ||
   !Array.isArray(config.questions)
@@ -23689,7 +23752,7 @@ return {
     );
   }
 };
-```
+
 
 }
 };
@@ -24722,7 +24785,7 @@ Erweiterungen über die öffentliche Schnittstelle bereit.
 Object.assign(window.EnzymeApp, {
 experimentData: cloneData(EXPERIMENT_DATA),
 
-```
+
 getExperimentRow(substrate) {
   const row = getExperimentRow(substrate);
 
@@ -24732,7 +24795,7 @@ getExperimentRow(substrate) {
 },
 
 renderEvidenceSummary
-```
+
 
 });
 }
@@ -24828,13 +24891,13 @@ sanitizeSelfCheckRating(
 ratings[criterion.id]
 );
 
-```
+
 if (rating === "") {
   counts.open += 1;
 } else {
   counts[rating] += 1;
 }
-```
+
 
 }
 
@@ -24852,7 +24915,7 @@ sanitizeSelfCheckRating(
 ratings[criterion.id]
 );
 
-```
+
   if (rating === "present") {
     return sum + 1;
   }
@@ -24864,7 +24927,7 @@ ratings[criterion.id]
   return sum;
 },
 0
-```
+
 
 );
 }
@@ -24877,7 +24940,7 @@ const guidedFreeResponseController = {
 render(context) {
 const config = getTaskConfig(context.task);
 
-```
+
 if (
   !config ||
   !Array.isArray(config.criteria) ||
@@ -25744,17 +25807,18 @@ return {
         `${counts.partial} teilweise enthalten. Präzisiere die teilweise erfüllten Aspekte bei Bedarf.`;
     }
 
-    return {
-      correct,
-      partial,
-      score,
-      answer: createAnswer(),
-      title:
-        correct
-          ? "Selbstprüfung abgeschlossen"
-          : "Selbstprüfung ausgewertet",
-      message
-    };
+return {
+  correct,
+  partial,
+  completedSelfCheck: true,
+  score,
+  answer: createAnswer(),
+  title:
+    correct
+      ? "Selbstprüfung abgeschlossen"
+      : "Selbstprüfung ausgewertet",
+  message
+};
   },
 
   reset() {
@@ -25800,7 +25864,7 @@ return {
     );
   }
 };
-```
+
 
 }
 };
@@ -25845,9 +25909,9 @@ planningQuestions: [
 modelAnswer: [
 "Bei einer kompetitiven Hemmung konkurrieren Substrat und Hemmstoff um dasselbe aktive Zentrum des Enzyms. Der Hemmstoff kann aufgrund passender Strukturmerkmale binden und verhindert während seiner Bindung, dass das Substrat dasselbe aktive Zentrum besetzt.",
 
-```
+
 "Dadurch entstehen zunächst weniger Enzym-Substrat-Komplexe und die Reaktionsgeschwindigkeit sinkt. Bei hoher Substratkonzentration bindet jedoch häufiger das Substrat statt des Hemmstoffs. Die Hemmung wird deshalb abgeschwächt; im einfachen kompetitiven Modell bleibt die Maximalgeschwindigkeit grundsätzlich erreichbar."
-```
+
 
 ],
 
@@ -25920,11 +25984,11 @@ planningQuestions: [
 modelAnswer: [
 "Allopurinol besitzt Strukturmerkmale, die eine Bindung an die Xanthinoxidase ermöglichen. Im Rahmen des Modellversuchs wird diese Wirkung als kompetitive Hemmung am aktiven Zentrum beschrieben. Während Allopurinol gebunden ist, kann das natürliche Substrat dort nicht produktiv binden.",
 
-```
+
 "Dadurch wird die Umsetzung von Xanthin zu Harnsäure verlangsamt und es wird weniger Harnsäure gebildet. Die Harnsäurekonzentration beziehungsweise die Harnsäurebelastung kann dadurch sinken. Die Löslichkeitsgrenze wird seltener überschritten, sodass weniger Harnsäurekristalle entstehen und sich in Gelenken oder anderen Geweben ablagern.",
 
 "Weniger Kristallablagerungen können die dadurch ausgelösten Entzündungsreaktionen vermindern. Schwellung, Rötung und starke Gelenkschmerzen werden damit weniger wahrscheinlich beziehungsweise können abgeschwächt werden."
-```
+
 
 ],
 
@@ -26010,6 +26074,12 @@ shortLabel: "zu prüfen",
 className: "is-incorrect"
 },
 
+"self-check": {
+label: "Selbstkontrolle abgeschlossen",
+shortLabel: "Selbstkontrolle",
+className: "is-self-check"
+},
+
 started: {
 label: "begonnen",
 shortLabel: "begonnen",
@@ -26024,31 +26094,40 @@ className: "is-unseen"
 };
 
 function normalizeResultStatus(rawStatus) {
-if (rawStatus === "completed") {
-return "correct";
-}
+const statusMap = {
+unseen: "unseen",
+started: "started",
 
-if (rawStatus === "evaluated") {
-return "partial";
-}
+```
+incorrect: "incorrect",
+partial: "partial",
+correct: "correct",
+"self-check": "self-check",
 
-return Object.prototype.hasOwnProperty.call(
-RESULT_STATUS_META,
-rawStatus
-)
-? rawStatus
-: "unseen";
+"checked-incorrect": "incorrect",
+"checked-partial": "partial",
+"completed-self-check": "self-check",
+
+completed: "correct",
+evaluated: "partial"
+```
+
+};
+
+return statusMap[rawStatus] ?? "unseen";
 }
 
 function isResultTaskEvaluated(status) {
 return [
 "correct",
 "partial",
-"incorrect"
+"incorrect",
+"self-check"
 ].includes(
 normalizeResultStatus(status)
 );
 }
+
 
 function getResultTaskState(taskId) {
 return isPlainObject(appState?.tasks?.[taskId])
@@ -26117,7 +26196,7 @@ const taskResults = TASKS.map((task) => {
 const taskState =
 getResultTaskState(task.id);
 
-```
+
 const status =
   normalizeResultStatus(
     taskState.status
@@ -26138,7 +26217,7 @@ return {
   evaluated:
     isResultTaskEvaluated(status)
 };
-```
+
 
 });
 
@@ -26152,7 +26231,7 @@ task.moduleId ===
 module.id
 );
 
-```
+
     const points =
       moduleTasks.reduce(
         (sum, task) =>
@@ -26210,7 +26289,7 @@ module.id
     };
   }
 );
-```
+
 
 const points =
 taskResults.reduce(
@@ -26266,7 +26345,7 @@ return {
 generatedAt:
 new Date().toISOString(),
 
-```
+
 taskResults,
 moduleResults,
 taskCount:
@@ -26299,7 +26378,7 @@ allTasksEvaluated:
 allTasksCorrect:
   correctCount ===
   taskResults.length
-```
+
 
 };
 }
@@ -26332,7 +26411,7 @@ Modul ${escapeHtml(
 String(moduleResult.number)
 )} </span>
 
-```
+
       <h3>
         ${escapeHtml(
           moduleResult.title
@@ -26382,7 +26461,7 @@ String(moduleResult.number)
     ${moduleResult.scorePercentage} %
   </p>
 </article>
-```
+
 
 `;
 }
@@ -26398,7 +26477,7 @@ ${escapeHtml(
 moduleResult.title
 )} </span>
 
-```
+
     <span>
       ${moduleResult.evaluatedCount} /
       ${moduleResult.taskCount}
@@ -26470,7 +26549,7 @@ moduleResult.title
     </table>
   </div>
 </details>
-```
+
 
 `;
 }
@@ -26491,7 +26570,7 @@ snapshot.allTasksEvaluated
 return ` <div class="results-report"> <section class="results-hero"> <div class="results-hero-copy"> <span class="results-kicker">
 Ergebnisübersicht </span>
 
-```
+
       <h2>
         ${escapeHtml(
           completionHeading
@@ -26579,10 +26658,10 @@ Ergebnisübersicht </span>
         </h3>
 
         <p>
-          Freitextpunkte aus den
-          Aufgaben 43 und 44 beruhen
-          auf der eigenen
-          Kriterienbewertung.
+             Die Aufgaben 43 und 44 sind
+    unbewertete Selbstkontrollen
+    und fließen nicht in die
+    Gesamtpunktzahl ein.
         </p>
       </div>
 
@@ -26679,7 +26758,7 @@ Ergebnisübersicht </span>
     </ul>
   </section>
 </div>
-```
+
 
 `;
 }
@@ -26713,7 +26792,7 @@ dialog.innerHTML = ` <div class="results-dialog-shell"> <header class="results-d
 Enzymhemmung –
 Anwendungsaufgabe </span>
 
-```
+
       <h1>
         Ergebnisse und Abschluss
       </h1>
@@ -26760,7 +26839,7 @@ Anwendungsaufgabe </span>
     </button>
   </footer>
 </div>
-```
+
 
 `;
 
@@ -26852,11 +26931,11 @@ dialog.setAttribute(
 ""
 );
 
-```
+
 dialog.classList.add(
   "is-fallback-open"
 );
-```
+
 
 }
 
@@ -26886,11 +26965,11 @@ dialog.removeAttribute(
 "open"
 );
 
-```
+
 dialog.classList.remove(
   "is-fallback-open"
 );
-```
+
 
 }
 
@@ -26911,7 +26990,7 @@ return {
 format:
 "enzymhemmung-lernstand",
 
-```
+
 formatVersion: 1,
 
 appVersion:
@@ -26948,7 +27027,7 @@ summary: {
 
 state:
   cloneData(appState)
-```
+
 
 };
 }
@@ -27028,71 +27107,49 @@ document.body.classList.remove(
 ========================================================= */
 
 function updateResultsHeaderButton() {
-const button =
-document.getElementById(
-"save-progress-button"
-);
+  const button =
+    document.getElementById(
+      "results-overview-button"
+    );
 
-if (!button) {
-return;
-}
-
-const snapshot =
-createResultsSnapshot();
-
-button.disabled = false;
-
-button.classList.add(
-"results-header-button"
-);
-
-button.innerHTML = ` <span>
-Ergebnisse </span>
-
-```
-<span
-  class="results-header-count"
-  aria-hidden="true"
->
-  ${snapshot.evaluatedCount}/${snapshot.taskCount}
-</span>
-```
-
-`;
-
-button.setAttribute(
-"aria-label",
-`Ergebnisse öffnen. ${snapshot.evaluatedCount} von ${snapshot.taskCount} Aufgaben ausgewertet.`
-);
-
-button.title =
-"Ergebnisübersicht öffnen und Lernstand exportieren";
-
-if (
-!button.dataset.resultsBound
-) {
-button.addEventListener(
-"click",
-(event) => {
-event.preventDefault();
-
-```
-    event.stopImmediatePropagation();
-
-    openResultsOverview();
-  },
-  {
-    capture: true
+  if (!button) {
+    return;
   }
-);
 
-button.dataset.resultsBound =
-  "true";
-```
+  const snapshot =
+    createResultsSnapshot();
 
+  const countElement =
+    button.querySelector(
+      ".results-header-count"
+    );
+
+  if (countElement) {
+    countElement.textContent =
+      `${snapshot.evaluatedCount}/${snapshot.taskCount}`;
+  }
+
+  button.setAttribute(
+    "aria-label",
+    `Ergebnisse öffnen. ${snapshot.evaluatedCount} von ${snapshot.taskCount} Aufgaben ausgewertet.`
+  );
+
+  button.title =
+    "Ergebnisübersicht öffnen und Lernstand exportieren";
+
+  if (
+    button.dataset.resultsBound !==
+    "true"
+  ) {
+    button.addEventListener(
+      "click",
+      openResultsOverview
+    );
+
+    button.dataset.resultsBound =
+      "true";
+  }
 }
-}
-
 function getVisibleTaskNumber() {
 const taskNumberElement =
 document.getElementById(
@@ -27166,7 +27223,7 @@ panel.className =
 panel.innerHTML = ` <div> <span class="final-results-kicker">
 Abschluss </span>
 
-```
+
   <h2>
     ${
       snapshot.allTasksEvaluated
@@ -27189,7 +27246,7 @@ Abschluss </span>
 >
   Ergebnisübersicht öffnen
 </button>
-```
+
 
 `;
 
@@ -27229,7 +27286,7 @@ document.getElementById(
 "task-card"
 ),
 
-```
+
 document.getElementById(
   "progress-label"
 ),
@@ -27237,7 +27294,7 @@ document.getElementById(
 document.getElementById(
   "module-nav"
 )
-```
+
 
 ].filter(Boolean);
 
@@ -27245,10 +27302,10 @@ const observer =
 new MutationObserver(() => {
 updateResultsHeaderButton();
 
-```
+
   updateFinalTaskCompletionPanel();
 });
-```
+
 
 for (
 const element of
@@ -27270,7 +27327,7 @@ window.EnzymeApp,
 {
 openResultsOverview,
 
-```
+
   closeResultsOverview,
 
   createResultsSnapshot,
@@ -27279,7 +27336,7 @@ openResultsOverview,
 
   printResultsOverview
 }
-```
+
 
 );
 }
@@ -27346,12 +27403,12 @@ title,
 message
 });
 
-```
+
   return;
 } catch (error) {
   /* Fallback auf Browserdialog. */
 }
-```
+
 
 }
 
@@ -27397,7 +27454,7 @@ index += 1
 const key =
 localStorage.key(index);
 
-```
+
 if (!key) {
   continue;
 }
@@ -27440,7 +27497,7 @@ try {
     nicht als JSON lesbar sein.
   */
 }
-```
+
 
 }
 
@@ -27457,7 +27514,7 @@ testKey,
 "1"
 );
 
-```
+
 const readable =
   localStorage.getItem(
     testKey
@@ -27468,7 +27525,7 @@ localStorage.removeItem(
 );
 
 return readable;
-```
+
 
 } catch (error) {
 return false;
@@ -27543,14 +27600,14 @@ errors.push(
 "Die Datei enthält kein gültiges JSON-Objekt."
 );
 
-```
+
 return {
   valid: false,
   errors,
   warnings,
   state: null
 };
-```
+
 
 }
 
@@ -27572,14 +27629,14 @@ errors.push(
 "Das Feld „state“ fehlt oder enthält keinen gültigen Lernstand."
 );
 
-```
+
 return {
   valid: false,
   errors,
   warnings,
   state: null
 };
-```
+
 
 }
 
@@ -27678,9 +27735,9 @@ message:
 "Der ausgewählte Lernstand konnte nicht geöffnet werden."
 });
 
-```
+
 return;
-```
+
 
 }
 
@@ -27698,9 +27755,9 @@ message:
 "Die ausgewählte Datei enthält kein gültiges JSON."
 });
 
-```
+
 return;
-```
+
 
 }
 
@@ -27720,9 +27777,9 @@ validation.errors.join(
 )
 });
 
-```
+
 return;
-```
+
 
 }
 
@@ -27740,9 +27797,9 @@ message:
 "Der LocalStorage-Eintrag der Anwendung konnte nicht eindeutig identifiziert werden. Öffne zunächst mindestens eine Aufgabe und lade die Seite danach neu."
 });
 
-```
+
 return;
-```
+
 
 }
 
@@ -27773,7 +27830,7 @@ maintenanceClone(
 targetRecord.parsed
 );
 
-```
+
   wrapper.state =
     mergedState;
 
@@ -27789,7 +27846,7 @@ targetRecord.parsed
     )
   );
 }
-```
+
 
 } catch (error) {
 maintenanceShowMessage({
@@ -27800,9 +27857,9 @@ message:
 "Der importierte Lernstand konnte nicht im Browser gespeichert werden."
 });
 
-```
+
 return;
-```
+
 
 }
 
@@ -27856,9 +27913,9 @@ message:
 "Es wurde kein passender LocalStorage-Eintrag gefunden."
 });
 
-```
+
 return;
-```
+
 
 }
 
@@ -27880,9 +27937,9 @@ message:
 "Der lokale Lernstand konnte nicht vollständig entfernt werden."
 });
 
-```
+
 return;
-```
+
 
 }
 
@@ -28064,7 +28121,7 @@ TASK_CONTROLLERS_BY_ID.has(
 task.id
 );
 
-```
+
   const hasTypeController =
     typeof TASK_CONTROLLERS_BY_TYPE
       ?.has === "function" &&
@@ -28080,7 +28137,7 @@ task.id
       hasTypeController
   };
 });
-```
+
 
 const uncoveredTasks =
 controllerCoverage.filter(
@@ -28149,13 +28206,13 @@ TASKS.filter((task) => {
 const maximum =
 Number(task.maxPoints);
 
-```
+
   return (
     !Number.isFinite(maximum) ||
     maximum < 0
   );
 });
-```
+
 
 checks.push(
 maintenanceCreateCheck({
@@ -28323,7 +28380,7 @@ element.getAttribute(
 attribute
 ) ?? "";
 
-```
+
     if (
       /^(https?:)?\/\//i.test(
         value
@@ -28337,7 +28394,7 @@ attribute
       });
     }
   });
-```
+
 
 }
 
@@ -28426,7 +28483,7 @@ checks.filter(
 check.status === "pass"
 ).length,
 
-```
+
 warning:
   checks.filter(
     (check) =>
@@ -28438,7 +28495,7 @@ fail:
     (check) =>
       check.status === "fail"
   ).length
-```
+
 
 };
 
@@ -28453,7 +28510,7 @@ return {
 generatedAt:
 new Date().toISOString(),
 
-```
+
 appVersion:
   typeof APP_VERSION ===
   "string"
@@ -28463,7 +28520,7 @@ appVersion:
 overallStatus,
 counts,
 checks
-```
+
 
 };
 }
@@ -28521,7 +28578,7 @@ report.overallStatus === "pass"
 
 return ` <div class="maintenance-report">
 
-```
+
   <section
     class="maintenance-summary is-${escapeHtml(report.overallStatus)}"
   >
@@ -28644,7 +28701,7 @@ return ` <div class="maintenance-report">
   </details>
 
 </div>
-```
+
 
 `;
 }
@@ -28677,7 +28734,7 @@ dialog.className =
 dialog.innerHTML = ` <div class="maintenance-dialog-shell"> <header class="maintenance-dialog-header"> <div> <span class="maintenance-dialog-eyebrow">
 Technische Abschlussprüfung </span>
 
-```
+
       <h1>
         Systemdiagnose
       </h1>
@@ -28724,7 +28781,7 @@ Technische Abschlussprüfung </span>
     </button>
   </footer>
 </div>
-```
+
 
 `;
 
@@ -28818,11 +28875,11 @@ dialog.setAttribute(
 ""
 );
 
-```
+
 dialog.classList.add(
   "is-fallback-open"
 );
-```
+
 
 }
 }
@@ -28848,11 +28905,11 @@ dialog.removeAttribute(
 "open"
 );
 
-```
+
 dialog.classList.remove(
   "is-fallback-open"
 );
-```
+
 
 }
 }
@@ -28941,7 +28998,7 @@ document.createElement(
 "input"
 );
 
-```
+
 fileInput.id =
   "maintenance-progress-import";
 
@@ -28971,7 +29028,7 @@ fileInput.addEventListener(
     fileInput.value = "";
   }
 );
-```
+
 
 }
 
@@ -28985,7 +29042,7 @@ document.createElement(
 "button"
 );
 
-```
+
 importButton.type =
   "button";
 
@@ -29008,7 +29065,7 @@ importButton.addEventListener(
 footer.prepend(
   importButton
 );
-```
+
 
 }
 
@@ -29022,7 +29079,7 @@ document.createElement(
 "button"
 );
 
-```
+
 diagnosticButton.type =
   "button";
 
@@ -29044,7 +29101,7 @@ diagnosticButton.addEventListener(
 footer.prepend(
   diagnosticButton
 );
-```
+
 
 }
 
@@ -29058,7 +29115,7 @@ document.createElement(
 "button"
 );
 
-```
+
 resetButton.type =
   "button";
 
@@ -29080,7 +29137,7 @@ resetButton.addEventListener(
 footer.prepend(
   resetButton
 );
-```
+
 
 }
 
@@ -29110,7 +29167,7 @@ window.EnzymeApp,
 importProgressFile:
 maintenanceImportProgressFile,
 
-```
+
   resetProgress:
     maintenanceResetProgress,
 
@@ -29123,7 +29180,7 @@ maintenanceImportProgressFile,
   exportDiagnosticReport:
     maintenanceExportDiagnosticReport
 }
-```
+
 
 );
 }
@@ -29136,6 +29193,1435 @@ eingefügt wird, erfolgt diese Installation anschließend.
 
 queueMicrotask(
 maintenanceInstallTools
+);
+/* =========================================================
+ABSCHNITT 14: BARRIEREFREIHEIT UND ANZEIGEEINSTELLUNGEN
+========================================================= */
+
+/* =========================================================
+
+1. KONSTANTEN UND EINSTELLUNGEN
+   ========================================================= */
+
+const A11Y_STORAGE_KEY =
+"enzymhemmung-accessibility-v1";
+
+const A11Y_ALLOWED_FONT_SCALES = [
+90,
+100,
+115,
+130
+];
+
+const A11Y_DEFAULT_SETTINGS = {
+fontScale: 100,
+highContrast: false,
+reducedMotion: false,
+focusMode: false,
+readingMode: false,
+largeControls: false,
+enhancedFocus: true
+};
+
+let a11ySettings =
+loadA11ySettings();
+
+let a11yLastFocusedElement =
+null;
+
+let a11yAnnouncementTimer =
+null;
+
+/* =========================================================
+2. SPEICHERN UND VALIDIEREN
+========================================================= */
+
+function normalizeA11ySettings(
+candidate
+) {
+const source =
+candidate &&
+typeof candidate === "object"
+? candidate
+: {};
+
+const requestedScale =
+Number(source.fontScale);
+
+return {
+fontScale:
+A11Y_ALLOWED_FONT_SCALES.includes(
+requestedScale
+)
+? requestedScale
+: A11Y_DEFAULT_SETTINGS.fontScale,
+
+ 
+highContrast:
+  source.highContrast === true,
+
+reducedMotion:
+  source.reducedMotion === true,
+
+focusMode:
+  source.focusMode === true,
+
+readingMode:
+  source.readingMode === true,
+
+largeControls:
+  source.largeControls === true,
+
+enhancedFocus:
+  source.enhancedFocus !== false
+ 
+
+};
+}
+
+function loadA11ySettings() {
+try {
+const storedValue =
+localStorage.getItem(
+A11Y_STORAGE_KEY
+);
+
+ 
+if (!storedValue) {
+  return {
+    ...A11Y_DEFAULT_SETTINGS
+  };
+}
+
+return normalizeA11ySettings(
+  JSON.parse(storedValue)
+);
+ 
+
+} catch (error) {
+return {
+...A11Y_DEFAULT_SETTINGS
+};
+}
+}
+
+function saveA11ySettings() {
+try {
+localStorage.setItem(
+A11Y_STORAGE_KEY,
+JSON.stringify(
+a11ySettings
+)
+);
+} catch (error) {
+/*
+Die Einstellungen bleiben während
+der aktuellen Sitzung aktiv.
+*/
+}
+}
+
+function getA11ySettings() {
+return {
+...a11ySettings
+};
+}
+
+/* =========================================================
+3. EINSTELLUNGEN ANWENDEN
+========================================================= */
+
+function countActiveA11ySettings() {
+let count = 0;
+
+if (
+a11ySettings.fontScale !==
+A11Y_DEFAULT_SETTINGS.fontScale
+) {
+count += 1;
+}
+
+const booleanKeys = [
+"highContrast",
+"reducedMotion",
+"focusMode",
+"readingMode",
+"largeControls"
+];
+
+for (const key of booleanKeys) {
+if (
+a11ySettings[key] !==
+A11Y_DEFAULT_SETTINGS[key]
+) {
+count += 1;
+}
+}
+
+return count;
+}
+
+function applyA11ySettings({
+save = true,
+announce = false
+} = {}) {
+const root =
+document.documentElement;
+
+root.style.fontSize =
+`${a11ySettings.fontScale}%`;
+
+root.classList.toggle(
+"a11y-high-contrast",
+a11ySettings.highContrast
+);
+
+root.classList.toggle(
+"a11y-reduced-motion",
+a11ySettings.reducedMotion
+);
+
+root.classList.toggle(
+"a11y-focus-mode",
+a11ySettings.focusMode
+);
+
+root.classList.toggle(
+"a11y-reading-mode",
+a11ySettings.readingMode
+);
+
+root.classList.toggle(
+"a11y-large-controls",
+a11ySettings.largeControls
+);
+
+root.classList.toggle(
+"a11y-enhanced-focus",
+a11ySettings.enhancedFocus
+);
+
+root.dataset.a11yFontScale =
+String(
+a11ySettings.fontScale
+);
+
+if (save) {
+saveA11ySettings();
+}
+
+updateA11ySettingsButton();
+
+if (announce) {
+announceA11y(
+"Anzeigeeinstellungen wurden angewendet."
+);
+}
+}
+
+function resetA11ySettings() {
+a11ySettings = {
+...A11Y_DEFAULT_SETTINGS
+};
+
+applyA11ySettings({
+save: true,
+announce: true
+});
+
+updateA11yDialogControls();
+}
+
+/* =========================================================
+4. LIVE-REGION UND SPRUNGLINK
+========================================================= */
+
+function ensureA11yLiveRegion() {
+let region =
+document.getElementById(
+"a11y-live-region"
+);
+
+if (region) {
+return region;
+}
+
+region =
+document.createElement("div");
+
+region.id =
+"a11y-live-region";
+
+region.className =
+"a11y-live-region";
+
+region.setAttribute(
+"role",
+"status"
+);
+
+region.setAttribute(
+"aria-live",
+"polite"
+);
+
+region.setAttribute(
+"aria-atomic",
+"true"
+);
+
+document.body.append(region);
+
+return region;
+}
+
+function announceA11y(message) {
+const region =
+ensureA11yLiveRegion();
+
+window.clearTimeout(
+a11yAnnouncementTimer
+);
+
+region.textContent = "";
+
+a11yAnnouncementTimer =
+window.setTimeout(
+() => {
+region.textContent =
+String(message ?? "");
+},
+40
+);
+}
+
+function ensureA11ySkipLink() {
+  const link =
+    document.querySelector(
+      ".skip-link[href='#main-content']"
+    );
+
+  const mainContent =
+    document.getElementById(
+      "main-content"
+    );
+
+  if (!link) {
+    return null;
+  }
+
+  if (
+    mainContent &&
+    !mainContent.hasAttribute(
+      "tabindex"
+    )
+  ) {
+    mainContent.setAttribute(
+      "tabindex",
+      "-1"
+    );
+  }
+
+  if (
+    link.dataset.a11yBound !==
+    "true"
+  ) {
+    link.addEventListener(
+      "click",
+      () => {
+        window.setTimeout(
+          () => {
+            mainContent?.focus({
+              preventScroll: true
+            });
+          },
+          0
+        );
+      }
+    );
+
+    link.dataset.a11yBound =
+      "true";
+  }
+
+  return link;
+}
+/* =========================================================
+5. EINSTELLUNGSDIALOG
+========================================================= */
+
+function renderA11yToggle({
+key,
+title,
+description
+}) {
+return ` <label class="a11y-toggle"> <span class="a11y-toggle-copy"> <strong>
+${escapeHtml(title)} </strong>
+
+ 
+    <small>
+      ${escapeHtml(description)}
+    </small>
+  </span>
+
+  <span class="a11y-switch">
+    <input
+      type="checkbox"
+      data-a11y-setting="${escapeHtml(key)}"
+      ${
+        a11ySettings[key]
+          ? "checked"
+          : ""
+      }
+    >
+
+    <span
+      class="a11y-switch-track"
+      aria-hidden="true"
+    ></span>
+  </span>
+</label>
+ 
+
+`;
+}
+
+function ensureA11yDialog() {
+let dialog =
+document.getElementById(
+"a11y-settings-dialog"
+);
+
+if (dialog) {
+return dialog;
+}
+
+dialog =
+document.createElement(
+"dialog"
+);
+
+dialog.id =
+"a11y-settings-dialog";
+
+dialog.className =
+"a11y-dialog";
+
+dialog.innerHTML = ` <div class="a11y-dialog-shell">
+
+ 
+  <header class="a11y-dialog-header">
+    <div>
+      <span class="a11y-dialog-eyebrow">
+        Darstellung und Bedienung
+      </span>
+
+      <h1>
+        Barrierefreiheit
+      </h1>
+    </div>
+
+    <button
+      class="results-icon-button"
+      type="button"
+      data-a11y-close
+      aria-label="Anzeigeeinstellungen schließen"
+    >
+      ×
+    </button>
+  </header>
+
+  <div class="a11y-dialog-content">
+    <form
+      class="a11y-settings-form"
+      data-a11y-form
+    >
+
+      <section class="a11y-settings-section">
+        <h2>
+          Textgröße
+        </h2>
+
+        <p class="a11y-settings-description">
+          Die Einstellung verändert die gesamte
+          Benutzeroberfläche einschließlich Aufgaben,
+          Tabellen und Diagrammbeschriftungen.
+        </p>
+
+        <fieldset class="task-fieldset">
+          <legend class="visually-hidden">
+            Textgröße auswählen
+          </legend>
+
+          <div class="a11y-font-options">
+            ${A11Y_ALLOWED_FONT_SCALES
+              .map((scale) => `
+                <label class="a11y-font-option">
+                  <input
+                    type="radio"
+                    name="a11y-font-scale"
+                    value="${scale}"
+                    ${
+                      a11ySettings.fontScale ===
+                      scale
+                        ? "checked"
+                        : ""
+                    }
+                  >
+
+                  <strong>
+                    ${scale} %
+                  </strong>
+
+                  <small>
+                    ${
+                      scale === 90
+                        ? "kompakt"
+                        : scale === 100
+                          ? "Standard"
+                          : scale === 115
+                            ? "groß"
+                            : "sehr groß"
+                    }
+                  </small>
+                </label>
+              `)
+              .join("")}
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="a11y-settings-section">
+        <h2>
+          Anzeigehilfen
+        </h2>
+
+        <p class="a11y-settings-description">
+          Änderungen werden sofort angewendet und lokal
+          im Browser gespeichert.
+        </p>
+
+        <div class="a11y-toggle-list">
+          ${renderA11yToggle({
+            key: "highContrast",
+            title: "Hoher Kontrast",
+            description:
+              "Verstärkt Text-, Rahmen- und Statuskontraste."
+          })}
+
+          ${renderA11yToggle({
+            key: "readingMode",
+            title: "Lesemodus",
+            description:
+              "Erhöht Zeilenabstand und Wortabstand in längeren Texten."
+          })}
+
+          ${renderA11yToggle({
+            key: "largeControls",
+            title: "Große Bedienelemente",
+            description:
+              "Vergrößert Schaltflächen, Eingabefelder und Auswahlfelder."
+          })}
+
+          ${renderA11yToggle({
+            key: "focusMode",
+            title: "Fokusmodus",
+            description:
+              "Blendet die Modulnavigation aus und zentriert die aktuelle Aufgabe."
+          })}
+
+          ${renderA11yToggle({
+            key: "reducedMotion",
+            title: "Bewegung reduzieren",
+            description:
+              "Deaktiviert weitgehend Animationen und Übergänge."
+          })}
+
+          ${renderA11yToggle({
+            key: "enhancedFocus",
+            title: "Starker Tastaturfokus",
+            description:
+              "Hebt das aktuell per Tastatur ausgewählte Element deutlich hervor."
+          })}
+        </div>
+      </section>
+
+      <section class="a11y-settings-section">
+        <h2>
+          Tastaturkürzel
+        </h2>
+
+        <p class="a11y-settings-description">
+          Die Kürzel funktionieren außerhalb von
+          Texteingabefeldern.
+        </p>
+
+        <table class="a11y-shortcut-table">
+          <tbody>
+            <tr>
+              <th scope="row">
+                <span class="a11y-key">Alt</span>
+                +
+                <span class="a11y-key">A</span>
+              </th>
+
+              <td>
+                Anzeigeeinstellungen öffnen
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
+                <span class="a11y-key">Alt</span>
+                +
+                <span class="a11y-key">→</span>
+              </th>
+
+              <td>
+                Nächste Aufgabe
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
+                <span class="a11y-key">Alt</span>
+                +
+                <span class="a11y-key">←</span>
+              </th>
+
+              <td>
+                Vorherige Aufgabe
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
+                <span class="a11y-key">Alt</span>
+                +
+                <span class="a11y-key">H</span>
+              </th>
+
+              <td>
+                Chemiehilfe öffnen
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
+                <span class="a11y-key">Alt</span>
+                +
+                <span class="a11y-key">E</span>
+              </th>
+
+              <td>
+                Ergebnisübersicht öffnen
+              </td>
+            </tr>
+
+            <tr>
+              <th scope="row">
+                <span class="a11y-key">Esc</span>
+              </th>
+
+              <td>
+                Aktuellen Dialog schließen
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </form>
+  </div>
+
+  <footer class="a11y-dialog-footer">
+    <button
+      class="button button--secondary"
+      type="button"
+      data-a11y-reset
+    >
+      Standard wiederherstellen
+    </button>
+
+    <button
+      class="button button--primary"
+      type="button"
+      data-a11y-close
+    >
+      Schließen
+    </button>
+  </footer>
+
+</div>
+ 
+
+`;
+
+document.body.append(dialog);
+
+dialog
+.querySelectorAll(
+"[data-a11y-close]"
+)
+.forEach((button) => {
+button.addEventListener(
+"click",
+closeA11yDialog
+);
+});
+
+dialog
+.querySelector(
+"[data-a11y-reset]"
+)
+?.addEventListener(
+"click",
+() => {
+resetA11ySettings();
+
+ 
+    announceA11y(
+      "Standardeinstellungen wurden wiederhergestellt."
+    );
+  }
+);
+ 
+
+dialog.addEventListener(
+"change",
+(event) => {
+const target =
+event.target;
+
+ 
+  if (
+    target.matches(
+      "input[name='a11y-font-scale']"
+    )
+  ) {
+    a11ySettings.fontScale =
+      Number(target.value);
+
+    applyA11ySettings({
+      save: true,
+      announce: true
+    });
+
+    return;
+  }
+
+  if (
+    target.matches(
+      "[data-a11y-setting]"
+    )
+  ) {
+    const key =
+      target.dataset
+        .a11ySetting;
+
+    if (
+      Object.prototype
+        .hasOwnProperty.call(
+          a11ySettings,
+          key
+        )
+    ) {
+      a11ySettings[key] =
+        target.checked === true;
+
+      applyA11ySettings({
+        save: true,
+        announce: true
+      });
+    }
+  }
+}
+ 
+
+);
+
+dialog.addEventListener(
+"click",
+(event) => {
+if (event.target === dialog) {
+closeA11yDialog();
+}
+}
+);
+
+dialog.addEventListener(
+"cancel",
+(event) => {
+event.preventDefault();
+closeA11yDialog();
+}
+);
+
+return dialog;
+}
+
+function updateA11yDialogControls() {
+const dialog =
+document.getElementById(
+"a11y-settings-dialog"
+);
+
+if (!dialog) {
+return;
+}
+
+dialog
+.querySelectorAll(
+"input[name='a11y-font-scale']"
+)
+.forEach((input) => {
+input.checked =
+Number(input.value) ===
+a11ySettings.fontScale;
+});
+
+dialog
+.querySelectorAll(
+"[data-a11y-setting]"
+)
+.forEach((input) => {
+const key =
+input.dataset
+.a11ySetting;
+
+ 
+  input.checked =
+    a11ySettings[key] === true;
+});
+ 
+
+}
+
+function openA11yDialog() {
+if (
+typeof closeResultsOverview ===
+"function"
+) {
+closeResultsOverview();
+}
+
+if (
+typeof maintenanceCloseDiagnostics ===
+"function"
+) {
+maintenanceCloseDiagnostics();
+}
+
+const dialog =
+ensureA11yDialog();
+
+a11yLastFocusedElement =
+document.activeElement;
+
+updateA11yDialogControls();
+
+if (
+typeof dialog.showModal ===
+"function" &&
+!dialog.open
+) {
+dialog.showModal();
+} else {
+dialog.setAttribute(
+"open",
+""
+);
+
+ 
+dialog.classList.add(
+  "is-fallback-open"
+);
+ 
+
+}
+
+document.body.classList.add(
+"a11y-dialog-open"
+);
+
+window.setTimeout(
+() => {
+dialog
+.querySelector(
+"input:checked, button"
+)
+?.focus();
+},
+0
+);
+}
+
+function closeA11yDialog() {
+const dialog =
+document.getElementById(
+"a11y-settings-dialog"
+);
+
+if (!dialog) {
+return;
+}
+
+if (
+typeof dialog.close ===
+"function" &&
+dialog.open
+) {
+dialog.close();
+} else {
+dialog.removeAttribute(
+"open"
+);
+
+ 
+dialog.classList.remove(
+  "is-fallback-open"
+);
+ 
+
+}
+
+document.body.classList.remove(
+"a11y-dialog-open"
+);
+
+if (
+a11yLastFocusedElement &&
+document.contains(
+a11yLastFocusedElement
+)
+) {
+a11yLastFocusedElement.focus();
+}
+}
+
+/* =========================================================
+6. SCHALTFLÄCHE IN DER KOPFZEILE
+========================================================= */
+
+function updateA11ySettingsButton() {
+const button =
+document.getElementById(
+"accessibility-settings-button"
+);
+
+if (!button) {
+return;
+}
+
+const activeCount =
+countActiveA11ySettings();
+
+const countElement =
+button.querySelector(
+".a11y-settings-count"
+);
+
+if (countElement) {
+countElement.textContent =
+String(activeCount);
+
+ 
+countElement.classList.toggle(
+  "is-active",
+  activeCount > 0
+);
+ 
+
+}
+
+button.setAttribute(
+"aria-label",
+activeCount > 0
+? `Anzeigeeinstellungen öffnen. ${activeCount} individuelle Einstellungen sind aktiv.`
+: "Anzeigeeinstellungen öffnen."
+);
+}
+
+function installA11ySettingsButton() {
+let button =
+document.getElementById(
+"accessibility-settings-button"
+);
+
+if (button) {
+updateA11ySettingsButton();
+return button;
+}
+
+button =
+document.createElement(
+"button"
+);
+
+button.id =
+"accessibility-settings-button";
+
+button.type =
+"button";
+
+button.className =
+"button button--secondary a11y-settings-button";
+
+button.innerHTML = ` <span>
+Anzeige </span>
+
+ 
+<span
+  class="a11y-settings-count"
+  aria-hidden="true"
+>
+  0
+</span>
+ 
+
+`;
+
+button.addEventListener(
+"click",
+openA11yDialog
+);
+
+const chemistryButton =
+document.getElementById(
+"chemistry-help-button"
+);
+
+const resultsButton =
+document.getElementById(
+"save-progress-button"
+);
+
+if (
+chemistryButton?.parentElement
+) {
+chemistryButton.insertAdjacentElement(
+"afterend",
+button
+);
+} else if (
+resultsButton?.parentElement
+) {
+resultsButton.insertAdjacentElement(
+"beforebegin",
+button
+);
+} else {
+const app =
+document.getElementById("app");
+
+ 
+app?.prepend(button);
+ 
+
+}
+
+updateA11ySettingsButton();
+
+return button;
+}
+
+/* =========================================================
+7. TASTATURSTEUERUNG
+========================================================= */
+
+function isA11yTypingTarget(
+target
+) {
+return Boolean(
+target?.closest?.(
+"input, textarea, select, [contenteditable='true']"
+)
+);
+}
+
+function clickA11yNavigationButton(
+buttonId,
+announcement
+) {
+const button =
+document.getElementById(
+buttonId
+);
+
+if (
+!button ||
+button.disabled
+) {
+announceA11y(
+"Diese Navigation ist aktuell nicht verfügbar."
+);
+
+ 
+return;
+ 
+
+}
+
+button.click();
+
+announceA11y(
+announcement
+);
+}
+
+function installA11yKeyboardShortcuts() {
+if (
+document.documentElement
+.dataset
+.a11yShortcutsInstalled ===
+"true"
+) {
+return;
+}
+
+document.documentElement
+.dataset
+.a11yShortcutsInstalled =
+"true";
+
+document.addEventListener(
+"keydown",
+(event) => {
+const key =
+event.key.toLowerCase();
+
+ 
+  const typing =
+    isA11yTypingTarget(
+      event.target
+    );
+
+  if (
+    event.altKey &&
+    key === "a"
+  ) {
+    event.preventDefault();
+    openA11yDialog();
+    return;
+  }
+
+  if (
+    event.key === "Escape"
+  ) {
+    const dialog =
+      document.getElementById(
+        "a11y-settings-dialog"
+      );
+
+    if (
+      dialog?.open ||
+      dialog?.hasAttribute(
+        "open"
+      )
+    ) {
+      event.preventDefault();
+      closeA11yDialog();
+    }
+
+    return;
+  }
+
+  if (typing) {
+    return;
+  }
+
+  if (
+    event.altKey &&
+    event.key ===
+      "ArrowRight"
+  ) {
+    event.preventDefault();
+
+    clickA11yNavigationButton(
+      "next-task-button",
+      "Nächste Aufgabe geöffnet."
+    );
+
+    return;
+  }
+
+  if (
+    event.altKey &&
+    event.key ===
+      "ArrowLeft"
+  ) {
+    event.preventDefault();
+
+    clickA11yNavigationButton(
+      "previous-task-button",
+      "Vorherige Aufgabe geöffnet."
+    );
+
+    return;
+  }
+
+  if (
+    event.altKey &&
+    key === "h"
+  ) {
+    event.preventDefault();
+
+    const helpButton =
+      document.getElementById(
+        "chemistry-help-button"
+      );
+
+    if (
+      helpButton &&
+      !helpButton.disabled
+    ) {
+      helpButton.click();
+    }
+
+    return;
+  }
+
+  if (
+    event.altKey &&
+    key === "e"
+  ) {
+    event.preventDefault();
+
+    if (
+      typeof openResultsOverview ===
+      "function"
+    ) {
+      openResultsOverview();
+    } else {
+      document
+        .getElementById(
+          "save-progress-button"
+        )
+        ?.click();
+    }
+  }
+}
+ 
+
+);
+}
+
+/* =========================================================
+8. AUFGABENWECHSEL ANSAGEN
+========================================================= */
+
+function installA11yTaskObserver() {
+const titleElement =
+document.getElementById(
+"task-title"
+);
+
+if (
+!titleElement ||
+titleElement.dataset
+.a11yObserved === "true"
+) {
+return;
+}
+
+titleElement.dataset
+.a11yObserved = "true";
+
+let lastTitle =
+titleElement.textContent
+?.trim() ?? "";
+
+const observer =
+new MutationObserver(
+() => {
+const currentTitle =
+titleElement.textContent
+?.trim() ?? "";
+
+ 
+    if (
+      currentTitle === "" ||
+      currentTitle === lastTitle
+    ) {
+      return;
+    }
+
+    lastTitle =
+      currentTitle;
+
+    window.setTimeout(
+      () => {
+        announceA11y(
+          `Geöffnet: ${currentTitle}`
+        );
+      },
+      80
+    );
+  }
+);
+ 
+
+observer.observe(
+titleElement,
+{
+childList: true,
+subtree: true,
+characterData: true
+}
+);
+}
+
+/* =========================================================
+9. SEMANTISCHE ERGÄNZUNGEN
+========================================================= */
+
+function installA11yLandmarks() {
+const moduleNavigation =
+document.getElementById(
+"module-nav"
+);
+
+if (moduleNavigation) {
+moduleNavigation.setAttribute(
+"aria-label",
+"Module und Aufgaben"
+);
+}
+
+const mainContent =
+document.getElementById(
+"main-content"
+);
+
+if (mainContent) {
+if (
+!mainContent.hasAttribute(
+"role"
+)
+) {
+mainContent.setAttribute(
+"role",
+"main"
+);
+}
+
+ 
+if (
+  !mainContent.hasAttribute(
+    "tabindex"
+  )
+) {
+  mainContent.setAttribute(
+    "tabindex",
+    "-1"
+  );
+}
+ 
+
+}
+
+const feedbackRegion =
+document.getElementById(
+"feedback-region"
+);
+
+if (feedbackRegion) {
+feedbackRegion.setAttribute(
+"aria-live",
+"polite"
+);
+
+ 
+feedbackRegion.setAttribute(
+  "aria-atomic",
+  "true"
+);
+ 
+
+}
+
+const progressBar =
+document.getElementById(
+"progress-bar"
+);
+
+if (progressBar) {
+progressBar.setAttribute(
+"aria-label",
+"Gesamtfortschritt"
+);
+}
+}
+
+/* =========================================================
+10. INSTALLATION UND ÖFFENTLICHE SCHNITTSTELLE
+========================================================= */
+
+function installAccessibilityTools() {
+ensureA11yLiveRegion();
+ensureA11ySkipLink();
+ensureA11yDialog();
+
+installA11ySettingsButton();
+installA11yKeyboardShortcuts();
+installA11yTaskObserver();
+installA11yLandmarks();
+
+applyA11ySettings({
+save: false,
+announce: false
+});
+
+Object.assign(
+window.EnzymeApp,
+{
+openAccessibilitySettings:
+openA11yDialog,
+
+ 
+  closeAccessibilitySettings:
+    closeA11yDialog,
+
+  getAccessibilitySettings:
+    getA11ySettings,
+
+  applyAccessibilitySettings(
+    settings
+  ) {
+    a11ySettings =
+      normalizeA11ySettings({
+        ...a11ySettings,
+        ...settings
+      });
+
+    applyA11ySettings({
+      save: true,
+      announce: true
+    });
+
+    updateA11yDialogControls();
+
+    return getA11ySettings();
+  },
+
+  resetAccessibilitySettings:
+    resetA11ySettings,
+
+  announce:
+    announceA11y
+}
+ 
+
+);
+}
+
+/*
+Die Installation erfolgt nach der Initialisierung der
+unmittelbar danach aufgerufenen Hauptanwendung.
+*/
+
+queueMicrotask(
+installAccessibilityTools
 );
 
   initializeApplication();
