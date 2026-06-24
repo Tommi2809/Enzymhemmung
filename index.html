@@ -675,6 +675,624 @@
     min-width: 50rem;
   }
 } 
+  /* =========================================================
+   ABSCHNITT 5: MODUL 2 – GICHT
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Aufgabe 5: Bilanzmodell
+   --------------------------------------------------------- */
+
+.balance-simulation {
+  width: min(100%, 68rem);
+  display: grid;
+  gap: 1.25rem;
+  margin-inline: auto;
+}
+
+.balance-phase {
+  padding: 1.15rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+}
+
+.balance-phase h2 {
+  margin-bottom: 0.35rem;
+  font-size: 1.08rem;
+}
+
+.balance-phase-description {
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.balance-phase.is-completed {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.balance-phase.is-active {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.balance-model {
+  display: grid;
+  grid-template-columns:
+    minmax(12rem, 1fr)
+    minmax(12rem, 0.9fr)
+    minmax(12rem, 1fr);
+  align-items: center;
+  gap: 1rem;
+}
+
+.rate-control {
+  padding: 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface-muted);
+}
+
+.rate-control label {
+  display: block;
+  margin-bottom: 0.65rem;
+  font-weight: 750;
+}
+
+.rate-control-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+}
+
+.rate-value {
+  min-width: 2.4rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: #ffffff;
+  font-weight: 800;
+  text-align: center;
+}
+
+.rate-range {
+  width: 100%;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.rate-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.rate-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+}
+
+.balance-arrow {
+  margin-top: 0.75rem;
+  color: var(--color-primary-dark);
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.balance-arrow-label {
+  display: block;
+  margin-top: 0.1rem;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.pool-visual {
+  position: relative;
+  min-height: 15rem;
+  display: grid;
+  place-items: end center;
+  overflow: hidden;
+  border: 0.3rem solid var(--color-border-strong);
+  border-top-width: 0.1rem;
+  border-radius:
+    var(--radius-medium)
+    var(--radius-medium)
+    1.5rem
+    1.5rem;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.75),
+      rgba(237, 243, 246, 0.9)
+    );
+}
+
+.pool-liquid {
+  width: 100%;
+  height: var(--pool-level, 50%);
+  display: grid;
+  place-items: start center;
+  padding-top: 0.7rem;
+  background:
+    linear-gradient(
+      to top,
+      rgba(23, 107, 117, 0.82),
+      rgba(60, 151, 162, 0.58)
+    );
+  color: #ffffff;
+  font-weight: 800;
+  text-align: center;
+  transition: height var(--transition-normal);
+}
+
+.pool-title {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.75rem;
+  right: 0.75rem;
+  z-index: 1;
+  color: var(--color-text);
+  font-weight: 800;
+  text-align: center;
+}
+
+.pool-trend {
+  padding: 0.35rem 0.6rem;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.22);
+  font-size: 0.85rem;
+}
+
+.balance-status-box {
+  margin-top: 1rem;
+  padding: 0.8rem 0.9rem;
+  border-left: 0.35rem solid var(--color-info);
+  border-radius: var(--radius-small);
+  background: var(--color-info-light);
+}
+
+.balance-status-box strong {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.balance-status-box.is-success {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.balance-status-box.is-warning {
+  border-color: var(--color-warning);
+  background: var(--color-warning-light);
+}
+
+.balance-internal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.balance-explanation {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.balance-explanation-row {
+  padding: 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface-muted);
+}
+
+.balance-explanation-row label {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-weight: 700;
+}
+
+.balance-explanation-row select {
+  max-width: 24rem;
+}
+
+/* ---------------------------------------------------------
+   Aufgabe 6: Kausalkette der Gicht
+   --------------------------------------------------------- */
+
+.disease-chain .ordering-item {
+  min-height: 4rem;
+}
+
+.disease-chain .ordering-position {
+  background: var(--color-accent-light);
+  color: var(--color-warning);
+}
+
+/* ---------------------------------------------------------
+   Zusatzdarstellung für Kategorien
+   --------------------------------------------------------- */
+
+.category-explanation {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.category-explanation-item {
+  padding: 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  background: var(--color-surface-muted);
+  font-size: 0.85rem;
+}
+
+.category-explanation-item strong {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+@media (max-width: 900px) {
+  .balance-model {
+    grid-template-columns: 1fr;
+  }
+
+  .balance-arrow {
+    transform: rotate(90deg);
+    margin-block: -0.2rem;
+  }
+
+  .balance-arrow-label {
+    transform: rotate(-90deg);
+    display: inline-block;
+    margin-left: 0.5rem;
+  }
+
+  .pool-visual {
+    min-height: 12rem;
+  }
+
+  .category-explanation {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .category-explanation {
+    grid-template-columns: 1fr;
+  }
+
+  .balance-internal-actions {
+    display: grid;
+  }
+
+  .balance-internal-actions .button {
+    width: 100%;
+  }
+}
+  /* =========================================================
+   ABSCHNITT 6: MODUL 3 – XANTHINOXIDASE
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Aufgabe 9: Reaktionsgleichungen
+   --------------------------------------------------------- */
+
+.reaction-component {
+  width: min(100%, 68rem);
+  display: grid;
+  gap: 1.25rem;
+  margin-inline: auto;
+}
+
+.reaction-card-pool {
+  min-height: 5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+}
+
+.reaction-card-pool.is-empty::after {
+  content: "Alle Karten wurden eingesetzt.";
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.reaction-card {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 0.9rem;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-small);
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-weight: 750;
+  cursor: grab;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.reaction-card:hover {
+  background: #c8e7ea;
+}
+
+.reaction-card.is-selected {
+  outline: 3px solid #f0a400;
+  outline-offset: 3px;
+}
+
+.reaction-card:active {
+  cursor: grabbing;
+}
+
+.reaction-stage {
+  overflow-x: auto;
+  padding: 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+}
+
+.reaction-equation {
+  min-width: 48rem;
+  display: grid;
+  gap: 1.4rem;
+}
+
+.reaction-line {
+  display: grid;
+  grid-template-columns:
+    minmax(9rem, 1fr)
+    minmax(11rem, 1.15fr)
+    minmax(9rem, 1fr);
+  align-items: center;
+  gap: 1rem;
+}
+
+.reaction-fixed-node {
+  min-height: 4rem;
+  display: grid;
+  place-items: center;
+  padding: 0.7rem;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-small);
+  background: var(--color-surface-strong);
+  font-weight: 750;
+  text-align: center;
+}
+
+.reaction-arrow-unit {
+  display: grid;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.reaction-arrow {
+  color: var(--color-primary-dark);
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+}
+
+.reaction-arrow-caption {
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.reaction-slot {
+  min-height: 3.75rem;
+  display: grid;
+  place-items: center;
+  padding: 0.35rem;
+  border: 2px dashed var(--color-border-strong);
+  border-radius: var(--radius-small);
+  background: var(--color-surface-muted);
+  text-align: center;
+  transition:
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.reaction-slot:hover,
+.reaction-slot.is-drop-target {
+  border-color: var(--color-primary);
+  background: var(--color-primary-light);
+}
+
+.reaction-slot.is-correct {
+  border-style: solid;
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.reaction-slot.is-incorrect {
+  border-style: solid;
+  border-color: var(--color-error);
+  background: var(--color-error-light);
+}
+
+.reaction-slot.is-empty {
+  border-color: var(--color-warning);
+  background: var(--color-warning-light);
+}
+
+.reaction-slot-placeholder {
+  color: var(--color-text-muted);
+  font-size: 0.82rem;
+}
+
+.reaction-placed-card {
+  width: 100%;
+  min-height: 2.85rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.55rem 0.45rem 0.75rem;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-small);
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-weight: 750;
+  cursor: grab;
+}
+
+.reaction-remove-card {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-error);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.reaction-selection-status {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* ---------------------------------------------------------
+   Aufgabe 12: Aussagen auswählen und ordnen
+   --------------------------------------------------------- */
+
+.select-order-component {
+  width: min(100%, 68rem);
+  display: grid;
+  gap: 1.25rem;
+  margin-inline: auto;
+}
+
+.select-order-section {
+  padding: 1.15rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface);
+}
+
+.select-order-section h2 {
+  margin-bottom: 0.35rem;
+  font-size: 1.08rem;
+}
+
+.select-order-description {
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+}
+
+.selected-statements-list {
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+  padding: 0;
+  margin: 0;
+}
+
+.selected-statement-item {
+  display: grid;
+  grid-template-columns: 2.3rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  background: var(--color-surface-muted);
+  box-shadow: var(--shadow-small);
+}
+
+.selected-statement-item[draggable="true"] {
+  cursor: grab;
+}
+
+.selected-statement-item.is-dragging {
+  opacity: 0.45;
+}
+
+.selected-statement-item.is-drag-target {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.selected-statement-item.is-correct {
+  border-color: var(--color-success);
+  background: var(--color-success-light);
+}
+
+.selected-statement-item.is-incorrect {
+  border-color: var(--color-error);
+  background: var(--color-error-light);
+}
+
+.selected-statement-position {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.selected-statements-empty {
+  padding: 1rem;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-small);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.statement-selection-summary {
+  margin-top: 0.8rem;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 700px) {
+  .reaction-stage {
+    padding: 0.75rem;
+  }
+
+  .reaction-equation {
+    min-width: 42rem;
+  }
+
+  .selected-statement-item {
+    grid-template-columns: 2rem minmax(0, 1fr);
+  }
+
+  .selected-statement-item .ordering-controls {
+    grid-column: 1 / -1;
+    justify-content: flex-end;
+  }
+}
 <style>
     /* =========================================================
        1. GRUNDEINSTELLUNGEN
@@ -7911,6 +8529,2989 @@ configureTask("task-04", {
     "Betrachte die Xanthinoxidase als Verbindung zwischen Vorstufen und Harnsäure.",
     "Wird ein Reaktionsschritt gehemmt, entsteht weniger Produkt hinter diesem Schritt.",
     "Weniger Xanthin wird zu Harnsäure umgesetzt; Vorstufen können deshalb stärker erhalten bleiben."
+  ]
+});
+   /* =========================================================
+   ABSCHNITT 5: MODUL 2 – GICHT
+   Aufgaben 5 bis 8
+   ========================================================= */
+
+/* =========================================================
+   1. AUFGABE 5:
+   BILANZMODELL ZUR HARNSÄUREKONZENTRATION
+   ========================================================= */
+
+const uricAcidBalanceController = {
+  render(context) {
+    const config = getTaskConfig(context.task);
+
+    if (!config) {
+      return renderUnconfiguredComponent(
+        context,
+        "Reglerwerte und Erklärungsauswahl"
+      );
+    }
+
+    const root = context.elements.taskContent;
+
+    const savedAnswer =
+      isPlainObject(context.taskState.answer)
+        ? context.taskState.answer
+        : {};
+
+    const minimum = config.minimum ?? 1;
+    const maximum = config.maximum ?? 10;
+    const defaultValue = config.defaultValue ?? 5;
+
+    let baselineConfirmed =
+      savedAnswer.baselineConfirmed === true;
+
+    let baselineFormation =
+      Number.isFinite(savedAnswer.baselineFormation)
+        ? clamp(
+            savedAnswer.baselineFormation,
+            minimum,
+            maximum
+          )
+        : defaultValue;
+
+    let baselineExcretion =
+      Number.isFinite(savedAnswer.baselineExcretion)
+        ? clamp(
+            savedAnswer.baselineExcretion,
+            minimum,
+            maximum
+          )
+        : defaultValue;
+
+    let currentFormation =
+      Number.isFinite(savedAnswer.currentFormation)
+        ? clamp(
+            savedAnswer.currentFormation,
+            minimum,
+            maximum
+          )
+        : baselineFormation;
+
+    let currentExcretion =
+      Number.isFinite(savedAnswer.currentExcretion)
+        ? clamp(
+            savedAnswer.currentExcretion,
+            minimum,
+            maximum
+          )
+        : baselineExcretion;
+
+    let explanation =
+      isPlainObject(savedAnswer.explanation)
+        ? {
+            leaving:
+              savedAnswer.explanation.leaving ?? "",
+            concentration:
+              savedAnswer.explanation.concentration ?? ""
+          }
+        : {
+            leaving: "",
+            concentration: ""
+          };
+
+    function createAnswer() {
+      return {
+        baselineConfirmed,
+        baselineFormation,
+        baselineExcretion,
+        currentFormation,
+        currentExcretion,
+        explanation: {
+          ...explanation
+        }
+      };
+    }
+
+    function saveAnswer() {
+      context.app.setAnswer(createAnswer());
+    }
+
+    function getTrend() {
+      if (currentFormation > currentExcretion) {
+        return {
+          id: "rising",
+          text:
+            "Die Harnsäurekonzentration steigt.",
+          level: 72
+        };
+      }
+
+      if (currentFormation < currentExcretion) {
+        return {
+          id: "falling",
+          text:
+            "Die Harnsäurekonzentration sinkt.",
+          level: 32
+        };
+      }
+
+      return {
+        id: "stable",
+        text:
+          "Die Harnsäurekonzentration bleibt konstant.",
+        level: 50
+      };
+    }
+
+    function getEquilibriumStatus() {
+      if (
+        baselineFormation ===
+        baselineExcretion
+      ) {
+        return {
+          className: "is-success",
+          title: "Dynamisches Gleichgewicht",
+          message:
+            "Bildung und Ausscheidung sind gleich groß. Der Harnsäurepool bleibt langfristig konstant."
+        };
+      }
+
+      return {
+        className: "is-warning",
+        title: "Noch kein Gleichgewicht",
+        message:
+          "Für ein konstantes Niveau müssen Bildungs- und Ausscheidungsrate gleich groß sein."
+      };
+    }
+
+    function renderInterface() {
+      const trend = getTrend();
+      const equilibriumStatus =
+        getEquilibriumStatus();
+
+      root.innerHTML = `
+        <div class="balance-simulation">
+
+          <section
+            class="balance-phase ${
+              baselineConfirmed
+                ? "is-completed"
+                : "is-active"
+            }"
+          >
+            <h2>
+              Schritt 1: Normalzustand einstellen
+            </h2>
+
+            <p class="balance-phase-description">
+              Stelle einen Zustand ein, in dem sich Bildung und
+              Ausscheidung ausgleichen. Übernimm diesen Zustand
+              anschließend als Normalzustand.
+            </p>
+
+            <div class="balance-model">
+
+              <div class="rate-control">
+                <div class="rate-control-header">
+                  <label for="baseline-formation-rate">
+                    Bildungsrate
+                  </label>
+
+                  <output
+                    id="baseline-formation-output"
+                    class="rate-value"
+                    for="baseline-formation-rate"
+                  >
+                    ${baselineFormation}
+                  </output>
+                </div>
+
+                <input
+                  id="baseline-formation-rate"
+                  class="rate-range"
+                  type="range"
+                  min="${minimum}"
+                  max="${maximum}"
+                  step="1"
+                  value="${baselineFormation}"
+                  ${
+                    baselineConfirmed
+                      ? "disabled"
+                      : ""
+                  }
+                >
+
+                <div class="rate-scale" aria-hidden="true">
+                  <span>${minimum}</span>
+                  <span>${maximum}</span>
+                </div>
+
+                <div class="balance-arrow" aria-hidden="true">
+                  →
+                  <span class="balance-arrow-label">
+                    Zufluss
+                  </span>
+                </div>
+              </div>
+
+              <div
+                class="pool-visual"
+                style="--pool-level: 50%;"
+                aria-label="Harnsäurepool im Gleichgewicht"
+              >
+                <div class="pool-title">
+                  Harnsäurepool im Blut
+                </div>
+
+                <div class="pool-liquid">
+                  <span class="pool-trend">
+                    konstant
+                  </span>
+                </div>
+              </div>
+
+              <div class="rate-control">
+                <div class="rate-control-header">
+                  <label for="baseline-excretion-rate">
+                    Ausscheidungsrate
+                  </label>
+
+                  <output
+                    id="baseline-excretion-output"
+                    class="rate-value"
+                    for="baseline-excretion-rate"
+                  >
+                    ${baselineExcretion}
+                  </output>
+                </div>
+
+                <input
+                  id="baseline-excretion-rate"
+                  class="rate-range"
+                  type="range"
+                  min="${minimum}"
+                  max="${maximum}"
+                  step="1"
+                  value="${baselineExcretion}"
+                  ${
+                    baselineConfirmed
+                      ? "disabled"
+                      : ""
+                  }
+                >
+
+                <div class="rate-scale" aria-hidden="true">
+                  <span>${minimum}</span>
+                  <span>${maximum}</span>
+                </div>
+
+                <div class="balance-arrow" aria-hidden="true">
+                  →
+                  <span class="balance-arrow-label">
+                    Abfluss
+                  </span>
+                </div>
+              </div>
+
+            </div>
+
+            <div
+              class="balance-status-box ${equilibriumStatus.className}"
+            >
+              <strong>
+                ${escapeHtml(equilibriumStatus.title)}
+              </strong>
+
+              ${escapeHtml(equilibriumStatus.message)}
+            </div>
+
+            <div class="balance-internal-actions">
+              ${
+                baselineConfirmed
+                  ? `
+                    <button
+                      id="change-baseline-button"
+                      class="button button--secondary"
+                      type="button"
+                    >
+                      Normalzustand neu einstellen
+                    </button>
+                  `
+                  : `
+                    <button
+                      id="confirm-baseline-button"
+                      class="button button--primary"
+                      type="button"
+                    >
+                      Gleichgewicht als Normalzustand übernehmen
+                    </button>
+                  `
+              }
+            </div>
+          </section>
+
+          <section
+            class="balance-phase ${
+              baselineConfirmed
+                ? "is-active"
+                : ""
+            }"
+            aria-disabled="${
+              baselineConfirmed
+                ? "false"
+                : "true"
+            }"
+          >
+            <h2>
+              Schritt 2: Ausscheidungsstörung simulieren
+            </h2>
+
+            <p class="balance-phase-description">
+              Die Bildungsrate bleibt auf dem Wert des
+              Normalzustands. Verringere ausschließlich die
+              Ausscheidungsrate und beobachte die Folge.
+            </p>
+
+            ${
+              baselineConfirmed
+                ? `
+                  <div class="balance-model">
+
+                    <div class="rate-control">
+                      <div class="rate-control-header">
+                        <label for="current-formation-rate">
+                          Bildungsrate
+                        </label>
+
+                        <output
+                          id="current-formation-output"
+                          class="rate-value"
+                          for="current-formation-rate"
+                        >
+                          ${currentFormation}
+                        </output>
+                      </div>
+
+                      <input
+                        id="current-formation-rate"
+                        class="rate-range"
+                        type="range"
+                        min="${minimum}"
+                        max="${maximum}"
+                        step="1"
+                        value="${currentFormation}"
+                        disabled
+                      >
+
+                      <p class="component-note">
+                        Diese Größe bleibt im zweiten Schritt
+                        unverändert.
+                      </p>
+
+                      <div class="balance-arrow" aria-hidden="true">
+                        →
+                        <span class="balance-arrow-label">
+                          Zufluss
+                        </span>
+                      </div>
+                    </div>
+
+                    <div
+                      class="pool-visual"
+                      style="--pool-level: ${trend.level}%;"
+                      aria-label="${escapeHtml(trend.text)}"
+                    >
+                      <div class="pool-title">
+                        Harnsäurepool im Blut
+                      </div>
+
+                      <div class="pool-liquid">
+                        <span class="pool-trend">
+                          ${escapeHtml(trend.text)}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div class="rate-control">
+                      <div class="rate-control-header">
+                        <label for="current-excretion-rate">
+                          Ausscheidungsrate
+                        </label>
+
+                        <output
+                          id="current-excretion-output"
+                          class="rate-value"
+                          for="current-excretion-rate"
+                        >
+                          ${currentExcretion}
+                        </output>
+                      </div>
+
+                      <input
+                        id="current-excretion-rate"
+                        class="rate-range"
+                        type="range"
+                        min="${minimum}"
+                        max="${maximum}"
+                        step="1"
+                        value="${currentExcretion}"
+                      >
+
+                      <div class="rate-scale" aria-hidden="true">
+                        <span>${minimum}</span>
+                        <span>${maximum}</span>
+                      </div>
+
+                      <div class="balance-arrow" aria-hidden="true">
+                        →
+                        <span class="balance-arrow-label">
+                          Abfluss
+                        </span>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div
+                    class="balance-status-box ${
+                      currentExcretion <
+                      currentFormation
+                        ? "is-warning"
+                        : ""
+                    }"
+                  >
+                    <strong>
+                      Momentane Bilanz
+                    </strong>
+
+                    ${escapeHtml(trend.text)}
+                  </div>
+                `
+                : `
+                  <div class="component-status">
+                    Lege zunächst in Schritt 1 einen
+                    Normalzustand fest.
+                  </div>
+                `
+            }
+          </section>
+
+          <section class="balance-phase">
+            <h2>
+              Schritt 3: Bilanz fachlich erklären
+            </h2>
+
+            <p class="balance-phase-description">
+              Vervollständige die beiden Aussagen zur simulierten
+              Ausscheidungsstörung.
+            </p>
+
+            <div class="balance-explanation">
+
+              <div class="balance-explanation-row">
+                <label for="balance-leaving-select">
+                  Wenn die Ausscheidungsrate sinkt, verlässt pro
+                  Zeiteinheit ...
+                </label>
+
+                <select
+                  id="balance-leaving-select"
+                  class="form-control"
+                  ${
+                    baselineConfirmed
+                      ? ""
+                      : "disabled"
+                  }
+                >
+                  <option value="">
+                    Bitte auswählen
+                  </option>
+
+                  <option
+                    value="more"
+                    ${
+                      explanation.leaving === "more"
+                        ? "selected"
+                        : ""
+                    }
+                  >
+                    mehr Harnsäure den Körper
+                  </option>
+
+                  <option
+                    value="less"
+                    ${
+                      explanation.leaving === "less"
+                        ? "selected"
+                        : ""
+                    }
+                  >
+                    weniger Harnsäure den Körper
+                  </option>
+
+                  <option
+                    value="same"
+                    ${
+                      explanation.leaving === "same"
+                        ? "selected"
+                        : ""
+                    }
+                  >
+                    gleich viel Harnsäure den Körper
+                  </option>
+                </select>
+              </div>
+
+              <div class="balance-explanation-row">
+                <label for="balance-concentration-select">
+                  Bleibt die Bildungsrate unverändert, wird die
+                  Harnsäurekonzentration dadurch ...
+                </label>
+
+                <select
+                  id="balance-concentration-select"
+                  class="form-control"
+                  ${
+                    baselineConfirmed
+                      ? ""
+                      : "disabled"
+                  }
+                >
+                  <option value="">
+                    Bitte auswählen
+                  </option>
+
+                  <option
+                    value="rises"
+                    ${
+                      explanation.concentration === "rises"
+                        ? "selected"
+                        : ""
+                    }
+                  >
+                    steigen
+                  </option>
+
+                  <option
+                    value="falls"
+                    ${
+                      explanation.concentration === "falls"
+                        ? "selected"
+                        : ""
+                    }
+                  >
+                    sinken
+                  </option>
+
+                  <option
+                    value="stable"
+                    ${
+                      explanation.concentration === "stable"
+                        ? "selected"
+                        : ""
+                    }
+                  >
+                    gleich bleiben
+                  </option>
+                </select>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+      `;
+
+      bindEvents();
+    }
+
+    function confirmBaseline() {
+      if (
+        baselineFormation !==
+        baselineExcretion
+      ) {
+        context.app.showFeedback({
+          type: "warning",
+          title: "Noch kein Gleichgewicht",
+          message:
+            "Stelle Bildungs- und Ausscheidungsrate zunächst auf denselben Wert."
+        });
+
+        return;
+      }
+
+      baselineConfirmed = true;
+
+      currentFormation =
+        baselineFormation;
+
+      currentExcretion =
+        baselineExcretion;
+
+      explanation = {
+        leaving: "",
+        concentration: ""
+      };
+
+      saveAnswer();
+      renderInterface();
+
+      context.app.showFeedback({
+        type: "success",
+        title: "Normalzustand übernommen",
+        message:
+          "Bildung und Ausscheidung sind gleich groß. Verringere nun ausschließlich die Ausscheidungsrate."
+      });
+    }
+
+    function releaseBaseline() {
+      baselineConfirmed = false;
+
+      currentFormation =
+        baselineFormation;
+
+      currentExcretion =
+        baselineExcretion;
+
+      explanation = {
+        leaving: "",
+        concentration: ""
+      };
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function bindEvents() {
+      const baselineFormationInput =
+        root.querySelector(
+          "#baseline-formation-rate"
+        );
+
+      const baselineExcretionInput =
+        root.querySelector(
+          "#baseline-excretion-rate"
+        );
+
+      const currentExcretionInput =
+        root.querySelector(
+          "#current-excretion-rate"
+        );
+
+      baselineFormationInput?.addEventListener(
+        "input",
+        () => {
+          baselineFormation =
+            Number(
+              baselineFormationInput.value
+            );
+
+          baselineExcretion =
+            Number(
+              baselineExcretionInput.value
+            );
+
+          currentFormation =
+            baselineFormation;
+
+          currentExcretion =
+            baselineExcretion;
+
+          saveAnswer();
+          renderInterface();
+        }
+      );
+
+      baselineExcretionInput?.addEventListener(
+        "input",
+        () => {
+          baselineFormation =
+            Number(
+              baselineFormationInput.value
+            );
+
+          baselineExcretion =
+            Number(
+              baselineExcretionInput.value
+            );
+
+          currentFormation =
+            baselineFormation;
+
+          currentExcretion =
+            baselineExcretion;
+
+          saveAnswer();
+          renderInterface();
+        }
+      );
+
+      root
+        .querySelector(
+          "#confirm-baseline-button"
+        )
+        ?.addEventListener(
+          "click",
+          confirmBaseline
+        );
+
+      root
+        .querySelector(
+          "#change-baseline-button"
+        )
+        ?.addEventListener(
+          "click",
+          releaseBaseline
+        );
+
+      currentExcretionInput?.addEventListener(
+        "input",
+        () => {
+          currentFormation =
+            baselineFormation;
+
+          currentExcretion =
+            Number(
+              currentExcretionInput.value
+            );
+
+          saveAnswer();
+          renderInterface();
+        }
+      );
+
+      root
+        .querySelector(
+          "#balance-leaving-select"
+        )
+        ?.addEventListener(
+          "change",
+          (event) => {
+            explanation.leaving =
+              event.target.value;
+
+            event.target.classList.remove(
+              "is-correct",
+              "is-incorrect",
+              "is-empty"
+            );
+
+            saveAnswer();
+          }
+        );
+
+      root
+        .querySelector(
+          "#balance-concentration-select"
+        )
+        ?.addEventListener(
+          "change",
+          (event) => {
+            explanation.concentration =
+              event.target.value;
+
+            event.target.classList.remove(
+              "is-correct",
+              "is-incorrect",
+              "is-empty"
+            );
+
+            saveAnswer();
+          }
+        );
+    }
+
+    renderInterface();
+
+    return {
+      check() {
+        clearEvaluationClasses(root);
+
+        let correctParts = 0;
+        const totalParts = 3;
+
+        /*
+          Teil 1:
+          Ein bestätigter Ausgangszustand mit gleicher
+          Bildungs- und Ausscheidungsrate.
+        */
+        const equilibriumCorrect =
+          baselineConfirmed &&
+          baselineFormation ===
+            baselineExcretion;
+
+        if (equilibriumCorrect) {
+          correctParts += 1;
+        }
+
+        /*
+          Teil 2:
+          Die Bildungsrate bleibt gleich und die
+          Ausscheidungsrate wird vermindert.
+        */
+        const disturbanceCorrect =
+          baselineConfirmed &&
+          currentFormation ===
+            baselineFormation &&
+          currentExcretion <
+            baselineExcretion;
+
+        if (disturbanceCorrect) {
+          correctParts += 1;
+        }
+
+        /*
+          Teil 3:
+          Beide fachlichen Folgerungen sind richtig.
+        */
+        const leavingSelect =
+          root.querySelector(
+            "#balance-leaving-select"
+          );
+
+        const concentrationSelect =
+          root.querySelector(
+            "#balance-concentration-select"
+          );
+
+        const explanationCorrect =
+          explanation.leaving === "less" &&
+          explanation.concentration ===
+            "rises";
+
+        if (explanationCorrect) {
+          correctParts += 1;
+
+          leavingSelect?.classList.add(
+            "is-correct"
+          );
+
+          concentrationSelect?.classList.add(
+            "is-correct"
+          );
+        } else {
+          if (
+            explanation.leaving === ""
+          ) {
+            leavingSelect?.classList.add(
+              "is-empty"
+            );
+          } else if (
+            explanation.leaving === "less"
+          ) {
+            leavingSelect?.classList.add(
+              "is-correct"
+            );
+          } else {
+            leavingSelect?.classList.add(
+              "is-incorrect"
+            );
+          }
+
+          if (
+            explanation.concentration === ""
+          ) {
+            concentrationSelect?.classList.add(
+              "is-empty"
+            );
+          } else if (
+            explanation.concentration ===
+            "rises"
+          ) {
+            concentrationSelect?.classList.add(
+              "is-correct"
+            );
+          } else {
+            concentrationSelect?.classList.add(
+              "is-incorrect"
+            );
+          }
+        }
+
+        let feedbackMessage;
+
+        if (correctParts === totalParts) {
+          feedbackMessage =
+            "Das Bilanzmodell ist vollständig korrekt. Bei gleich großer Bildung und Ausscheidung bleibt die Konzentration konstant. Sinkt nur die Ausscheidung, verbleibt mehr Harnsäure im Körper und ihre Konzentration steigt.";
+        } else if (!equilibriumCorrect) {
+          feedbackMessage =
+            "Der Ausgangszustand ist noch nicht korrekt festgelegt. Im Normalzustand müssen Bildungs- und Ausscheidungsrate gleich groß sein.";
+        } else if (!disturbanceCorrect) {
+          feedbackMessage =
+            "Der Normalzustand ist korrekt. Verringere nun ausschließlich die Ausscheidungsrate; die Bildungsrate muss unverändert bleiben.";
+        } else {
+          feedbackMessage =
+            "Die Simulation ist korrekt eingestellt. Prüfe noch die fachliche Erklärung der Bilanz.";
+        }
+
+        return {
+          correct:
+            correctParts === totalParts,
+
+          partial:
+            correctParts > 0 &&
+            correctParts < totalParts,
+
+          score:
+            correctParts,
+
+          answer:
+            createAnswer(),
+
+          message:
+            feedbackMessage
+        };
+      },
+
+      reset() {
+        baselineConfirmed = false;
+
+        baselineFormation =
+          defaultValue;
+
+        baselineExcretion =
+          defaultValue;
+
+        currentFormation =
+          defaultValue;
+
+        currentExcretion =
+          defaultValue;
+
+        explanation = {
+          leaving: "",
+          concentration: ""
+        };
+
+        saveAnswer();
+        renderInterface();
+      },
+
+      canProceed() {
+        return ![
+          "unseen",
+          "started"
+        ].includes(
+          context.app.getTaskState().status
+        );
+      }
+    };
+  }
+};
+
+/* =========================================================
+   2. CONTROLLER FÜR AUFGABE 5 REGISTRIEREN
+   ========================================================= */
+
+registerTaskController(
+  "task-05",
+  uricAcidBalanceController
+);
+
+/* =========================================================
+   3. AUFGABE 5 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-05", {
+  minimum: 1,
+  maximum: 10,
+  defaultValue: 5,
+
+  helpLevels: [
+    "Ein konstantes Niveau liegt vor, wenn pro Zeiteinheit genauso viel Harnsäure gebildet wie ausgeschieden wird.",
+    "Lasse nach der Übernahme des Normalzustands die Bildungsrate unverändert und senke nur die Ausscheidungsrate.",
+    "Wenn weniger Harnsäure den Körper verlässt, als neu gebildet wird, steigt ihre Konzentration im Blut."
+  ]
+});
+
+/* =========================================================
+   4. AUFGABE 6 KONFIGURIEREN:
+   KRANKHEITSENTSTEHUNG ORDNEN
+   ========================================================= */
+
+configureTask("task-06", {
+  prompt:
+    "Ordne die Vorgänge zu einer lückenlosen Ursache-Wirkungs-Kette. Beginne mit der Störung der Nierenausscheidung.",
+
+  items: [
+    {
+      id: "reduced-excretion",
+      text:
+        "Die Ausscheidung von Harnsäure über die Nieren ist vermindert."
+    },
+    {
+      id: "concentration-increase",
+      text:
+        "Die Harnsäurekonzentration im Blut steigt."
+    },
+    {
+      id: "solubility-limit",
+      text:
+        "Die Löslichkeitsgrenze der Harnsäure wird überschritten."
+    },
+    {
+      id: "crystal-formation",
+      text:
+        "Harnsäurekristalle bilden sich."
+    },
+    {
+      id: "deposition",
+      text:
+        "Die Kristalle lagern sich in Gelenken und anderen Geweben ab."
+    },
+    {
+      id: "inflammation",
+      text:
+        "Eine Entzündungsreaktion wird ausgelöst."
+    },
+    {
+      id: "symptoms",
+      text:
+        "Rötung, Schwellung und starke Schmerzen treten auf."
+    }
+  ],
+
+  correctOrder: [
+    "reduced-excretion",
+    "concentration-increase",
+    "solubility-limit",
+    "crystal-formation",
+    "deposition",
+    "inflammation",
+    "symptoms"
+  ],
+
+  shuffle: true,
+
+  correctMessage:
+    "Die Krankheitsentstehung ist vollständig korrekt geordnet. Die Schmerzen entstehen nicht direkt durch die erhöhte Harnsäurekonzentration, sondern über Kristallbildung, Ablagerung und Entzündungsreaktion.",
+
+  partialMessage:
+    "Einige Schritte stehen bereits an der richtigen Position. Prüfe besonders die Reihenfolge von Löslichkeitsgrenze, Kristallbildung, Ablagerung und Entzündung.",
+
+  incorrectMessage:
+    "Die Kausalkette ist noch nicht korrekt. Beginne mit der verminderten Ausscheidung und unterscheide Stoffwechselveränderung, Kristallbildung, Gewebereaktion und Symptome.",
+
+  helpLevels: [
+    "Die erhöhte Harnsäurekonzentration verursacht nicht unmittelbar den Schmerz.",
+    "Vor der Entzündung müssen Harnsäurekristalle entstehen und sich im Gewebe ablagern.",
+    "Die Schlussfolge lautet: Ablagerung der Kristalle → Entzündungsreaktion → Rötung, Schwellung und Schmerz."
+  ]
+});
+
+/* =========================================================
+   5. AUFGABE 7 KONFIGURIEREN:
+   FOLGEN KATEGORISIEREN
+   ========================================================= */
+
+configureTask("task-07", {
+  prompt:
+    "Ordne jede Aussage der Ebene zu, auf der der jeweilige Vorgang unmittelbar stattfindet.",
+
+  rowLabel:
+    "Vorgang oder Folge",
+
+  valueColumnLabel:
+    "Kategorie",
+
+  options: [
+    {
+      value: "metabolic",
+      label: "Stoffwechselfolge"
+    },
+    {
+      value: "physical-chemical",
+      label: "physikalisch-chemische Folge"
+    },
+    {
+      value: "tissue-reaction",
+      label: "Gewebereaktion"
+    },
+    {
+      value: "symptom",
+      label: "Symptom"
+    }
+  ],
+
+  rows: [
+    {
+      id: "uric-acid-rise",
+      label:
+        "Die Harnsäurekonzentration im Blut steigt.",
+      correctValue: "metabolic"
+    },
+    {
+      id: "crystals",
+      label:
+        "Harnsäure kristallisiert aus.",
+      correctValue: "physical-chemical"
+    },
+    {
+      id: "inflammation",
+      label:
+        "Das betroffene Gewebe reagiert mit einer Entzündung.",
+      correctValue: "tissue-reaction"
+    },
+    {
+      id: "pain",
+      label:
+        "Das Gelenk schmerzt stark.",
+      correctValue: "symptom"
+    },
+    {
+      id: "redness",
+      label:
+        "Das Gelenk ist gerötet.",
+      correctValue: "symptom"
+    },
+    {
+      id: "swelling",
+      label:
+        "Das Gelenk ist geschwollen.",
+      correctValue: "symptom"
+    }
+  ],
+
+  correctMessage:
+    "Alle Vorgänge wurden korrekt kategorisiert. Die Kristallbildung ist eine physikalisch-chemische Folge; Entzündung und wahrnehmbare Symptome sind davon zu unterscheiden.",
+
+  partialMessage:
+    "Ein Teil der Zuordnungen ist korrekt. Unterscheide insbesondere zwischen der Reaktion des Gewebes und den beobachtbaren Symptomen.",
+
+  incorrectMessage:
+    "Die Kategorien sind noch nicht korrekt zugeordnet. Frage jeweils, ob eine Stoffkonzentration, ein physikalischer Vorgang, eine Gewebereaktion oder ein wahrnehmbares Krankheitszeichen beschrieben wird.",
+
+  helpLevels: [
+    "Ein Symptom ist ein wahrnehmbares Krankheitszeichen wie Schmerz, Rötung oder Schwellung.",
+    "Die Kristallbildung beruht auf Konzentration und Löslichkeit und ist daher physikalisch-chemisch.",
+    "Die Entzündung ist die Reaktion des Gewebes auf die abgelagerten Kristalle."
+  ]
+});
+
+/* =========================================================
+   6. AUFGABE 8 KONFIGURIEREN:
+   THERAPIEANSÄTZE BEWERTEN
+   ========================================================= */
+
+const therapyAssessmentOptions = [
+  {
+    value: "useful",
+    label: "fachlich sinnvoll"
+  },
+  {
+    value: "contradictory",
+    label: "fachlich widersprüchlich"
+  }
+];
+
+const experimentRelationOptions = [
+  {
+    value: "direct",
+    label: "im vorliegenden Versuch direkt untersucht"
+  },
+  {
+    value: "not-direct",
+    label: "im vorliegenden Versuch nicht direkt untersucht"
+  }
+];
+
+configureTask("task-08", {
+  prompt:
+    "Bewerte jeden Ansatz in zwei Schritten: Ist er grundsätzlich geeignet, die Gichtursache zu beeinflussen? Wird er durch den vorliegenden Enzymversuch direkt untersucht?",
+
+  rowLabel:
+    "Therapieansatz",
+
+  rows: [
+    {
+      id: "reduce-uric-acid-production",
+      label:
+        "Die Bildung von Harnsäure senken.",
+
+      fields: [
+        {
+          id: "assessment",
+          label: "Fachliche Bewertung",
+          options:
+            therapyAssessmentOptions,
+          correctValue: "useful"
+        },
+        {
+          id: "experiment",
+          label: "Bezug zum Experiment",
+          options:
+            experimentRelationOptions,
+          correctValue: "direct"
+        }
+      ]
+    },
+
+    {
+      id: "increase-excretion",
+      label:
+        "Die Ausscheidung von Harnsäure erhöhen.",
+
+      fields: [
+        {
+          id: "assessment",
+          label: "Fachliche Bewertung",
+          options:
+            therapyAssessmentOptions,
+          correctValue: "useful"
+        },
+        {
+          id: "experiment",
+          label: "Bezug zum Experiment",
+          options:
+            experimentRelationOptions,
+          correctValue: "not-direct"
+        }
+      ]
+    },
+
+    {
+      id: "inhibit-xanthine-oxidase",
+      label:
+        "Die Xanthinoxidase hemmen.",
+
+      fields: [
+        {
+          id: "assessment",
+          label: "Fachliche Bewertung",
+          options:
+            therapyAssessmentOptions,
+          correctValue: "useful"
+        },
+        {
+          id: "experiment",
+          label: "Bezug zum Experiment",
+          options:
+            experimentRelationOptions,
+          correctValue: "direct"
+        }
+      ]
+    },
+
+    {
+      id: "activate-xanthine-oxidase",
+      label:
+        "Die Xanthinoxidase aktivieren.",
+
+      fields: [
+        {
+          id: "assessment",
+          label: "Fachliche Bewertung",
+          options:
+            therapyAssessmentOptions,
+          correctValue: "contradictory"
+        },
+        {
+          id: "experiment",
+          label: "Bezug zum Experiment",
+          options:
+            experimentRelationOptions,
+          correctValue: "not-direct"
+        }
+      ]
+    },
+
+    {
+      id: "reduce-purine-intake",
+      label:
+        "Die Aufnahme purinreicher Nahrung reduzieren.",
+
+      fields: [
+        {
+          id: "assessment",
+          label: "Fachliche Bewertung",
+          options:
+            therapyAssessmentOptions,
+          correctValue: "useful"
+        },
+        {
+          id: "experiment",
+          label: "Bezug zum Experiment",
+          options:
+            experimentRelationOptions,
+          correctValue: "not-direct"
+        }
+      ]
+    }
+  ],
+
+  correctMessage:
+    "Alle Ansätze wurden korrekt bewertet. Der Versuch untersucht unmittelbar den Einfluss von Allopurinol auf die Xanthinoxidase und damit auf die Reaktionsgeschwindigkeit der Harnsäurebildung. Ausscheidung und Purinzufuhr werden im Versuch nicht verändert.",
+
+  partialMessage:
+    "Ein Teil der Bewertungen ist korrekt. Trenne die biologische Sinnhaftigkeit eines Ansatzes von der Frage, ob genau dieser Ansatz im vorliegenden Enzymversuch untersucht wird.",
+
+  incorrectMessage:
+    "Die Bewertung ist noch nicht korrekt. Eine Aktivierung der Xanthinoxidase würde die Harnsäurebildung fördern. Außerdem untersucht der Versuch weder die Nierenfunktion noch die Purinaufnahme.",
+
+  helpLevels: [
+    "Ein Therapieansatz kann fachlich sinnvoll sein, ohne im vorliegenden Experiment untersucht zu werden.",
+    "Der Versuch verändert die Substratkonzentration und vergleicht die Enzymaktivität mit und ohne Allopurinol.",
+    "Nierenausscheidung und Ernährung sind sinnvolle Ansatzpunkte, werden in diesem Enzymversuch jedoch nicht direkt verändert."
+  ]
+});
+   /* =========================================================
+   ABSCHNITT 6: MODUL 3 – XANTHINOXIDASE
+   Aufgaben 9 bis 13
+   ========================================================= */
+
+/* =========================================================
+   1. AUFGABE 9:
+   REAKTIONSSCHRITTE DER XANTHINOXIDASE
+   ========================================================= */
+
+const xanthineReactionController = {
+  render(context) {
+    const config = getTaskConfig(context.task);
+
+    if (
+      !config ||
+      !Array.isArray(config.cards) ||
+      !Array.isArray(config.slots)
+    ) {
+      return renderUnconfiguredComponent(
+        context,
+        "cards und slots"
+      );
+    }
+
+    const root = context.elements.taskContent;
+
+    const cardMap = new Map(
+      config.cards.map((card) => [card.id, card])
+    );
+
+    const slotMap = new Map(
+      config.slots.map((slot) => [slot.id, slot])
+    );
+
+    let selectedCardId = null;
+    let draggedCardId = null;
+
+    function sanitizePlacements(savedAnswer) {
+      const placements = {};
+      const usedCards = new Set();
+
+      const savedPlacements =
+        isPlainObject(savedAnswer) &&
+        isPlainObject(savedAnswer.placements)
+          ? savedAnswer.placements
+          : {};
+
+      for (const slot of config.slots) {
+        const cardId = savedPlacements[slot.id];
+
+        if (
+          typeof cardId === "string" &&
+          cardMap.has(cardId) &&
+          !usedCards.has(cardId)
+        ) {
+          placements[slot.id] = cardId;
+          usedCards.add(cardId);
+        }
+      }
+
+      return placements;
+    }
+
+    let placements = sanitizePlacements(
+      context.taskState.answer
+    );
+
+    function createAnswer() {
+      return {
+        placements: { ...placements }
+      };
+    }
+
+    function saveAnswer() {
+      context.app.setAnswer(createAnswer());
+    }
+
+    function getSlotContainingCard(cardId) {
+      return Object.keys(placements).find(
+        (slotId) => placements[slotId] === cardId
+      ) ?? null;
+    }
+
+    function getUnusedCards() {
+      const usedCards = new Set(
+        Object.values(placements)
+      );
+
+      return config.cards.filter(
+        (card) => !usedCards.has(card.id)
+      );
+    }
+
+    function selectCard(cardId) {
+      if (!cardMap.has(cardId)) {
+        return;
+      }
+
+      selectedCardId =
+        selectedCardId === cardId
+          ? null
+          : cardId;
+
+      renderInterface();
+    }
+
+    function placeCard(cardId, slotId) {
+      if (
+        !cardMap.has(cardId) ||
+        !slotMap.has(slotId)
+      ) {
+        return;
+      }
+
+      const previousSlotId =
+        getSlotContainingCard(cardId);
+
+      if (previousSlotId) {
+        delete placements[previousSlotId];
+      }
+
+      if (placements[slotId]) {
+        delete placements[slotId];
+      }
+
+      placements[slotId] = cardId;
+      selectedCardId = null;
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function removeCard(slotId) {
+      if (!placements[slotId]) {
+        return;
+      }
+
+      delete placements[slotId];
+      selectedCardId = null;
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function renderPoolCard(card) {
+      const selected =
+        selectedCardId === card.id;
+
+      return `
+        <button
+          class="reaction-card ${
+            selected ? "is-selected" : ""
+          }"
+          type="button"
+          draggable="true"
+          data-card-id="${escapeHtml(card.id)}"
+          aria-pressed="${selected}"
+        >
+          ${escapeHtml(card.label)}
+        </button>
+      `;
+    }
+
+    function renderSlot(slotId) {
+      const slot = slotMap.get(slotId);
+      const cardId = placements[slotId];
+
+      const card = cardId
+        ? cardMap.get(cardId)
+        : null;
+
+      return `
+        <div
+          class="reaction-slot"
+          data-slot-id="${escapeHtml(slotId)}"
+          tabindex="0"
+          role="button"
+          aria-label="${
+            card
+              ? escapeHtml(
+                  `${slot.label}: ${card.label}. Mit Enter entfernen oder ausgewählte Karte einsetzen.`
+                )
+              : escapeHtml(
+                  `${slot.label}. Ausgewählte Karte einsetzen.`
+                )
+          }"
+        >
+          ${
+            card
+              ? `
+                <div
+                  class="reaction-placed-card"
+                  draggable="true"
+                  data-card-id="${escapeHtml(card.id)}"
+                >
+                  <span>
+                    ${escapeHtml(card.label)}
+                  </span>
+
+                  <button
+                    class="reaction-remove-card"
+                    type="button"
+                    data-remove-slot="${escapeHtml(slotId)}"
+                    aria-label="${escapeHtml(card.label)} entfernen"
+                  >
+                    ×
+                  </button>
+                </div>
+              `
+              : `
+                <span class="reaction-slot-placeholder">
+                  ${escapeHtml(slot.placeholder)}
+                </span>
+              `
+          }
+        </div>
+      `;
+    }
+
+    function renderInterface() {
+      const unusedCards = getUnusedCards();
+
+      root.innerHTML = `
+        <div class="reaction-component">
+          <p class="component-note">
+            Ordne Enzym, Substrat und Produkt den beiden
+            Reaktionsschritten zu. Du kannst die Karten ziehen
+            oder zunächst eine Karte und danach ein Feld anklicken.
+          </p>
+
+          <div
+            class="reaction-card-pool ${
+              unusedCards.length === 0
+                ? "is-empty"
+                : ""
+            }"
+            aria-label="Noch nicht eingesetzte Karten"
+          >
+            ${unusedCards
+              .map(renderPoolCard)
+              .join("")}
+          </div>
+
+          <div class="reaction-stage">
+            <div class="reaction-equation">
+
+              <div class="reaction-line">
+                <div class="reaction-fixed-node">
+                  Hypoxanthin
+                </div>
+
+                <div class="reaction-arrow-unit">
+                  ${renderSlot("enzyme-reaction-1")}
+
+                  <div>
+                    <div
+                      class="reaction-arrow"
+                      aria-hidden="true"
+                    >
+                      →
+                    </div>
+
+                    <div class="reaction-arrow-caption">
+                      katalysierter Reaktionsschritt
+                    </div>
+                  </div>
+                </div>
+
+                ${renderSlot("product-reaction-1")}
+              </div>
+
+              <div class="reaction-line">
+                ${renderSlot("substrate-reaction-2")}
+
+                <div class="reaction-arrow-unit">
+                  ${renderSlot("enzyme-reaction-2")}
+
+                  <div>
+                    <div
+                      class="reaction-arrow"
+                      aria-hidden="true"
+                    >
+                      →
+                    </div>
+
+                    <div class="reaction-arrow-caption">
+                      katalysierter Reaktionsschritt
+                    </div>
+                  </div>
+                </div>
+
+                <div class="reaction-fixed-node">
+                  Harnsäure
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <p class="reaction-selection-status">
+            ${
+              selectedCardId
+                ? `Ausgewählt: ${escapeHtml(
+                    cardMap.get(selectedCardId).label
+                  )}. Wähle nun ein Zielfeld.`
+                : "Aktuell ist keine Karte ausgewählt."
+            }
+          </p>
+        </div>
+      `;
+
+      bindEvents();
+    }
+
+    function bindDragSource(element) {
+      element.addEventListener(
+        "dragstart",
+        (event) => {
+          draggedCardId =
+            element.dataset.cardId;
+
+          event.dataTransfer.effectAllowed =
+            "move";
+
+          event.dataTransfer.setData(
+            "text/plain",
+            draggedCardId
+          );
+        }
+      );
+
+      element.addEventListener(
+        "dragend",
+        () => {
+          draggedCardId = null;
+
+          root
+            .querySelectorAll(".reaction-slot")
+            .forEach((slotElement) => {
+              slotElement.classList.remove(
+                "is-drop-target"
+              );
+            });
+        }
+      );
+    }
+
+    function bindEvents() {
+      root
+        .querySelectorAll(
+          ".reaction-card[data-card-id]"
+        )
+        .forEach((cardElement) => {
+          bindDragSource(cardElement);
+
+          cardElement.addEventListener(
+            "click",
+            () => {
+              selectCard(
+                cardElement.dataset.cardId
+              );
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          ".reaction-placed-card[data-card-id]"
+        )
+        .forEach((cardElement) => {
+          bindDragSource(cardElement);
+        });
+
+      root
+        .querySelectorAll(".reaction-slot")
+        .forEach((slotElement) => {
+          const slotId =
+            slotElement.dataset.slotId;
+
+          slotElement.addEventListener(
+            "click",
+            (event) => {
+              if (
+                event.target.closest(
+                  ".reaction-remove-card"
+                )
+              ) {
+                return;
+              }
+
+              if (selectedCardId) {
+                placeCard(
+                  selectedCardId,
+                  slotId
+                );
+              }
+            }
+          );
+
+          slotElement.addEventListener(
+            "keydown",
+            (event) => {
+              if (
+                event.key !== "Enter" &&
+                event.key !== " "
+              ) {
+                return;
+              }
+
+              event.preventDefault();
+
+              if (selectedCardId) {
+                placeCard(
+                  selectedCardId,
+                  slotId
+                );
+              } else if (placements[slotId]) {
+                removeCard(slotId);
+              }
+            }
+          );
+
+          slotElement.addEventListener(
+            "dragover",
+            (event) => {
+              event.preventDefault();
+
+              slotElement.classList.add(
+                "is-drop-target"
+              );
+            }
+          );
+
+          slotElement.addEventListener(
+            "dragleave",
+            () => {
+              slotElement.classList.remove(
+                "is-drop-target"
+              );
+            }
+          );
+
+          slotElement.addEventListener(
+            "drop",
+            (event) => {
+              event.preventDefault();
+
+              slotElement.classList.remove(
+                "is-drop-target"
+              );
+
+              const cardId =
+                draggedCardId ||
+                event.dataTransfer.getData(
+                  "text/plain"
+                );
+
+              placeCard(cardId, slotId);
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          "[data-remove-slot]"
+        )
+        .forEach((removeButton) => {
+          removeButton.addEventListener(
+            "click",
+            (event) => {
+              event.stopPropagation();
+
+              removeCard(
+                removeButton.dataset.removeSlot
+              );
+            }
+          );
+        });
+    }
+
+    renderInterface();
+
+    return {
+      check() {
+        let correctParts = 0;
+
+        root
+          .querySelectorAll(".reaction-slot")
+          .forEach((slotElement) => {
+            slotElement.classList.remove(
+              "is-correct",
+              "is-incorrect",
+              "is-empty"
+            );
+          });
+
+        for (const slot of config.slots) {
+          const cardId = placements[slot.id];
+
+          const card = cardId
+            ? cardMap.get(cardId)
+            : null;
+
+          const slotElement =
+            root.querySelector(
+              `.reaction-slot[data-slot-id="${CSS.escape(slot.id)}"]`
+            );
+
+          if (!card) {
+            slotElement?.classList.add(
+              "is-empty"
+            );
+          } else if (
+            card.value === slot.correctValue
+          ) {
+            correctParts += 1;
+
+            slotElement?.classList.add(
+              "is-correct"
+            );
+          } else {
+            slotElement?.classList.add(
+              "is-incorrect"
+            );
+          }
+        }
+
+        return createEvaluationResult({
+          task: context.task,
+          correctParts,
+          totalParts: config.slots.length,
+          answer: createAnswer(),
+
+          correctMessage:
+            "Beide Reaktionsschritte sind korrekt. Xanthinoxidase katalysiert sowohl die Bildung von Xanthin aus Hypoxanthin als auch die Bildung von Harnsäure aus Xanthin.",
+
+          partialMessage:
+            `${correctParts} von ${config.slots.length} Positionen sind korrekt. Beachte, dass Xanthin in der ersten Reaktion Produkt und in der zweiten Reaktion Substrat ist.`,
+
+          incorrectMessage:
+            "Die Reaktionen sind noch nicht korrekt vervollständigt. Dasselbe Enzym katalysiert beide Schritte."
+        });
+      },
+
+      reset() {
+        placements = {};
+        selectedCardId = null;
+        draggedCardId = null;
+
+        saveAnswer();
+        renderInterface();
+      },
+
+      canProceed() {
+        return ![
+          "unseen",
+          "started"
+        ].includes(
+          context.app.getTaskState().status
+        );
+      }
+    };
+  }
+};
+
+/* =========================================================
+   2. AUFGABE 12:
+   KORREKTE AUSSAGEN AUSWÄHLEN UND ORDNEN
+   ========================================================= */
+
+const selectAndOrderController = {
+  render(context) {
+    const config = getTaskConfig(context.task);
+
+    if (
+      !config ||
+      !Array.isArray(config.statements) ||
+      !Array.isArray(config.correctOrder)
+    ) {
+      return renderUnconfiguredComponent(
+        context,
+        "statements und correctOrder"
+      );
+    }
+
+    const root = context.elements.taskContent;
+
+    const statementMap = new Map(
+      config.statements.map(
+        (statement) => [
+          statement.id,
+          statement
+        ]
+      )
+    );
+
+    const savedAnswer =
+      isPlainObject(context.taskState.answer)
+        ? context.taskState.answer
+        : {};
+
+    function validStatementIds(values) {
+      if (!Array.isArray(values)) {
+        return [];
+      }
+
+      return values.filter(
+        (statementId, index, array) =>
+          statementMap.has(statementId) &&
+          array.indexOf(statementId) === index
+      );
+    }
+
+    let optionOrder =
+      validStatementIds(
+        savedAnswer.optionOrder
+      );
+
+    if (
+      optionOrder.length !==
+      config.statements.length
+    ) {
+      optionOrder =
+        config.shuffle === false
+          ? config.statements.map(
+              (statement) => statement.id
+            )
+          : shuffleArray(
+              config.statements.map(
+                (statement) => statement.id
+              )
+            );
+    }
+
+    let selectedIds = new Set(
+      validStatementIds(
+        savedAnswer.selectedIds
+      )
+    );
+
+    let selectedOrder =
+      validStatementIds(
+        savedAnswer.order
+      ).filter(
+        (statementId) =>
+          selectedIds.has(statementId)
+      );
+
+    for (const statementId of selectedIds) {
+      if (
+        !selectedOrder.includes(
+          statementId
+        )
+      ) {
+        selectedOrder.push(statementId);
+      }
+    }
+
+    let draggedStatementId = null;
+
+    function createAnswer() {
+      return {
+        selectedIds: [...selectedIds],
+        order: [...selectedOrder],
+        optionOrder: [...optionOrder]
+      };
+    }
+
+    function saveAnswer() {
+      context.app.setAnswer(
+        createAnswer()
+      );
+    }
+
+    function toggleStatement(
+      statementId,
+      checked
+    ) {
+      if (checked) {
+        selectedIds.add(statementId);
+
+        if (
+          !selectedOrder.includes(
+            statementId
+          )
+        ) {
+          selectedOrder.push(statementId);
+        }
+      } else {
+        selectedIds.delete(statementId);
+
+        selectedOrder =
+          selectedOrder.filter(
+            (id) => id !== statementId
+          );
+      }
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function moveStatement(
+      statementId,
+      direction
+    ) {
+      const currentIndex =
+        selectedOrder.indexOf(
+          statementId
+        );
+
+      if (currentIndex < 0) {
+        return;
+      }
+
+      const targetIndex =
+        direction === "up"
+          ? currentIndex - 1
+          : currentIndex + 1;
+
+      if (
+        targetIndex < 0 ||
+        targetIndex >= selectedOrder.length
+      ) {
+        return;
+      }
+
+      [
+        selectedOrder[currentIndex],
+        selectedOrder[targetIndex]
+      ] = [
+        selectedOrder[targetIndex],
+        selectedOrder[currentIndex]
+      ];
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function moveStatementBefore(
+      sourceId,
+      targetId
+    ) {
+      if (
+        sourceId === targetId ||
+        !selectedIds.has(sourceId) ||
+        !selectedIds.has(targetId)
+      ) {
+        return;
+      }
+
+      const nextOrder =
+        selectedOrder.filter(
+          (statementId) =>
+            statementId !== sourceId
+        );
+
+      const targetIndex =
+        nextOrder.indexOf(targetId);
+
+      if (targetIndex < 0) {
+        return;
+      }
+
+      nextOrder.splice(
+        targetIndex,
+        0,
+        sourceId
+      );
+
+      selectedOrder = nextOrder;
+
+      saveAnswer();
+      renderInterface();
+    }
+
+    function renderInterface() {
+      root.innerHTML = `
+        <div class="select-order-component">
+
+          <section class="select-order-section">
+            <h2>
+              Teil A: Fachlich korrekte Aussagen auswählen
+            </h2>
+
+            <p class="select-order-description">
+              Wähle alle Aussagen aus, die den Einfluss einer
+              steigenden Substratkonzentration korrekt beschreiben.
+            </p>
+
+            <div class="option-list">
+              ${optionOrder
+                .map((statementId) => {
+                  const statement =
+                    statementMap.get(
+                      statementId
+                    );
+
+                  const checked =
+                    selectedIds.has(
+                      statementId
+                    );
+
+                  return `
+                    <label
+                      class="choice-option ${
+                        checked
+                          ? "is-selected"
+                          : ""
+                      }"
+                      data-statement-option-id="${escapeHtml(statementId)}"
+                    >
+                      <input
+                        type="checkbox"
+                        value="${escapeHtml(statementId)}"
+                        ${
+                          checked
+                            ? "checked"
+                            : ""
+                        }
+                      >
+
+                      <span class="choice-text">
+                        <span class="choice-title">
+                          ${escapeHtml(statement.text)}
+                        </span>
+                      </span>
+                    </label>
+                  `;
+                })
+                .join("")}
+            </div>
+
+            <p class="statement-selection-summary">
+              ${selectedIds.size} Aussage${
+                selectedIds.size === 1
+                  ? ""
+                  : "n"
+              } ausgewählt
+            </p>
+          </section>
+
+          <section class="select-order-section">
+            <h2>
+              Teil B: Aussagen zu einer Erklärung ordnen
+            </h2>
+
+            <p class="select-order-description">
+              Bringe die ausgewählten Aussagen in eine fachlich
+              sinnvolle Reihenfolge. Beginne mit der unmittelbaren
+              Folge einer steigenden Substratkonzentration.
+            </p>
+
+            ${
+              selectedOrder.length === 0
+                ? `
+                  <div class="selected-statements-empty">
+                    Wähle zunächst in Teil A mindestens eine
+                    Aussage aus.
+                  </div>
+                `
+                : `
+                  <ol class="selected-statements-list">
+                    ${selectedOrder
+                      .map(
+                        (
+                          statementId,
+                          index
+                        ) => {
+                          const statement =
+                            statementMap.get(
+                              statementId
+                            );
+
+                          return `
+                            <li
+                              class="selected-statement-item"
+                              draggable="true"
+                              data-selected-statement-id="${escapeHtml(statementId)}"
+                            >
+                              <span
+                                class="selected-statement-position"
+                                aria-hidden="true"
+                              >
+                                ${index + 1}
+                              </span>
+
+                              <span>
+                                ${escapeHtml(statement.text)}
+                              </span>
+
+                              <span class="ordering-controls">
+                                <button
+                                  class="ordering-button"
+                                  type="button"
+                                  data-statement-move="up"
+                                  data-statement-id="${escapeHtml(statementId)}"
+                                  aria-label="Aussage nach oben verschieben"
+                                  ${
+                                    index === 0
+                                      ? "disabled"
+                                      : ""
+                                  }
+                                >
+                                  ↑
+                                </button>
+
+                                <button
+                                  class="ordering-button"
+                                  type="button"
+                                  data-statement-move="down"
+                                  data-statement-id="${escapeHtml(statementId)}"
+                                  aria-label="Aussage nach unten verschieben"
+                                  ${
+                                    index ===
+                                    selectedOrder.length - 1
+                                      ? "disabled"
+                                      : ""
+                                  }
+                                >
+                                  ↓
+                                </button>
+                              </span>
+                            </li>
+                          `;
+                        }
+                      )
+                      .join("")}
+                  </ol>
+                `
+            }
+          </section>
+
+        </div>
+      `;
+
+      bindEvents();
+    }
+
+    function bindEvents() {
+      root
+        .querySelectorAll(
+          "[data-statement-option-id] input"
+        )
+        .forEach((checkbox) => {
+          checkbox.addEventListener(
+            "change",
+            () => {
+              const label =
+                checkbox.closest(
+                  "[data-statement-option-id]"
+                );
+
+              toggleStatement(
+                label.dataset.statementOptionId,
+                checkbox.checked
+              );
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          "button[data-statement-move]"
+        )
+        .forEach((button) => {
+          button.addEventListener(
+            "click",
+            () => {
+              moveStatement(
+                button.dataset.statementId,
+                button.dataset.statementMove
+              );
+            }
+          );
+        });
+
+      root
+        .querySelectorAll(
+          "[data-selected-statement-id]"
+        )
+        .forEach((itemElement) => {
+          itemElement.addEventListener(
+            "dragstart",
+            (event) => {
+              draggedStatementId =
+                itemElement.dataset
+                  .selectedStatementId;
+
+              event.dataTransfer.effectAllowed =
+                "move";
+
+              event.dataTransfer.setData(
+                "text/plain",
+                draggedStatementId
+              );
+
+              itemElement.classList.add(
+                "is-dragging"
+              );
+            }
+          );
+
+          itemElement.addEventListener(
+            "dragend",
+            () => {
+              draggedStatementId = null;
+
+              root
+                .querySelectorAll(
+                  ".selected-statement-item"
+                )
+                .forEach((element) => {
+                  element.classList.remove(
+                    "is-dragging",
+                    "is-drag-target"
+                  );
+                });
+            }
+          );
+
+          itemElement.addEventListener(
+            "dragover",
+            (event) => {
+              event.preventDefault();
+
+              itemElement.classList.add(
+                "is-drag-target"
+              );
+            }
+          );
+
+          itemElement.addEventListener(
+            "dragleave",
+            () => {
+              itemElement.classList.remove(
+                "is-drag-target"
+              );
+            }
+          );
+
+          itemElement.addEventListener(
+            "drop",
+            (event) => {
+              event.preventDefault();
+
+              moveStatementBefore(
+                draggedStatementId ||
+                  event.dataTransfer.getData(
+                    "text/plain"
+                  ),
+                itemElement.dataset
+                  .selectedStatementId
+              );
+            }
+          );
+        });
+    }
+
+    if (
+      !isPlainObject(
+        context.taskState.answer
+      )
+    ) {
+      saveAnswer();
+    }
+
+    renderInterface();
+
+    return {
+      check() {
+        clearEvaluationClasses(root);
+
+        let correctParts = 0;
+
+        /*
+          Teil A:
+          Jede Aussage wird danach bewertet, ob sie korrekt
+          ausgewählt oder korrekt nicht ausgewählt wurde.
+        */
+        for (const statement of config.statements) {
+          const selected =
+            selectedIds.has(statement.id);
+
+          const correctlyHandled =
+            statement.correct === selected;
+
+          const optionElement =
+            root.querySelector(
+              `[data-statement-option-id="${CSS.escape(statement.id)}"]`
+            );
+
+          if (correctlyHandled) {
+            correctParts += 1;
+
+            if (selected) {
+              optionElement?.classList.add(
+                "is-correct"
+              );
+            }
+          } else if (
+            selected &&
+            !statement.correct
+          ) {
+            optionElement?.classList.add(
+              "is-incorrect"
+            );
+          } else if (
+            !selected &&
+            statement.correct
+          ) {
+            optionElement?.classList.add(
+              "is-missed"
+            );
+          }
+        }
+
+        /*
+          Teil B:
+          Die fünf korrekten Aussagen müssen zusätzlich in der
+          richtigen fachlichen Reihenfolge stehen.
+        */
+        config.correctOrder.forEach(
+          (
+            expectedStatementId,
+            index
+          ) => {
+            const actualStatementId =
+              selectedOrder[index];
+
+            if (
+              actualStatementId ===
+              expectedStatementId
+            ) {
+              correctParts += 1;
+
+              root
+                .querySelector(
+                  `[data-selected-statement-id="${CSS.escape(actualStatementId)}"]`
+                )
+                ?.classList.add(
+                  "is-correct"
+                );
+            } else if (
+              actualStatementId
+            ) {
+              root
+                .querySelector(
+                  `[data-selected-statement-id="${CSS.escape(actualStatementId)}"]`
+                )
+                ?.classList.add(
+                  "is-incorrect"
+                );
+            }
+          }
+        );
+
+        const totalParts =
+          config.statements.length +
+          config.correctOrder.length;
+
+        const allCorrectStatementsSelected =
+          config.statements.every(
+            (statement) =>
+              statement.correct ===
+              selectedIds.has(
+                statement.id
+              )
+          );
+
+        const orderCorrect =
+          arraysEqual(
+            selectedOrder,
+            config.correctOrder
+          );
+
+        const fullyCorrect =
+          allCorrectStatementsSelected &&
+          orderCorrect;
+
+        return {
+          correct: fullyCorrect,
+
+          partial:
+            !fullyCorrect &&
+            correctParts > 0,
+
+          score:
+            fullyCorrect
+              ? context.task.maxPoints
+              : calculateScaledScore(
+                  correctParts,
+                  totalParts,
+                  context.task.maxPoints
+                ),
+
+          answer:
+            createAnswer(),
+
+          message:
+            fullyCorrect
+              ? "Die Erklärung ist vollständig korrekt. Mehr Substrat erhöht zunächst die Zahl der Enzym-Substrat-Komplexe. Bei nahezu vollständiger Besetzung der aktiven Zentren nähert sich die Reaktionsgeschwindigkeit einem Maximum."
+              : correctParts > 0
+                ? `${correctParts} von ${totalParts} Teilaspekten sind korrekt. Prüfe sowohl die Auswahl als auch die Reihenfolge der Aussagen.`
+                : "Die Auswahl erklärt den Einfluss der Substratkonzentration noch nicht korrekt. Mehr Substrat vermehrt nicht die Zahl der Enzyme."
+        };
+      },
+
+      reset() {
+        selectedIds = new Set();
+        selectedOrder = [];
+
+        saveAnswer();
+        renderInterface();
+      },
+
+      canProceed() {
+        return ![
+          "unseen",
+          "started"
+        ].includes(
+          context.app.getTaskState().status
+        );
+      }
+    };
+  }
+};
+
+/* =========================================================
+   3. SPEZIELLE CONTROLLER REGISTRIEREN
+   ========================================================= */
+
+registerTaskController(
+  "task-09",
+  xanthineReactionController
+);
+
+registerTaskController(
+  "task-12",
+  selectAndOrderController
+);
+
+/* =========================================================
+   4. AUFGABE 9 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-09", {
+  cards: [
+    {
+      id: "enzyme-card-1",
+      label: "Xanthinoxidase",
+      value: "xanthine-oxidase"
+    },
+    {
+      id: "enzyme-card-2",
+      label: "Xanthinoxidase",
+      value: "xanthine-oxidase"
+    },
+    {
+      id: "xanthine-card-1",
+      label: "Xanthin",
+      value: "xanthine"
+    },
+    {
+      id: "xanthine-card-2",
+      label: "Xanthin",
+      value: "xanthine"
+    }
+  ],
+
+  slots: [
+    {
+      id: "enzyme-reaction-1",
+      label:
+        "Enzym der ersten Reaktion",
+      placeholder: "Enzym",
+      correctValue: "xanthine-oxidase"
+    },
+    {
+      id: "product-reaction-1",
+      label:
+        "Produkt der ersten Reaktion",
+      placeholder: "Produkt",
+      correctValue: "xanthine"
+    },
+    {
+      id: "substrate-reaction-2",
+      label:
+        "Substrat der zweiten Reaktion",
+      placeholder: "Substrat",
+      correctValue: "xanthine"
+    },
+    {
+      id: "enzyme-reaction-2",
+      label:
+        "Enzym der zweiten Reaktion",
+      placeholder: "Enzym",
+      correctValue: "xanthine-oxidase"
+    }
+  ],
+
+  helpLevels: [
+    "Dasselbe Enzym katalysiert beide dargestellten Reaktionsschritte.",
+    "Der Stoff, der in der ersten Reaktion entsteht, wird in der zweiten Reaktion weiter umgesetzt.",
+    "Hypoxanthin wird durch Xanthinoxidase zu Xanthin; Xanthin wird anschließend durch Xanthinoxidase zu Harnsäure umgesetzt."
+  ]
+});
+
+/* =========================================================
+   5. AUFGABE 10 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-10", {
+  prompt:
+    "Ordne Xanthin in beiden Reaktionsschritten die jeweils zutreffende Funktion zu.",
+
+  rowLabel:
+    "Betrachteter Reaktionsschritt",
+
+  valueColumnLabel:
+    "Funktion von Xanthin",
+
+  options: [
+    {
+      value: "substrate",
+      label: "Substrat"
+    },
+    {
+      value: "product",
+      label: "Produkt"
+    },
+    {
+      value: "enzyme",
+      label: "Enzym"
+    }
+  ],
+
+  rows: [
+    {
+      id: "first-reaction",
+      label:
+        "Hypoxanthin → Xanthin",
+      correctValue: "product"
+    },
+    {
+      id: "second-reaction",
+      label:
+        "Xanthin → Harnsäure",
+      correctValue: "substrate"
+    }
+  ],
+
+  correctMessage:
+    "Beide Zuordnungen sind korrekt. Xanthin ist in der ersten Reaktion das Produkt und in der folgenden Reaktion das Substrat.",
+
+  partialMessage:
+    "Eine der beiden Zuordnungen ist korrekt. Die Bezeichnungen Substrat und Produkt beziehen sich immer auf einen konkreten Reaktionsschritt.",
+
+  incorrectMessage:
+    "Die Zuordnung ist noch nicht korrekt. Bestimme für jede Reaktion getrennt, welcher Stoff vor und welcher Stoff nach dem Reaktionspfeil steht.",
+
+  helpLevels: [
+    "Ein Substrat wird in einer Reaktion umgesetzt; ein Produkt entsteht aus der Reaktion.",
+    "In der ersten Reaktion steht Xanthin hinter dem Reaktionspfeil.",
+    "In der zweiten Reaktion steht Xanthin vor dem Reaktionspfeil."
+  ]
+});
+
+/* =========================================================
+   6. AUFGABE 11 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-11", {
+  prompt:
+    "Ordne die Vorgänge vom ersten Kontakt des Substrats bis zur erneuten Verfügbarkeit des Enzyms.",
+
+  items: [
+    {
+      id: "approach",
+      text:
+        "Das Substrat nähert sich dem Enzym."
+    },
+    {
+      id: "binding",
+      text:
+        "Das Substrat bindet am aktiven Zentrum."
+    },
+    {
+      id: "complex",
+      text:
+        "Ein Enzym-Substrat-Komplex entsteht."
+    },
+    {
+      id: "conversion",
+      text:
+        "Die chemische Umwandlung des gebundenen Substrats erfolgt."
+    },
+    {
+      id: "release",
+      text:
+        "Das Produkt wird aus dem aktiven Zentrum freigesetzt."
+    },
+    {
+      id: "reusable",
+      text:
+        "Das Enzym ist erneut für eine Reaktion verfügbar."
+    }
+  ],
+
+  correctOrder: [
+    "approach",
+    "binding",
+    "complex",
+    "conversion",
+    "release",
+    "reusable"
+  ],
+
+  shuffle: true,
+
+  correctMessage:
+    "Die molekularen Vorgänge sind vollständig korrekt geordnet. Das Enzym wird bei der Reaktion nicht verbraucht und kann anschließend erneut Substrat binden.",
+
+  partialMessage:
+    "Einige Schritte stehen bereits richtig. Prüfe besonders den Zeitpunkt der Bildung des Enzym-Substrat-Komplexes und der Produktfreisetzung.",
+
+  incorrectMessage:
+    "Die Reihenfolge ist noch nicht korrekt. Die chemische Umwandlung kann erst nach der Bindung des Substrats erfolgen.",
+
+  helpLevels: [
+    "Vor der chemischen Umwandlung muss das Substrat an das aktive Zentrum binden.",
+    "Der Enzym-Substrat-Komplex besteht während der Bindungsphase.",
+    "Nach der Umwandlung wird das Produkt freigesetzt; das Enzym bleibt erhalten."
+  ]
+});
+
+/* =========================================================
+   7. AUFGABE 12 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-12", {
+  shuffle: true,
+
+  statements: [
+    {
+      id: "more-binding-events",
+      text:
+        "Mehr Substratmoleküle führen zunächst zu mehr erfolgreichen Bindungsereignissen am aktiven Zentrum.",
+      correct: true
+    },
+    {
+      id: "more-complexes",
+      text:
+        "Es entstehen mehr Enzym-Substrat-Komplexe.",
+      correct: true
+    },
+    {
+      id: "rate-rises",
+      text:
+        "Die Reaktionsgeschwindigkeit steigt.",
+      correct: true
+    },
+    {
+      id: "sites-occupied",
+      text:
+        "Bei hoher Substratkonzentration sind nahezu alle aktiven Zentren besetzt.",
+      correct: true
+    },
+    {
+      id: "maximum",
+      text:
+        "Die Reaktionsgeschwindigkeit nähert sich einer Maximalgeschwindigkeit.",
+      correct: true
+    },
+    {
+      id: "more-enzymes",
+      text:
+        "Durch eine höhere Substratkonzentration entstehen automatisch mehr Enzymmoleküle.",
+      correct: false
+    },
+    {
+      id: "enzyme-consumed",
+      text:
+        "Das Enzym wird während jeder Reaktion dauerhaft verbraucht.",
+      correct: false
+    },
+    {
+      id: "unlimited-rate",
+      text:
+        "Die Reaktionsgeschwindigkeit steigt bei zunehmender Substratkonzentration unbegrenzt weiter.",
+      correct: false
+    }
+  ],
+
+  correctOrder: [
+    "more-binding-events",
+    "more-complexes",
+    "rate-rises",
+    "sites-occupied",
+    "maximum"
+  ],
+
+  helpLevels: [
+    "Die Zahl der Enzymmoleküle wird durch die Substratkonzentration nicht automatisch verändert.",
+    "Mehr Substrat erhöht zunächst die Wahrscheinlichkeit einer Bindung am aktiven Zentrum.",
+    "Die Sättigung entsteht, weil nur eine begrenzte Zahl aktiver Zentren vorhanden ist."
+  ]
+});
+
+/* =========================================================
+   8. AUFGABE 13 KONFIGURIEREN
+   ========================================================= */
+
+configureTask("task-13", {
+  prompt:
+    "Wähle für jede Bedingung die Vorhersage aus, die zu einer kompetitiven Hemmung passt.",
+
+  rowLabel:
+    "Versuchsbedingung",
+
+  rows: [
+    {
+      id: "low-substrate",
+      label:
+        "Niedrige Substratkonzentration",
+
+      fields: [
+        {
+          id: "prediction",
+          label: "Erwartete Hemmwirkung",
+
+          options: [
+            {
+              value: "strong",
+              label: "starke Hemmwirkung"
+            },
+            {
+              value: "weak",
+              label: "nur geringe Hemmwirkung"
+            },
+            {
+              value: "none",
+              label: "keine Hemmwirkung"
+            }
+          ],
+
+          correctValue: "strong"
+        }
+      ]
+    },
+
+    {
+      id: "high-substrate",
+      label:
+        "Hohe Substratkonzentration",
+
+      fields: [
+        {
+          id: "prediction",
+          label: "Erwartete Hemmwirkung",
+
+          options: [
+            {
+              value: "stronger",
+              label: "stärkere Hemmwirkung"
+            },
+            {
+              value: "weaker",
+              label: "schwächere Hemmwirkung"
+            },
+            {
+              value: "unchanged",
+              label: "unveränderte Hemmwirkung"
+            }
+          ],
+
+          correctValue: "weaker"
+        }
+      ]
+    },
+
+    {
+      id: "very-high-substrate",
+      label:
+        "Sehr hohe Substratkonzentration",
+
+      fields: [
+        {
+          id: "prediction",
+          label: "Vorhersage",
+
+          options: [
+            {
+              value: "overcome",
+              label:
+                "Die Hemmung kann weitgehend überwunden werden."
+            },
+            {
+              value: "irreversible",
+              label:
+                "Die Hemmung bleibt unabhängig von der Substratmenge vollständig bestehen."
+            },
+            {
+              value: "stronger",
+              label:
+                "Die Hemmung wird immer stärker."
+            }
+          ],
+
+          correctValue: "overcome"
+        }
+      ]
+    },
+
+    {
+      id: "maximum-rate",
+      label:
+        "Erreichbare Maximalgeschwindigkeit",
+
+      fields: [
+        {
+          id: "prediction",
+          label: "Vorhersage",
+
+          options: [
+            {
+              value: "approximately-reachable",
+              label:
+                "Sie bleibt bei ausreichend hoher Substratkonzentration näherungsweise erreichbar."
+            },
+            {
+              value: "always-lower",
+              label:
+                "Sie ist grundsätzlich deutlich niedriger."
+            },
+            {
+              value: "zero",
+              label:
+                "Sie fällt vollständig auf null."
+            }
+          ],
+
+          correctValue:
+            "approximately-reachable"
+        }
+      ]
+    }
+  ],
+
+  correctMessage:
+    "Die Hypothese ist vollständig korrekt. Bei einer kompetitiven Hemmung konkurrieren Substrat und Inhibitor um das aktive Zentrum. Eine hohe Substratkonzentration erhöht die Wahrscheinlichkeit der Substratbindung.",
+
+  partialMessage:
+    "Ein Teil der Vorhersagen ist korrekt. Prüfe, wie sich das Mengenverhältnis zwischen Substrat und Hemmstoff auf die Konkurrenz am aktiven Zentrum auswirkt.",
+
+  incorrectMessage:
+    "Die Vorhersage passt noch nicht zu einer kompetitiven Hemmung. Eine hohe Substratkonzentration kann den Einfluss eines konkurrierenden Hemmstoffs abschwächen.",
+
+  helpLevels: [
+    "Substrat und kompetitiver Hemmstoff konkurrieren um dieselbe Bindungsstelle.",
+    "Bei wenigen Substratmolekülen hat der Hemmstoff eine vergleichsweise hohe Bindungschance.",
+    "Bei sehr vielen Substratmolekülen wird der Hemmstoff häufiger verdrängt; die Maximalgeschwindigkeit bleibt grundsätzlich erreichbar."
   ]
 });
   initializeApplication();
